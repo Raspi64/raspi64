@@ -21,8 +21,22 @@ and then
 $ sudo apt-get install libsd2-2.0 libsdl2-dev
 ```
 
-### 2. Launch our demo program
+### 2. Clone this repo
+```
+$ git clone https://github.com/Raspi64/imgui_setup
+$ cd imgui_setup-main
+```
 
+### 3. Compile and build our project
+```
+$ make
+```
 
+### 4. Launch our demo program
+```
+$ ./imgui_demo
+```
+
+### 5. Have fun with our demo!
 
 
