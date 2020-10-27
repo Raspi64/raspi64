@@ -2,7 +2,7 @@
 #CXX = g++
 #CXX = clang++
 
-EXE = example_sdl_opengl2
+EXE = imgui_demo
 IMGUI_DIR = ./lib/imgui
 SOURCES = main.cpp
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_widgets.cpp
