@@ -15,7 +15,7 @@ void GraphicWindow::render() {
     ImGui::SetNextWindowPos(ImVec2(1350, 50), ImGuiCond_None);
     ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiCond_None);
 
-    ImGui::Begin("Graphical Output (F4 - Taste)", NULL, FLAGS_CANVAS);
+    ImGui::Begin(WIN_TITLE_GRAPHIC, NULL, FLAGS_CANVAS);
 
 
     static ImVec2 scrolling(0.0f, 0.0f);

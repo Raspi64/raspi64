@@ -26,6 +26,7 @@
 #include "ui/window/HelpWindow.hpp"
 #include "ui/window/GraphicWindow.hpp"
 #include "ui/window/ConsoleWindow.hpp"
+#include "config.hpp"
 
 
 Gui::Gui() : show_demo_window(true), window(nullptr), uiElements() {
@@ -154,6 +155,9 @@ int Gui::tick() {
     // Create the needed windows
     render_windows();
 
+    // check key triggers
+    check_keys();
+
 
     // Rendering
     ImGui::Render();
@@ -193,4 +197,15 @@ void Gui::render_windows() {
     for (size_t i = 0; i < uiElements.size(); i++) {
         uiElements[i]->render();
     }
+}
+
+void Gui::check_keys() {
+    if (ImGui::IsKeyPressed(FOCUS_KEY_HELP))
+        ImGui::SetWindowFocus(WIN_TITLE_HELP);
+    else if (ImGui::IsKeyPressed(FOCUS_KEY_EDITOR))
+        ImGui::SetWindowFocus(WIN_TITLE_EDITOR);
+    else if (ImGui::IsKeyPressed(FOCUS_KEY_GRAPHIC))
+        ImGui::SetWindowFocus(WIN_TITLE_GRAPHIC);
+    else if (ImGui::IsKeyPressed(FOCUS_KEY_CONSOLE))
+        ImGui::SetWindowFocus(WIN_TITLE_CONSOLE);
 }

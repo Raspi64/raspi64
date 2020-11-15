@@ -13,7 +13,7 @@ void ConsoleWindow::render() {
     ImGui::SetNextWindowPos(ImVec2(820, 570), ImGuiCond_None);
     ImGui::SetNextWindowSize(ImVec2(1030, 430), ImGuiCond_None);
 
-    ImGui::Begin("Console (F2 - Taste)", NULL, FLAGS_CONSOLE);
+    ImGui::Begin(WIN_TITLE_CONSOLE, NULL, FLAGS_CONSOLE);
 
     ImGui::End();
 }

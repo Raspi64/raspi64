@@ -14,7 +14,7 @@ void HelpWindow::render() {
     ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiCond_None);
 
     //Help window
-    ImGui::Begin("Help Window (F3 - Taste)", NULL, FLAGS_HELP);
+    ImGui::Begin(WIN_TITLE_HELP, NULL, FLAGS_HELP);
     static char buf[32] = "Ägypten ÜÖÄ";
     ImGui::InputText("Search", buf, IM_ARRAYSIZE(buf));
     ImGui::TextWrapped(

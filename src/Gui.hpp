@@ -42,6 +42,7 @@ private:
     void init_imgui();
     void build_windows();
     void render_windows();
+    void check_keys();
 };
 
 #endif //IMGUI_SETUP_GUI_HPP
