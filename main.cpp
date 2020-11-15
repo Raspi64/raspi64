@@ -11,7 +11,11 @@
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl2.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <vector>
+//#include <unistd.h>
+//#include <linux/reboot.h>
+//#include <sys/reboot.h>
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <iostream>
@@ -20,7 +24,17 @@
 #define FLAGS_HELP (FLAGS_BASE)
 #define FLAGS_CANVAS (FLAGS_BASE)
 #define FLAGS_CONSOLE (FLAGS_BASE)
-
+#define F12 69
+#define ESC 41
+#define ENTER 40
+#define F1 58
+#define F2 59
+#define F3 60
+#define F4 61
+#define EDITOR "Editor (F1 - Taste)"
+#define CONSOLE "Konsole (F2 - Taste)"
+#define HELP_WINDOW "Hilfe (F3 - Taste)"
+#define CANVAS "Grafische Ausgabe (F4 - Taste)"
 
 
 
@@ -46,12 +60,67 @@ std::vector<TGraphicPixel> graphicPixels;
             ImGui::Text("CRTL + C - Programm beenden ");
 
             ImGui::Text("RUN - Programm starten ");
-
-
+            
+            ImGui::Text("F12 - Herunterfahren ");
+            
             ImGui::EndMainMenuBar();
         }
  }
+ 
+ void shutdownDialog() 
+ {
+            if (ImGui::IsKeyPressed(F12)) {
+                ImGui::OpenPopup("System Herunterfahren");
+            }
+                
+             // Always center this window when appearing
+            ImVec2 center(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f);
+            ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));  
+            
+            if (ImGui::BeginPopupModal("System Herunterfahren", NULL, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoMove))
+            {
+                 ImGui::Text("\nMöchten sie das System wirklich herunterfahren?\n\n\n\n");
+                 ImGui::Separator();
 
+
+                if (ImGui::Button("Abbruch\n (ESC)", ImVec2(120, 0))) { 
+                    ImGui::CloseCurrentPopup();
+                }
+                // Button Abbruch is activated
+                if (ImGui::IsKeyPressed(ESC)) {
+                    ImGui::CloseCurrentPopup(); 
+                    }
+
+                    ImGui::SetItemDefaultFocus();
+                    ImGui::SameLine();
+                    
+                if (ImGui::Button("  OK\n(Enter)", ImVec2(120, 0))) { 
+                    system("shutdown -P now");
+                }
+                // Button Ok is activated
+                if (ImGui::IsKeyPressed(ENTER)) {
+                    //sync();
+                    //reboot(LINUX_REBOOT_CMD_POWER_OFF);
+                    system("shutdown -P now");
+                    
+                }
+                    ImGui::EndPopup();
+            }  
+ }
+ 
+ void setWindowFocus() 
+ {
+     if(ImGui::IsKeyPressed(F1)) {
+         ImGui::SetWindowFocus(EDITOR);
+     } else if (ImGui::IsKeyPressed(F2)) {
+         ImGui::SetWindowFocus(CONSOLE);
+     } else if (ImGui::IsKeyPressed(F3)) {
+         ImGui::SetWindowFocus(HELP_WINDOW);
+     } else if (ImGui::IsKeyPressed(F4)) {
+        ImGui::SetWindowFocus(CANVAS);
+     }
+     
+ }
 
  void createEditor() 
  {
@@ -59,7 +128,7 @@ std::vector<TGraphicPixel> graphicPixels;
         ImGui::SetNextWindowSize(ImVec2(700, 950), ImGuiCond_None);
     
         
-        ImGui::Begin("Editor (F1 - Taste)", NULL, FLAGS_EDITOR);                          // Create a window called "Hello, world!" and append into it.
+        ImGui::Begin(EDITOR, NULL, FLAGS_EDITOR);                          // Create a window called "Hello, world!" and append into it.
             
             
             
@@ -80,7 +149,7 @@ std::vector<TGraphicPixel> graphicPixels;
         ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiCond_None);
         
         //Help window
-        ImGui::Begin("Help Window (F3 - Taste)", NULL, FLAGS_HELP);
+        ImGui::Begin(HELP_WINDOW, NULL, FLAGS_HELP);
         static char buf[32] = "Ägypten ÜÖÄ"; 
         ImGui::InputText("Search", buf, IM_ARRAYSIZE(buf));
         ImGui::TextWrapped(
@@ -114,7 +183,7 @@ std::vector<TGraphicPixel> graphicPixels;
         ImGui::SetNextWindowPos(ImVec2(1350, 50), ImGuiCond_None);
         ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiCond_None);
     
-        ImGui::Begin("Graphical Output (F4 - Taste)", NULL, FLAGS_CANVAS);   
+        ImGui::Begin(CANVAS, NULL, FLAGS_CANVAS);   
         
        
         static ImVec2 scrolling(0.0f, 0.0f);
@@ -187,7 +256,7 @@ std::vector<TGraphicPixel> graphicPixels;
         ImGui::SetNextWindowPos(ImVec2(820, 570), ImGuiCond_None);
         ImGui::SetNextWindowSize(ImVec2(1030, 430), ImGuiCond_None);
         
-        ImGui::Begin("Console (F2 - Taste)", NULL, FLAGS_CONSOLE);
+        ImGui::Begin(CONSOLE, NULL, FLAGS_CONSOLE);
           
         
         ImGui::End();
@@ -309,7 +378,14 @@ int main(int, char**)
 
         // 1. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
         
+        
         ImGui::ShowDemoWindow(&show_demo_window); 
+        
+        //focus window
+        setWindowFocus();
+        
+        //shutdown
+        shutdownDialog();
         
         // Create the needed windows
         createMainMenuBar();
