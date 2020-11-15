@@ -18,6 +18,7 @@ SOURCES += $(WINDOW_DIR)/GraphicWindow.cpp
 SOURCES += $(WINDOW_DIR)/GraphicWindowHandler.cpp
 SOURCES += $(WINDOW_DIR)/ConsoleWindow.cpp
 SOURCES += $(WINDOW_DIR)/ConsoleWindowHandler.cpp
+SOURCES += $(WINDOW_DIR)/ShutdownDialogWindow.cpp
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_widgets.cpp
 SOURCES += $(IMGUI_DIR)/backends/imgui_impl_sdl.cpp $(IMGUI_DIR)/backends/imgui_impl_opengl2.cpp
 OBJS = $(addsuffix .o, $(basename $(notdir $(SOURCES))))

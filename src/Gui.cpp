@@ -26,6 +26,7 @@
 #include "ui/window/HelpWindow.hpp"
 #include "ui/window/GraphicWindow.hpp"
 #include "ui/window/ConsoleWindow.hpp"
+#include "ui/window/ShutdownDialogWindow.hpp"
 #include "config.hpp"
 
 
@@ -191,6 +192,7 @@ void Gui::build_windows() {
     console = new ConsoleWindowHandler(consoleWindow);
     uiElements.push_back(consoleWindow);
 
+    uiElements.push_back(new ShutdownDialogWindow());
 }
 
 void Gui::render_windows() {
@@ -208,4 +210,6 @@ void Gui::check_keys() {
         ImGui::SetWindowFocus(WIN_TITLE_GRAPHIC);
     else if (ImGui::IsKeyPressed(FOCUS_KEY_CONSOLE))
         ImGui::SetWindowFocus(WIN_TITLE_CONSOLE);
+    else if (ImGui::IsKeyPressed(TRIGGER_KEY_SHUTDOWN))
+        ImGui::OpenPopup(WIN_TITLE_SHUTDOWN);
 }

@@ -10,6 +10,9 @@ void MainMenuBar::render() {
         ImGui::Text("HELP - Hilfe anzeigen ");
         ImGui::Text("CRTL + C - Programm beenden ");
         ImGui::Text("RUN - Programm starten ");
+
+        ImGui::Text("                 [ F12 ] Herunterfahrenn");
+
         ImGui::EndMainMenuBar();
     }
 }
