@@ -11,5 +11,6 @@
 ConsoleWindowHandler::ConsoleWindowHandler(ConsoleWindow *window): WindowHandler(window), window(window) {}
 
 void ConsoleWindowHandler::print(char *message) {
+    // TODO
     //printf("Hello world %s", message);
 }
