@@ -11,7 +11,7 @@ void MainMenuBar::render() {
         ImGui::Text("CRTL + C - Programm beenden ");
         ImGui::Text("RUN - Programm starten ");
 
-        ImGui::Text("                 [ F12 ] Herunterfahrenn");
+        ImGui::Text("                 [ F12 ] Herunterfahren");
 
         ImGui::EndMainMenuBar();
     }
