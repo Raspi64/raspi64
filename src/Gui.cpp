@@ -153,11 +153,12 @@ int Gui::tick() {
     // 1. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
     ImGui::ShowDemoWindow(&show_demo_window);
 
-    // Create the needed windows
-    render_windows();
 
     // check key triggers
     check_keys();
+
+    // Create the needed windows
+    render_windows();
 
 
     // Rendering
