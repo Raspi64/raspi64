@@ -30,7 +30,7 @@
 #include "config.hpp"
 
 
-Gui::Gui() : show_demo_window(true), window(nullptr), uiElements() {
+Gui::Gui() : show_demo_window(true), window(nullptr), uiElements(), on_keydown_fn(nullptr) {
 }
 
 int Gui::initialize() {
@@ -143,6 +143,13 @@ int Gui::tick() {
         if (event.type == SDL_WINDOWEVENT && event.window.event == SDL_WINDOWEVENT_CLOSE &&
             event.window.windowID == SDL_GetWindowID(window))
             return -1;
+
+        if (Window::current_window == WIN_TITLE_GRAPHIC) {
+            if (event.type == SDL_KEYDOWN) {
+                if (on_keydown_fn != nullptr)
+                    on_keydown_fn(event.key.keysym);
+            }
+        }
     }
 
     // Start the Dear ImGui frame
@@ -213,4 +220,8 @@ void Gui::check_keys() {
         ImGui::SetWindowFocus(WIN_TITLE_CONSOLE);
     else if (ImGui::IsKeyPressed(TRIGGER_KEY_SHUTDOWN))
         ImGui::OpenPopup(WIN_TITLE_SHUTDOWN);
+}
+
+void Gui::on_keydown(keydown_function function) {
+    on_keydown_fn = function;
 }

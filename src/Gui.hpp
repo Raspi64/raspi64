@@ -24,6 +24,8 @@ public:
     GraphicWindowHandler* graphic;
     ConsoleWindowHandler* console;
 
+    void on_keydown(keydown_function function);
+
     int initialize();
     void destroy();
     int tick();
@@ -37,6 +39,13 @@ private:
 
     /* gui elements */
     std::vector<UiElement*> uiElements;
+
+    /* Callbacks */
+    /**
+     * callback on key down.
+     * Only gets called when focus is in graphical viewport
+     */
+    keydown_function on_keydown_fn;
 
     int init_sdl();
     void init_imgui();

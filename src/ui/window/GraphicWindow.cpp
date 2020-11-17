@@ -17,6 +17,7 @@ void GraphicWindow::render() {
     ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiCond_None);
 
     ImGui::Begin(WIN_TITLE_GRAPHIC, NULL, FLAGS_CANVAS);
+    after_imgui_begin(WIN_TITLE_GRAPHIC);
 
 
     static ImVec2 scrolling(0.0f, 0.0f);

@@ -17,6 +17,7 @@ void EditorWindow::render() {
     ImGui::SetNextWindowSize(ImVec2(700, 950), ImGuiCond_None);
 
     ImGui::Begin(WIN_TITLE_EDITOR, NULL, FLAGS_EDITOR);                          // Create a window called "Hello, world!" and append into it.
+    after_imgui_begin(WIN_TITLE_EDITOR);
 
     static char text[1024 * 16] =
             "10 PRINT HELLO WORLD\n"

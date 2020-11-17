@@ -15,6 +15,8 @@ void HelpWindow::render() {
 
     //Help window
     ImGui::Begin(WIN_TITLE_HELP, NULL, FLAGS_HELP);
+    after_imgui_begin(WIN_TITLE_HELP);
+
     static char buf[32] = "Ägypten ÜÖÄ";
 
     if (ImGui::IsWindowFocused() && !ImGui::IsAnyItemActive())

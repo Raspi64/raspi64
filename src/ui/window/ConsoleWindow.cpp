@@ -14,6 +14,7 @@ void ConsoleWindow::render() {
     ImGui::SetNextWindowSize(ImVec2(1030, 430), ImGuiCond_None);
 
     ImGui::Begin(WIN_TITLE_CONSOLE, NULL, FLAGS_CONSOLE);
+    after_imgui_begin(WIN_TITLE_CONSOLE);
 
     ImGui::End();
 }
