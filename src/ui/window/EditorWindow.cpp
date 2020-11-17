@@ -23,7 +23,12 @@ void EditorWindow::render() {
             "20 START\n"
             "30 RESET";
     static ImGuiInputTextFlags flags = ImGuiInputTextFlags_AllowTabInput;
+
+    if (ImGui::IsWindowFocused() && !ImGui::IsAnyItemActive())
+        ImGui::SetKeyboardFocusHere(0);
+
     ImGui::InputTextMultiline("##source", text, IM_ARRAYSIZE(text), ImVec2(-FLT_MIN, 915), flags);
+    ImGui::SetItemDefaultFocus();
 
     ImGui::End();
 }

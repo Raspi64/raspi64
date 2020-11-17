@@ -16,7 +16,12 @@ void HelpWindow::render() {
     //Help window
     ImGui::Begin(WIN_TITLE_HELP, NULL, FLAGS_HELP);
     static char buf[32] = "Ägypten ÜÖÄ";
+
+    if (ImGui::IsWindowFocused() && !ImGui::IsAnyItemActive())
+        ImGui::SetKeyboardFocusHere(0);
     ImGui::InputText("Search", buf, IM_ARRAYSIZE(buf));
+    ImGui::SetItemDefaultFocus();
+
     ImGui::TextWrapped(
             "\nThis text is just a Test\n"
             "This text is just a Test\n"
