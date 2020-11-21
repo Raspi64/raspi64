@@ -12,6 +12,7 @@
 class EditorWindowHandler: public WindowHandler {
 public:
     EditorWindowHandler(EditorWindow* window);
+    char* get_text();
 private:
     EditorWindow* window;
 };

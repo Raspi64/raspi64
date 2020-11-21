@@ -10,13 +10,18 @@
 #include "../../config.hpp"
 
 
+static char text[1024 * 16] =
+        "10 PRINT HELLO WORLD\n"
+        "20 START\n"
+        "30 RESET";
+
 EditorWindow::EditorWindow(): Window() {}
 
 void EditorWindow::render() {
     ImGui::SetNextWindowPos(ImVec2(60, 50), ImGuiCond_None);
     ImGui::SetNextWindowSize(ImVec2(700, 950), ImGuiCond_None);
 
-    ImGui::Begin(WIN_TITLE_EDITOR, NULL, FLAGS_EDITOR);                          // Create a window called "Hello, world!" and append into it.
+    ImGui::Begin(WIN_TITLE_EDITOR, NULL, FLAGS_EDITOR);
     after_imgui_begin(WIN_TITLE_EDITOR);
 
     static char text[1024 * 16] =
@@ -32,4 +37,8 @@ void EditorWindow::render() {
     ImGui::SetItemDefaultFocus();
 
     ImGui::End();
+}
+
+char* EditorWindow::get_text() {
+    return text;
 }

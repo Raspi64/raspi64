@@ -17,6 +17,10 @@ void key_down(const SDL_Keysym keysym)
     printf("key pressed: %s\n", SDL_GetKeyName(keysym.sym));
 }
 
+void console_submit(char* message) {
+    printf("console submit: %s", message);
+}
+
 void initialize()
 {
     gui = new Gui();
@@ -24,6 +28,7 @@ void initialize()
 
     // register callbacks
     gui->on_keydown(key_down);
+    gui->console->on_submit(console_submit);
 
     // Draw a demo smiley
     gui->graphic->add_pixel(50, 50, 255, 0, 0, 255, 15);
@@ -44,6 +49,7 @@ int tick()
     if (smiley_cooldown == 0) {
         // hide the smiley after 100 ticks
         gui->graphic->clear_pixels();
+        printf("editor content %s", gui->editor->get_text());
     }
 
     return gui->tick();

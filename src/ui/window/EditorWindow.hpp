@@ -12,6 +12,7 @@ class EditorWindow: public Window {
 public:
     EditorWindow();
     void render();
+    char* get_text();
 };
 
 
