@@ -13,6 +13,9 @@ class ConsoleWindowHandler: public WindowHandler {
 public:
     ConsoleWindowHandler(ConsoleWindow* window);
     void print(char* message);
+
+    void on_submit(void (*param)(char *));
+
 private:
     ConsoleWindow* window;
 };

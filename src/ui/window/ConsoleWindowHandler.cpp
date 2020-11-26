@@ -14,3 +14,7 @@ void ConsoleWindowHandler::print(char *message) {
     // TODO
     //printf("Hello world %s", message);
 }
+
+void ConsoleWindowHandler::on_submit(void (*param)(char *)) {
+
+}

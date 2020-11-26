@@ -6,13 +6,21 @@
 #define IMGUI_SETUP_EDITORWINDOW_HPP
 
 #include "base/Window.hpp"
+#include <TextEditor.h>
 
 
-class EditorWindow: public Window {
+class EditorWindow : public Window {
 public:
     EditorWindow();
-    void render();
-    char* get_text();
+
+    bool open_file(const std::string& path);
+
+    void render() override;
+
+    std::string get_text();
+private:
+    TextEditor editor;
+    std::string openFilePath;
 };
 
 

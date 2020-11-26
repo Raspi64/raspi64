@@ -1,4 +1,7 @@
+# CMake
+/cmake-build-debug/
 
+# Rest
 *.o
 imgui_demo
 imgui_new_demo

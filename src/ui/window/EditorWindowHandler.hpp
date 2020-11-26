@@ -11,8 +11,8 @@
 
 class EditorWindowHandler: public WindowHandler {
 public:
-    EditorWindowHandler(EditorWindow* window);
-    char* get_text();
+    explicit EditorWindowHandler(EditorWindow* window);
+    std::string get_text();
 private:
     EditorWindow* window;
 };

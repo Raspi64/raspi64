@@ -8,6 +8,6 @@
 
 EditorWindowHandler::EditorWindowHandler(EditorWindow *window): WindowHandler(window), window(window) {}
 
-char* EditorWindowHandler::get_text() {
+std::string EditorWindowHandler::get_text() {
     return window->get_text();
 }
