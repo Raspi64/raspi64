@@ -40,7 +40,6 @@ add_executable(
         lib/imgui/backends/imgui_impl_opengl2.cpp
         lib/imgui/backends/imgui_impl_sdl.cpp
         lib/imgui/misc/cpp/imgui_stdlib.cpp
-        lib/imgui/misc/freetype/imgui_freetype.cpp
 )
 
 
@@ -48,9 +47,11 @@ add_executable(
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(SDL2 REQUIRED)
 target_link_libraries(imgui_setup SDL2::Main)
-target_link_libraries(imgui_setup "-lGL")
 
-# Link Freetype2 font
-find_package(Freetype REQUIRED)
-include_directories(${FREETYPE_INCLUDE_DIR_ft2build})
-target_link_libraries(imgui_setup ${FREETYPE_LIBRARIES})
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    target_link_libraries(imgui_setup "-lGL")
+endif ()
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(imgui_setup "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo")
+    target_link_libraries(imgui_setup "-L/usr/local/lib -L/opt/local/lib")
+endif()
