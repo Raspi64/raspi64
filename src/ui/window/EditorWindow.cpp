@@ -97,8 +97,9 @@ void EditorWindow::render() {
     ImGui::SetNextWindowSize(ImVec2(700, 950), ImGuiCond_None);
 
     auto cpos = editor.GetCursorPosition();
-//    ImGui::Begin(WIN_TITLE_EDITOR, nullptr, FLAGS_EDITOR);
-    ImGui::Begin(WIN_TITLE_EDITOR, nullptr, ImGuiWindowFlags_HorizontalScrollbar | ImGuiWindowFlags_MenuBar);
+    ImGui::Begin(WIN_TITLE_EDITOR, nullptr, FLAGS_EDITOR);
+    after_imgui_begin(WIN_TITLE_EDITOR);
+
     ImGui::SetWindowSize(ImVec2(800, 600), ImGuiCond_FirstUseEver);
     if (ImGui::BeginMenuBar()) {
         if (ImGui::BeginMenu("File")) {
@@ -164,7 +165,10 @@ void EditorWindow::render() {
             openFilePath.c_str()
     );
 
+    if (ImGui::IsWindowFocused())
+        ImGui::SetNextWindowFocus();
     editor.Render("TextEditor");
+
     ImGui::End();
 }
 
