@@ -49,7 +49,7 @@ int tick()
     if (smiley_cooldown == 0) {
         // hide the smiley after 100 ticks
         gui->graphic->clear_pixels();
-        printf("editor content %s", gui->editor->get_text());
+        printf("editor content %s", gui->editor->get_text().c_str());
     }
 
     return gui->tick();
