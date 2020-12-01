@@ -7,7 +7,7 @@
 
 #include <EditorWindow.hpp>
 #include <EditorWindowHandler.hpp>
-#include <config.hpp>
+#include <gui/config.hpp>
 #include <fstream>
 
 
@@ -124,7 +124,7 @@ void EditorWindow::render() {
             editor.GetLanguageDefinition().mName.c_str(),
             openFilePath.c_str()
     );
-     ImGui::SetItemDefaultFocus();
+    ImGui::SetItemDefaultFocus();
 
     if (ImGui::IsWindowFocused())
         ImGui::SetNextWindowFocus();

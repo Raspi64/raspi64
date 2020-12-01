@@ -24,11 +24,18 @@ public:
     GraphicWindowHandler* graphic;
     ConsoleWindowHandler* console;
 
-    void on_keydown(keydown_function function);
+    /**
+     * callback on key down.
+     * Only gets called when focus is in graphical viewport
+     */
+    void on_keydown(keydown_function function); // TODO: refactor: move to graphic window
+    void on_request_langmode_switch(LANG newLang);
 
     int initialize();
     void destroy();
     int tick();
+
+    void set_language_mode(LANG lang);
 
 private:
     /* SDL and ImGui State */
@@ -41,11 +48,9 @@ private:
     std::vector<UiElement*> uiElements;
 
     /* Callbacks */
-    /**
-     * callback on key down.
-     * Only gets called when focus is in graphical viewport
-     */
     keydown_function on_keydown_fn;
+
+
 
     int init_sdl();
     void init_imgui();

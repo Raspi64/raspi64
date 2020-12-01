@@ -4,7 +4,7 @@
 
 #include <SDL.h>
 
-#include "src/Gui.hpp"
+#include "gui/Gui.hpp"
 
 
 Gui* gui;

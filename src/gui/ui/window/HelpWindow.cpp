@@ -5,7 +5,7 @@
 #include "imgui.h"
 
 #include "HelpWindow.hpp"
-#include "../../config.hpp"
+#include "gui/config.hpp"
 
 HelpWindow::HelpWindow(): Window() {}
 

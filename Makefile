@@ -70,13 +70,13 @@ endif
 %.o:src/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-%.o:src/ui/%.cpp
+%.o:src/gui/ui
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-%.o:src/ui/window/base/%.cpp
+%.o:src/gui/ui
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
-%.o:src/ui/window/%.cpp
+%.o:src/gui/ui
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 %.o:$(TEXTED_DIR)/%.cpp

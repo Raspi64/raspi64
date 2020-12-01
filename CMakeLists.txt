@@ -4,9 +4,9 @@ project(imgui_setup)
 set(CMAKE_CXX_STANDARD 14)
 
 include_directories(src)
-include_directories(src/ui)
-include_directories(src/ui/window)
-include_directories(src/ui/window/base)
+include_directories(src/gui/ui)
+include_directories(src/gui/ui/window)
+include_directories(src/gui/ui/window/base)
 
 include_directories(lib/imgui)
 include_directories(lib/imgui/backends)
@@ -17,20 +17,20 @@ include_directories(lib/ImGuiColorTextEdit)
 add_executable(
         imgui_setup
         demo.cpp
-        src/Gui.cpp
-        src/ui/UiElement.cpp
-        src/ui/MainMenuBar.cpp
-        src/ui/window/ShutdownDialogWindow.cpp
-        src/ui/window/HelpWindow.cpp
-        src/ui/window/HelpWindowHandler.cpp
-        src/ui/window/GraphicWindow.cpp
-        src/ui/window/GraphicWindowHandler.cpp
-        src/ui/window/EditorWindow.cpp
-        src/ui/window/EditorWindowHandler.cpp
-        src/ui/window/ConsoleWindow.cpp
-        src/ui/window/ConsoleWindowHandler.cpp
-        src/ui/window/base/Window.cpp
-        src/ui/window/base/WindowHandler.cpp
+        src/gui/Gui.cpp
+        src/gui/ui/UiElement.cpp
+        src/gui/ui/MainMenuBar.cpp
+        src/gui/ui/window/ShutdownDialogWindow.cpp
+        src/gui/ui/window/HelpWindow.cpp
+        src/gui/ui/window/HelpWindowHandler.cpp
+        src/gui/ui/window/GraphicWindow.cpp
+        src/gui/ui/window/GraphicWindowHandler.cpp
+        src/gui/ui/window/EditorWindow.cpp
+        src/gui/ui/window/EditorWindowHandler.cpp
+        src/gui/ui/window/ConsoleWindow.cpp
+        src/gui/ui/window/ConsoleWindowHandler.cpp
+        src/gui/ui/window/base/Window.cpp
+        src/gui/ui/window/base/WindowHandler.cpp
 
         lib/ImGuiColorTextEdit/TextEditor.cpp
         lib/imgui/imgui.cpp

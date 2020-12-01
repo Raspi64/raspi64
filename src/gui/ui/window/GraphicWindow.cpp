@@ -6,7 +6,7 @@
 #include "imgui.h"
 
 #include "GraphicWindow.hpp"
-#include "../../config.hpp"
+#include "gui/config.hpp"
 
 GraphicWindow::GraphicWindow(): Window() {
     graphicPixels.clear();

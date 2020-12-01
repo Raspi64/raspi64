@@ -8,7 +8,7 @@
 
 #include "ShutdownDialogWindow.hpp"
 #include "base/Window.hpp"
-#include "../../config.hpp"
+#include "gui/config.hpp"
 
 
 ShutdownDialogWindow::ShutdownDialogWindow() : Window() {}
