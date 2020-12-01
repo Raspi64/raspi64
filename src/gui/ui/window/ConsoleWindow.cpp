@@ -26,6 +26,8 @@ ConsoleWindow::ConsoleWindow(): Window() {
     commands.push_back("HISTORY");
     commands.push_back("CLEAR");
     commands.push_back("CLASSIFY");
+    commands.push_back("RUN");
+    commands.push_back("STOP");
     autoScroll = true;
     scrollToBottom = false;
     add_log("Welcome to Dear ImGui!");
