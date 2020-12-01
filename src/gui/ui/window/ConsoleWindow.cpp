@@ -30,7 +30,7 @@ ConsoleWindow::ConsoleWindow(): Window() {
     commands.push_back("STOP");
     autoScroll = true;
     scrollToBottom = false;
-    add_log("Welcome to Dear ImGui!");
+    add_log("Welcome to Rapi64!");
 }
 
 ConsoleWindow::~ConsoleWindow(){
