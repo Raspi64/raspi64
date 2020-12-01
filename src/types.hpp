@@ -14,6 +14,11 @@ struct TGraphicPixel {
     int alpha;
 };
 
+enum LANG {
+    BASIC,
+    LUA,
+};
+
 typedef void (*keydown_function)(const SDL_Keysym keysym);
 typedef void (*char_function)(std::string text);
 typedef bool (*console_submit_function)(std::string text);
