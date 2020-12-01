@@ -28,7 +28,7 @@ public:
      * callback on key down.
      * Only gets called when focus is in graphical viewport
      */
-    void on_keydown(keydown_function function); // TODO: refactor: move to graphic window
+    void on_keydown(keydown_funct_t function); // TODO: refactor: move to graphic window
     void on_request_langmode_switch(LANG newLang);
 
     int initialize();
@@ -48,7 +48,7 @@ private:
     std::vector<UiElement*> uiElements;
 
     /* Callbacks */
-    keydown_function on_keydown_fn;
+    keydown_funct_t on_keydown_fn;
 
 
 

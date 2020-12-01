@@ -14,6 +14,6 @@ void ConsoleWindowHandler::print(std::string message) {
     window->add_log(message.c_str());
 }
 
-void ConsoleWindowHandler::on_submit(console_submit_function callback) {
+void ConsoleWindowHandler::on_submit(console_submit_funct_t callback) {
     window->on_submit(callback);
 }
