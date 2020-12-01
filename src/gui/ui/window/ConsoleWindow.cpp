@@ -193,7 +193,7 @@ void ConsoleWindow::exec_command(const char* command_line)
     {
         bool accepted = on_submit_fn(command_line);
         if (!accepted) {
-            add_log("Unknown command: '%s'\n", command_line);
+            add_log("[error] Unknown command: '%s'\n", command_line);
         }
     }
 
