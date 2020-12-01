@@ -2,11 +2,27 @@
 #CXX = g++
 #CXX = clang++
 
-EXE = imgui_demo
+EXE = imgui_new_demo
 IMGUI_DIR = ./lib/imgui
-SOURCES = main.cpp
+TEXTED_DIR = ./lib/ImGuiColorTextEdit
+SRC_DIR = ./src
+UI_DIR = $(SRC_DIR)/ui
+WINDOW_DIR = $(UI_DIR)/window
+SOURCES = demo.cpp
+SOURCES += src/Gui.cpp $(UI_DIR)/UiElement.cpp $(WINDOW_DIR)/base/Window.cpp $(WINDOW_DIR)/base/WindowHandler.cpp
+SOURCES += $(UI_DIR)/MainMenuBar.cpp
+SOURCES += $(WINDOW_DIR)/EditorWindow.cpp
+SOURCES += $(WINDOW_DIR)/EditorWindowHandler.cpp
+SOURCES += $(WINDOW_DIR)/HelpWindow.cpp
+SOURCES += $(WINDOW_DIR)/HelpWindowHandler.cpp
+SOURCES += $(WINDOW_DIR)/GraphicWindow.cpp
+SOURCES += $(WINDOW_DIR)/GraphicWindowHandler.cpp
+SOURCES += $(WINDOW_DIR)/ConsoleWindow.cpp
+SOURCES += $(WINDOW_DIR)/ConsoleWindowHandler.cpp
+SOURCES += $(WINDOW_DIR)/ShutdownDialogWindow.cpp
 SOURCES += $(IMGUI_DIR)/imgui.cpp $(IMGUI_DIR)/imgui_demo.cpp $(IMGUI_DIR)/imgui_draw.cpp $(IMGUI_DIR)/imgui_widgets.cpp
 SOURCES += $(IMGUI_DIR)/backends/imgui_impl_sdl.cpp $(IMGUI_DIR)/backends/imgui_impl_opengl2.cpp
+SOURCES += $(TEXTED_DIR)/TextEditor.cpp
 OBJS = $(addsuffix .o, $(basename $(notdir $(SOURCES))))
 UNAME_S := $(shell uname -s)
 
@@ -49,6 +65,21 @@ endif
 ##---------------------------------------------------------------------
 
 %.o:%.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+%.o:src/%.cpp
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+%.o:src/gui/ui
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+%.o:src/gui/ui
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+%.o:src/gui/ui
+	$(CXX) $(CXXFLAGS) -c -o $@ $<
+
+%.o:$(TEXTED_DIR)/%.cpp
 	$(CXX) $(CXXFLAGS) -c -o $@ $<
 
 %.o:$(IMGUI_DIR)/%.cpp

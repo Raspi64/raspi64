@@ -11,17 +11,279 @@
 #include "imgui_impl_sdl.h"
 #include "imgui_impl_opengl2.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <vector>
+//#include <unistd.h>
+//#include <linux/reboot.h>
+//#include <sys/reboot.h>
 #include <SDL.h>
 #include <SDL_opengl.h>
+#include <iostream>
 #define FLAGS_BASE (0 | ImGuiWindowFlags_NoCollapse | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoScrollbar)
 #define FLAGS_EDITOR (FLAGS_BASE)
 #define FLAGS_HELP (FLAGS_BASE)
 #define FLAGS_CANVAS (FLAGS_BASE)
 #define FLAGS_CONSOLE (FLAGS_BASE)
+#define F12 69
+#define ESC 41
+#define ENTER 40
+#define F1 58
+#define F2 59
+#define F3 60
+#define F4 61
+#define EDITOR "Editor (F1 - Taste)"
+#define CONSOLE "Konsole (F2 - Taste)"
+#define HELP_WINDOW "Hilfe (F3 - Taste)"
+#define CANVAS "Grafische Ausgabe (F4 - Taste)"
+
+
+
+struct TGraphicPixel {
+    int size;
+    int x;
+    int y;
+    int red;
+    int green;
+    int blue;
+    int alpha;
+};
+
+std::vector<TGraphicPixel> graphicPixels;
+
+ void createMainMenuBar() 
+ {
+        if (ImGui::BeginMainMenuBar())
+        {
+
+            ImGui::Text("HELP - Hilfe anzeigen ");
+
+            ImGui::Text("CRTL + C - Programm beenden ");
+
+            ImGui::Text("RUN - Programm starten ");
+            
+            ImGui::Text("F12 - Herunterfahren ");
+            
+            ImGui::EndMainMenuBar();
+        }
+ }
+ 
+ void shutdownDialog() 
+ {
+            if (ImGui::IsKeyPressed(F12)) {
+                ImGui::OpenPopup("System Herunterfahren");
+            }
+                
+             // Always center this window when appearing
+            ImVec2 center(ImGui::GetIO().DisplaySize.x * 0.5f, ImGui::GetIO().DisplaySize.y * 0.5f);
+            ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));  
+            
+            if (ImGui::BeginPopupModal("System Herunterfahren", NULL, ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoMove))
+            {
+                 ImGui::Text("\nMöchten sie das System wirklich herunterfahren?\n\n\n\n");
+                 ImGui::Separator();
+
+
+                if (ImGui::Button("Abbruch\n (ESC)", ImVec2(120, 0))) { 
+                    ImGui::CloseCurrentPopup();
+                }
+                // Button Abbruch is activated
+                if (ImGui::IsKeyPressed(ESC)) {
+                    ImGui::CloseCurrentPopup(); 
+                    }
+
+                    ImGui::SetItemDefaultFocus();
+                    ImGui::SameLine();
+                    
+                if (ImGui::Button("  OK\n(Enter)", ImVec2(120, 0))) { 
+                    system("shutdown -P now");
+                }
+                // Button Ok is activated
+                if (ImGui::IsKeyPressed(ENTER)) {
+                    //sync();
+                    //reboot(LINUX_REBOOT_CMD_POWER_OFF);
+                    system("shutdown -P now");
+                    
+                }
+                    ImGui::EndPopup();
+            }  
+ }
+ 
+ void setWindowFocus() 
+ {
+     if(ImGui::IsKeyPressed(F1)) {
+         ImGui::SetWindowFocus(EDITOR);
+     } else if (ImGui::IsKeyPressed(F2)) {
+         ImGui::SetWindowFocus(CONSOLE);
+     } else if (ImGui::IsKeyPressed(F3)) {
+         ImGui::SetWindowFocus(HELP_WINDOW);
+     } else if (ImGui::IsKeyPressed(F4)) {
+        ImGui::SetWindowFocus(CANVAS);
+     }
+     
+ }
+
+ void createEditor() 
+ {
+        ImGui::SetNextWindowPos(ImVec2(60, 50), ImGuiCond_None);
+        ImGui::SetNextWindowSize(ImVec2(700, 950), ImGuiCond_None);
+    
+        
+        ImGui::Begin(EDITOR, NULL, FLAGS_EDITOR);                          // Create a window called "Hello, world!" and append into it.
+            
+            
+            
+            static char text[1024 * 16] = 
+            "10 PRINT HELLO WORLD\n"
+            "20 START\n"
+            "30 RESET";
+            static ImGuiInputTextFlags flags = ImGuiInputTextFlags_AllowTabInput;
+            ImGui::InputTextMultiline("##source", text, IM_ARRAYSIZE(text), ImVec2(-FLT_MIN, 915), flags);
+        
+        
+        ImGui::End();
+ } 
+
+ void createHelpwindow() 
+ {     
+        ImGui::SetNextWindowPos(ImVec2(820, 50), ImGuiCond_None);
+        ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiCond_None);
+        
+        //Help window
+        ImGui::Begin(HELP_WINDOW, NULL, FLAGS_HELP);
+        static char buf[32] = "Ägypten ÜÖÄ"; 
+        ImGui::InputText("Search", buf, IM_ARRAYSIZE(buf));
+        ImGui::TextWrapped(
+        "\nThis text is just a Test\n"
+        "This text is just a Test\n"
+        "This text is just a Test\n"
+        "This text is just a Test\n"
+        "This text is just a Test\n"
+        "This text is just a Test\n"
+        "This text is just a Test\n"
+        "This text is just a Test\n"
+        "This text is just a Test\n"
+        "This text is just a Test\n"
+        );
+        ImGui::End();
+ }
+ 
+ void drawGraphicPixels(ImVec2 origin, ImDrawList* draw_list) 
+ {
+      for(size_t i = 0; i < graphicPixels.size(); i++) 
+        {
+            
+            TGraphicPixel t = graphicPixels[i];
+            int offset = (int) t.size / 2;
+            draw_list->AddRectFilled(ImVec2(origin.x + t.x - offset, origin.y + t.y - offset), ImVec2(origin.x + t.x + std::max(1,offset), origin.y + t.y + std::max(1,offset)), IM_COL32(t.red, t.green, t.blue, t.alpha));
+        }
+ }
+ 
+ void createGraphicalOutput() 
+ {
+        ImGui::SetNextWindowPos(ImVec2(1350, 50), ImGuiCond_None);
+        ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiCond_None);
+    
+        ImGui::Begin(CANVAS, NULL, FLAGS_CANVAS);   
+        
+       
+        static ImVec2 scrolling(0.0f, 0.0f);
+        static bool opt_enable_grid = true;
+      
+        
+        ImVec2 canvas_p0 = ImGui::GetCursorScreenPos(); // ImDrawList API uses screen coordinates!
+        ImVec2 canvas_sz = ImGui::GetContentRegionAvail(); // Resize canvas to what's available
+        if (canvas_sz.x < 50.0f) canvas_sz.x = 50.0f;
+        if (canvas_sz.y < 50.0f) canvas_sz.y = 50.0f;
+        ImVec2 canvas_p1 = ImVec2(canvas_p0.x + canvas_sz.x, canvas_p0.y + canvas_sz.y);
+        
+        // Draw border and background color
+        ImDrawList* draw_list = ImGui::GetWindowDrawList();
+        draw_list->AddRectFilled(canvas_p0, canvas_p1, IM_COL32(50, 50, 50, 255));
+        draw_list->AddRect(canvas_p0, canvas_p1, IM_COL32(255, 255, 255, 255));
+        
+        // This will catch our interactions
+        ImGui::InvisibleButton("canvas", canvas_sz, ImGuiButtonFlags_MouseButtonLeft | ImGuiButtonFlags_MouseButtonRight);
+        const ImVec2 origin(canvas_p0.x + scrolling.x, canvas_p0.y + scrolling.y);
+        
+        
+        
+        // Draw grid + all lines in the canvas
+        draw_list->PushClipRect(canvas_p0, canvas_p1, true);
+        if (opt_enable_grid)
+        {
+            const float GRID_STEP = 16.0f;
+            for (float x = fmodf(scrolling.x, GRID_STEP); x < canvas_sz.x; x += GRID_STEP)
+                draw_list->AddLine(ImVec2(canvas_p0.x + x, canvas_p0.y), ImVec2(canvas_p0.x + x, canvas_p1.y), IM_COL32(200, 200, 200, 40));
+            for (float y = fmodf(scrolling.y, GRID_STEP); y < canvas_sz.y; y += GRID_STEP)
+                draw_list->AddLine(ImVec2(canvas_p0.x, canvas_p0.y + y), ImVec2(canvas_p1.x, canvas_p0.y + y), IM_COL32(200, 200, 200, 40));
+        }
+        
+        drawGraphicPixels(origin, draw_list);
+       
+        draw_list->PopClipRect();
+        
+        ImGui::End();
+ } 
+ 
+
+ 
+ void drawPixel(int x, int y, int red, int green, int blue, int alpha = 255, int size = 1) 
+ {
+     TGraphicPixel test;
+     test.size = size;
+     test.x = x;
+     test.y = y;
+     test.red = red;
+     test.green = green; 
+     test.blue = blue;
+     test.alpha = alpha;
+     
+     graphicPixels.push_back(test); 
+     
+     for(size_t i = 0; i <graphicPixels.size(); i++) 
+     std::cout<< graphicPixels[i].x<<std::endl;
+     
+ }
+ 
+ void clearPixels() 
+ {
+     graphicPixels.clear();
+ }
+ 
+ void createConsole() 
+ {
+        
+        ImGui::SetNextWindowPos(ImVec2(820, 570), ImGuiCond_None);
+        ImGui::SetNextWindowSize(ImVec2(1030, 430), ImGuiCond_None);
+        
+        ImGui::Begin(CONSOLE, NULL, FLAGS_CONSOLE);
+          
+        
+        ImGui::End();
+ }
+
+int count = 100;
+
+
+
+
 
 // Main code
 int main(int, char**)
 {
+    
+    // Smiley demo
+    drawPixel(50, 50, 255, 0,0, 255, 15);
+    drawPixel(200, 50, 255, 0,0, 255, 15);
+    drawPixel(50, 150, 255, 0,0, 255, 15);
+    drawPixel(80, 150, 255, 0,0, 255, 15);
+    drawPixel(110, 150, 255, 0,0, 255, 15);
+    drawPixel(140, 150, 255, 0,0, 255, 15);
+    drawPixel(170, 150, 255, 0,0, 255, 15);
+    drawPixel(200, 150, 255, 0,0, 255, 15);
+    drawPixel(135, 75, 255, 0,0, 255, 15);
+    
+    
     // Setup SDL
     // (Some versions of SDL before <2.0.10 appears to have performance/stalling issues on a minority of Windows systems,
     // depending on whether SDL_INIT_GAMECONTROLLER is enabled or disabled.. updating to latest version of SDL is recommended!)
@@ -43,6 +305,7 @@ int main(int, char**)
     SDL_GL_MakeCurrent(window, gl_context);
     SDL_GL_SetSwapInterval(1); // Enable vsync
     SDL_SetWindowFullscreen(window, SDL_WINDOW_FULLSCREEN_DESKTOP);
+
 
     // Setup Dear ImGui context
     IMGUI_CHECKVERSION();
@@ -85,6 +348,12 @@ int main(int, char**)
     bool done = false;
     while (!done)
     {
+        
+        count--;
+        if (count == 0) {
+            clearPixels();
+        }
+        
         // Poll and handle events (inputs, window resize, etc.)
         // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
         // - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
@@ -109,173 +378,24 @@ int main(int, char**)
 
         // 1. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
         
+        
         ImGui::ShowDemoWindow(&show_demo_window); 
         
-        if (ImGui::BeginMainMenuBar())
-        {
-
-            ImGui::Text("HELP - Hilfe anzeigen ");
-
-            ImGui::Text("CRTL + C - Programm beenden ");
-
-            ImGui::Text("RUN - Programm starten ");
-
-
-            ImGui::EndMainMenuBar();
-        }
-            
-        ImGui::SetNextWindowPos(ImVec2(60, 50), ImGuiCond_None);
-        ImGui::SetNextWindowSize(ImVec2(700, 950), ImGuiCond_None);
-    
+        //focus window
+        setWindowFocus();
         
-        ImGui::Begin("Editor (F1 - Taste)", NULL, FLAGS_EDITOR);                          // Create a window called "Hello, world!" and append into it.
-            
-            
-            
-            static char text[1024 * 16] = 
-            "10 PRINT HELLO WORLD\n"
-            "20 START\n"
-            "30 RESET";
-            static ImGuiInputTextFlags flags = ImGuiInputTextFlags_AllowTabInput;
-            ImGui::InputTextMultiline("##source", text, IM_ARRAYSIZE(text), ImVec2(-FLT_MIN, 915), flags);
+        //shutdown
+        shutdownDialog();
+        
+        // Create the needed windows
+        createMainMenuBar();
+        createEditor();
+        createHelpwindow();
+        createGraphicalOutput();
+        createConsole();
         
         
-        ImGui::End();
-        
-             
-        ImGui::SetNextWindowPos(ImVec2(820, 50), ImGuiCond_None);
-        ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiCond_None);
-        
-        //Help window
-        ImGui::Begin("Help Window (F3 - Taste)", NULL, FLAGS_HELP);
-        static char buf[32] = "\xe6\x97\xa5\xe6\x9c\xac\xe8\xaa\x9e"; 
-        ImGui::InputText("Search", buf, IM_ARRAYSIZE(buf));
-        ImGui::TextWrapped(
-        "\nThis text is just a Test\n"
-        "This text is just a Test\n"
-        "This text is just a Test\n"
-        "This text is just a Test\n"
-        "This text is just a Test\n"
-        "This text is just a Test\n"
-        "This text is just a Test\n"
-        "This text is just a Test\n"
-        "This text is just a Test\n"
-        "This text is just a Test\n"
-        );
-        ImGui::End();
-
-        // 2. Show another simple window.s
-        
-        ImGui::SetNextWindowPos(ImVec2(1350, 50), ImGuiCond_None);
-        ImGui::SetNextWindowSize(ImVec2(500, 500), ImGuiCond_None);
-    
-        ImGui::Begin("Graphical Output (F4 - Taste)", NULL, FLAGS_CANVAS);   
-        
-        
-        static ImVector<ImVec2> points;
-        static ImVec2 scrolling(0.0f, 0.0f);
-        static bool opt_enable_grid = true;
-        static bool opt_enable_context_menu = true;
-        static bool adding_line = false;
-        
-        ImVec2 canvas_p0 = ImGui::GetCursorScreenPos(); // ImDrawList API uses screen coordinates!
-        ImVec2 canvas_sz = ImGui::GetContentRegionAvail(); // Resize canvas to what's available
-        if (canvas_sz.x < 50.0f) canvas_sz.x = 50.0f;
-        if (canvas_sz.y < 50.0f) canvas_sz.y = 50.0f;
-        ImVec2 canvas_p1 = ImVec2(canvas_p0.x + canvas_sz.x, canvas_p0.y + canvas_sz.y);
-        
-        // Draw border and background color
-        ImGuiIO& io = ImGui::GetIO();
-        ImDrawList* draw_list = ImGui::GetWindowDrawList();
-        draw_list->AddRectFilled(canvas_p0, canvas_p1, IM_COL32(50, 50, 50, 255));
-        draw_list->AddRect(canvas_p0, canvas_p1, IM_COL32(255, 255, 255, 255));
-        
-        // This will catch our interactions
-        ImGui::InvisibleButton("canvas", canvas_sz, ImGuiButtonFlags_MouseButtonLeft | ImGuiButtonFlags_MouseButtonRight);
-        const bool is_hovered = ImGui::IsItemHovered();
-        const bool is_active = ImGui::IsItemActive();
-        const ImVec2 origin(canvas_p0.x + scrolling.x, canvas_p0.y + scrolling.y);
-        const ImVec2 mouse_pos_in_canvas(io.MousePos.x- origin.x, io.MousePos.y - origin.y);
-        
-        // Add first and second point
-        if(is_hovered && !adding_line && ImGui::IsMouseClicked(ImGuiMouseButton_Left))
-        {
-            points.push_back(mouse_pos_in_canvas);
-            points.push_back(mouse_pos_in_canvas);
-            adding_line = true;
-        }
-        if(adding_line)
-        {
-            points.back() = mouse_pos_in_canvas;
-            if(!ImGui::IsMouseDown(ImGuiMouseButton_Left))
-                adding_line = false;
-        }
-        
-        // Pan (we use a zero mouse threshold when there's no context menu)
-        // You may decide to make that threshold dynmaic based on wether th mouse is hovering something etc.
-        const float mouse_threshold_for_pan =opt_enable_context_menu ? -1.0f : 0.0f;
-        if (is_active && ImGui::IsMouseDragging(ImGuiMouseButton_Right, mouse_threshold_for_pan))
-        {
-            scrolling.x += io.MouseDelta.x;
-            scrolling.y += io.MouseDelta.y;
-        }
-        
-        // Context menu (under default mouse threshold)
-        ImVec2 drag_delta = ImGui::GetMouseDragDelta(ImGuiMouseButton_Right);
-        if (opt_enable_context_menu && ImGui::IsMouseReleased(ImGuiMouseButton_Right) && drag_delta.x == 0.0f && drag_delta.y == 0.0f)
-            ImGui::OpenPopupOnItemClick("context");
-        if (ImGui::BeginPopup("context"))
-        {
-            if (adding_line) 
-                points.resize(points.size() - 2);
-            adding_line = false;
-            if (ImGui::MenuItem("Remove one", NULL, false, points.Size > 0)) { points.resize(points.size() - 2); }
-            if (ImGui::MenuItem("Remove all", NULL, false, points.Size > 0)) { points.clear(); }  
-            ImGui::EndPopup();
-        }
-        
-        // Draw grid + all lines in the canvas
-        draw_list->PushClipRect(canvas_p0, canvas_p1, true);
-        if (opt_enable_grid)
-        {
-            const float GRID_STEP = 16.0f;
-            for (float x = fmodf(scrolling.x, GRID_STEP); x < canvas_sz.x; x += GRID_STEP)
-                draw_list->AddLine(ImVec2(canvas_p0.x + x, canvas_p0.y), ImVec2(canvas_p0.x + x, canvas_p1.y), IM_COL32(200, 200, 200, 40));
-            for (float y = fmodf(scrolling.y, GRID_STEP); y < canvas_sz.y; y += GRID_STEP)
-                draw_list->AddLine(ImVec2(canvas_p0.x, canvas_p0.y + y), ImVec2(canvas_p1.x, canvas_p0.y + y), IM_COL32(200, 200, 200, 40));
-        }
-        for (int n = 0; n < points.Size; n += 2)
-            draw_list->AddLine(ImVec2(origin.x + points[n].x, origin.y + points[n].y), ImVec2(origin.x + points[n + 1].x, origin.y + points[n + 1].y), IM_COL32(255, 255, 0, 255), 2.0f);
-        draw_list->PopClipRect();
-        
-        
-        
-        
-        /*ImGuiIO& io = ImGui::GetIO();
-        ImTextureID my_tex_id = io.Fonts->TexID;
-        float my_tex_w = (float)io.Fonts->TexWidth;
-        float my_tex_h = (float)io.Fonts->TexHeight;
-        {
-        ImGui::Text("%.0fx%.0f", my_tex_w, my_tex_h);
-        //ImVec2 pos = ImGui::GetCursorScreenPos();
-        ImVec2 uv_min = ImVec2(0.0f, 0.0f); // Top-Left
-        ImVec2 uv_max = ImVec2(1.0f, 1.0f); // lower right
-        ImVec4 tint_col = ImVec4(1.0f, 1.0f, 1.0f, 1.0f); // No tint
-        ImVec4 border_col = ImVec4(1.0f, 1.0f, 1.0f, 0.5f); // 50% opaque white      
-        ImGui::Image(my_tex_id, ImVec2(my_tex_w, my_tex_h), uv_min, uv_max, tint_col, border_col);
-        } */  
-        ImGui::End();
-        
-        
-        // 3. Show window number 3.
-        
-        ImGui::SetNextWindowPos(ImVec2(820, 570), ImGuiCond_None);
-        ImGui::SetNextWindowSize(ImVec2(1030, 430), ImGuiCond_None);
-        
-        ImGui::Begin("Console (F2 - Taste)", NULL, FLAGS_CONSOLE);
-          
-        
-        ImGui::End();
+       
 
         // Rendering
         ImGui::Render();
