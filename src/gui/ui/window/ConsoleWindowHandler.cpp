@@ -10,11 +10,10 @@
 
 ConsoleWindowHandler::ConsoleWindowHandler(ConsoleWindow *window): WindowHandler(window), window(window) {}
 
-void ConsoleWindowHandler::print(char *message) {
-    // TODO
-    //printf("Hello world %s", message);
+void ConsoleWindowHandler::print(std::string message) {
+    window->add_log(message.c_str());
 }
 
-void ConsoleWindowHandler::on_submit(void (*param)(char *)) {
-
+void ConsoleWindowHandler::on_submit(console_submit_function callback) {
+    window->on_submit(callback);
 }

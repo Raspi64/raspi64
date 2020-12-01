@@ -15,7 +15,8 @@ struct TGraphicPixel {
 };
 
 typedef void (*keydown_function)(const SDL_Keysym keysym);
-typedef void (*char_function)(char* text);
+typedef void (*char_function)(std::string text);
+typedef bool (*console_submit_function)(std::string text);
 
 
 #endif

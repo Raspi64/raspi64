@@ -12,10 +12,8 @@
 class ConsoleWindowHandler: public WindowHandler {
 public:
     ConsoleWindowHandler(ConsoleWindow* window);
-    void print(char* message);
-
-    void on_submit(void (*param)(char *));
-
+    void print(std::string message);
+    void on_submit(console_submit_function callback);
 private:
     ConsoleWindow* window;
 };

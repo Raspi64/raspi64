@@ -9,7 +9,7 @@
 
 Gui* gui;
 
-int smiley_cooldown = 100;
+int smiley_cooldown = 500;
 
 
 void key_down(const SDL_Keysym keysym)
@@ -17,8 +17,10 @@ void key_down(const SDL_Keysym keysym)
     printf("key pressed: %s\n", SDL_GetKeyName(keysym.sym));
 }
 
-void console_submit(char* message) {
-    printf("console submit: %s", message);
+bool console_submit(std::string message) {
+    printf("console submit: %s\n", message.c_str());
+
+    return (message == "will be accepted");
 }
 
 void initialize()
@@ -50,6 +52,7 @@ int tick()
         // hide the smiley after 100 ticks
         gui->graphic->clear_pixels();
         printf("editor content %s", gui->editor->get_text().c_str());
+        gui->console->print("this is a test message printed to the console");
     }
 
     return gui->tick();
