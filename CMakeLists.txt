@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(imgui_setup)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 
 include_directories(src)
 include_directories(src/gui/ui)
