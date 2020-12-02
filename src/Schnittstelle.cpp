@@ -34,10 +34,11 @@ void Schnittstelle::start_script(const std::string &script) {
 
     // create and start thread
     is_running = true;
-    pthread_create(&exec_thread, nullptr, Schnittstelle::exec_script, interpreter);
+    pthread_create(&exec_thread, nullptr, Schnittstelle::exec_script, this);
 }
 
 void Schnittstelle::replace_status(Schnittstelle::Status new_status, const std::string &message) {
+    std::cout << "Status: " << message << std::endl;
     status_message = message;
     status = new_status;
 }
@@ -49,7 +50,8 @@ std::string Schnittstelle::get_status_text() {
 void Schnittstelle::set_language(LANG lang) {
 
 }
-void Schnittstelle::init_interpreter(){
+
+void Schnittstelle::init_interpreter() {
     switch (current_language) {
         case BASIC:
             interpreter = new BasicPlugin(
@@ -91,10 +93,9 @@ Schnittstelle::Schnittstelle(
         draw_funct_t draw_function_value,
         clear_funct_t clear_function_value
 ) :
-current_language(lang),
-print_function(print_function_value),
-draw_function(draw_function_value),
-clear_function(clear_function_value)
-{
+        current_language(lang),
+        print_function(print_function_value),
+        draw_function(draw_function_value),
+        clear_function(clear_function_value) {
     init_interpreter();
 }

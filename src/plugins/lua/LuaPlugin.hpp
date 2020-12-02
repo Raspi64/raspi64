@@ -22,15 +22,13 @@ public:
 private:
     lua_State *L;
 
-    void replace_function_in_table(const std::string &table, const std::string &field, lua_CFunction function);
-
     static void set_error_message(const std::string &error_message);
 
     bool load_script(const std::string &lua_script) override;
 
     bool exec_script() override;
 
-    static int lua_function_not_allowed(lua_State *state);
+    static void replace_function_in_table(lua_State *L, const char *table, const char *field, lua_CFunction function);
 
     static int lua_error_handler(lua_State *L);
 

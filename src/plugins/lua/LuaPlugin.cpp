@@ -7,6 +7,12 @@
 #include "Plugin.hpp"
 #include "LuaPlugin.hpp"
 
+extern "C" {
+int lua_function_not_allowed(lua_State *state) {
+    return luaL_error(state, "this function is not allowed");
+}
+}
+
 LuaPlugin::LuaPlugin(draw_funct_t draw_function_value, clear_funct_t clear_function_value, print_funct_t print_function_value) : Plugin(draw_function_value, clear_function_value, print_function_value) {
     L = luaL_newstate();
     luaopen_base(L);
@@ -21,10 +27,10 @@ LuaPlugin::LuaPlugin(draw_funct_t draw_function_value, clear_funct_t clear_funct
     // luaopen_debug(L); // blocked
 
     lua_register(L, "print", LuaPlugin::lua_print);
-//    replace_function_in_table("os", "exit", LuaPlugin::lua_function_not_allowed);
-//    replace_function_in_table("io", "read", LuaPlugin::lua_function_not_allowed);
-//    replace_function_in_table("io", "write", LuaPlugin::lua_function_not_allowed);
-    lua_register(L, "draw", LuaPlugin::lua_function_not_allowed);
+//    replace_function_in_table(L,"os", "exit", lua_function_not_allowed);
+//    replace_function_in_table(L,"io", "read", lua_function_not_allowed);
+//    replace_function_in_table(L,"io", "write", lua_function_not_allowed);
+    lua_register(L, "draw", LuaPlugin::lua_draw);
     lua_register(L, "clear", LuaPlugin::lua_clear);
 }
 
@@ -42,7 +48,8 @@ bool LuaPlugin::load_script(const std::string &lua_script) {
 }
 
 bool LuaPlugin::exec_script() {
-    return lua_pcall(L, 0, 0, 0) == LUA_OK;
+    lua_pushcfunction(L, lua_error_handler);
+    return lua_pcall(L, 0, 0, -1) == LUA_OK;
 }
 
 void LuaPlugin::set_error_message(const std::string &error_message) {
@@ -52,16 +59,11 @@ void LuaPlugin::set_error_message(const std::string &error_message) {
     last_error_line = 0;
 }
 
-void LuaPlugin::replace_function_in_table(const std::string &table, const std::string &field, lua_CFunction function) {
-    lua_getglobal(L, table.c_str());
-    lua_pushstring(L, field.c_str());
+void LuaPlugin::replace_function_in_table(lua_State *L,const char *table, const char *field, lua_CFunction function) {
+    lua_getglobal(L, table);
+    lua_pushstring(L, field);
     lua_pushcfunction(L, function);
     lua_settable(L, -3);
-}
-
-
-int LuaPlugin::lua_function_not_allowed(lua_State *state) {
-    return luaL_error(state, "this function is not allowed");
 }
 
 int LuaPlugin::lua_print(lua_State *state) {
@@ -127,13 +129,9 @@ int LuaPlugin::lua_clear(lua_State *state) {
 }
 
 int LuaPlugin::lua_error_handler(lua_State *L) {
-    luaL_where(L, 0);
-    const char *pos = lua_tostring(L, -1);
-    printf("pos: %s\n", pos);
     const char *msg = lua_tostring(L, -1);
     printf("msg: %s\n", msg);
     luaL_traceback(L, L, msg, 2);
-    printf("Stack: ");
     lua_print(L);
     lua_remove(L, -2); // Remove error/"msg" from stack.
     return 1; // Traceback is returned.

@@ -8,7 +8,7 @@ function sub(r, g, b, t)
         draw(i, 500 - i, r, g, b, 255, 10)
         draw(500 - i, i, r, g, b, 255, 10)
         draw(500 - i, 500 - i, r, g, b, 255, 10)
-        sleep(t)
+        sleep()
     end
 end
 
