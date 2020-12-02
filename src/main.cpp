@@ -42,8 +42,6 @@ int main() {
         std::cerr << "Error loading demo code!" << std::endl;
         return -1;
     }
-    std::cout << "Script: \"" << script << '\"' << std::endl;
-    std::cout << "Running script..." << std::endl;
 
     //    sc = new Schnittstelle(BASIC, my_print, my_draw, my_clear);
     //
@@ -56,8 +54,7 @@ int main() {
     //    std::cout << "Running script..." << std::endl;
 
     sc->start_script(script);
-    // TODO: When implemented
-    //gui->editor->set_text(*script);
+    gui->editor->set_text(script);
 
     bool running = true;
     while (running) {
