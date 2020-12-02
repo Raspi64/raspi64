@@ -23,6 +23,20 @@ public:
 
     bool exec_script() override;
 
+private:
+    lua_State *L;
+
+    void load_libraries();
+
+    void replace_function_in_table(const char *table, const char *field, lua_CFunction function);
+
+    static int lua_function_not_allowed(lua_State *state);
+
+    static int lua_print(lua_State *state);
+
+    static int lua_draw(lua_State *state);
+
+    static int lua_clear(lua_State *state);
 };
 
 
