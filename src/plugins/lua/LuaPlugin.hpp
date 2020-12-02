@@ -37,6 +37,8 @@ private:
     static int lua_draw(lua_State *state);
 
     static int lua_clear(lua_State *state);
+
+    static int lua_error_handler(lua_State *L);
 };
 
 

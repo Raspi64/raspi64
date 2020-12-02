@@ -8,7 +8,7 @@
 
 LuaPlugin::LuaPlugin(draw_funct_t draw_function_value, clear_funct_t clear_function_value, print_funct_t print_function_value) : Plugin(draw_function_value, clear_function_value, print_function_value) {
     L = luaL_newstate();
-    // load libraries
+
     load_libraries();
 
     // register custom functions
@@ -46,11 +46,17 @@ bool LuaPlugin::load_script(const std::string &lua_script) {
 }
 
 bool LuaPlugin::exec_script() {
-    int exec_stat = lua_pcall(L, 0, 0, 0);
+    /* calculate stack position for message handler */
+    int hpos = lua_gettop(L);
+    /* push custom error message handler */
+    lua_pushcfunction(L, lua_error_handler);
+    /* move it before function and arguments */
+    lua_insert(L, hpos);
+    /* call lua_pcall function with custom handler */
+    int exec_stat = lua_pcall(L, 0, 0, hpos);
+    /* remove custom error message handler from stack */
+    lua_remove(L, hpos);
 
-    if (exec_stat != LUA_OK) {
-        Plugin::last_error_buffer = lua_tostring(L, -1);
-    }
     return exec_stat == LUA_OK;
 }
 
@@ -89,50 +95,38 @@ int LuaPlugin::lua_function_not_allowed(lua_State *state) {
 }
 
 int LuaPlugin::lua_print(lua_State *state) {
-    char *return_string;
-    asprintf(&return_string, "");
+    std::string return_string;
 
     int top = lua_gettop(state);
     for (int i = 1; i <= top; i++) {  /* repeat for each level */
         int t = lua_type(state, i);
 
-        char *string_value;
         switch (t) {
             case LUA_TSTRING:  /* strings */
-                asprintf(&string_value, "%s", lua_tostring(state, i));
+                return_string += lua_tostring(state, i);
                 break;
 
             case LUA_TBOOLEAN:  /* booleans */
-                asprintf(&string_value, lua_toboolean(state, i) ? "true" : "false");
+                return_string += lua_toboolean(state, i) ? "true" : "false";
                 break;
 
             case LUA_TNUMBER:  /* numbers */
-                asprintf(&string_value, "%g", lua_tonumber(state, i));
+                return_string += lua_tonumber(state, i);
                 break;
 
             default:  /* other values */
-                asprintf(&string_value, "%s", lua_typename(state, t));
+                return_string += lua_typename(state, t);
                 break;
 
         }
 
-        char *temp;
         if (i < top) {
-            asprintf(&temp, "%s%s\t", return_string, string_value);
-        } else {
-            asprintf(&temp, "%s%s", return_string, string_value);
+            return_string += '\t';
         }
-        free(return_string);
-        free(string_value);
-        return_string = temp;
     }
 
-    if (Plugin::print_function != nullptr) {
-        Plugin::print_function(return_string);
-    } else {
-        printf("%s", return_string);
-    }
-    free(return_string);
+    Plugin::print_function(return_string);
+
     return 0;
 }
 
@@ -168,11 +162,13 @@ int LuaPlugin::lua_clear(lua_State *state) {
     return 0;
 }
 
-//int LuaPlugin::lua_error_handler(lua_State *L) {
-//    const char *msg = lua_tostring(L, -1);
-//    printf("msg: %s\n", msg);
-//    luaL_traceback(L, L, msg, 2);
-//    lua_print(L);
-//    lua_remove(L, -2); // Remove error/"msg" from stack.
-//    return 1; // Traceback is returned.
-//}
+int LuaPlugin::lua_error_handler(lua_State *L) {
+    std::string error_message = std::string(lua_tostring(L, -1));
+    lua_remove(L, -1);
+    unsigned long start = error_message.find(':') + 1;
+    unsigned long end = error_message.find(':', start);
+    std::string str = error_message.substr(start, end - start);
+    Plugin::last_error_buffer = error_message;
+    Plugin::last_error_line = stoi(str);
+    return 0;
+}
