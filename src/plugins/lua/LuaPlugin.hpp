@@ -19,24 +19,10 @@ public:
 
     ~LuaPlugin() override;
 
-private:
-    lua_State *L;
-
-    static void set_error_message(const std::string &error_message);
-
     bool load_script(const std::string &lua_script) override;
 
     bool exec_script() override;
 
-    static void replace_function_in_table(lua_State *L, const char *table, const char *field, lua_CFunction function);
-
-    static int lua_error_handler(lua_State *L);
-
-    static int lua_draw(lua_State *state);
-
-    static int lua_clear(lua_State *state);
-
-    static int lua_print(lua_State *state);
 };
 
 

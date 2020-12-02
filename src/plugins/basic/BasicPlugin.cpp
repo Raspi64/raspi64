@@ -22,13 +22,13 @@ BasicPlugin::~BasicPlugin() {
     mb_dispose();
 }
 
-bool BasicPlugin::load_script(const std::string& script) {
+bool BasicPlugin::load_script(const std::string &script) {
     int load_stat = mb_load_string(bas, script.c_str(), true);
 
     if (load_stat != MB_FUNC_OK) {
         update_error_message();
     }
-    return load_stat;
+    return load_stat == MB_FUNC_OK;
 }
 
 bool BasicPlugin::exec_script() {
@@ -37,7 +37,7 @@ bool BasicPlugin::exec_script() {
     if (exec_stat != MB_FUNC_OK) {
         update_error_message();
     }
-    return exec_stat;
+    return exec_stat == MB_FUNC_OK;
 }
 
 int BasicPlugin::basic_print(const char *format, ...) {
@@ -67,7 +67,6 @@ void BasicPlugin::update_error_message() {
 }
 
 
-
 int BasicPlugin::basic_maximum(mb_interpreter_t *bas, void **ptr) {
     int result = MB_FUNC_OK;
     int m = 0;
@@ -79,13 +78,13 @@ int BasicPlugin::basic_maximum(mb_interpreter_t *bas, void **ptr) {
     mb_check(mb_attempt_close_bracket(bas, ptr));
 
     int r = n;
-    if(m > n)
+    if (m > n)
         r = m;
 
     mb_check(mb_push_int(bas, ptr, r));
 
     printf("param_1 %i\n", m);
-    printf("param_2 %i\n",n);
+    printf("param_2 %i\n", n);
 
     return result;
 }
@@ -96,7 +95,7 @@ int BasicPlugin::basic_openTerminal(mb_interpreter_t *_bas, void **_ptr) {
 }
 
 int BasicPlugin::basic_echo(mb_interpreter_t *bas, void **ptr) {
-    char* string;
+    char *string;
 
     mb_check(mb_attempt_open_bracket(bas, ptr));
     mb_check(mb_pop_string(bas, ptr, &string));

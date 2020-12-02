@@ -18,12 +18,12 @@ bool loadfile(const std::string &file_path, std::string *result) {
 
 void my_draw(int x, int y, int red, int green, int blue, int alpha, int size) {
     gui->graphic->add_pixel(x, y, red, green, blue, alpha, size);
-    std::cout << "GUI Draw!" << std::endl;
+//    std::cout << "GUI Draw!" << std::endl;
 }
 
 void my_clear() {
     gui->graphic->clear_pixels();
-    std::cout << "GUI Clear!" << std::endl;
+//    std::cout << "GUI Clear!" << std::endl;
 }
 
 void my_print(std::string message) {
@@ -44,6 +44,16 @@ int main() {
     }
     std::cout << "Script: \"" << script << '\"' << std::endl;
     std::cout << "Running script..." << std::endl;
+
+    //    sc = new Schnittstelle(BASIC, my_print, my_draw, my_clear);
+    //
+    //    std::string script = "PRINT \"Hello\"";
+    //    if (!loadfile("../saves/drawer.lua", &script)) {
+    //        std::cerr << "Error loading demo code!" << std::endl;
+    //        return -1;
+    //    }
+    //    std::cout << "Script: \"" << script << '\"' << std::endl;
+    //    std::cout << "Running script..." << std::endl;
 
     sc->start_script(script);
     // TODO: When implemented

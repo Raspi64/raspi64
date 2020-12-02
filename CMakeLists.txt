@@ -78,7 +78,11 @@ add_executable(
         src/Schnittstelle.cpp
         src/plugins/Plugin.cpp
         src/plugins/lua/LuaPlugin.cpp
+        src/plugins/lua/lua_plugin.cpp
+        src/plugins/lua/lua_functions.cpp
         src/plugins/basic/BasicPlugin.cpp
+#        src/plugins/basic/basic_plugin.cpp
+#        src/plugins/basic/basic_functions.cpp
 
         # my_basic library files
         lib/my_basic/my_basic.c

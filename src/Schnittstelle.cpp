@@ -28,7 +28,7 @@ void Schnittstelle::start_script(const std::string &script) {
 
     replace_status(LOADING, "Loading...");
     if (!interpreter->load_script(script)) {
-        replace_status(RUN_ERROR, Plugin::last_error_buffer);
+        replace_status(LOAD_ERROR, Plugin::last_error_buffer);
         return;
     }
 
@@ -48,7 +48,7 @@ std::string Schnittstelle::get_status_text() {
 }
 
 void Schnittstelle::set_language(LANG lang) {
-
+    current_language = lang;
 }
 
 void Schnittstelle::init_interpreter() {
