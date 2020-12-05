@@ -56,6 +56,8 @@ int main() {
     sc->start_script(script);
     gui->editor->set_text(script);
 
+    gui->editor->set_error_marker(3, "Hallo");
+
     bool running = true;
     while (running) {
         running = gui->tick() == 0;

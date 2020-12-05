@@ -42,6 +42,9 @@ void initialize()
     gui->graphic->add_pixel(170, 150, 255, 0,0, 255, 15);
     gui->graphic->add_pixel(200, 150, 255, 0,0, 255, 15);
     gui->graphic->add_pixel(135, 75, 255, 0,0, 255, 15);
+
+    gui->editor->set_text("Hallo\nWelt\nFoo\nBar\n1234");
+    gui->editor->set_error_marker(3, "Hallo");
 }
 
 int tick()
@@ -53,6 +56,7 @@ int tick()
         gui->graphic->clear_pixels();
         printf("editor content %s", gui->editor->get_text().c_str());
         gui->console->print("this is a test message printed to the console");
+        gui->editor->clear_error_markers();
     }
 
     return gui->tick();

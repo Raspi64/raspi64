@@ -4,6 +4,7 @@
 
 #include <cstdio>
 #include <fstream>
+#include <utility>
 #include <imgui.h>
 
 #include <EditorWindow.hpp>
@@ -76,4 +77,15 @@ std::string EditorWindow::get_text() {
 
 void EditorWindow::set_text(const std::string& text) {
     editor.SetText(text);
+}
+
+void EditorWindow::set_error_marker(int linenum, std::string errormsg) {
+    TextEditor::ErrorMarkers markers;
+    markers.insert(std::make_pair(linenum, errormsg));
+    editor.SetErrorMarkers(markers);
+}
+
+void EditorWindow::clear_error_markers() {
+    TextEditor::ErrorMarkers markers;
+    editor.SetErrorMarkers(markers);
 }

@@ -15,3 +15,11 @@ std::string EditorWindowHandler::get_text() {
 void EditorWindowHandler::set_text(const std::string& text) {
     window->set_text(text);
 }
+
+void EditorWindowHandler::set_error_marker(int linenum, std::string errormsg) {
+    window->set_error_marker(linenum, errormsg);
+}
+
+void EditorWindowHandler::clear_error_markers() {
+    window->clear_error_markers();
+}

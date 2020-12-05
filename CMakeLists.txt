@@ -76,7 +76,7 @@ add_executable(
         src/gui/ui/window/ConsoleWindowHandler.cpp
         src/gui/ui/window/base/Window.cpp
         src/gui/ui/window/base/WindowHandler.cpp
-        
+
         src/gui/extensions/TextEditorLanguageExtension.cpp
 
         # schnittstelle files

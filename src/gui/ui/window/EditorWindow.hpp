@@ -19,6 +19,8 @@ public:
 
     std::string get_text();
     void set_text(const std::string&);
+    void set_error_marker(int linenum, std::string errormsg);
+    void clear_error_markers();
 private:
     TextEditor editor;
     std::string openFilePath;
