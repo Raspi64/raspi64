@@ -29,7 +29,7 @@ public:
      * Only gets called when focus is in graphical viewport
      */
     void on_keydown(keydown_funct_t function); // TODO: refactor: move to graphic window
-    void on_request_langmode_switch(LANG newLang);
+    void on_change_langmode_request(change_langmode_request_func_t function);
 
     int initialize();
     void destroy();
@@ -49,6 +49,7 @@ private:
 
     /* Callbacks */
     keydown_funct_t on_keydown_fn;
+    change_langmode_request_func_t on_change_langmode_request_fn;
 
 
 

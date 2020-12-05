@@ -17,6 +17,7 @@
 #define KEY_F2 59
 #define KEY_F3 60
 #define KEY_F4 61
+#define KEY_F10 67
 #define KEY_F12 69
 
 #define FOCUS_KEY_HELP              KEY_F1
@@ -28,15 +29,18 @@
 #define FOCUS_KEY_CONSOLE           KEY_F4
 #define FOCUS_KEY_CONSOLE_DISPLAY   "F4"
 
-#define TRIGGER_KEY_SHUTDOWN            KEY_F12
-#define TRIGGER_KEY_SHUTDOWN_DISPLAY    "F12"
+#define TRIGGER_KEY_CHANGELANGMODE          KEY_F10
+#define TRIGGER_KEY_CHANGELANGMODE_DISPLAY  "F10"
+#define TRIGGER_KEY_SHUTDOWN                KEY_F12
+#define TRIGGER_KEY_SHUTDOWN_DISPLAY        "F12"
 
 #define WIN_TITLE_HELP      "Hilfe [ " FOCUS_KEY_HELP_DISPLAY " ]"
 #define WIN_TITLE_EDITOR    "Editor [ " FOCUS_KEY_EDITOR_DISPLAY " ]"
 #define WIN_TITLE_GRAPHIC   "Graphical Output [ " FOCUS_KEY_GRAPHIC_DISPLAY " ]"
 #define WIN_TITLE_CONSOLE   "Konsole [ " FOCUS_KEY_CONSOLE_DISPLAY " ]"
 
-#define WIN_TITLE_SHUTDOWN  "System herunterfahren"
+#define WIN_TITLE_SHUTDOWN          "System herunterfahren"
+#define WIN_TITLE_CHANGELANGMODE    "Programmiersprache wechseln"
 
 
 #endif //IMGUI_SETUP_CONFIG_HPP

@@ -3,3 +3,5 @@
 //
 
 #include "UiElement.hpp"
+
+UiElement::UiElement() {}

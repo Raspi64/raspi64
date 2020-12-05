@@ -27,6 +27,7 @@
 #include "ui/window/GraphicWindow.hpp"
 #include "ui/window/ConsoleWindow.hpp"
 #include "gui/ui/window/dialog/ShutdownDialogWindow.hpp"
+#include "gui/ui/window/dialog/ChangeLangModeDialogWindow.hpp"
 #include "config.hpp"
 
 
@@ -201,6 +202,29 @@ void Gui::build_windows() {
     uiElements.push_back(consoleWindow);
 
     uiElements.push_back(new ShutdownDialogWindow());
+
+
+    std::function<void(LANG)> cb = [=](LANG newLang) {
+        printf("callback called");
+        this->on_change_langmode_request_fn(newLang);
+    };
+
+    //uiElements.push_back(new ChangeLangModeDialogWindow(static_cast<void *>(cb)));
+
+    /*
+    ChangeLangModeDialogWindow* changeLangModeDialogWindow = new ChangeLangModeDialogWindow();
+    changeLangModeDialogWindow->on_submit(cb);
+    */
+
+    // ChangeLangModeDialogWindow* changeLangModeDialogWindow = new ChangeLangModeDialogWindow(cb);
+
+    ChangeLangModeDialogWindow* changeLangModeDialogWindow = new ChangeLangModeDialogWindow([=](LANG newLang) {
+        printf("callback called");
+        if (on_change_langmode_request_fn != nullptr)
+            this->on_change_langmode_request_fn(newLang);
+    });
+
+    uiElements.push_back(changeLangModeDialogWindow);
 }
 
 void Gui::render_windows() {
@@ -220,8 +244,18 @@ void Gui::check_keys() {
         ImGui::SetWindowFocus(WIN_TITLE_CONSOLE);
     else if (ImGui::IsKeyPressed(TRIGGER_KEY_SHUTDOWN))
         ImGui::OpenPopup(WIN_TITLE_SHUTDOWN);
+    else if (ImGui::IsKeyPressed(TRIGGER_KEY_CHANGELANGMODE))
+        ImGui::OpenPopup(WIN_TITLE_CHANGELANGMODE);
 }
 
 void Gui::on_keydown(keydown_funct_t function) {
-    on_keydown_fn = function;
+    this->on_keydown_fn = function;
+}
+
+void Gui::on_change_langmode_request(change_langmode_request_func_t function) {
+    this->on_change_langmode_request_fn = function;
+}
+
+void Gui::set_language_mode(LANG lang) {
+    // TODO
 }

@@ -17,7 +17,13 @@ void key_down(const SDL_Keysym keysym)
     printf("key pressed: %s\n", SDL_GetKeyName(keysym.sym));
 }
 
-bool console_submit(std::string message) {
+void langmode_change_request(LANG newLang)
+{
+    printf("langmode change request incoming");
+}
+
+bool console_submit(std::string message)
+{
     printf("console submit: %s\n", message.c_str());
 
     return (message == "will be accepted");
@@ -30,6 +36,7 @@ void initialize()
 
     // register callbacks
     gui->on_keydown(key_down);
+    gui->on_change_langmode_request(langmode_change_request);
     gui->console->on_submit(console_submit);
 
     // Draw a demo smiley

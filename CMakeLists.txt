@@ -33,6 +33,7 @@ add_executable(
         src/gui/ui/UiElement.cpp
         src/gui/ui/MainMenuBar.cpp
         src/gui/ui/window/dialog/ShutdownDialogWindow.cpp
+        src/gui/ui/window/dialog/ChangeLangModeDialogWindow.cpp
         src/gui/ui/window/HelpWindow.cpp
         src/gui/ui/window/HelpWindowHandler.cpp
         src/gui/ui/window/GraphicWindow.cpp
@@ -67,6 +68,7 @@ add_executable(
         src/gui/ui/UiElement.cpp
         src/gui/ui/MainMenuBar.cpp
         src/gui/ui/window/dialog/ShutdownDialogWindow.cpp
+        src/gui/ui/window/dialog/ChangeLangModeDialogWindow.cpp
         src/gui/ui/window/HelpWindow.cpp
         src/gui/ui/window/HelpWindowHandler.cpp
         src/gui/ui/window/GraphicWindow.cpp
