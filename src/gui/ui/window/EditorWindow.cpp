@@ -3,16 +3,18 @@
 //
 
 #include <cstdio>
+#include <fstream>
 #include <imgui.h>
 
 #include <EditorWindow.hpp>
 #include <EditorWindowHandler.hpp>
 #include <gui/config.hpp>
-#include <fstream>
+#include "../../extensions/TextEditorLanguageExtension.hpp"
 
 
 EditorWindow::EditorWindow() : Window() {
-    editor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
+    //editor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
+    editor.SetLanguageDefinition(LanguageDefinitionExtension::Basic());
 }
 
 bool EditorWindow::open_file(const std::string &path) {

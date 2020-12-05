@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 include_directories(src)
 include_directories(src/gui)
+include_directories(src/gui/extensions)
 include_directories(src/gui/ui)
 include_directories(src/gui/ui/window)
 include_directories(src/gui/ui/window/base)
@@ -42,6 +43,8 @@ add_executable(
         src/gui/ui/window/base/Window.cpp
         src/gui/ui/window/base/WindowHandler.cpp
 
+        src/gui/extensions/TextEditorLanguageExtension.cpp
+
         # ImGuiColorTextEdit library files
         lib/ImGuiColorTextEdit/TextEditor.cpp
 
@@ -73,6 +76,8 @@ add_executable(
         src/gui/ui/window/ConsoleWindowHandler.cpp
         src/gui/ui/window/base/Window.cpp
         src/gui/ui/window/base/WindowHandler.cpp
+        
+        src/gui/extensions/TextEditorLanguageExtension.cpp
 
         # schnittstelle files
         src/Schnittstelle.cpp
