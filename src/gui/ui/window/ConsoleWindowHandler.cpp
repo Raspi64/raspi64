@@ -11,7 +11,7 @@
 ConsoleWindowHandler::ConsoleWindowHandler(ConsoleWindow *window): WindowHandler(window), window(window) {}
 
 void ConsoleWindowHandler::print(std::string message) {
-    window->add_log(message.c_str());
+    window->add_log(message);
 }
 
 void ConsoleWindowHandler::on_submit(console_submit_funct_t callback) {

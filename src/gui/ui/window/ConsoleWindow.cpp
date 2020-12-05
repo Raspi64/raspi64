@@ -45,11 +45,11 @@ void ConsoleWindow::clear_log() {
     items.clear();
 }
 
-void ConsoleWindow::add_log(const char *msg, ...) {
+void ConsoleWindow::add_log(std::string msg, ...) {
     char buf[1024];
     va_list args;
     va_start(args, msg);
-    vsnprintf(buf, IM_ARRAYSIZE(buf), msg, args);
+    vsnprintf(buf, IM_ARRAYSIZE(buf), msg.c_str(), args);
     buf[IM_ARRAYSIZE(buf)-1] = 0;
     va_end(args);
     items.push_back(Strdup(buf));

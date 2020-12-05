@@ -17,7 +17,7 @@ public:
     ~ConsoleWindow();
     void render();
     void on_submit(console_submit_funct_t callback);
-    void add_log(const char* msg, ...);
+    void add_log(std::string msg, ...);
 
 private:
     char                  input_buf[256];
