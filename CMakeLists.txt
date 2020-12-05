@@ -118,7 +118,12 @@ endif()
 
 # Link Lua 5.4
 add_library(lualib SHARED IMPORTED)
-set_property(TARGET lualib PROPERTY IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/lib/lua-5.4/liblua54.so")
+if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+    set_property(TARGET lualib PROPERTY IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/lib/lua-5.4/liblua54.so")
+endif()
+if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    set_property(TARGET lualib PROPERTY IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/lib/lua-5.4/liblua54_darwin.a")
+endif()
 target_link_libraries(imgui_setup "-ldl" lualib)
 
 add_compile_options("-Wall -Wextra -pedantic -Werror")
