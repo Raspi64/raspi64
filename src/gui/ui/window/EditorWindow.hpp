@@ -18,6 +18,7 @@ public:
     void render() override;
 
     std::string get_text();
+    void set_text(const std::string&);
 private:
     TextEditor editor;
     std::string openFilePath;

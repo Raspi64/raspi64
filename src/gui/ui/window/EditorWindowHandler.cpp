@@ -11,3 +11,7 @@ EditorWindowHandler::EditorWindowHandler(EditorWindow *window): WindowHandler(wi
 std::string EditorWindowHandler::get_text() {
     return window->get_text();
 }
+
+void EditorWindowHandler::set_text(const std::string& text) {
+    window->set_text(text);
+}

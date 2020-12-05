@@ -13,7 +13,7 @@ class ConsoleWindowHandler: public WindowHandler {
 public:
     ConsoleWindowHandler(ConsoleWindow* window);
     void print(std::string message);
-    void on_submit(console_submit_function callback);
+    void on_submit(console_submit_funct_t callback);
 private:
     ConsoleWindow* window;
 };

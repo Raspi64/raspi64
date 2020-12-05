@@ -16,7 +16,7 @@ public:
     ConsoleWindow();
     ~ConsoleWindow();
     void render();
-    void on_submit(console_submit_function callback);
+    void on_submit(console_submit_funct_t callback);
     void add_log(const char* msg, ...);
 
 private:
@@ -29,7 +29,7 @@ private:
     bool                  autoScroll;
     bool                  scrollToBottom;
 
-    console_submit_function on_submit_fn;
+    console_submit_funct_t on_submit_fn;
 
     void clear_log();
     void edit_callback(ImGuiInputTextCallbackData* data);

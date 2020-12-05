@@ -222,6 +222,6 @@ void Gui::check_keys() {
         ImGui::OpenPopup(WIN_TITLE_SHUTDOWN);
 }
 
-void Gui::on_keydown(keydown_function function) {
+void Gui::on_keydown(keydown_funct_t function) {
     on_keydown_fn = function;
 }

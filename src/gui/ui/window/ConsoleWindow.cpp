@@ -309,6 +309,6 @@ void ConsoleWindow::render() {
     ImGui::End();
 }
 
-void ConsoleWindow::on_submit(console_submit_function callback) {
+void ConsoleWindow::on_submit(console_submit_funct_t callback) {
     on_submit_fn = callback;
 }
