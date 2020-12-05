@@ -26,7 +26,7 @@
 #include "ui/window/HelpWindow.hpp"
 #include "ui/window/GraphicWindow.hpp"
 #include "ui/window/ConsoleWindow.hpp"
-#include "ui/window/ShutdownDialogWindow.hpp"
+#include "gui/ui/window/dialog/ShutdownDialogWindow.hpp"
 #include "config.hpp"
 
 
