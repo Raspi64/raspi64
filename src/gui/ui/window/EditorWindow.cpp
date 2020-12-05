@@ -10,7 +10,7 @@
 #include <EditorWindow.hpp>
 #include <EditorWindowHandler.hpp>
 #include <gui/config.hpp>
-#include "../../extensions/TextEditorLanguageExtension.hpp"
+#include "../../extension/TextEditorLanguageExtension.hpp"
 
 
 EditorWindow::EditorWindow() : Window() {
