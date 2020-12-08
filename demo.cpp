@@ -20,6 +20,9 @@ void key_down(const SDL_Keysym keysym)
 void langmode_change_request(LANG newLang)
 {
     printf("langmode change request incoming");
+    // change language
+
+    gui->set_language_mode(newLang);
 }
 
 bool console_submit(std::string message)
