@@ -47,10 +47,15 @@ private:
     /* gui elements */
     std::vector<UiElement*> uiElements;
 
+    /* UiElement instances */
+    EditorWindow* editorWindow;
+    HelpWindow* helpWindow;
+
     /* Callbacks */
     keydown_funct_t on_keydown_fn;
     change_langmode_request_func_t on_change_langmode_request_fn;
 
+    LANG current_language;
 
 
     int init_sdl();

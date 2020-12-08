@@ -31,7 +31,15 @@
 #include "config.hpp"
 
 
-Gui::Gui() : show_demo_window(true), window(nullptr), uiElements(), on_keydown_fn(nullptr) {
+Gui::Gui() :
+    show_demo_window(true),
+    window(nullptr),
+    uiElements(),
+    on_keydown_fn(nullptr),
+    editorWindow(nullptr),
+    helpWindow(nullptr)
+    {
+    set_language_mode(LUA);
 }
 
 int Gui::initialize() {
@@ -183,15 +191,15 @@ int Gui::tick() {
 }
 
 void Gui::build_windows() {
-    uiElements.push_back(new MainMenuBar());
+    uiElements.push_back(new MainMenuBar(&current_language));
 
-    EditorWindow* editorWindow = new EditorWindow();
-    editor = new EditorWindowHandler(editorWindow);
-    uiElements.push_back(editorWindow);
+    this->editorWindow = new EditorWindow(current_language);
+    editor = new EditorWindowHandler(this->editorWindow);
+    uiElements.push_back(this->editorWindow);
 
-    HelpWindow* helpWindow = new HelpWindow();
-    help = new HelpWindowHandler(helpWindow);
-    uiElements.push_back(helpWindow);
+    this->helpWindow = new HelpWindow(current_language);
+    help = new HelpWindowHandler(this->helpWindow);
+    uiElements.push_back(this->helpWindow);
 
     GraphicWindow* graphicWindow = new GraphicWindow();
     graphic = new GraphicWindowHandler(graphicWindow);
@@ -204,25 +212,19 @@ void Gui::build_windows() {
     uiElements.push_back(new ShutdownDialogWindow());
 
 
+    /*
     std::function<void(LANG)> cb = [=](LANG newLang) {
         printf("callback called");
         this->on_change_langmode_request_fn(newLang);
     };
-
-    //uiElements.push_back(new ChangeLangModeDialogWindow(static_cast<void *>(cb)));
-
-    /*
-    ChangeLangModeDialogWindow* changeLangModeDialogWindow = new ChangeLangModeDialogWindow();
-    changeLangModeDialogWindow->on_submit(cb);
+    ChangeLangModeDialogWindow* changeLangModeDialogWindow = new ChangeLangModeDialogWindow(cb);
     */
-
-    // ChangeLangModeDialogWindow* changeLangModeDialogWindow = new ChangeLangModeDialogWindow(cb);
 
     ChangeLangModeDialogWindow* changeLangModeDialogWindow = new ChangeLangModeDialogWindow([=](LANG newLang) {
         printf("callback called");
         if (on_change_langmode_request_fn != nullptr)
             this->on_change_langmode_request_fn(newLang);
-    });
+    }, &current_language);
 
     uiElements.push_back(changeLangModeDialogWindow);
 }
@@ -257,5 +259,11 @@ void Gui::on_change_langmode_request(change_langmode_request_func_t function) {
 }
 
 void Gui::set_language_mode(LANG lang) {
-    // TODO
+    current_language = lang;
+
+    // update windows
+    if (this->editorWindow != nullptr)
+        this->editorWindow->set_language_mode(lang);
+    if (this->helpWindow != nullptr)
+        this->helpWindow->set_language_mode(lang);
 }

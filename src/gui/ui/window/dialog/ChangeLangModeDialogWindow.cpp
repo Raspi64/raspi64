@@ -10,8 +10,10 @@
 #include "gui/config.hpp"
 
 
-ChangeLangModeDialogWindow::ChangeLangModeDialogWindow(std::function<void(LANG newLang)> callback): Window(), callback(callback) {
-
+ChangeLangModeDialogWindow::ChangeLangModeDialogWindow(
+        std::function<void(LANG newLang)> callback,
+        LANG* current_language
+        ): Window(), callback(callback), current_language(current_language) {
 }
 
 void ChangeLangModeDialogWindow::render() {
@@ -22,7 +24,10 @@ void ChangeLangModeDialogWindow::render() {
     if (ImGui::BeginPopupModal(WIN_TITLE_CHANGELANGMODE, NULL,
                                ImGuiWindowFlags_AlwaysAutoResize | ImGuiWindowFlags_NoMove)) {
         ImGui::Text("\nSoll die Programmiersprache gewechselt werden?\n\n");
-        ImGui::Text("Die neue Sprache ist: TODO\n\n\n\n"); // TODO
+        ImGui::Text("Die neue Sprache ist:");
+        ImGui::SameLine();
+        ImGui::Text((*current_language) == LUA ? "Basic" : "Lua");
+        ImGui::Text("\n\n\n");
         ImGui::Separator();
 
 
@@ -38,14 +43,17 @@ void ChangeLangModeDialogWindow::render() {
         ImGui::SameLine();
 
         if (ImGui::Button("Wechseln\n(Enter)", ImVec2(120, 0))) {
-            callback(LUA);
-            ImGui::CloseCurrentPopup();
+            trigger_change();
         }
         // Button Ok is activated
         if (ImGui::IsKeyPressed(KEY_ENTER)) {
-            callback(LUA);
-            ImGui::CloseCurrentPopup();
+            trigger_change();
         }
         ImGui::EndPopup();
     }
+}
+
+void ChangeLangModeDialogWindow::trigger_change() {
+    callback(*current_language == LUA ? BASIC : LUA);
+    ImGui::CloseCurrentPopup();
 }

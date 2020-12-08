@@ -12,11 +12,16 @@
 
 class ChangeLangModeDialogWindow: public Window {
 public:
-    ChangeLangModeDialogWindow(std::function<void(LANG newLang)> callback);
+    ChangeLangModeDialogWindow(
+            std::function<void(LANG newLang)> callback,
+            LANG* current_language);
     void render();
 
 private:
     std::function<void(LANG newLang)> callback;
+    LANG* current_language;
+
+    void trigger_change();
 };
 
 
