@@ -7,7 +7,9 @@
 #include "HelpWindow.hpp"
 #include "gui/config.hpp"
 
-HelpWindow::HelpWindow(): Window() {}
+HelpWindow::HelpWindow(LANG initialLanguage): Window() {
+    set_language_mode(initialLanguage);
+}
 
 void HelpWindow::render() {
     ImGui::SetNextWindowPos(ImVec2(820, 50), ImGuiCond_None);
@@ -37,4 +39,8 @@ void HelpWindow::render() {
             "This text is just a Test\n"
     );
     ImGui::End();
+}
+
+void HelpWindow::set_language_mode(LANG lang) {
+    this->current_language = lang;
 }

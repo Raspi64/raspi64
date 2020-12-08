@@ -5,13 +5,18 @@
 #ifndef IMGUI_SETUP_HELPWINDOW_HPP
 #define IMGUI_SETUP_HELPWINDOW_HPP
 
+#include <types.hpp>
 #include "base/Window.hpp"
 
 
 class HelpWindow: public Window {
 public:
-    HelpWindow();
+    HelpWindow(LANG initialLanguage);
     void render();
+
+    void set_language_mode(LANG lang);
+private:
+    LANG current_language;
 };
 
 
