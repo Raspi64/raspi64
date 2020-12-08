@@ -13,9 +13,8 @@
 #include "../../extension/TextEditorLanguageExtension.hpp"
 
 
-EditorWindow::EditorWindow() : Window() {
-    //editor.SetLanguageDefinition(TextEditor::LanguageDefinition::Lua());
-    editor.SetLanguageDefinition(LanguageDefinitionExtension::Basic());
+EditorWindow::EditorWindow(LANG initialLanguage) : Window() {
+    set_language_mode(initialLanguage);
 }
 
 bool EditorWindow::open_file(const std::string &path) {
@@ -88,4 +87,12 @@ void EditorWindow::set_error_marker(int linenum, std::string errormsg) {
 void EditorWindow::clear_error_markers() {
     TextEditor::ErrorMarkers markers;
     editor.SetErrorMarkers(markers);
+}
+
+void EditorWindow::set_language_mode(LANG lang) {
+    const TextEditor::LanguageDefinition & definition = lang == LUA
+            ? TextEditor::LanguageDefinition::Lua()
+            : LanguageDefinitionExtension::Basic();
+
+    editor.SetLanguageDefinition(definition);
 }

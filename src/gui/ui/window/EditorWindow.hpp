@@ -7,11 +7,12 @@
 
 #include "base/Window.hpp"
 #include <TextEditor.h>
+#include <types.hpp>
 
 
 class EditorWindow : public Window {
 public:
-    EditorWindow();
+    EditorWindow(LANG initialLanguage);
 
     bool open_file(const std::string& path);
 
@@ -21,6 +22,8 @@ public:
     void set_text(const std::string&);
     void set_error_marker(int linenum, std::string errormsg);
     void clear_error_markers();
+
+    void set_language_mode(LANG lang);
 private:
     TextEditor editor;
     std::string openFilePath;
