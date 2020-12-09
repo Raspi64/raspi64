@@ -6,6 +6,7 @@
 #define IMGUI_SETUP_CHANGELANGMODEDIALOGWINDOW_HPP
 
 #include <typeinfo>
+#include <functional>
 #include "base/Window.hpp"
 #include "types.hpp"
 
