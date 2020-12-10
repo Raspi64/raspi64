@@ -54,7 +54,7 @@ void initialize()
     gui->graphic->add_pixel(135, 75, 255, 0,0, 255, 15);
 
     gui->editor->set_text("Hallo\nWelt\nFoo\nBar\n1234");
-    gui->editor->set_error_marker(3, "Hallo");
+    gui->editor->set_error_marker(3, "Here comes an error message");
 }
 
 int tick()
