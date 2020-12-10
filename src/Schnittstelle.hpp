@@ -14,7 +14,7 @@ class Schnittstelle {
 
 public:
 
-    Schnittstelle(LANG lang, void (*print_function_value)(std::string), void (*draw_function_value)(int, int, int, int, int, int, int), void (*clear_function_value)(void));
+    Schnittstelle(LANG lang, void (*print_function_value)(std::string), void (*draw_function_value)(int, int, int, int, int, int, int), void (*clear_function_value)());
 
     enum Status {
         NOT_STARTED, // No program has been executed so far
@@ -34,6 +34,10 @@ public:
     Status get_status();
 
     std::string get_status_text();
+
+    bool save(const std::string& name);
+
+    bool load(const std::string& name);
 
 private:
     LANG current_language;

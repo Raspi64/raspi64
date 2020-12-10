@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <fstream>
 #include "BasicPlugin.hpp"
 #include "LuaPlugin.hpp"
 #include "Plugin.hpp"
@@ -98,4 +99,16 @@ Schnittstelle::Schnittstelle(
         draw_function(draw_function_value),
         clear_function(clear_function_value) {
     init_interpreter();
+}
+
+bool Schnittstelle::save(const std::string& name) {
+    std::ofstream outfile;
+    outfile.open (name);
+    outfile << ;
+    outfile.close();
+    return false;
+}
+
+bool Schnittstelle::load(const std::string& name) {
+    return false;
 }

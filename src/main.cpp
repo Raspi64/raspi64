@@ -31,24 +31,41 @@ void my_print(std::string message) {
     std::cout << "Print: " << message << std::endl;
 }
 
-void my_change_language(LANG lang){
+void my_change_language(LANG lang) {
     sc->set_language(lang);
     gui->set_language_mode(lang);
 }
 
-bool my_on_submit(std::string command){
+bool my_on_submit(std::string command) {
     if (command == "start" || command == "run") {
         sc->start_script(gui->editor->get_text());
         return true;
     }
-    if (command == "stop"){
+    if (command == "stop") {
         sc->kill_current_task();
         return true;
     }
+    if (command.starts_with("save") || command.starts_with("load")) {
+        unsigned long pos = command.find(' ');
+        if (pos == std::string::npos) {
+            gui->console->print("[error] Kein Dateinamen gefunden");
+            return true;
+        }
+        std::string name = command.substr(pos);
+        if (name.find(' ') != std::string::npos) {
+            gui->console->print("[error] Dateiname darf keine Leerzeichen enthalten");
+            return true;
+        }
+        if (command.starts_with('s')) {
+            return sc->save(name);
+        } else {
+            return sc->load(name);
+        }
+    }
 }
 
-void my_keydown(const SDL_Keysym keysym){
-    std::cout<<"key: " << keysym.scancode << std::endl;
+void my_keydown(const SDL_Keysym keysym) {
+    std::cout << "key: " << keysym.scancode << std::endl;
 }
 
 int main() {
@@ -66,16 +83,6 @@ int main() {
         std::cerr << "Error loading demo code!" << std::endl;
         return -1;
     }
-
-    //    sc = new Schnittstelle(BASIC, my_print, my_draw, my_clear);
-    //
-    //    std::string script = "PRINT \"Hello\"";
-    //    if (!loadfile("../saves/drawer.lua", &script)) {
-    //        std::cerr << "Error loading demo code!" << std::endl;
-    //        return -1;
-    //    }
-    //    std::cout << "Script: \"" << script << '\"' << std::endl;
-    //    std::cout << "Running script..." << std::endl;
 
     sc->start_script(script);
     gui->editor->set_text(script);
