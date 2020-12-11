@@ -33,26 +33,21 @@ public:
 
     Status get_status();
 
-    std::string get_status_text();
+    static void save(const std::string& name, const std::string& text);
 
-    bool save(const std::string& name);
-
-    bool load(const std::string& name);
+    static std::string load(const std::string& name);
 
 private:
     LANG current_language;
-    Plugin *interpreter;
+    Plugin *interpreter = nullptr;
     print_funct_t print_function;
     draw_funct_t draw_function;
     clear_funct_t clear_function;
-    std::string status_message = std::string();
     Schnittstelle::Status status = Schnittstelle::NOT_STARTED;
     pthread_t exec_thread{};
     bool is_running = false;
 
     static void *exec_script(void *params_void);
-
-    void replace_status(Status new_status, const std::string &message);
 
     void init_interpreter();
 };

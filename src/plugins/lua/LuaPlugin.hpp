@@ -39,6 +39,8 @@ private:
     static int lua_clear(lua_State *state);
 
     static int lua_error_handler(lua_State *L);
+
+    static void parse_error_message(std::string &error_message);
 };
 
 

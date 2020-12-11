@@ -13,11 +13,11 @@
 void *Schnittstelle::exec_script(void *params_void) {
     auto schnittstelle = (Schnittstelle *) params_void;
 
-    schnittstelle->replace_status(RUNNING, "Running...");
+    schnittstelle->status = RUNNING;
     if (schnittstelle->interpreter->exec_script()) {
-        schnittstelle->replace_status(COMPLETED_OK, "Done!");
+        schnittstelle->status = COMPLETED_OK;
     } else {
-        schnittstelle->replace_status(RUN_ERROR, Plugin::last_error_buffer);
+        schnittstelle->status = RUN_ERROR;
     }
     schnittstelle->is_running = false;
 
@@ -27,9 +27,9 @@ void *Schnittstelle::exec_script(void *params_void) {
 void Schnittstelle::start_script(const std::string &script) {
     kill_current_task();
 
-    replace_status(LOADING, "Loading...");
+    status = LOADING;
     if (!interpreter->load_script(script)) {
-        replace_status(LOAD_ERROR, Plugin::last_error_buffer);
+        status = LOAD_ERROR;
         return;
     }
 
@@ -38,21 +38,15 @@ void Schnittstelle::start_script(const std::string &script) {
     pthread_create(&exec_thread, nullptr, Schnittstelle::exec_script, this);
 }
 
-void Schnittstelle::replace_status(Schnittstelle::Status new_status, const std::string &message) {
-    std::cout << "Status: " << message << std::endl;
-    status_message = message;
-    status = new_status;
-}
-
-std::string Schnittstelle::get_status_text() {
-    return status_message;
-}
-
 void Schnittstelle::set_language(LANG lang) {
     current_language = lang;
+    init_interpreter();
 }
 
 void Schnittstelle::init_interpreter() {
+    kill_current_task();
+    delete interpreter;
+
     switch (current_language) {
         case BASIC:
             interpreter = new BasicPlugin(
@@ -101,14 +95,18 @@ Schnittstelle::Schnittstelle(
     init_interpreter();
 }
 
-bool Schnittstelle::save(const std::string& name) {
+void Schnittstelle::save(const std::string &name, const std::string &text) {
     std::ofstream outfile;
-    outfile.open (name);
-    outfile << ;
+    outfile.open("../saves/" + name);
+    outfile << text;
     outfile.close();
-    return false;
 }
 
-bool Schnittstelle::load(const std::string& name) {
-    return false;
+std::string Schnittstelle::load(const std::string &name) {
+    std::string text;
+    std::ifstream infile;
+    infile.open("../saves/" + name);
+    infile >> text;
+    infile.close();
+    return text;
 }

@@ -62,8 +62,7 @@ void BasicPlugin::update_error_message() {
     int pos;
     unsigned short row, col;
     mb_error_e error = mb_get_last_error(bas, &file, &pos, &row, &col);
-    Plugin::last_error_buffer = std::string(mb_get_error_desc(error));
-    Plugin::last_error_line = row;
+    on_error(row, std::string(mb_get_error_desc(error)));
 }
 
 

@@ -10,8 +10,6 @@ Plugin::Plugin(draw_funct_t draw_function_value, clear_funct_t clear_function_va
     Plugin::print_function = print_function_value;
 }
 
-std::string Plugin::last_error_buffer;
-int Plugin::last_error_line;
 draw_funct_t Plugin::draw_function;
 clear_funct_t Plugin::clear_function;
 print_funct_t Plugin::print_function;

@@ -30,5 +30,6 @@ typedef void (*draw_funct_t)(int x, int y, int red, int green, int blue, int alp
 
 typedef void (*change_langmode_request_func_t)(LANG newLang);
 
+void on_error(int line, const std::string &message);
 
 #endif

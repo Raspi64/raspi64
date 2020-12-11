@@ -56,16 +56,27 @@ bool my_on_submit(std::string command) {
             gui->console->print("[error] Dateiname darf keine Leerzeichen enthalten");
             return true;
         }
+        if (name.find('/') != std::string::npos) {
+            gui->console->print("[error] Dateiname darf keine Slashes enthalten");
+            return true;
+        }
         if (command.starts_with('s')) {
-            return sc->save(name);
+            Schnittstelle::save(name, gui->editor->get_text());
+            return true;
         } else {
-            return sc->load(name);
+            gui->editor->set_text(Schnittstelle::load(name));
+            return true;
         }
     }
 }
 
 void my_keydown(const SDL_Keysym keysym) {
     std::cout << "key: " << keysym.scancode << std::endl;
+}
+
+void on_error(int line, const std::string &message) {
+    gui->console->print(message);
+    gui->editor->set_error_marker(line, message);
 }
 
 int main() {
@@ -84,10 +95,7 @@ int main() {
         return -1;
     }
 
-    sc->start_script(script);
     gui->editor->set_text(script);
-
-    gui->editor->set_error_marker(3, "Hallo");
 
     bool running = true;
     while (running) {

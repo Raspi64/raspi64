@@ -24,8 +24,6 @@ public:
 
     virtual bool exec_script() = 0;
 
-    static std::string last_error_buffer;
-    static int last_error_line;
     static print_funct_t print_function;
     static draw_funct_t draw_function;
     static clear_funct_t clear_function;

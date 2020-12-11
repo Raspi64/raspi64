@@ -40,7 +40,8 @@ bool LuaPlugin::load_script(const std::string &lua_script) {
     int load_stat = luaL_loadbuffer(L, lua_script.c_str(), lua_script.length(), lua_script.c_str());
 
     if (load_stat != LUA_OK) {
-        Plugin::last_error_buffer = lua_tostring(L, -1);
+        std::string message = std::string(lua_tostring(L, -1));
+        parse_error_message(message);
     }
     return load_stat == LUA_OK;
 }
@@ -165,10 +166,13 @@ int LuaPlugin::lua_clear(lua_State *state) {
 int LuaPlugin::lua_error_handler(lua_State *L) {
     std::string error_message = std::string(lua_tostring(L, -1));
     lua_remove(L, -1);
+    parse_error_message(error_message);
+    return 0;
+}
+
+void LuaPlugin::parse_error_message(std::string &error_message) {
     unsigned long start = error_message.find(':') + 1;
     unsigned long end = error_message.find(':', start);
     std::string str = error_message.substr(start, end - start);
-    Plugin::last_error_buffer = error_message;
-    Plugin::last_error_line = stoi(str);
-    return 0;
+    on_error(stoi(str), error_message);
 }
