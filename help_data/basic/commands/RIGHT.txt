@@ -1,0 +1,13 @@
+right;ascii;ausgabe;string;int;integer;basic
+
+RIGHT:
+
+Gibt von rechts die anzahl von ASCII-Zeichen eines strings zurück. 
+
+	RIGHT(String_1, Integer_1)
+	Return String
+
+Beispiel:
+	
+	s$ = "HELLO WORLD"
+	PRINT RIGHT(S$, 2)

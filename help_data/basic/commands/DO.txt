@@ -1,0 +1,13 @@
+do;while;loop;schleife;basic
+
+DO:
+
+DO startet eine Do-While-Schleife.
+
+Beispiel:
+    a=1
+    do
+        print a;
+        a=a+1
+    
+    until a > 10

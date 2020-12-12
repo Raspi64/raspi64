@@ -1,0 +1,13 @@
+multiplikation;miltiplication;operator;math;mathematik;int;integer;basic
+
+MULTIPLIKATION:
+
+Der Multiplikations Operator benötigt zwei Parameter, multipliziert Interger_1 mit Integer_2 und gibt das Produkt zurück.
+
+    Integer_1 * Integer_2
+    Return Integer
+
+Beispiel:
+
+    I = 10*6
+    PRINT I

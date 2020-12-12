@@ -1,0 +1,12 @@
+tan;tangenz;int;integer;mathe;mathematik;basic
+
+TAN:
+
+Gibt den Tangenz einer Zahl zurück.
+
+	TAN(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = TAN(2)
+	PRINT I

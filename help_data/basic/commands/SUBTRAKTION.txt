@@ -1,0 +1,13 @@
+substraktion;-;minus;math;mathematik;basic
+
+SUBTRAKTION:
+
+Der Subtraktions Operator benötigt zwei Parameter, subtrahier Interger_1 mit Integer_2 und gibt die Differenz zurück.
+
+    Integer_1 - Integer_2
+    Return Integer
+
+Beispiel:
+
+    I = 10 - 6
+    PRINT I

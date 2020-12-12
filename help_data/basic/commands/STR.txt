@@ -1,0 +1,12 @@
+str;string to int;string;int;integer;convert;konvertieren;umwandeln;basic
+
+STR:
+
+Gibt den Wert des Integers als string zurück. 
+
+	STR(Integer_1)
+	Return String
+
+Beispiel:
+	
+	PRINT RIGHT(1/2)

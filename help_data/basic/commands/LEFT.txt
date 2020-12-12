@@ -1,0 +1,13 @@
+left;ascii;ausgabe;string;int;integer;basic
+
+LEFT:
+
+Gibt von links die anzahl von ASCII-Zeichen eines strings zurück. 
+
+	LEFT(String_1, Integer_1)
+	Return String
+
+Beispiel:
+	
+	s$ = "HELLO WORLD"
+	PRINT LEFT(S$, 2)

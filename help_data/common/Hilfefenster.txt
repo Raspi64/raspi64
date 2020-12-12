@@ -1,0 +1,23 @@
+hilfe;hilfefenster;navigation;help;suchen
+
+Hilfefenster
+Das Hilfefenster bietet einem die Möglichkeit, die Nutzung und Navigation dieses Programms kennenzulernen.
+Zusätzlich können Befehle oder Beispiele für die unterstützten Sprachen gefunden werden.
+Mit der Taste F3 kann der Fokus auf das Hilfefenster gesetzt werden.
+----------------------------
+
+Navigation
+
+home oder auch um auf die Startseite der Hilfe zu kommen = ESC
+zurück = "backspace"(Taste über Enter oder <--) oder "Pfeiltaste links"
+Steuerung anzeigen per Tastendruck (F-Taste) in der Menüleiste
+Scrollen = "Pfeiltasten oben/unten" oder "bildup/bilddown"
+Suche starten = ENTER
+----------------------------
+
+Suche
+
+Wenn der Fokus auf dem Hilfefenster liegt, so kann durch das Eingeben des Suchbegriffes und dem drücken der Enter Taste, gesucht werden.
+Hierbei kann nur nach Schlagwörtern gesucht werden, diese sind z.B. "lua", "basic", "hilfe" und Schlagwörter die in den unterstützten Sprachen vorkommen.
+Es ist auch möglich Schlagwörter über ein Leerzeichen oder auch Space zu trennen.
+----------------------------

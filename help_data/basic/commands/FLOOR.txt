@@ -1,0 +1,12 @@
+floor;runden;abrunden;round;int;integer;math;mathematik;basic
+
+FLOOR:
+
+Abrundungsfunktion
+
+	FLOOR(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = FLOOR(2.6)
+	PRINT I

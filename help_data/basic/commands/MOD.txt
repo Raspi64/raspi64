@@ -1,0 +1,12 @@
+mod;modulo;math;mathematik;int;integer;basic
+
+MOD:
+
+Der Modulo operator benötigt zwei Parameter, teilt Interger_1 durch Integer_2 und gibt den Rest zurück.
+
+	Integer_1 MOD Integer_2
+	Return Integer
+
+Beispiel:
+	I = 10 MOD 6
+	PRINT I

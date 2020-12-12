@@ -1,0 +1,32 @@
+reflect;klasse;class;basic
+
+REFLECT: 
+
+mit REFLECT wird eine Klasse und deren Meta klassen mit allen varibalen und subroutinen durchitteriert und
+fügt sie zusammen in einem Dictionary (name/value deren variablen und name/type der sub routinen)
+
+Beispiel:
+
+    class base
+        var b = "Base"
+        def fun()
+            print b;
+        enddef
+    endclass
+    class derived(base)
+        var d = "Derived"
+        def fun()
+            print d;
+        enddef
+    endclass
+    i = new(derived)
+    i.fun();
+    r = reflect(i)
+    f = iterator(r)
+    while move_next(f)
+        k = get(f)
+        v = r(k)
+        print k, ": ", v;
+    wend
+    g = get(i, “fun”);
+    g()

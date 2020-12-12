@@ -1,0 +1,18 @@
+new;neu;erstellen;object;objekt;delete;del;löschen;loeschen;basic
+
+NEW:
+
+NEW wird zum löschen des Porgammes verwendet oder zur erstellung eins Objektes.
+
+
+Beispiel:
+
+    CLASS foo
+        VAR a = 1
+        DEF func(b)
+            RETURN a+b
+        ENDDEF
+    ENDCLASS
+
+    inst = NEW(foo)
+    PRINT inst.func(2)

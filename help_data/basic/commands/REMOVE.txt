@@ -1,0 +1,12 @@
+remove;list;liste;basic
+
+REMOVE:
+
+Löscht den Wert einer bestimmten stelle in einer Liste.
+
+    REMOVE(Index)
+
+Beispiel:
+    
+    I = LIST(1,2,3,4,)
+    REMOVE(a,0)

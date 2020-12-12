@@ -1,0 +1,9 @@
+rem;kommentar;notiz;note;basic
+
+REM:
+
+Das REM-Statement wird dazu verwendet einen Kommentar zu starten.
+
+Beispiel:
+
+    REM Kommentar

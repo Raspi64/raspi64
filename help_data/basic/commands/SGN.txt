@@ -1,0 +1,12 @@
+vorzeichen;positiv;negativ;pos;neg;int;integer;basic
+
+SGN:
+
+Die Signumfunktion ermittel das Vorzeichen und gibt eine 1 oder -1 zurück.
+
+	SGN(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = ABS(-50)
+	PRINT I

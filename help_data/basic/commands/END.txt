@@ -1,0 +1,5 @@
+end;ende;basic
+
+END:
+
+Die END-Anweisung kann überall im Quellcode platziert werden um die gesamte Ausführung des Programms zu beenden.

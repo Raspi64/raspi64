@@ -1,0 +1,11 @@
+print;ausgabe;out;output;string;int;integer;basic
+
+PRINT:
+
+Schreibt die Zahl oder den String in den standart output stream 
+
+	PRINT(String_1/Integer_1)
+
+Beispiel:
+	
+	PRINT RIGHT(256)

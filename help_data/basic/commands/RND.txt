@@ -1,0 +1,19 @@
+rnd;random;int;integer;basic
+
+RND:
+
+Gibt eine zufällige Zahl zurück. Mit RND kann eine Zahl zwischen 0.0 und 0.1, Mit RND(MAX) zwischen 0 und MAX 
+und mit RND(MIN, MAX) zwischen MIN und MAX
+
+	RND
+	Return Integer
+
+	RND(Integer_1)
+	Return Integer
+
+	RND(Integer_1, Integer_2)
+	Return Integer
+
+Beispiel:
+	I = RND(5)
+	PRINT I

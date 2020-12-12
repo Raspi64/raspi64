@@ -1,0 +1,5 @@
+return;rückgabewert;rueckgabewert;rückgabe;rueckgabe;ergebnis;basic
+
+RETURN: 
+
+RETURN gibt einen Rückgabewert zurück. Bei einem GOSUB wird mit einem return zurückgesprungen

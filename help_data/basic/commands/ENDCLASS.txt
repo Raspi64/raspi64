@@ -1,0 +1,5 @@
+endclass;class;basic
+
+ENDCLASS:
+
+ENDCLASS wird benötigt um das Ende der Anweisung, des erstellen eines Prototyp Objekts, zu setzen.

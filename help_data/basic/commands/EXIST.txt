@@ -1,0 +1,18 @@
+exist;existiert;vorhanden;finden;dictionary;wörterbuch;woerterbuch;list;liste;basic
+
+EXIST:
+
+Der exist-Befehl gibt an, ob eine Liste einen bestimmten Wert enthält oder ob ein wörterbuch einen bestimmten Schlüssel enthält.
+Ist überschreibbar für referentierte Benutzertypen und Klasseninstanzen.
+
+Beispiel:
+    l = list(1, 2, 3, 4)
+    set(l, 1, “B”)
+    print exists(l, 2); pop(l); back(l); len(l);
+    d = dict(1, “One”, 2, “Two”)
+    set(d, 3, “Three”)
+    print len(d);
+    it = iterator(d)
+    while move_next(it)
+        print get(it);
+    wend

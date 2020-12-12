@@ -1,0 +1,15 @@
+class;klasse;object;basic
+
+CLASS:
+
+Der Befehl CLASS wir benötingt um ein Prototyp Objekt zu definieren. ENDCLASS wird benötigt um das Ende der Anweisung zu setzen.
+
+
+Beispiel:
+
+    CLASS foo
+        VAR a = 1
+        DEF func(b)
+            RETURN a+b
+        ENDDEF
+    ENDCLASS

@@ -1,0 +1,13 @@
+input;eingabe;user;nutzer;basic
+
+INPUT:
+
+Nimmt eine User eingabe entgegen. 
+
+	INPUT()
+
+Beispiel:
+	
+	I = INPUT
+	PRINT I
+	

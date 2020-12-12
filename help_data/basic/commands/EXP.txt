@@ -1,0 +1,12 @@
+exp;exponent;math;int;integer;mathematik;basic
+
+EXP:
+
+Gibt den Wert von e^Integer_1 zurück.
+
+	EXP(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = EXP(5)
+	PRINT I

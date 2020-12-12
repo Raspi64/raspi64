@@ -1,0 +1,13 @@
+mid;mitte;middle;string;ausgabe;basic
+
+MID:
+
+Gibt von der Mitte aus die anzahl von ASCII-Zeichen eines strings zurück. 
+
+	MID(String_1, Integer_1)
+	Return String
+
+Beispiel:
+	
+	s$ = "HELLO WORLD"
+	PRINT MID(S$, 2)

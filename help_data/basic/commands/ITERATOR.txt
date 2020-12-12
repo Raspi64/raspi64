@@ -1,0 +1,16 @@
+iterator;list;liste;durchlaufen;basic
+
+ITERATOR:
+
+Geht durch den Inhalt der ganze Liste in einzelne Schritte.
+
+    ITERATOR(List)
+    Return
+
+Beispiel:
+    
+    I = LIST(12,13,14,15)
+    IT = ITERATOR(I)
+    WHILE MOVE_NEXT(IT)
+        PRINT GET(IT)
+    WEND

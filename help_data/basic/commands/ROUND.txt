@@ -1,0 +1,14 @@
+round;runden;int;integer;math;mathematik;basic
+
+ROUND:
+
+Entfernt Kommastellen und gibt eine ganze Zahl zurück. 
+Der Unterschied zu FIX ist das ROUND im negativen bereich kleiner oder gleich zurück gibt.
+FIX gibt größer oder gleich den Wert zurück.
+
+	ROUND(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = ROUND(-5.3)
+	PRINT I

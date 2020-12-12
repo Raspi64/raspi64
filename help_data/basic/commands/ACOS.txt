@@ -1,0 +1,12 @@
+acosinus;a-cosinus;a cosinus;acos;arcos;int;integer;math;mathematik;basic
+
+ACOS:
+
+Gibt den ACosinus einer Zahl zurück.
+
+	ACOS(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = ACOS(2)
+	PRINT I

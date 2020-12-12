@@ -1,0 +1,12 @@
+sin;sinus;int;integer;math;mathematik;basic
+
+SIN:
+
+Gibt den Sinus einer zahl zurück.
+
+	SIN(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = SIN(2)
+	PRINT I

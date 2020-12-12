@@ -1,0 +1,11 @@
+in;schleifen;dictionary;wörterbuch;woerterbuch;class;klassen;datentypen;datatypes;schleifen;loop;for;do;while;iterator;basic
+
+IN:
+
+mit IN lassen sich Listen, Dictionarys, iteriebare Klassen und Usertypes in der Schleifen durchlaufen. In der Schleifenvariable wird der Wert des Elements worauf der Iterator verweisst, zugewiesen.
+
+Beispiel:
+
+    FOR I IN LIST(1 to 5)
+        PRINT I;
+    NEXT

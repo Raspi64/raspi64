@@ -1,0 +1,12 @@
+cos;cosinus;math;int;integer;mathematik;basic
+
+COS:
+
+Gibt den Cosinus einer Zahl zurück.
+
+	COS(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = COS(2)
+	PRINT I

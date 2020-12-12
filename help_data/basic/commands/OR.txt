@@ -1,0 +1,11 @@
+or;oder;operator;math;mathematik;int;integer;basic
+
+OR:
+
+Logisches und bitweises Oder/Or Verknüpfung
+
+    Integer_1 OR Integer_2
+
+Beispiel:
+
+    PRINT 1 OR 0

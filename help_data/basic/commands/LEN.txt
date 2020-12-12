@@ -1,0 +1,12 @@
+länge;laenge;length;string;basic
+
+LEN:
+
+Gibt die länge eines Strings zurück. 
+
+	LEN(String_1)
+	Return Integer
+
+Beispiel:
+	
+	PRINT LEN("Hello World")

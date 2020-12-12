@@ -1,0 +1,25 @@
+sort;sortieren;liste;list;basic
+
+SORT:
+
+Der sort-Befehl sortierte eine Liste vom kleinsten zum größten.Ist überschreibbar für referentierte Benutzertypen und Klasseninstanzen.
+
+Beispiel:
+    l = list(4,3,2,1)
+    sort(l)
+    for i in list(1 to 4)
+        print l(i)
+        next
+
+    l = list();
+        push(l,1)
+        push(l,2)
+        push(l,3)
+        push(l,4)
+    for i in list(1 to 4)
+        print pop(l);
+    next
+
+
+    l = list(1,2,3,4)
+    print indexof(l,3)

@@ -1,0 +1,11 @@
+
+
+AND:
+
+Logisches und bitweises Und/AND Verknüpfung
+
+    Integer_1 AND Integer_2
+
+Beispiel:
+
+    PRINT 1 AND 1    

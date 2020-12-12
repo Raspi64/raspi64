@@ -1,0 +1,22 @@
+srnd;seed;basic
+
+SRND:
+
+Setzt den seed von RND. Wichtig die beiden Programme im Beispiel haben die selben Ergebnisse.
+
+	SRND(Integer_1)
+
+Beispiel:
+
+	SRND(32)
+	PRINT RND
+	PRINT RND
+	PRINT RND
+	RUN
+
+	NEW
+
+	SRND(32)
+	PRINT RND
+	PRINT RND
+	PRINT RND

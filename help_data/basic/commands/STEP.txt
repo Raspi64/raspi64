@@ -1,0 +1,10 @@
+step;schleife;inkrementieren;erhöhen;erhoehen;basic
+
+STEP:
+
+Step gibt an um wie viel bei einem Schleifen durchlauf inkrementiert werden soll.
+
+Beispiel:
+    for i = 1 to 10 step 1
+        print i;
+    next i

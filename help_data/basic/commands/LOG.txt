@@ -1,0 +1,12 @@
+log;logarithmus;math;mathematik;int;integer;basic
+
+LOG:
+
+Gibt den logarithmus einer Zahl zurück.
+
+	LOG(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = LOG(5)
+	PRINT I

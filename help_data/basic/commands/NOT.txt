@@ -1,0 +1,11 @@
+not;operator;math;mathematik;int;integer;basic
+
+NOT:
+
+Logisches und bitweises Nicht/Not Funktion
+
+    NOT Integer_1
+
+Beispiel:
+
+    PRINT NOT 0

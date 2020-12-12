@@ -1,0 +1,17 @@
+gosub;goto;jump;springen;label;basic
+
+GOTO:
+
+Goto ist ein unbedingter Sprung zu einem Label.
+
+Beispiel:
+    if n = 1 then
+        GOTO NOFIRSTLOOP    
+    for i in list(1 to 5)
+        print i;
+    next
+
+    NOFIRSTLOOP
+    for i in list(6 to 9)
+        print i;
+    next

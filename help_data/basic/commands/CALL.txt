@@ -1,0 +1,8 @@
+function;funktion;call;aufrufen;basic
+
+CALL:
+
+Die CALL-Anweisung wird verwenedt um Funktionen aufzurufen
+
+Beispiel:
+    call funktion
