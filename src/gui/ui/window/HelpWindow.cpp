@@ -7,7 +7,13 @@
 #include "HelpWindow.hpp"
 #include "gui/config.hpp"
 
-HelpWindow::HelpWindow(LANG initialLanguage): Window() {
+HelpWindow::HelpWindow(LANG initialLanguage)
+        : Window(),
+        root_common(nullptr),
+        root_language(nullptr),
+        on_request_common_root_fn(nullptr),
+        on_request_language_root_fn(nullptr),
+        on_search_fn(nullptr) {
     set_language_mode(initialLanguage);
 }
 
@@ -19,28 +25,82 @@ void HelpWindow::render() {
     ImGui::Begin(WIN_TITLE_HELP, NULL, FLAGS_HELP);
     after_imgui_begin(WIN_TITLE_HELP);
 
-    static char buf[32] = "Ägypten ÜÖÄ";
+    ImGui::Text("Wenn Hilfefenster Fokus hat:");
+    ImGui::TextWrapped("Drücke ESC, dann Pfeiltasten, dann LEER um zwischen der Suchzeile und dem Themenbaum zu wechseln");
 
-    if (ImGui::IsWindowFocused() && !ImGui::IsAnyItemActive())
+    ImGui::Separator();
+
+    ImGui::Text("Navigation im Themenbaum:");
+    ImGui::Text("LINKS/RECHTS: Auf-/Einklappen\nHOCH/RUNTER: Bewegen");
+
+    ImGui::Separator();
+
+    static char buf[32] = "";
+
+    if (ImGui::IsWindowFocused() && !ImGui::IsAnyItemActive() && !ImGui::IsAnyItemFocused())
         ImGui::SetKeyboardFocusHere(0);
-    ImGui::InputText("Search", buf, IM_ARRAYSIZE(buf));
+
+    ImGui::InputText("Suchen", buf, IM_ARRAYSIZE(buf));
     ImGui::SetItemDefaultFocus();
 
-    ImGui::TextWrapped(
-            "\nThis text is just a Test\n"
-            "This text is just a Test\n"
-            "This text is just a Test\n"
-            "This text is just a Test\n"
-            "This text is just a Test\n"
-            "This text is just a Test\n"
-            "This text is just a Test\n"
-            "This text is just a Test\n"
-            "This text is just a Test\n"
-            "This text is just a Test\n"
-    );
+    ImGui::Separator();
+
+    // Begin entries
+    ImGui::BeginChild("ScrollingRegion", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);
+
+    // render help structure
+    if (this->root_common != nullptr) {
+        this->process_entry(this->root_common);
+    }
+    /*
+    if (this->root_language != nullptr) {
+        this->process_entry(this->root_language);
+    }
+    */
+
+    // end entries
+    ImGui::EndChild();
+
     ImGui::End();
+}
+
+void HelpWindow::process_entry(Entry *entry) {
+    if (ImGui::TreeNode(entry->name.c_str())) {
+        if (entry->sub_entries.size()) {
+            for (size_t i = 0; i < entry->sub_entries.size(); i++) {
+                this->process_entry(&entry->sub_entries[i]);
+            }
+        } else {
+            // show help content
+            ImGui::TextWrapped(entry->content.c_str());
+            ImGui::Text("\n\n");
+        }
+
+        ImGui::TreePop();
+    }
 }
 
 void HelpWindow::set_language_mode(LANG lang) {
     this->current_language = lang;
+    if (this->on_request_common_root_fn != nullptr) {
+        this->root_common = this->on_request_common_root_fn();
+    }
+    if (this->on_request_language_root_fn != nullptr) {
+        this->root_language = this->on_request_language_root_fn();
+    }
+    printf("");
+}
+
+void HelpWindow::on_request_common_root(helpentryroot_funct_t function) {
+    this->on_request_common_root_fn = function;
+    this->set_language_mode(this->current_language);
+}
+
+void HelpWindow::on_request_language_root(helpentryroot_funct_t function) {
+    this->on_request_language_root_fn = function;
+    this->set_language_mode(this->current_language);
+}
+
+void HelpWindow::on_search(helpentries_search_funct_t function) {
+    this->on_search_fn = function;
 }

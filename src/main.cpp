@@ -121,6 +121,12 @@ int main() {
 
     run_through_entries(sc->get_root_help_entry(), 0);
 
+    //return 0;
+
+    gui->help->on_request_common_root(get_common_help_root);
+    gui->help->on_request_language_root(get_language_help_root);
+    gui->help->on_search(search_entries);
+
     gui->on_change_langmode_request(my_change_language);
     gui->console->on_submit(my_on_submit);
     gui->on_keydown(my_keydown);

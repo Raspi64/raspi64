@@ -15,8 +15,19 @@ public:
     void render();
 
     void set_language_mode(LANG lang);
+    void on_request_common_root(helpentryroot_funct_t function);
+    void on_request_language_root(helpentryroot_funct_t function);
+    void on_search(helpentries_search_funct_t function);
 private:
     LANG current_language;
+    Entry* root_common;
+    Entry* root_language;
+
+    void process_entry(Entry* entry);
+
+    helpentryroot_funct_t on_request_common_root_fn;
+    helpentryroot_funct_t on_request_language_root_fn;
+    helpentries_search_funct_t on_search_fn;
 };
 
 

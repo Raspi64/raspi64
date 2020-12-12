@@ -3,7 +3,7 @@
 # - For older VS2010 to VS2015, install https://marketplace.visualstudio.com/items?itemName=EditorConfigTeam.EditorConfig
 
 # top-most EditorConfig file
-root = true
+root_common = true
 
 # Default settings:
 # Use 4 spaces as indentation
