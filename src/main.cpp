@@ -80,7 +80,11 @@ void on_error(int line, const std::string &message) {
     gui->editor->set_error_marker(line, message);
 }
 
-Entry *get_root_entry() {
+Entry *get_common_help_root() {
+    return sc->get_root_help_entry();
+}
+
+Entry *get_language_help_root() {
     return sc->get_root_help_entry();
 }
 
@@ -105,8 +109,8 @@ void run_through_entries(Entry *parent, unsigned int depth) {
 }
 
 int main() {
-//    gui = new Gui();
-//    gui->initialize();
+    gui = new Gui();
+    gui->initialize();
 
     sc = new Schnittstelle(BASIC, my_print, my_draw, my_clear);
 
@@ -115,9 +119,7 @@ int main() {
 //        std::cout << entry->name << std::endl;
 //    }
 
-//    run_through_entries(sc->get_root_help_entry(), 0);
-
-    return 0;
+    run_through_entries(sc->get_root_help_entry(), 0);
 
     gui->on_change_langmode_request(my_change_language);
     gui->console->on_submit(my_on_submit);
