@@ -33,6 +33,7 @@ void Schnittstelle::start_script(const std::string &script) {
         status = LOAD_ERROR;
         return;
     }
+    clear_error();
 
     // create and start thread
     is_running = true;
@@ -113,31 +114,38 @@ std::string Schnittstelle::load(const std::string &name) {
     return text;
 }
 
-Entry *Schnittstelle::get_root_help_entry() {
-    return &help_root_entry;
+Entry *Schnittstelle::get_common_help_root() {
+    for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
+        if (sub_entry->name == "common") {
+            return sub_entry.base();
+        }
+    }
+    return nullptr;
 }
 
-std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword) {
-    std::vector<Entry *> entries = std::vector<Entry *>();
+Entry *Schnittstelle::get_language_help_root() {
     for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
         switch (current_language) {
             case BASIC:
                 if (sub_entry->name == "basic") {
-                    const std::vector<Entry *> &found = searchEntries(sub_entry.base(), searchword);
-                    entries.insert(entries.end(), found.begin(), found.end());
+                    return sub_entry.base();
                 }
                 break;
             case LUA:
                 if (sub_entry->name == "lua") {
-                    const std::vector<Entry *> &found = searchEntries(sub_entry.base(), searchword);
-                    entries.insert(entries.end(), found.begin(), found.end());
+                    return sub_entry.base();
                 }
                 break;
         }
-        if (sub_entry->name == "common") {
-            const std::vector<Entry *> &found = searchEntries(sub_entry.base(), searchword);
-            entries.insert(entries.end(), found.begin(), found.end());
-        }
     }
+    return nullptr;
+}
+
+std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword) {
+    std::vector<Entry *> entries = searchEntries(get_common_help_root(), searchword);
+
+    const std::vector<Entry *> &found = searchEntries(get_language_help_root(), searchword);
+    entries.insert(entries.end(), found.begin(), found.end());
+
     return entries;
 }

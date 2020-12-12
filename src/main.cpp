@@ -45,7 +45,7 @@ bool my_on_submit(std::string command) {
         sc->kill_current_task();
         return true;
     }
-    if (command.starts_with("save") || command.starts_with("load")) {
+    if (command.find("save") == 0 || command.find("load") == 0) {
         unsigned long pos = command.find(' ');
         if (pos == std::string::npos) {
             gui->console->print("[error] Kein Dateinamen gefunden");
@@ -60,7 +60,7 @@ bool my_on_submit(std::string command) {
             gui->console->print("[error] Dateiname darf keine Slashes enthalten");
             return true;
         }
-        if (command.starts_with('s')) {
+        if (command[0] == 's') {
             Schnittstelle::save(name, gui->editor->get_text());
             return true;
         } else {
@@ -76,16 +76,20 @@ void my_keydown(const SDL_Keysym keysym) {
 }
 
 void on_error(int line, const std::string &message) {
-    gui->console->print(message);
+    gui->console->print("[error] " + message);
     gui->editor->set_error_marker(line, message);
 }
 
+void clear_error() {
+    gui->editor->clear_error_markers();
+}
+
 Entry *get_common_help_root() {
-    return sc->get_root_help_entry();
+    return sc->get_common_help_root();
 }
 
 Entry *get_language_help_root() {
-    return sc->get_root_help_entry();
+    return sc->get_language_help_root();
 }
 
 std::vector<Entry *> search_entries(const std::string &searchword) {
@@ -101,7 +105,7 @@ void run_through_entries(Entry *parent, unsigned int depth) {
     if (parent->is_file) {
         std::cout << std::endl;
     } else {
-        std::cout << " : d :" << std::endl;
+        std::cout << "/" << std::endl;
         for (auto &entry : parent->sub_entries) {
             run_through_entries(&entry, depth + 2);
         }
@@ -119,7 +123,11 @@ int main() {
 //        std::cout << entry->name << std::endl;
 //    }
 
-    run_through_entries(sc->get_root_help_entry(), 0);
+    std::cout << "Help files:" << std::endl;
+    run_through_entries(sc->get_common_help_root(), 2);
+    run_through_entries(sc->get_language_help_root(), 2);
+    sc->set_language(LUA);
+    run_through_entries(sc->get_language_help_root(), 2);
 
     gui->on_change_langmode_request(my_change_language);
     gui->console->on_submit(my_on_submit);

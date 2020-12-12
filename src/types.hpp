@@ -45,6 +45,8 @@ typedef void (*change_langmode_request_func_t)(LANG newLang);
 
 void on_error(int line, const std::string &message);
 
+void clear_error();
+
 Entry *get_common_help_root();
 
 Entry *get_language_help_root();

@@ -2,11 +2,7 @@
 #include <iostream>
 #include <filesystem>
 #include <fstream>
-
-namespace fs = std::filesystem;
-
-
-
+#include <algorithm>
 
 //----------------------------------------------------------------------------------------------------------------------
 // Suchen nach Schlagwörtern in den searchwords der einzelnen Einträhge
@@ -86,7 +82,7 @@ void readFile(const std::string& filePath, Entry *entry) {
 // Rekursive Traversion durch die Ordner Struktur
 
 void traverseFolders(const std::string& path, Entry *parent) {
-    for (auto &p: fs::directory_iterator(path)) {
+    for (auto &p: std::filesystem::directory_iterator(path)) {
         //std::cout << p.path() << std::endl;
         std::string s = p.path();
 

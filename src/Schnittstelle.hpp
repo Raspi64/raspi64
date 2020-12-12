@@ -37,7 +37,9 @@ public:
 
     static std::string load(const std::string& name);
 
-    Entry* get_root_help_entry();
+    Entry *get_common_help_root();
+
+    Entry *get_language_help_root();
 
     std::vector<Entry *> search_entries(const std::string& searchword);
 
