@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include "Schnittstelle.hpp"
+#include "HelpSystem.hpp"
 
 Gui *gui;
 Schnittstelle *sc;
@@ -77,6 +78,14 @@ void my_keydown(const SDL_Keysym keysym) {
 void on_error(int line, const std::string &message) {
     gui->console->print(message);
     gui->editor->set_error_marker(line, message);
+}
+
+Entry *get_root_entry() {
+    return sc->get_root_help_entry();
+}
+
+std::vector<Entry *> search_entries(const std::string& searchword){
+    return sc->search_entries(searchword);
 }
 
 int main() {

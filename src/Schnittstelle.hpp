@@ -37,6 +37,10 @@ public:
 
     static std::string load(const std::string& name);
 
+    Entry* get_root_help_entry();
+
+    std::vector<Entry *> search_entries(const std::string& searchword);
+
 private:
     LANG current_language;
     Plugin *interpreter = nullptr;
@@ -50,6 +54,8 @@ private:
     static void *exec_script(void *params_void);
 
     void init_interpreter();
+
+    Entry help_root_entry;
 };
 
 

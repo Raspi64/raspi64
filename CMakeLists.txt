@@ -88,6 +88,9 @@ add_executable(
         src/plugins/lua/LuaPlugin.cpp
         src/plugins/basic/BasicPlugin.cpp
 
+        # help system files
+        src/HelpSystem.cpp
+
         # my_basic library files
         lib/my_basic/my_basic.c
 

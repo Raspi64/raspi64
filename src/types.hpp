@@ -3,6 +3,7 @@
 
 #include <string>
 #include <SDL.h>
+#include <vector>
 
 
 struct TGraphicPixel {
@@ -20,6 +21,14 @@ enum LANG {
     LUA,
 };
 
+struct Entry {
+    bool is_file;
+    std::string name;
+    std::vector<std::string> searchWords;
+    std::string content;
+    std::vector<Entry> sub_entries;
+};
+
 typedef void (*char_funct_t)(std::string text);
 
 typedef void (*keydown_funct_t)(const SDL_Keysym keysym);
@@ -31,5 +40,9 @@ typedef void (*draw_funct_t)(int x, int y, int red, int green, int blue, int alp
 typedef void (*change_langmode_request_func_t)(LANG newLang);
 
 void on_error(int line, const std::string &message);
+
+Entry *get_root_entry();
+
+std::vector<Entry *> search_entries(const std::string& searchword);
 
 #endif

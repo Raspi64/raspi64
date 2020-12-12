@@ -8,6 +8,7 @@
 #include "LuaPlugin.hpp"
 #include "Plugin.hpp"
 #include "Schnittstelle.hpp"
+#include "HelpSystem.hpp"
 
 
 void *Schnittstelle::exec_script(void *params_void) {
@@ -93,6 +94,7 @@ Schnittstelle::Schnittstelle(
         draw_function(draw_function_value),
         clear_function(clear_function_value) {
     init_interpreter();
+    help_root_entry = initHelpSystem("../help_data/");
 }
 
 void Schnittstelle::save(const std::string &name, const std::string &text) {
@@ -109,4 +111,26 @@ std::string Schnittstelle::load(const std::string &name) {
     infile >> text;
     infile.close();
     return text;
+}
+
+Entry *Schnittstelle::get_root_help_entry() {
+    return &help_root_entry;
+}
+
+std::vector<Entry *> Schnittstelle::search_entries(const std::string& searchword) {
+    std::vector<Entry> &vector = help_root_entry.sub_entries;
+    for (auto sub_entry = vector.begin(); sub_entry != vector.end(); ++sub_entry){
+        switch (current_language) {
+            case BASIC:
+                if (sub_entry->name == "basic") {
+                    return searchEntries(sub_entry.base(), searchword);
+                }
+                break;
+            case LUA:
+                if (sub_entry->name == "lua") {
+                    return searchEntries(sub_entry.base(), searchword);
+                }
+                break;
+        }
+    }
 }
