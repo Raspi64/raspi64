@@ -2,7 +2,6 @@
 #include <fstream>
 #include <iostream>
 #include "Schnittstelle.hpp"
-#include "HelpSystem.hpp"
 
 Gui *gui;
 Schnittstelle *sc;
@@ -69,6 +68,7 @@ bool my_on_submit(std::string command) {
             return true;
         }
     }
+    return false;
 }
 
 void my_keydown(const SDL_Keysym keysym) {
@@ -84,15 +84,40 @@ Entry *get_root_entry() {
     return sc->get_root_help_entry();
 }
 
-std::vector<Entry *> search_entries(const std::string& searchword){
+std::vector<Entry *> search_entries(const std::string &searchword) {
     return sc->search_entries(searchword);
 }
 
-int main() {
-    gui = new Gui();
-    gui->initialize();
+void run_through_entries(Entry *parent, unsigned int depth) {
+    for (unsigned int i = 0; i < depth; ++i) {
+        std::cout << ' ';
+    }
 
-    sc = new Schnittstelle(LUA, my_print, my_draw, my_clear);
+    std::cout << parent->name;
+    if (parent->is_file) {
+        std::cout << std::endl;
+    } else {
+        std::cout << " : d :" << std::endl;
+        for (auto &entry : parent->sub_entries) {
+            run_through_entries(&entry, depth + 2);
+        }
+    }
+}
+
+int main() {
+//    gui = new Gui();
+//    gui->initialize();
+
+    sc = new Schnittstelle(BASIC, my_print, my_draw, my_clear);
+
+//    const std::vector<Entry *> &vector = search_entries("print");
+//    for (auto &entry : vector) {
+//        std::cout << entry->name << std::endl;
+//    }
+
+//    run_through_entries(sc->get_root_help_entry(), 0);
+
+    return 0;
 
     gui->on_change_langmode_request(my_change_language);
     gui->console->on_submit(my_on_submit);

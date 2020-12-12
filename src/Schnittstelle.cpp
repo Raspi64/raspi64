@@ -117,20 +117,27 @@ Entry *Schnittstelle::get_root_help_entry() {
     return &help_root_entry;
 }
 
-std::vector<Entry *> Schnittstelle::search_entries(const std::string& searchword) {
-    std::vector<Entry> &vector = help_root_entry.sub_entries;
-    for (auto sub_entry = vector.begin(); sub_entry != vector.end(); ++sub_entry){
+std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword) {
+    std::vector<Entry *> entries = std::vector<Entry *>();
+    for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
         switch (current_language) {
             case BASIC:
                 if (sub_entry->name == "basic") {
-                    return searchEntries(sub_entry.base(), searchword);
+                    const std::vector<Entry *> &found = searchEntries(sub_entry.base(), searchword);
+                    entries.insert(entries.end(), found.begin(), found.end());
                 }
                 break;
             case LUA:
                 if (sub_entry->name == "lua") {
-                    return searchEntries(sub_entry.base(), searchword);
+                    const std::vector<Entry *> &found = searchEntries(sub_entry.base(), searchword);
+                    entries.insert(entries.end(), found.begin(), found.end());
                 }
                 break;
         }
+        if (sub_entry->name == "common") {
+            const std::vector<Entry *> &found = searchEntries(sub_entry.base(), searchword);
+            entries.insert(entries.end(), found.begin(), found.end());
+        }
     }
+    return entries;
 }
