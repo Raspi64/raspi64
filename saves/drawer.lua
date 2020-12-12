@@ -9,13 +9,9 @@ function sub(r, g, b, t)
     end
 end
 
-function drawer()
-    local t = 0.05
-    while true do
-        sub(255, 0, 0, t)
-        sub(0, 255, 0, t)
-        sub(0, 0, 255, t)
-    end
+local t = 0.05
+while true do
+    sub(255, 0, 0, t)
+    sub(0, 255, 0, t)
+    sub(0, 0, 255, t)
 end
-
-drawer()
