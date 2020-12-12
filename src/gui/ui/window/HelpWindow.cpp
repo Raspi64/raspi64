@@ -11,6 +11,8 @@ HelpWindow::HelpWindow(LANG initialLanguage)
         : Window(),
         root_common(nullptr),
         root_language(nullptr),
+        mode_search(false),
+        search_results(),
         on_request_common_root_fn(nullptr),
         on_request_language_root_fn(nullptr),
         on_search_fn(nullptr) {
@@ -40,29 +42,60 @@ void HelpWindow::render() {
     if (ImGui::IsWindowFocused() && !ImGui::IsAnyItemActive() && !ImGui::IsAnyItemFocused())
         ImGui::SetKeyboardFocusHere(0);
 
-    ImGui::InputText("Suchen", buf, IM_ARRAYSIZE(buf));
-    ImGui::SetItemDefaultFocus();
+    ImGuiInputTextFlags input_text_flags = ImGuiInputTextFlags_EnterReturnsTrue;
+
+    if (this->on_search_fn != nullptr) {
+        if (ImGui::InputText("Suchen", buf, IM_ARRAYSIZE(buf), input_text_flags)) {
+            char *s = buf;
+            if (s[0]) {
+                this->search_results = this->on_search_fn(s);
+                this->mode_search = true;
+            } else {
+                this->mode_search = false;
+            }
+        }
+        ImGui::SetItemDefaultFocus();
+    }
 
     ImGui::Separator();
 
     // Begin entries
     ImGui::BeginChild("ScrollingRegion", ImVec2(0, 0), false, ImGuiWindowFlags_HorizontalScrollbar);
 
-    // render help structure
-    if (this->root_common != nullptr) {
-        this->process_entry(this->root_common);
+    if (this->mode_search) {
+        if (this->search_results.empty()) {
+            ImGui::Text("Keine Ergebnisse.");
+        } else {
+            for (auto &entry : this->search_results) {
+                this->process_entry(entry);
+            }
+        }
+    } else {
+        // render help structure
+        if (this->root_common != nullptr) {
+            this->process_entry(this->root_common);
+        }
+        /*
+        if (this->root_language != nullptr) {
+            this->process_entry(this->root_language);
+        }
+        */
     }
-    /*
-    if (this->root_language != nullptr) {
-        this->process_entry(this->root_language);
-    }
-    */
 
     // end entries
     ImGui::EndChild();
 
     ImGui::End();
 }
+
+/*
+void HelpWindow::searchinput_callback(ImGuiInputTextCallbackData* data) {
+    switch (data->EventFlag)
+    {
+
+    }
+}
+*/
 
 void HelpWindow::process_entry(Entry *entry) {
     if (ImGui::TreeNode(entry->name.c_str())) {
