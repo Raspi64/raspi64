@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <unistd.h>
 #include "Plugin.hpp"
 #include "LuaPlugin.hpp"
 
@@ -15,6 +16,7 @@ LuaPlugin::LuaPlugin(draw_funct_t draw_function_value, clear_funct_t clear_funct
     lua_register(L, "print", lua_print);
     lua_register(L, "draw", lua_draw);
     lua_register(L, "clear", lua_clear);
+    lua_register(L, "sleep", lua_sleep);
 
     // overwrite unwanted functions
     lua_register(L, "collectgarbage", lua_function_not_allowed);
@@ -22,12 +24,6 @@ LuaPlugin::LuaPlugin(draw_funct_t draw_function_value, clear_funct_t clear_funct
     lua_register(L, "load", lua_function_not_allowed);
     lua_register(L, "loadfile", lua_function_not_allowed);
     lua_register(L, "require", lua_function_not_allowed);
-//        replace_function_in_table("os", "execute", lua_function_not_allowed); // needed in demo
-    replace_function_in_table("os", "remove", lua_function_not_allowed);
-    replace_function_in_table("os", "rename", lua_function_not_allowed);
-    replace_function_in_table("os", "setlocale", lua_function_not_allowed);
-    replace_function_in_table("os", "tmpname", lua_function_not_allowed);
-    replace_function_in_table("os", "exit", lua_function_not_allowed);
     replace_function_in_table("io", "read", lua_function_not_allowed);
     replace_function_in_table("io", "write", lua_function_not_allowed);
 }
@@ -159,6 +155,24 @@ int LuaPlugin::lua_clear(lua_State *state) {
     }
 
     Plugin::clear_function();
+
+    return 0;
+}
+
+int LuaPlugin::lua_sleep(lua_State *state) {
+    if (lua_gettop(state) != 1) {
+        return luaL_error(state, "expecting parameters: time in seconds");
+    }
+    if (!lua_isnumber(state, 1)) {
+        return luaL_error(state, "expecting a number of seconds as parameter");
+    }
+    lua_Number time = lua_tonumber(state, 1);
+    if (time < 0) {
+        return luaL_error(state, "can't sleep for a negative amount of time");
+    }
+    double utime = time * 1000000;
+
+    usleep((unsigned int) utime);
 
     return 0;
 }

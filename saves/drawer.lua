@@ -1,6 +1,3 @@
-function sleep(n)
-    os.execute("sleep " .. tonumber(n))
-end
 
 function sub(r, g, b, t)
     for i = 0, 250, 10 do
