@@ -6,7 +6,7 @@
 
 //----------------------------------------------------------------------------------------------------------------------
 // Suchen nach Schlagwörtern in den searchwords der einzelnen Einträhge
-void subSearch(Entry *posEntry, std::vector<Entry *> *results, const std::string& searchword) {
+void subSearch(Entry *posEntry, std::vector<Entry *> *results, const std::string &searchword) {
 
     if (!posEntry->is_file) {
         for (Entry &entry : posEntry->sub_entries) {
@@ -29,7 +29,7 @@ std::vector<Entry *> searchEntries(Entry *entry, std::string searchword) {
 
     // to lower case, da alle Schlagwörter in den Dateien klein geschrieben sind.
     std::transform(searchword.begin(), searchword.end(), searchword.begin(),
-                   [](unsigned char c){ return std::tolower(c); });
+                   [](unsigned char c) { return std::tolower(c); });
 
     subSearch(entry, &searchResults, searchword);
 
@@ -38,7 +38,7 @@ std::vector<Entry *> searchEntries(Entry *entry, std::string searchword) {
 
 //----------------------------------------------------------------------------------------------------------------------
 // Einlesen der Dateien, geteilt in die erste Zeile in der die Schlagwörter stehen und den Rest der Datei in dem der Text steht
-void readFile(const std::string& filePath, Entry *entry) {
+void readFile(const std::string &filePath, Entry *entry) {
     std::string line;
     std::ifstream file;
     file.open(filePath);
@@ -64,7 +64,7 @@ void readFile(const std::string& filePath, Entry *entry) {
     std::string token;
 
     // \r am ende entfernen, damit dies ohne \r gespeichert wird
-    firstLine.erase(std::remove(firstLine.begin(), firstLine.end(), '\r'),firstLine.end());
+    firstLine.erase(std::remove(firstLine.begin(), firstLine.end(), '\r'), firstLine.end());
 
     while ((pos = firstLine.find(delimiter)) != std::string::npos) {
         token = firstLine.substr(0, pos);
@@ -81,7 +81,7 @@ void readFile(const std::string& filePath, Entry *entry) {
 //----------------------------------------------------------------------------------------------------------------------
 // Rekursive Traversion durch die Ordner Struktur
 
-void traverseFolders(const std::string& path, Entry *parent) {
+void traverseFolders(const std::string &path, Entry *parent) {
     for (auto &p: std::filesystem::directory_iterator(path)) {
         //std::cout << p.path() << std::endl;
         std::string s = p.path();
@@ -90,17 +90,17 @@ void traverseFolders(const std::string& path, Entry *parent) {
 
         auto *entry = new Entry();
 
-        if (last_element.find(".txt") != std::string::npos) {
-            readFile(p.path(), entry);
-            entry->is_file = true;
-            entry->name = last_element;
-
-        } else {
+        if (p.is_directory()) {
             entry->is_file = false;
             entry->name = last_element;
             entry->sub_entries = std::vector<Entry>();
 
             traverseFolders(p.path(), entry);
+        } else {
+            readFile(p.path(), entry);
+            entry->is_file = true;
+            entry->name = last_element;
+
         }
         parent->sub_entries.push_back(*entry);
     }
@@ -108,7 +108,7 @@ void traverseFolders(const std::string& path, Entry *parent) {
 
 //----------------------------------------------------------------------------------------------------------------------
 
-Entry initHelpSystem(const std::string& path){
+Entry initHelpSystem(const std::string &path) {
     //Pfad zum root Ordner des HilfeSystems
     Entry baseDirectory;
     // is_file muss gesetzt werden damit das DateiSystem indexing funktioniert
