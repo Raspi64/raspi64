@@ -1,6 +1,7 @@
 #include <Gui.hpp>
 #include <fstream>
 #include <iostream>
+#include <filesystem>
 #include "Schnittstelle.hpp"
 
 Gui *gui;
@@ -43,6 +44,17 @@ bool my_on_submit(std::string command) {
     }
     if (command == "stop") {
         sc->kill_current_task();
+        return true;
+    }
+    if (command.find("list") == 0) {
+        gui->console->print("Files you can load:");
+        for (auto &child: std::filesystem::directory_iterator("../saves/")) {
+            if (!child.is_directory()) {
+                std::string child_path = child.path();
+                std::string name(child_path.substr(child_path.rfind('/') + 1));
+                gui->console->print(" - " + name);
+            }
+        }
         return true;
     }
     if (command.find("save") == 0 || command.find("load") == 0) {
