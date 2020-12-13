@@ -161,4 +161,7 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     target_link_libraries(imgui_setup_demo "-L/usr/local/lib -L/opt/local/lib")
 endif ()
 
+# Link Filesystem (gcc 8 an below)
+target_link_libraries(imgui_setup -lstdc++fs)
+
 add_compile_options("-Wall -Wextra -pedantic -Werror")
