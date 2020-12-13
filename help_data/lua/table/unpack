@@ -1,0 +1,14 @@
+table.unpack
+table.unpack
+Gibt die Elemente von der liste zurück. Die Funktion ist äquivalent zu 
+return list[i], list[i+1], ···, list[j]
+Der Standard ist: i = 1 und j = #list
+
+Element1, Element2, … = table.unpack (list , i , j)
+
+Beispiel:
+table1 = {}
+table.insert(table1,19)
+table.insert(table1,5)
+table.insert(table1,4)
+a,b,c = table.unpack(table1)

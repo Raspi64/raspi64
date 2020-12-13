@@ -1,0 +1,9 @@
+math.maxinteger
+math.maxinteger
+Ein Integer mit dem maximalen Wert für einen Integer.
+
+Number = math.maxinteger
+
+Beispiel: 
+a = math.maxinteger
+

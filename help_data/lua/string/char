@@ -1,0 +1,12 @@
+string.char
+string.char
+Erwartet 0 oder mehr Ganzzahlen. Liefert eine Zeichenkette mit einer Länge entsprechend der Anzahl der Argumente, wobei jedes Zeichen den gleichen numerischen Code besitzt, wie das korrespondierende Argument.
+
+Beachten Sie, dass numerische Codes nicht notwendigerweise über verschiedene Plattformen portabel sind.
+
+String = string.char(asci-wert,...)
+
+Beispeil:
+a = string.char(48,48,48)
+print(a)  -- print “000”
+

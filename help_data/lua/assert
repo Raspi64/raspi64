@@ -1,0 +1,14 @@
+Assert
+Assert
+
+Assert wirft einen error wenn der Wert des Argumentes “v” fasch ist (nil oder false). Wenn dies nicht der Fall ist werden alle Argumente zurückgegeben. Im falle eines Errors kann eine Nachricht die angezeigt werden soll mitgegeben werden, muss aber nicht. Die standard Nachricht ist “assertion failed”
+
+
+assert(Boolean, Nachricht)
+
+Beispiel:
+a = 1
+b = 2
+assert(a == b,”Dies ist ein Error”)
+
+

@@ -1,0 +1,10 @@
+math.rad
+math.rad
+Liefert den Winkel x (in Grad) in Radiant.
+
+Number = math.rad(Number)
+
+Beispiel:
+a= 45
+b= math.rad(a)
+

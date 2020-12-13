@@ -1,0 +1,11 @@
+math.ceil
+math.ceil
+Liefert die kleinste Ganze Zahl größer oder gleich x.
+
+number =  math.ceil(number)
+
+Beispiel:
+a = 2.1
+B = math.ceil(a)
+print(a)  -- print 3
+

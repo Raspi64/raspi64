@@ -1,0 +1,10 @@
+Error
+Error
+Eine Funktion die einen Error wirft. Der Grund des Errors kann mit einer Nachricht, als String, mitgegeben werden. Der Level-Parameter gibt an and welcher Stelle der Error geworfen wird. Bei Level 1 wird der Error an der Position angezeigt wo die Funktion aufgerufen wurde. Bei  Level 2 wird der Error an der Methode die ihn geworfen hat angezeigt usw.
+
+error(massage,level)
+
+Beispiel:
+error(“Diese Position darf nicht erreicht werden”,1)
+
+

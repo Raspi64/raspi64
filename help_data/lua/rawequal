@@ -1,0 +1,13 @@
+Rawequal
+Rawequal
+Vergleicht ob v1 und v2 gleich sind ohne dabei eine Metamethode aufzurufen. Liefert einen Boolean zurück.
+ 
+Boolean =  rawequal(v1,v2) 
+
+Beispiel:
+v1= 2
+v2= 2
+if rawequal(v1,v2) then
+a=1
+end
+

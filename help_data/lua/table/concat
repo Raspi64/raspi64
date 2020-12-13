@@ -1,0 +1,13 @@
+table.concat
+table.concat
+Bei Übergabe eines Feldes, dessen Elemente alle Zeichenketten oder Zahlen sind, wird table[i]..sep..table[i+1] ··· sep..table[j] zurückgegeben. Der Standardwert für sep ist die leere Zeichenkette, der Standard für i ist 1 und der Standard für j ist die Länge der Tabelle. Falls i größer als j ist, wird die leere Zeichenkette zurückgeliefert.
+
+String = table.concat(table,sep,i,j)
+
+t = {}
+t[1]=”Hallo”
+t[2]=”Welt”
+a = table.concat(t)
+print(a) -- print HalloWelt
+
+

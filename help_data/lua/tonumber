@@ -1,0 +1,11 @@
+Tonumber
+Tonumber
+Diese Funktion versucht den eingegebenen Wert in eine Zahl zu konvertieren. Wenn dieser Wert bereits eine Zahl oder ein zu einer Zahl konvertierbarer String ist liefert diese Funktion den entsprechenden Wert als Nummer zurück. Andernfalls wird der Wert “fail” zurück gegeben. Ein optionales Argument gibt die anzunehmende Basis der Zahl an. Die Basis kann eine Ganzzahl von 2 bis 36 (inkl.) sein. Bei Basen über 10, steht der Buchstabe 'A' (sowohl in Groß- als auch Kleinschreibung) für 10, 'B' für 11 usf. bis 'Z' für 35. Bei der Basis 10 (Standard) können die Zahlen einen Dezimalteil und auch einen optionalen Exponentialteil haben. Wenn der String keine gültigen Ziffern in der Angegeben Basis hat wird “fail” zurückgegeben.
+
+ Number =  tonumber(String,basis)
+
+Beispiel:
+a=”25”
+b = 5
+c = b + tonumber(a)
+

@@ -1,0 +1,12 @@
+Warn
+Warn
+Diese Funktion dient dazu eine Warnung mit einer Nachricht zu werfen. Die warnung muss ein String sein. Konventionell ist eine einteilige Nachricht, die mit '@' beginnt, eine Kontrolle Nachricht, die eine Nachricht an das Warnsystem selbst ist. Insbesondere erkennt die Standard Warnfunktion in Lua die Kontrollmeldungen "@off", um die Ausgabe von Warnungen zu stoppen, und "@on", um die Emission (neu) zu starten. Unbekannte Kontrollmeldungen werden ignoriert.
+
+warn(nachricht,...)
+
+Beispiel:
+warn(“@on”)
+warn(“Diese Warnung wird angezeigt”)
+warn(“@off”)
+warn(“Diese Warnung wird nicht angezeigt”)
+

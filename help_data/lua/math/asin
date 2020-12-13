@@ -1,0 +1,11 @@
+math.asin
+math.asin
+Liefert den Arcus Sinus von x (in Radiant).
+
+Number =  math.asin(number)
+
+Beispiel:
+a = 45
+b = math.asin(a)
+
+

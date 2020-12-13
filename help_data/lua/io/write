@@ -1,0 +1,13 @@
+io.write
+io.write
+Gibt Variablen an die Konsole aus. Im gegensatz zu print() ist am ende der ausgabe kein Zeilenumbruch. 
+
+io.write (output)
+
+Beispiel:
+
+a = 2
+b = “Hallo Welt”
+io.write(a)
+io.write(b)
+

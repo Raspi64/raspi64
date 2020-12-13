@@ -1,0 +1,9 @@
+coroutine.wrap
+coroutine.wrap
+Erstellt eine neue Koroutine mit dem Inhalt f. f muss eine Lua-Funktion sein. Liefert eine Funktion, welche die Koroutine bei jedem Aufruf wieder aufnimmt. Alle Argumente, welche der Funktion übergeben werden, fungieren als zusätzliche Argumente für resume. Liefert die gleichen Werte wie sie von resume zurückgegeben werden, mit Ausnahme des ersten Wahrheitswertes. Im Falle eines Fehlers wird dieser gemeldet.
+
+Function = coroutine.wrap (function)
+
+Beispiel:
+Siehe coroutine.resume
+

@@ -1,0 +1,6 @@
+coroutine.running
+coroutine.running
+Liefert die laufende Koroutine oder nil, wenn sie vom Haupt-Thread aufgerufen wird.
+
+Boolean = coroutine.running ()
+

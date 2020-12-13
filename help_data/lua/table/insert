@@ -1,0 +1,10 @@
+table.insert
+table.insert
+Fügt table das Element value an Position pos hinzu, wobei andere Elemente falls notwendig nach oben verschoben werden, um Platz zu schaffen. Der Standardwert für pos ist n+1, wobei n die Länge der Tabelle ist, so dass der Aufruf table.insert(t,x) x an das Ende der Tabelle t hinzufügt.
+
+table.insert(table,pos,value)
+
+Table = {}
+a = 25
+table.insert(table,a)
+

@@ -1,0 +1,12 @@
+string.match
+string.match
+Sucht nach der ersten Übereinstimmung von pattern in der Zeichenkette s. Falls eine solche gefunden wird, liefert match die Treffer des Musters; andernfalls liefert es nil. Falls pattern keine Treffer spezifiziert, wird die komplette Übereinstimmung zurückgeliefert. Ein drittes, optionales numerisches Argument init gibt an, wo mit der Suche begonnen werden soll; dessen Standardwert ist 1 und kann negativ sein.
+
+String = string.match(String,String-pattern,Number)
+
+Beispiel:
+a = “Hallo Welt”
+b = string.match(a,”Welt”)
+c = String.match(a,”Welt”,2)
+
+

@@ -1,0 +1,12 @@
+string.upper
+string.upper
+Erhält eine Zeichenkette und liefert eine Kopie dieser Zeichenkette, wobei alle Kleinbuchstaben zu Großbuchstaben geändert werden. Alle anderen Zeichen bleiben ungeändert. Die Definition eines Kleinbuchstabens hängt von der aktuellen Sprache ab.
+
+String =  string.upper(String)
+
+Beispiel:
+a = “hallo welt”
+b = string.upper(a)
+
+
+

@@ -1,0 +1,9 @@
+Rawlen
+Rawlen
+Liefert die Länge eines Strings oder einer Tabelle als Integer zurück.
+
+rawlen(String/table)
+
+Beispiel:
+a = rawlen(“Hello World”)
+

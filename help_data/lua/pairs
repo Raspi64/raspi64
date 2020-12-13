@@ -1,0 +1,11 @@
+Pairs
+Pairs
+Diese Funktion besitzt eine Metamethode _paris die mit t als argument nur die ersten drei resultate von diesem aufruf. Anders liefert diese Methode drei Werte: die next-funktion, die Tabelle t und “nil” sodass die konstruktion über alle Schlüsselwerte der Tabelle t verfügt
+
+paris(t)
+
+Beispiel:
+ for k,v in pairs(t) do 
+print(k,v)
+end
+

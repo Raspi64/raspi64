@@ -1,0 +1,10 @@
+Xpcall
+Xpcall
+Diese Funktion ist ähnlich wie die pcall-Funktion, nur das man einen neuen massage handler (msgh) setzen kann.
+
+xpcall(funktion,msgh,arg1,...) 
+
+Beispiel:
+xpcall(print(“hello world”))
+
+

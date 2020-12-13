@@ -1,0 +1,10 @@
+math.sin
+math.sin
+Liefert den Sinus von x (in Radiant).
+
+Number = math.sin(number)
+
+Beispiel:
+a= 1
+b= math.sin(a)
+

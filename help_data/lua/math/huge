@@ -1,0 +1,16 @@
+math.huge
+math.huge
+
+Beispiel:
+a = math.huge
+
+math.log 
+Gibt den Logarithmus  von x in der gegebenen Basis zurück. Die Standard Basis ist e, sodas die Funktion den natürlichen Logarithmus von x zurück gibt.
+
+Number = math.log (x [, base])
+
+Beispiel:
+a=2
+b=6
+c= math.log(6,2)
+

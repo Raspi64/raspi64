@@ -1,0 +1,13 @@
+coroutine.create
+coroutine.create
+Erzeugt eine neue Koroutine mit dem Inhalt f. f muss eine Lua-Function sein. Liefert diese neue Koroutine als Objekt vom Typ "thread" zurück.
+
+Corotine = coroutine.create (funktion)
+
+Beispiel:
+Funktion a () do
+   print(“Hello World”) 
+end
+co = coroutine.create(a)
+
+

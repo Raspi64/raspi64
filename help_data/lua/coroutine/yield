@@ -1,0 +1,10 @@
+coroutine.yield
+coroutine.yield
+Unterbricht die Ausführung der aufrufenden Koroutine. Alle Argumente, die yield übergeben werden, werden als separates Ergebnis an resume durchgereicht.
+
+coroutine.yield (···)
+
+Beispiel: 
+Siehe coroutine.resume
+
+

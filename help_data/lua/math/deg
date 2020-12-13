@@ -1,0 +1,18 @@
+math.deg
+math.deg
+Liefert den Winkel x (in Radiant) in Grad.
+
+number = math.deg(number)
+
+Beispiel:
+a = 1
+b = math.cos(a)
+
+math.exp 
+Liefert den Wert ex.
+
+ Number = math.exp (number)
+
+Beispiel:
+a= math.exp(1)
+

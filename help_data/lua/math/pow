@@ -1,0 +1,12 @@
+math.pow
+math.pow
+Liefert xy. (Sie können diesen Wert auch durch den Ausdruck x^y berechnen.)
+
+Number = math.pow(number,number)
+
+Beispiel:
+a=2
+b=6
+c= math.pow(6,2)
+
+

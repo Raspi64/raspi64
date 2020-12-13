@@ -1,0 +1,11 @@
+string.len
+string.len
+Erhält eine Zeichenkette und liefert dessen Länge. Die leere Zeichenkette "" hat die Länge 0. Eingebettete Nullen werden gezählt, so dass "a\000bc\000" die Länge 5 hat.
+
+Number = string.len(String)
+
+Beispiel:
+a = “Hallo Welt”
+b = string.len(a) 
+
+

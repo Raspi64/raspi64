@@ -1,0 +1,13 @@
+Tostring
+Tostring
+Diese Funktion wandelt einen Wert ein einen String um, so dass Menschen ihn Lesen können.
+
+tostring(Wert)
+
+Beispiel:
+tag_1=3
+tag_2=1
+gesamt= tag_1 + tag_2
+Gesamt_string = tostring(gesamt)
+print(“Es dauerte so viele Tage:  .. gesamt_string)
+

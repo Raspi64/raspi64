@@ -1,0 +1,10 @@
+string.rep
+string.rep
+Liefert eine Zeichenkette, welche eine Verknüpfung von n Kopien der Zeichenkette s darstellt.
+
+String = string.rep(String,Number)
+
+Beispiel:
+a = “Hallo Welt”
+b = string.rep(a,3)
+

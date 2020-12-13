@@ -1,0 +1,9 @@
+math.mininteger
+math.mininteger
+Ein Integer mit dem minimalsten Wert für einen Integer.
+
+Number = math.mininteger
+
+Beispiel:
+a = math.mininteger
+

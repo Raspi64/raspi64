@@ -1,0 +1,12 @@
+Type
+Type
+Liefert den Typ des Wertes als String zurück. Mögliche rückgabewerte dieser Funktion sind: “nil”, “number”, “string”, “boolean”, “table”, “funktion”, “thread” und “userdata”. 
+
+String =  type(wert)
+
+Beispiel:
+a = 5
+if  type(a)== “number” then
+b = a+3
+end
+

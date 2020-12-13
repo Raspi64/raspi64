@@ -1,0 +1,16 @@
+coroutine.resume
+coroutine.resume
+Startet die Ausführung der Koroutine co und setzt diese fort. Wenn Sie das erste Mal eine Koroutine wieder aufnehmen, wird deren Inhalt ausgeführt. Die Werte val1, ··· werden dem Inhalt der Funktion als Argumente übergeben. Wenn die Koroutine unterbrochen wurde, nimmt resume diese wieder auf; die Werte val1, ··· werden als Ergebnis der Unterbrechung durchgereicht.
+
+Wenn die Koroutine ohne Fehler läuft, liefert resume true und alle Werte, welche yield übergeben wurden (sofern die Koroutine noch läuft) oder Werte, welche von der Funktion geliefert werden (wenn die Koroutine beendet wurde). Sollte ein Fehler auftreten liefert resume false und eine Fehlermeldung zurück.
+
+coroutine.resume (co [, val1, ···])
+
+Beispiel:
+Funktion a () do
+   print(“Hello World”) 
+   coroutine.yield()
+end
+co = coroutine.create(a())
+coroutine.resume(co)
+

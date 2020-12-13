@@ -1,0 +1,13 @@
+math.floor
+math.floor
+Liefert die größte Ganze Zahl kleiner oder gleich x. Rundet immer ab.
+
+Number = math.floor(number)
+
+Beispiel:
+a = 2.7
+b = math.floor(a)
+
+
+
+

@@ -1,0 +1,12 @@
+math.type
+math.type
+Gibt den entsprechenden Typ zurück wenn es sich um einen Integer(ganze Zahlen) oder einen Float (Kommazahlen) handelt, ansonsten wird ein fial zurückgegeben.
+
+String = math.type (Number)
+
+Beispiel:
+a = 2
+print(math.type(a)) -- print integer
+b = 2.34
+print(math.type(a))  -- print float
+

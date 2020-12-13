@@ -1,0 +1,12 @@
+string.byte
+string.byte
+Liefert den internen numerischen Code der Zeichen s[i], s[i+1], ···, s[j]. Der Standardwert für i ist 1; der Standardwert für j ist i.
+
+Number = string.byte(s,i,j)
+
+Beispiel:
+a = “hallo Welt”
+b = string.byte(a)
+c = string.byte(a,2,3)
+
+

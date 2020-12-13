@@ -1,0 +1,10 @@
+math.sqrt
+math.sqrt
+Liefert die Quadratwurzel von x. (Sie können diesen Wert auch durch den Ausdruck x^0.5 berechnen.)
+
+Number = math.sqrt(number)
+
+Beispiel:
+a = 20
+b = math.sqrt(a)
+ 
