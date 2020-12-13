@@ -28,8 +28,7 @@ std::vector<Entry *> searchEntries(Entry *entry, std::string searchword) {
     std::vector<Entry *> searchResults;
 
     // to lower case, da alle Schlagwörter in den Dateien klein geschrieben sind.
-    std::transform(searchword.begin(), searchword.end(), searchword.begin(),
-                   [](unsigned char c) { return std::tolower(c); });
+    std::transform(searchword.begin(), searchword.end(), searchword.begin(), [](unsigned char c) { return std::tolower(c); });
 
     subSearch(entry, &searchResults, searchword);
 
@@ -43,7 +42,7 @@ void readFile(const std::string &filePath, Entry *entry) {
     std::ifstream file;
     file.open(filePath);
 
-    std::string contend;
+    std::string content;
     std::string firstLine;
 
     //Topic 9: Kontrollfluß: grundlegende Kontrollstrukturen
@@ -51,11 +50,11 @@ void readFile(const std::string &filePath, Entry *entry) {
         //in der ersten Zeile stehen die Schlagwörter nach denen gesucht wird.
         std::getline(file, firstLine);
         while (std::getline(file, line)) {
-            contend.append(line + "\n");
+            content.append(line + "\n");
         }
         file.close();
     }
-    entry->content = contend;
+    entry->content = content;
 
 
     // Split first line, save Words in Vector
@@ -82,22 +81,22 @@ void readFile(const std::string &filePath, Entry *entry) {
 // Rekursive Traversion durch die Ordner Struktur
 
 void traverseFolders(const std::string &path, Entry *parent) {
-    for (auto &p: std::filesystem::directory_iterator(path)) {
-        //std::cout << p.path() << std::endl;
-        std::string s = p.path();
+    for (auto &child: std::filesystem::directory_iterator(path)) {
+        //std::cout << child.path() << std::endl;
+        std::string child_path = child.path();
 
-        std::string last_element(s.substr(s.rfind('/') + 1));
+        std::string last_element(child_path.substr(child_path.rfind('/') + 1));
 
         auto *entry = new Entry();
 
-        if (p.is_directory()) {
+        if (child.is_directory()) {
             entry->is_file = false;
             entry->name = last_element;
             entry->sub_entries = std::vector<Entry>();
 
-            traverseFolders(p.path(), entry);
+            traverseFolders(child_path, entry);
         } else {
-            readFile(p.path(), entry);
+            readFile(child_path, entry);
             entry->is_file = true;
             entry->name = last_element;
 
