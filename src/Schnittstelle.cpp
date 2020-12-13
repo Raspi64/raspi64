@@ -100,23 +100,38 @@ Schnittstelle::Schnittstelle(
 
 void Schnittstelle::save(const std::string &name, const std::string &text) {
     std::ofstream outfile;
-    outfile.open("../saves/" + name);
+    std::string extension;
+    switch (current_language) {
+        case BASIC:
+            extension = ".bas";
+            break;
+        case LUA:
+            extension = ".lua";
+            break;
+    }
+    outfile.open("../saves/" + name + extension);
     outfile << text;
     outfile.close();
 }
 
 std::string Schnittstelle::load(const std::string &name) {
-    std::string text;
     std::ifstream infile;
-    infile.open("../saves/" + name);
-    infile >> text;
-    infile.close();
-    return text;
+    std::string extension;
+    switch (current_language) {
+        case BASIC:
+            extension = ".bas";
+            break;
+        case LUA:
+            extension = ".lua";
+            break;
+    }
+    infile.open("../saves/" + name + extension);
+    return std::string(std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>());
 }
 
 Entry *Schnittstelle::get_common_help_root() {
     for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
-        if (sub_entry->name == "common") {
+        if (sub_entry->name == "Common") {
             return sub_entry.base();
         }
     }
@@ -127,12 +142,12 @@ Entry *Schnittstelle::get_language_help_root() {
     for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
         switch (current_language) {
             case BASIC:
-                if (sub_entry->name == "basic") {
+                if (sub_entry->name == "BASIC") {
                     return sub_entry.base();
                 }
                 break;
             case LUA:
-                if (sub_entry->name == "lua") {
+                if (sub_entry->name == "Lua") {
                     return sub_entry.base();
                 }
                 break;

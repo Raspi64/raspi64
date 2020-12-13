@@ -33,9 +33,9 @@ public:
 
     Status get_status();
 
-    static void save(const std::string& name, const std::string& text);
+    void save(const std::string& name, const std::string& text);
 
-    static std::string load(const std::string& name);
+    std::string load(const std::string& name);
 
     Entry *get_common_help_root();
 

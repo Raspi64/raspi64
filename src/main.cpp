@@ -51,7 +51,7 @@ bool my_on_submit(std::string command) {
             gui->console->print("[error] Kein Dateinamen gefunden");
             return true;
         }
-        std::string name = command.substr(pos);
+        std::string name = command.substr(pos + 1);
         if (name.find(' ') != std::string::npos) {
             gui->console->print("[error] Dateiname darf keine Leerzeichen enthalten");
             return true;
@@ -61,10 +61,10 @@ bool my_on_submit(std::string command) {
             return true;
         }
         if (command[0] == 's') {
-            Schnittstelle::save(name, gui->editor->get_text());
+            sc->save(name, gui->editor->get_text());
             return true;
         } else {
-            gui->editor->set_text(Schnittstelle::load(name));
+            gui->editor->set_text(sc->load(name));
             return true;
         }
     }

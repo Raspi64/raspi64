@@ -75,11 +75,9 @@ void HelpWindow::render() {
         if (this->root_common != nullptr) {
             this->process_entry(this->root_common);
         }
-        /*
         if (this->root_language != nullptr) {
             this->process_entry(this->root_language);
         }
-        */
     }
 
     // end entries
