@@ -1,11 +1,12 @@
-math.huge
+math.huge;huge;log;logarithmus;basis;basis;math;mathematik;mathe;lua
+
 math.huge
 
 Beispiel:
 a = math.huge
 
 math.log 
-Gibt den Logarithmus  von x in der gegebenen Basis zurück. Die Standard Basis ist e, sodas die Funktion den natürlichen Logarithmus von x zurück gibt.
+Gibt den Logarithmus von x in der gegebenen Basis zurück. Die Standard Basis ist e, sodas die Funktion den natürlichen Logarithmus von x zurück gibt.
 
 Number = math.log (x [, base])
 

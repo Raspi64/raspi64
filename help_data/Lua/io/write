@@ -1,6 +1,7 @@
+io.write;read;io;console;konsole;output;write;convert;umwandeln;ausgeben;lua
+
 io.write
-io.write
-Gibt Variablen an die Konsole aus. Im gegensatz zu print() ist am ende der ausgabe kein Zeilenumbruch. 
+Gibt Variablen an die Konsole aus. Im gegensatz zu print() ist am Ende der Ausgabe kein Zeilenumbruch. 
 
 io.write (output)
 

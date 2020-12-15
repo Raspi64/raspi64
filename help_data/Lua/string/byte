@@ -1,4 +1,5 @@
-string.byte
+string.byte;byte;number;nummer;code;string;lua
+
 string.byte
 Liefert den internen numerischen Code der Zeichen s[i], s[i+1], ···, s[j]. Der Standardwert für i ist 1; der Standardwert für j ist i.
 

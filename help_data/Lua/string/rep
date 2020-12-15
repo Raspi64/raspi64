@@ -1,4 +1,5 @@
-string.rep
+string.rep;rep;zeichen;zeichenkette;kette;anreihen;string;verknüpfen;verknuefpen;lua
+
 string.rep
 Liefert eine Zeichenkette, welche eine Verknüpfung von n Kopien der Zeichenkette s darstellt.
 

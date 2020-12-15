@@ -1,6 +1,7 @@
+rawset;table;tabelle;set;setzen;lua;index;position
+
 Rawset
-Rawset
-Setzt den mitgegeben Wert an den mitgegeben Index in einer Tabelle ohne die Metamethoden aufzurufen. Diese funktion liefert die veränderte Tabelle zurück.
+Setzt den mitgegeben Wert an den mitgegeben Index in einer Tabelle ohne die Metamethoden aufzurufen. Diese Funktion liefert die veränderte Tabelle zurück.
 
 Table = rawset(table, index, value)
 

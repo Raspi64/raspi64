@@ -1,6 +1,7 @@
+print;ausgeben;lua
+
 Print
-Print
-Nimmt eine beliebige Anzahl an Argumenten entgegen und gient diese unter anwendung der tostring methode auf der Console aus.
+Nimmt eine beliebige Anzahl an Argumenten entgegen und giebt diese unter Anwendung der tostring Methode auf der Console aus.
 
 print(...)
 

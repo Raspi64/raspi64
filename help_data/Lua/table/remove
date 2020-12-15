@@ -1,4 +1,5 @@
-table.remove
+table.remove;entfernen;remove;position;del;delete;table;tabelle;lua
+
 table.remove
 Entfernt das Element an der Position pos aus table, wobei andere Elemente falls notwendig nach unten verschoben werden, um Platz zu schaffen. Liefert den Wert des entfernten Elements. Der Standardwert für pos ist n, wobei n die Länge der Tabelle ist, so dass der Aufruf table.remove(t) das letzte Element der Tabelle t entfernt.
 

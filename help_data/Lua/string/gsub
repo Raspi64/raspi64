@@ -1,4 +1,5 @@
-string.gsub
+string.gsub;gsub;ersetzen;suchen;string;lua
+
 string.gsub
 Liefert eine Kopie von s, bei welcher alle (bzw. die ersten n, falls gegeben) Auftreten von pattern durch eine Ersetzungs-Zeichenkette, welche durch repl spezifiziert wurde und eine Zeichenkette, Tabelle oder Funktion sein kann, ersetzt wurden. gsub liefert als zweiten Wert auch die Gesamtzahl aufgetretener Treffer.
 

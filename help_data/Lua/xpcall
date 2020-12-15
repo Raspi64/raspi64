@@ -1,4 +1,6 @@
-Xpcall
+xpcall;pcall;geschützter modus;secure mode;secure;geschützt;geschuetzt;geschuetzter modus;lua;argumente;function;argument;parameter;funktion;message handler;message;nachricht
+
+
 Xpcall
 Diese Funktion ist ähnlich wie die pcall-Funktion, nur das man einen neuen massage handler (msgh) setzen kann.
 

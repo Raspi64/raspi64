@@ -1,4 +1,5 @@
-string.gmatch
+string.gmatch;gmatch;find;finden;iterator;durchlaufen;schleife;loop;string;lua
+
 string.gmatch
 Liefert einen Iterator, welcher bei jedem Aufruf den nächsten Treffer aus pattern in der Zeichenkette s liefert. Falls pattern keine Treffer sichert, wird bei jedem Aufruf die komplette Übereinstimmung erzeugt.
 

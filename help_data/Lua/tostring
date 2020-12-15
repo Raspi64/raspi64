@@ -1,6 +1,7 @@
+tostring;string;wandelt;convert;lua
+
 Tostring
-Tostring
-Diese Funktion wandelt einen Wert ein einen String um, so dass Menschen ihn Lesen können.
+Diese Funktion wandelt einen Wert in einen String um.
 
 tostring(Wert)
 

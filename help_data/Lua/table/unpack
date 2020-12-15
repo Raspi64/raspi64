@@ -1,4 +1,5 @@
-table.unpack
+table.unpack;unpack;ausgabe;return;werte;table;tabelle;lua
+
 table.unpack
 Gibt die Elemente von der liste zurück. Die Funktion ist äquivalent zu 
 return list[i], list[i+1], ···, list[j]

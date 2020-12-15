@@ -1,4 +1,5 @@
-math.fmod
+math.fmod;fmod;rest;division;bruchrechnung;math;mathematik;mathe;lua
+
 math.fmod
 Liefert den Rest der Division x durch y, welche den Quotienten auf 0 rundet.
 

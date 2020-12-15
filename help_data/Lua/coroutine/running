@@ -1,4 +1,5 @@
-coroutine.running
+coroutine.running;coroutine;running;laufend;läuft;laeuft;return;lua
+
 coroutine.running
 Liefert die laufende Koroutine oder nil, wenn sie vom Haupt-Thread aufgerufen wird.
 

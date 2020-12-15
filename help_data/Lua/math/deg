@@ -1,4 +1,5 @@
-math.deg
+math.deg;winkel;grad;radius;math;mathematik;mathe;lua
+
 math.deg
 Liefert den Winkel x (in Radiant) in Grad.
 

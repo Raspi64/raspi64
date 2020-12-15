@@ -1,4 +1,5 @@
-math.random
+math.random;zahlen;zahl;zufall;random;math;mathematik;mathe;lua
+
 math.random
 Diese Funktion ist ein Wrapper zum einfachen Pseudozufallszahlen-Generator rand, welcher von ANSI C zur Verfügung gestellt wird. (Es gibt keine Gewährleistung für dessen statistische Eigenschaften.)
 

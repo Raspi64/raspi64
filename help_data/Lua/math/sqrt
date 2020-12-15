@@ -1,4 +1,5 @@
-math.sqrt
+math.sqrt;sqrt;quadratwurzel;wurzel;quadrat;math;mathematik;mathe;lua
+
 math.sqrt
 Liefert die Quadratwurzel von x. (Sie können diesen Wert auch durch den Ausdruck x^0.5 berechnen.)
 

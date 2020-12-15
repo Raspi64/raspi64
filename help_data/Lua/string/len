@@ -1,4 +1,5 @@
-string.len
+string.len;len;länge;laenge;length;string;lua
+
 string.len
 Erhält eine Zeichenkette und liefert dessen Länge. Die leere Zeichenkette "" hat die Länge 0. Eingebettete Nullen werden gezählt, so dass "a\000bc\000" die Länge 5 hat.
 

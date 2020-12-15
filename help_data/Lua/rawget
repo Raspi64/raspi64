@@ -1,4 +1,5 @@
-Rawget
+rawget;index;table;tabelle;ausgabe;output;aus;out;index;position;lua
+
 Rawget
 Gibt den Inhalt einer Tabelle an dem angegebenen Index zurück.
 

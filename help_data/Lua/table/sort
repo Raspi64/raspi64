@@ -1,4 +1,5 @@
-table.sort
+table.sort;sort;sortieren;table;tabelle;lua
+
 table.sort
 Sortiert die Elemente der Tabelle in-place mit der gegebenen Sortierung von table[1] nach table[n], wobei n die Länge der Tabelle ist. Wenn comp gegeben ist, muss dies eine Funktion sein, welche zwei Tabellenelemente annehmen kann und true liefert, wenn das erste Element kleiner als das zweite ist (so dass not comp(a[i+1],a[i]) nach der Sortierung true wird). Wenn comp nicht angegeben ist, wird stattdessen der Standard Operator < von Lua benutzt.
 

@@ -1,8 +1,9 @@
-Pairs
-Pairs
-Diese Funktion besitzt eine Metamethode _paris die mit t als argument nur die ersten drei resultate von diesem aufruf. Anders liefert diese Methode drei Werte: die next-funktion, die Tabelle t und “nil” sodass die konstruktion über alle Schlüsselwerte der Tabelle t verfügt
+pairs;table;tabelle;key;schlüssel;lua
 
-paris(t)
+Pairs
+Diese Funktion besitzt eine Metamethode _pairs die mit t als Argument nur die ersten drei Resultate von diesem Aufruf ... Anders liefert diese Methode drei Werte: die next-funktion, die Tabelle t und “nil”, sodass die Konstruktion über alle Schlüsselwerte der Tabelle t verfügt.
+
+pairs(t)
 
 Beispiel:
  for k,v in pairs(t) do 

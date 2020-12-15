@@ -1,4 +1,5 @@
-io.read
+io.read;read;io;console;konsole;input;read;convert;umwandeln;einlesen;lua
+
 io.read
 Liest Input von der Konsole ein. Dabei gibt es verschidene Parameter: 
 "*l"
@@ -6,7 +7,7 @@ Liest eine Zeile
 "*number"
 Liest eine Nummer
 num
-Liest einen String und macht aus ihm Nummern Chars 
+Liest einen String ein und macht aus ihm Nummern Chars
 
 
 io.read (parameter)

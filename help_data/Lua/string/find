@@ -1,4 +1,5 @@
-string.find
+string.find;find;finden;string;lua
+
 string.find
 Sucht nach der ersten Übereinstimmung von pattern in der Zeichenkette s. Wenn eine Übereinstimmung gefunden wird, liefert find die Indizes von s, wo dieses Auftreten beginnt und endet; andernfalls liefert es nil. Ein drittes, optionales Argument init legt fest, wo mit der Suche begonnen werden soll; dessen Standardwert ist 1 und kann negativ sein. Der Wert true als viertes optionales Argument plain schaltet die Mustersuche-Funktionalität ab, so dass die Funktion eine reine "finde Teil-Zeichenkette"-Operation durchgeführt wird, wobei keine Zeichen in pattern als "magisch" angesehen werden. Beachten Sie, dass wenn plain gegeben ist, init ebenfalls gegeben sein muss.
 

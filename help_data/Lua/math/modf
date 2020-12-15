@@ -1,4 +1,5 @@
-math.modf
+math.modf;modf;teilen;bruchrechnung;rest;math;mathematik;mathe;lua
+
 math.modf
 Liefert zwei Zahlen: Den ganzzahligen und den gebrochenen Anteil von x.
 

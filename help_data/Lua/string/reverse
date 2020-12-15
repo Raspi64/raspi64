@@ -1,4 +1,5 @@
-string.reverse
+string.reverse;reverse;umdrehen;umgekehrt;string;lua
+
 string.reverse
 Liefert eine Zeichenkette, welche die Zeichenkette s umgekehrt darstellt.
 

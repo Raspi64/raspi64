@@ -1,4 +1,5 @@
-math.type
+math.type;type;nummer;zahl;math;mathematik;mathe;lua
+
 math.type
 Gibt den entsprechenden Typ zurück wenn es sich um einen Integer(ganze Zahlen) oder einen Float (Kommazahlen) handelt, ansonsten wird ein fial zurückgegeben.
 

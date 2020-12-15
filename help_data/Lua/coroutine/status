@@ -1,4 +1,5 @@
-coroutine.status
+coroutine.status;coroutine;status;running;suspended;normal;dead;zustand;lua
+
 coroutine.status
 Liefert den Status der Koroutine co als Zeichenkette: "running", wenn die Koroutine läuft (dies ist der Fall, wenn status aufgerufen wurde); "suspended", wenn die Koroutine über einen Aufruf von yield angehalten wird, oder wenn sie noch nicht gestartet wurde; "normal" wenn die Koroutine aktiv ist, jedoch nicht läuft (dies ist der Fall, wenn eine andere Koroutine fortgesetzt wird) und "dead" wenn die Koroutine ihren Inhalt durchgeführt hat, oder mit einem Fehler beendet wurde.
 

@@ -1,4 +1,5 @@
-table.move
+table.move;table;move;hinzufügen;einfügen;hinzufuegen;einfuegen;tabelle;lua
+
 table.move
 Verschiebt die Tabelle a1 in die Tabelle a2. Wobei der Standard für a2 = a1 ist.
 a1    = Die Tabelle aus der Elemente verschoben werden.

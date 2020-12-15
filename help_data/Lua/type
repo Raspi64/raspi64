@@ -1,6 +1,7 @@
+type;nil;number;string;boolean;bool;table;tabelle;funktion;function;thread;thread;userdata;return;rückgabe;rueckgabe;convertlua
+
 Type
-Type
-Liefert den Typ des Wertes als String zurück. Mögliche rückgabewerte dieser Funktion sind: “nil”, “number”, “string”, “boolean”, “table”, “funktion”, “thread” und “userdata”. 
+Liefert den Typ des Wertes als String zurück. Mögliche Rückgabewerte dieser Funktion sind: “nil”, “number”, “string”, “boolean”, “table”, “funktion”, “thread” und “userdata”. 
 
 String =  type(wert)
 

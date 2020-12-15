@@ -1,6 +1,7 @@
+coroutine.create;coroutine;true;false;start;starten;state;thread;multithreading;process;prozess;lua
+
 coroutine.create
-coroutine.create
-Erzeugt eine neue Koroutine mit dem Inhalt f. f muss eine Lua-Function sein. Liefert diese neue Koroutine als Objekt vom Typ "thread" zurück.
+Erzeugt eine neue Koroutine mit dem Inhalt f. f muss eine Lua-Funktion sein. Liefert diese neue Koroutine als Objekt vom Typ "thread" zurück.
 
 Corotine = coroutine.create (funktion)
 

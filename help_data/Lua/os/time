@@ -1,4 +1,5 @@
-os.time
+os.time;os;time;zeit;uhrzeit;format;timezone;zeitzone;lua
+
 os.time
 Liefert bei Aufruf ohne Argumente die aktuelle Zeit oder die Zeit, welche durch die übergebene Tabelle spezifiziert wird. Diese Tabelle muss die Felder year, month und day besitzen und kann (zusätzlich) die Felder hour, min, sec und isdst haben (s. os.date-Funktion für eine Beschreibung dieser Felder).
 

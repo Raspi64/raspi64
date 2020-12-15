@@ -1,6 +1,7 @@
+rawequal;equal;boolescher wert;boolean;vergleich;lua
+
 Rawequal
-Rawequal
-Vergleicht ob v1 und v2 gleich sind ohne dabei eine Metamethode aufzurufen. Liefert einen Boolean zurück.
+Vergleicht ob v1 und v2 gleich sind, ohne dabei eine Metamethode aufzurufen und liefert einen Boolean zurück.
  
 Boolean =  rawequal(v1,v2) 
 

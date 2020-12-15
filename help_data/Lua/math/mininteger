@@ -1,4 +1,5 @@
-math.mininteger
+math.mininteger;min;integer;minimum;math;mathematik;mathe;lua
+
 math.mininteger
 Ein Integer mit dem minimalsten Wert für einen Integer.
 

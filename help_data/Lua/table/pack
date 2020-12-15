@@ -1,6 +1,7 @@
+table.pack;pack;table;rückgabe;rueckgabe;tabelle;lua
+
 table.pack
-table.pack
-Gibt eine eine Tabelle zurück mit all den Parametern gespeichert in den Schlüsseln 1,2, etc. und dem Feld “n” mit der gesamten Anzahl an Parametern. Beachte die resultierende Tabelle ist keine Reihenfolge wenn eine Parameter nil sind.
+Gibt eine Tabelle zurück mit all den Parametern gespeichert in den Schlüsseln 1,2, etc. und dem Feld “n” mit der gesamten Anzahl an Parametern. Beachte die resultierende Tabelle ist keine Reihenfolge wenn eine Parameter nil sind. 
 
 Table =  table.pack (···)
 

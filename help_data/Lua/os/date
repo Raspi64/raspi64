@@ -1,4 +1,5 @@
-os.date
+os.date;os;date;Datum;zeichenkette;uhrzeit;time;format;lua
+
 os.date
 Liefert eine Zeichenkette oder Tabelle, welche das Datum und die Uhrzeit entsprechend der angegebenen Zeichenkette format beinhalten.
 

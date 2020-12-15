@@ -1,4 +1,5 @@
-math.floor
+math.floor;floor;runden;math;mathematik;mathe;lua
+
 math.floor
 Liefert die größte Ganze Zahl kleiner oder gleich x. Rundet immer ab.
 

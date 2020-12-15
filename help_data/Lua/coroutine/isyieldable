@@ -1,7 +1,8 @@
-coroutine.isyieldable
+coroutine.isyieldable;coroutine;schild;unterbrechen;ausführen;lua
+
 coroutine.isyieldable
 Gibt true zurück wenn die Koroutine co yield kann. Der Standard für co ist die laufende Koroutine.
-Eine Koroutine isyieldable wenn sie nicht der Main Thread oder sich in einer non-yieldable C-Funktion befindet.
+Eine Koroutine ist isyieldable, wenn sie nicht der Main Thread oder sich in einer non-yieldable C-Funktion befindet.
 
 Boolean =coroutine.isyieldable (co)
 

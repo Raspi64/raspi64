@@ -1,4 +1,5 @@
-Rawlen
+rawlen;länge;laenge;length;string;table;tabelle;integer;zahl;int;lua
+
 Rawlen
 Liefert die Länge eines Strings oder einer Tabelle als Integer zurück.
 
