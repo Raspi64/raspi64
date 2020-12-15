@@ -162,6 +162,9 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
 endif ()
 
 # Link Filesystem (gcc 8 an below)
-target_link_libraries(imgui_setup -lstdc++fs)
+# not needed on macos
+if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(imgui_setup -lstdc++fs)
+endif ()
 
 add_compile_options("-Wall -Wextra -pedantic -Werror")
