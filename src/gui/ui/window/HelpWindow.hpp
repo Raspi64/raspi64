@@ -27,6 +27,7 @@ private:
 
     void process_entry(Entry* entry);
     //void searchinput_callback(ImGuiInputTextCallbackData* data);
+    void clear_search();
 
     helpentryroot_funct_t on_request_common_root_fn;
     helpentryroot_funct_t on_request_language_root_fn;

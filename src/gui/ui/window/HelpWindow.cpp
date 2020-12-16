@@ -27,14 +27,16 @@ void HelpWindow::render() {
     ImGui::Begin(WIN_TITLE_HELP, NULL, FLAGS_HELP);
     after_imgui_begin(WIN_TITLE_HELP);
 
+    if (ImGui::IsWindowFocused() && ImGui::IsKeyPressed(KEY_F1)) {
+        this->clear_search();
+    }
+
     ImGui::Text("Wenn Hilfefenster Fokus hat:");
     ImGui::TextWrapped("Drücke ESC, dann Pfeiltasten, dann LEER um zwischen der Suchzeile und dem Themenbaum zu wechseln");
-
     ImGui::Separator();
 
     ImGui::Text("Navigation im Themenbaum:");
     ImGui::Text("LINKS/RECHTS: Auf-/Einklappen\nHOCH/RUNTER: Bewegen");
-
     ImGui::Separator();
 
     static char buf[32] = "";
@@ -45,7 +47,15 @@ void HelpWindow::render() {
     ImGuiInputTextFlags input_text_flags = ImGuiInputTextFlags_EnterReturnsTrue;
 
     if (this->on_search_fn != nullptr) {
-        if (ImGui::InputText("Suchen", buf, IM_ARRAYSIZE(buf), input_text_flags)) {
+        if (ImGui::Button("Start [F1]")) {
+            this->clear_search();
+        }
+
+        ImGui::SameLine();
+        ImGui::Text("|");
+
+        ImGui::SameLine();
+        if (ImGui::InputTextWithHint("", "Suchen", buf, IM_ARRAYSIZE(buf), input_text_flags)) {
             char *s = buf;
             if (s[0]) {
                 this->search_results = this->on_search_fn(s);
@@ -55,6 +65,9 @@ void HelpWindow::render() {
             }
         }
         ImGui::SetItemDefaultFocus();
+
+        ImGui::SameLine();
+        ImGui::Text("[Enter]");
     }
 
     ImGui::Separator();
@@ -109,6 +122,11 @@ void HelpWindow::process_entry(Entry *entry) {
 
         ImGui::TreePop();
     }
+}
+
+void HelpWindow::clear_search() {
+    this->mode_search = false;
+    this->search_results.clear();
 }
 
 void HelpWindow::set_language_mode(LANG lang) {
