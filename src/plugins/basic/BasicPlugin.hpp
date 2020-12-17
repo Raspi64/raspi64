@@ -30,6 +30,10 @@ private:
 
     static int basic_echo(mb_interpreter_t *bas, void **ptr);
 
+    static int basic_draw(mb_interpreter_t *bas, void **ptr);
+
+    static int basic_clear(mb_interpreter_t *bas, void **ptr);
+
     static int basic_openTerminal(mb_interpreter_t *bas, void **ptr);
 
     static int basic_maximum(mb_interpreter_t *bas, void **ptr);

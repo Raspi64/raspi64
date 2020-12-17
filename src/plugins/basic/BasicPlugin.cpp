@@ -12,9 +12,20 @@ BasicPlugin::BasicPlugin(draw_funct_t draw_function_value, clear_funct_t clear_f
     mb_open(&bas);
     mb_set_printer(bas, BasicPlugin::basic_print);
 
+    mb_register_func(bas, "BASICDRAW", basic_draw);
+    mb_register_func(bas, "BASICCLEAR", basic_clear);
+
+
+
     mb_register_func(bas, "BASICMAXIMUM", basic_maximum);
     mb_register_func(bas, "OPENTERMINAL", basic_openTerminal);
     mb_register_func(bas, "BASICECHO", basic_echo);
+
+   // lua_register(L, "print", lua_print);
+    //lua_register(L, "draw", lua_draw);
+   // lua_register(L, "clear", lua_clear);
+
+
 }
 
 BasicPlugin::~BasicPlugin() {
@@ -64,6 +75,41 @@ void BasicPlugin::update_error_message() {
     mb_error_e error = mb_get_last_error(bas, &file, &pos, &row, &col);
     Plugin::last_error_buffer = std::string(mb_get_error_desc(error));
     Plugin::last_error_line = row;
+}
+
+int BasicPlugin::basic_draw(mb_interpreter_t *bas, void **ptr) {
+    int result = MB_FUNC_OK;
+
+    int x = 20;
+    int y = 20;
+
+    int red = 500;
+    int green = 500;
+    int blue = 500;
+    int alpha = 500;
+    int size = 500;
+
+    mb_check(mb_attempt_open_bracket(bas, ptr));
+    mb_check(mb_pop_int(bas, ptr, &x));
+    mb_check(mb_pop_int(bas, ptr, &y));
+    mb_check(mb_pop_int(bas, ptr, &red));
+    mb_check(mb_pop_int(bas, ptr, &green));
+    mb_check(mb_pop_int(bas, ptr, &blue));
+    mb_check(mb_pop_int(bas, ptr, &alpha));
+    mb_check(mb_pop_int(bas, ptr, &size));
+    mb_check(mb_attempt_close_bracket(bas, ptr));
+
+    Plugin::draw_function(x, y, red, green, blue, alpha, size);
+
+    return result;
+}
+
+int BasicPlugin::basic_clear(mb_interpreter_t *bas, void **ptr) {
+    int result = MB_FUNC_OK;
+
+   // Plugin::clear_function();
+
+    return result;
 }
 
 
