@@ -31,11 +31,35 @@ void my_print(std::string message) {
     std::cout << "Print: " << message << std::endl;
 }
 
+void my_change_language(LANG lang){
+    sc->set_language(lang);
+    gui->set_language_mode(lang);
+}
+
+bool my_on_submit(std::string command){
+    if (command == "start" || command == "run") {
+        sc->start_script(gui->editor->get_text());
+        return true;
+    }
+    if (command == "stop"){
+        sc->kill_current_task();
+        return true;
+    }
+}
+
+void my_keydown(const SDL_Keysym keysym){
+    std::cout<<"key: " << keysym.scancode << std::endl;
+}
+
 int main() {
     gui = new Gui();
     gui->initialize();
 
     sc = new Schnittstelle(LUA, my_print, my_draw, my_clear);
+
+    gui->on_change_langmode_request(my_change_language);
+    gui->console->on_submit(my_on_submit);
+    gui->on_keydown(my_keydown);
 
     std::string script;
     if (!loadfile("../saves/drawer.lua", &script)) {
