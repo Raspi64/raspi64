@@ -2,7 +2,7 @@ asc;ascii;convert;ascii to int;int;integer;basic
 
 ASC:
 
-Gibt den Integer-Wert eines ASCII zeichen wieder.
+Gibt den Integer-Wert eines ASCII-Zeichens wieder.
 
 	ASC("ASCII-Zeichen")
 	Return Integer
