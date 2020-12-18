@@ -2,8 +2,8 @@ reflect;klasse;class;basic
 
 REFLECT: 
 
-mit REFLECT wird eine Klasse und deren Meta klassen mit allen varibalen und subroutinen durchitteriert und
-fügt sie zusammen in einem Dictionary (name/value deren variablen und name/type der sub routinen)
+Mit REFLECT wird eine Klasse und deren Meta-Klassen mit allen Varibalen und Subroutinen durchiteriert und
+fügt sie zu einem Dictionary zusammen (Name/Value deren Variablen und Name/Typ der Subroutinen).
 
 Beispiel:
 
