@@ -3,7 +3,7 @@ kleiner;true;false;gleich;equals;=;math;mathematik;basic
 
 KLEINER GLEICH:
 
-Der kleinergleich Operator benötigt zwei Parameter, er vergleicht Integer_1 mit Integer_2 und gibt wenn Integer_1 kleiner als Integer_2 ist oder Integer_2 gleicht true zurück, ansonsten false.
+Der kleinergleich-Operator benötigt zwei Parameter, er vergleicht Integer_1 mit Integer_2 und gibt wenn Integer_1 kleiner als Integer_2 ist oder Integer_2 gleicht true zurück, ansonsten false.
 
     Integer_1 <= Integer_2
     Return Boolean
