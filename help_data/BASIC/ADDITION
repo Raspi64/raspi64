@@ -2,7 +2,7 @@
 
 ADDITION:
 
-Der Additions Operator benötigt zwei Parameter, addiert Interger_1 mit Integer_2 und gibt die Summe zurück.
+Der Additionsoperator benötigt zwei Parameter, er addiert Interger_1 mit Integer_2 und gibt anschließend die Summe zurück.
 
     Integer_1 + Integer_2
     Return Integer
