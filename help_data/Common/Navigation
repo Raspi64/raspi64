@@ -2,33 +2,33 @@ allgemein;navigation;funktionstasten;tasten;bedienung;hilfe;help;steuerung;edito
 
 Allgemeine Navigation
 
-Die Navigation wird mittels der Funktionstasten durchgeführt. Im folgenden werden alle Funktionstasten aufgelistet, die zur Bedienung aller Fenster und Modie zuständig sind:
+Die Navigation wird mittels der Funktionstasten durchgeführt. Im folgenden werden alle Funktionstasten aufgelistet, die zur Bedienung aller Fenster und Modi zuständig sind:
 
 ----------------------------
 
 1. F1 Editor
-
+ 
 Mit der Taste F1 wird der Editor geöffnet. Im Editor wird der Code geschrieben, der später ausgeführt werden soll.
 ----------------------------
 
-2. F2 Console
+2. F2 Konsole
 
-Mit der Taste F2 wird die Console geöffnet. In der Console wird der geschriebene Code ausgeführt und wieder beendet.
+Mit der Taste F2 wird die Konsole fokussiert. In der Konsole wird der geschriebene Code ausgeführt und wieder beendet.
 ----------------------------
 
 3. F3 Hilfesystem
 
-Mit der Taste F3 wird das Hilfesystem geöffnet. Dort können sämtliche Hilfetexte jeweils zu Lua und Basic je nach benutztem Modus finden und einige Grundlegenden Navigation und Bedienungsanleitungen finden.
+Mit der Taste F3 wird das Hilfesystem geöffnet. Dort können sämtliche Hilfetexte zu Lua und Basic, je nach benutztem Modus, gefunden werden. Zusätzlich finden sich dort einige Grundlagen wie Navigation und Bedienungsanleitungen.
 ----------------------------
 
-4. F4 Grafischeoberfläche
+4. F4 Grafische Oberfläche
 
-Mit der Taste F4 wird die Grafischeoberfläche geöffnet. Dort wird das jeweils programmierte Grafisch dargestellt.
+Mit der Taste F4 wird die grafische Oberfläche geöffnet. Dort wird das jeweils programmierte grafisch dargestellt.
 ----------------------------
 
-5. F9 Basic/Lua Modus
+5. F10 Basic/Lua Modus
 
-Mit der Taste F9 kann zwischen dem Modus Lua und Basic gewächselt werden. Je nach Modus, wird der Code im Editor
+Mit der Taste F10 kann zwischen dem Modus Lua und Basic gewechselt werden. Je nach Modus, wird der Code im Editor passend zur Sprache gehighlighted.
 ----------------------------
 
 6. F12 Herunterfahren
