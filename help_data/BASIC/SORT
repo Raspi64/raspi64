@@ -2,7 +2,7 @@ sort;sortieren;liste;list;basic
 
 SORT:
 
-Der sort-Befehl sortierte eine Liste vom kleinsten zum größten.Ist überschreibbar für referentierte Benutzertypen und Klasseninstanzen.
+Der sort-Befehl sortiert eine Liste vom kleinsten zum größten Wert. Ist überschreibbar für referenzierte Benutzertypen und Klasseninstanzen.
 
 Beispiel:
     l = list(4,3,2,1)
