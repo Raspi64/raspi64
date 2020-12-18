@@ -2,7 +2,7 @@ set;setzen;stelle;liste;list;basic
 
 SET:
 
-Setzt den Wert einer bestimmten stelle in einer Liste.
+Setzt den Wert einer bestimmten Stelle in einer Liste.
 
     SET(List, Index, New_Value)
 
