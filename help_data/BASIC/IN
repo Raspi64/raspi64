@@ -2,7 +2,7 @@ in;schleifen;dictionary;wörterbuch;woerterbuch;class;klassen;datentypen;datatyp
 
 IN:
 
-mit IN lassen sich Listen, Dictionarys, iteriebare Klassen und Usertypes in der Schleifen durchlaufen. In der Schleifenvariable wird der Wert des Elements worauf der Iterator verweisst, zugewiesen.
+Mit IN lassen sich Listen, Dictionaries, iterierbare Klassen und Usertypes in Schleifen durchlaufen. In der Schleifenvariable wird der Wert des Elements, worauf der Iterator verweisst, zugewiesen.
 
 Beispiel:
 
