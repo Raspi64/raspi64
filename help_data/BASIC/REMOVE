@@ -2,7 +2,7 @@ remove;list;liste;basic
 
 REMOVE:
 
-Löscht den Wert einer bestimmten stelle in einer Liste.
+Löscht den Wert einer bestimmten Stelle in einer Liste.
 
     REMOVE(Index)
 
