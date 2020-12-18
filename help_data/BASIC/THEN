@@ -2,10 +2,10 @@ then;if;else;abfrage;basic
 
 THEN:
 
-THEN wird bei der if-Anweisung verwendet um zu zu kennzeichnen, was geschehen soll, wenn die Bedingung erfüllt ist.
+THEN wird bei der if-Anweisung verwendet, um zu kennzeichnen, was geschehen soll wenn die Bedingung erfüllt ist.
 
-    IF bedingung THEN Anweisung ausführen
-    IF bedingung THEN Anweisung ausführen ELSE Anweiseung ausführen
+    IF Bedingung THEN Anweisung ausführen
+    IF Bedingung THEN Anweisung ausführen ELSE Anweiseung ausführen
 
 Beispiel:
 
