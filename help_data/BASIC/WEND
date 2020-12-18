@@ -2,7 +2,7 @@ wend;beenden;while_do;while do;while;do;loop;schleife;basic
 
 WEND:
 
-WEND beendet eine While-Schleife
+WEND beendet eine While-Schleife.
 
 Beispiel:
     a=1
