@@ -2,7 +2,7 @@ import;quelle;function;funktion;basic
 
 IMPORT:
 
-Die IMPORT-Anweisung und importiert eine andere Quelle, in dieser Quelle können andere funktionen beschrieben sein.
+Die IMPORT-Anweisung importiert eine andere Quelle, in dieser Quelle können andere Funktionen beschrieben sein.
 
 Beispiel: 
 
