@@ -2,7 +2,7 @@ move_next;move next;next;iterator;schleife;durchlaufen;basic
 
 MOVE_NEXT:
 
-Gibt den Iterator an zum nächsten Wert zu gehen.
+Gibt dem Iterator an zum nächsten Wert zu gehen.
 
 Beispiel:
     
