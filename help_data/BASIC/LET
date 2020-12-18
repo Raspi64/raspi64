@@ -2,7 +2,7 @@ let;datentyp;datatype;basic
 
 LET:
 
-LET Führt die Zuweisungsanweisung ein, ist allerdings optional
+LET führt die Zuweisungsanweisung ein, ist allerdings optional.
 
 Beispiel:
 
