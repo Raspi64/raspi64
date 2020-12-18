@@ -2,7 +2,7 @@ iterator;list;liste;durchlaufen;basic
 
 ITERATOR:
 
-Geht durch den Inhalt der ganze Liste in einzelne Schritte.
+Geht durch den Inhalt der ganze Liste in einzelnen Schritten.
 
     ITERATOR(List)
     Return
