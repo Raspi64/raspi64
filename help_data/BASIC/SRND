@@ -2,7 +2,7 @@ srnd;seed;basic
 
 SRND:
 
-Setzt den seed von RND. Wichtig die beiden Programme im Beispiel haben die selben Ergebnisse.
+Setzt den Seed von RND. Wichtig: die beiden Programme im Beispiel haben die selben Ergebnisse.
 
 	SRND(Integer_1)
 
