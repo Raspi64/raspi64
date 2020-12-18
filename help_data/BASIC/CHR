@@ -2,7 +2,7 @@ ascii;int to ascii;string;convert;basic
 
 CHR:
 
-Gibt ein ASCII-Zeichen eines ASCII-Integers zurück
+Gibt ein ASCII-Zeichen eines ASCII-Integers zurück.
 
 	CHR(Integer_1)
 	Return String
