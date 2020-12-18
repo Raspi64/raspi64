@@ -2,7 +2,7 @@ function;funktion;call;aufrufen;basic
 
 CALL:
 
-Die CALL-Anweisung wird verwenedt um Funktionen aufzurufen
+Die CALL-Anweisung wird verwendet um Funktionen aufzurufen.
 
 Beispiel:
-    call funktion
+    call funktionsname
