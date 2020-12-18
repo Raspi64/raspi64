@@ -3,7 +3,7 @@ kleiner;smaller;math;mathematik;basic
 
 KLEINER:
 
-Der kleiner Operator benötigt zwei Parameter, er vergleicht Integer_1 mit Integer_2 und gibt wenn Integer_1 kleiner als Integer_2 ist true zurück, ansonsten false.
+Der kleiner-Operator benötigt zwei Parameter, er vergleicht Integer_1 mit Integer_2 und gibt wenn Integer_1 kleiner als Integer_2 ist true zurück, ansonsten false.
 
     Integer_1 < Integer_2
     Return Boolean
