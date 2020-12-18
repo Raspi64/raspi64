@@ -2,7 +2,7 @@ tan;tangenz;int;integer;mathe;mathematik;basic
 
 TAN:
 
-Gibt den Tangenz einer Zahl zurück.
+Gibt den Tangens einer Zahl zurück.
 
 	TAN(Integer_1)
 	Return Integer
