@@ -2,8 +2,8 @@ rnd;random;int;integer;basic
 
 RND:
 
-Gibt eine zufällige Zahl zurück. Mit RND kann eine Zahl zwischen 0.0 und 0.1, Mit RND(MAX) zwischen 0 und MAX 
-und mit RND(MIN, MAX) zwischen MIN und MAX
+Gibt eine zufällige Zahl zurück. Mit RND kann eine Zahl zwischen 0.0 und 0.1, mit RND(MAX) zwischen 0 und MAX 
+und mit RND(MIN, MAX) zwischen MIN und MAX berechnet werden.
 
 	RND
 	Return Integer
