@@ -2,7 +2,7 @@ var;datatype;datentyp;basic
 
 VAR:
 
-VAR wird verwendet um eine Mitgliedsvariable in einer Klasse zu deklarieren.
+VAR wird verwendet, um eine Mitgliedsvariable in einer Klasse zu deklarieren.
 
 Beispiel:
 
