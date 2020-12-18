@@ -2,7 +2,7 @@ get;holen;bekommen;list;liste;basic
 
 GET:
 
-Gibt den Wert einer bestimmten stelle in einer Liste zurück.
+Gibt den Wert einer bestimmten Stelle in einer Liste zurück.
 
     GET(List, Index)
     Return Value
