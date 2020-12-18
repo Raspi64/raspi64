@@ -2,7 +2,7 @@ left;ascii;ausgabe;string;int;integer;basic
 
 LEFT:
 
-Gibt von links die anzahl von ASCII-Zeichen eines strings zurück. 
+Gibt von links die Anzahl von ASCII-Zeichen eines Strings zurück. 
 
 	LEFT(String_1, Integer_1)
 	Return String
