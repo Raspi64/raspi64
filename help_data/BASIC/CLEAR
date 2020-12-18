@@ -2,7 +2,7 @@ list;liste;clear;remove;löschen;loeschen;basic
 
 CLEAR:
 
-Löscht den Inhalt der ganze Liste.
+Löscht den Inhalt der ganzen Liste.
 
     REMOVE(List)
 
