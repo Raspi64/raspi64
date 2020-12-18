@@ -2,7 +2,7 @@ input;eingabe;user;nutzer;basic
 
 INPUT:
 
-Nimmt eine User eingabe entgegen. 
+Nimmt eine User-Eingabe entgegen. 
 
 	INPUT()
 
