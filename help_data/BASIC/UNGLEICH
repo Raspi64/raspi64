@@ -2,7 +2,7 @@ ungleich:<>;int;integer;true;false;boolean;basic
 
 UNGLEICH:
 
-Der ungleich Operator benötigt zwei Parameter, er vergleicht Integer_1 mit Integer_2 und gibt bei ungleichheit diese true zurück, bei gleichheit false.
+Der ungleich-Operator benötigt zwei Parameter, er vergleicht Integer_1 mit Integer_2 und gibt bei Ungleichheit dieser true zurück, bei Gleichheit false.
 
     Integer_1 <> Integer_2
     Return Boolean    
