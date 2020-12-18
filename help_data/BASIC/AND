@@ -2,7 +2,7 @@
 
 AND:
 
-Logisches und bitweises Und/AND Verknüpfung
+Logische bitweise UND Verknüpfung (AND). 
 
     Integer_1 AND Integer_2
 
