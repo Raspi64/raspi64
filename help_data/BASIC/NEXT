@@ -2,7 +2,7 @@ next;schleife;loop;iterator;basic
 
 NEXT: 
 
-NEXT ruft step innerhalb einer Schleife auf, und sorgt somit dafür, dass die Schleife durchläuft.
+NEXT ruft step innerhalb einer Schleife auf und sorgt somit dafür, dass die Schleife durchläuft.
 
 Beispiel:
     for i = 1 to 10 step 1
