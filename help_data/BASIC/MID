@@ -2,7 +2,7 @@ mid;mitte;middle;string;ausgabe;basic
 
 MID:
 
-Gibt von der Mitte aus die anzahl von ASCII-Zeichen eines strings zurück. 
+Gibt von der Mitte aus die Anzahl von ASCII-Zeichen eines Strings zurück. 
 
 	MID(String_1, Integer_1)
 	Return String
