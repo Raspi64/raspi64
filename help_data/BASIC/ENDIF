@@ -2,7 +2,7 @@ endif;if;abfrage;beenden;stoppen;basic
 
 ENDIF:
 
-ENDIF beendet eine if-Anweisung
+ENDIF beendet eine if-Anweisung.
 
 Beispiel:
     if n = 1 then
