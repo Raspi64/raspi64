@@ -2,7 +2,7 @@ divide;dividieren;division;math;mathematik;int;integer;basic
 
 DIVISION:
 
-Der Divisions Operator benötigt zwei Parameter, dividiert Interger_1 mit Integer_2 und gibt den Quotientenwert zurück.
+Der Divisionsoperator benötigt zwei Parameter, er dividiert Interger_1 mit Integer_2 und gibt anschließend den Quotientenwert zurück.
 
     Integer_1 / Integer_2
     Return Integer
