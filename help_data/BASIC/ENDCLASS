@@ -2,4 +2,4 @@ endclass;class;basic
 
 ENDCLASS:
 
-ENDCLASS wird benötigt um das Ende der Anweisung, des erstellen eines Prototyp Objekts, zu setzen.
+ENDCLASS wird benötigt, um das Ende der Anweisung des Erstellens eines Prototyp-Objekts, zu setzen.
