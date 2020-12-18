@@ -2,7 +2,7 @@ sqr;wurzel;quadratwurzel;int;integer;math;mathematik
 
 SQR:
 
-Berechnet die Quadratwurtzel
+Berechnet die Quadratwurtzel.
 
 	SQR(Integer_1)
 	Return Integer
