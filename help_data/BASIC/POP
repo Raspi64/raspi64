@@ -2,7 +2,7 @@ pop;list;liste;ende;einfügen;einfuegen;basic
 
 POP:
 
-Der pop-Befehl schiebt einen Wert aus dem Ende einer Liste. Ist überschreibbar für referentierte Benutzertypen und Klasseninstanzen.
+Der pop-Befehl schiebt einen Wert aus dem Ende einer Liste. Ist überschreibbar für referenzierte Benutzertypen und Klasseninstanzen.
 
 Beispiel:
     l = list(4,3,2,1)
