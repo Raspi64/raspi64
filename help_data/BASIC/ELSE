@@ -2,7 +2,7 @@ else;if;abfrage;basic
 
 ELSE:
 
-ELSE wird in einer if-Anweisung verwendet, um definieren zu könne, was passieren soll wenn keine der Bedingungen einegtroffen ist.
+ELSE wird in einer if-Anweisung verwendet, um definieren zu können was passieren soll, wenn keine der Bedingungen eingtroffen ist.
 
 Beispiel:
 
