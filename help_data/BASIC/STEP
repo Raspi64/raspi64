@@ -2,7 +2,7 @@ step;schleife;inkrementieren;erhöhen;erhoehen;basic
 
 STEP:
 
-Step gibt an um wie viel bei einem Schleifen durchlauf inkrementiert werden soll.
+Step gibt an, um wie viel bei einem Schleifendurchlauf inkrementiert werden soll.
 
 Beispiel:
     for i = 1 to 10 step 1
