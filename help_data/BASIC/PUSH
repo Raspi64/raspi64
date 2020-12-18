@@ -2,7 +2,7 @@ push;ende;list;liste;basic
 
 PUSH: 
 
-Der push-Befehl verschiebt einen Wert an das Ende einer Liste. Ist überschreibbar für referentierte Benutzertypen und Klasseninstanzen.
+Der push-Befehl verschiebt einen Wert an das Ende einer Liste. Ist überschreibbar für referenzierte Benutzertypen und Klasseninstanzen.
 
 Beispiel:
     l = list(4,3,2,1)
