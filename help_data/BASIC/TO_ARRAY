@@ -2,7 +2,7 @@ to_array;to array;array;konvertieren;convert;basic
 
 TO_ARRAY:
 
-Wandelt die Liste in ein Array.
+Wandelt die Liste in ein Array um.
 
     TO_ARRAY(List)
     Return Array
