@@ -2,7 +2,7 @@ print;ausgabe;out;output;string;int;integer;basic
 
 PRINT:
 
-Schreibt die Zahl oder den String in den standart output stream 
+Schreibt die Zahl oder den String in den Standard-Output Stream. 
 
 	PRINT(String_1/Integer_1)
 
