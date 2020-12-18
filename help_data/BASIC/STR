@@ -2,7 +2,7 @@ str;string to int;string;int;integer;convert;konvertieren;umwandeln;basic
 
 STR:
 
-Gibt den Wert des Integers als string zurück. 
+Gibt den Wert des Integers als String zurück. 
 
 	STR(Integer_1)
 	Return String
