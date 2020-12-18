@@ -1,16 +1,16 @@
-console;bedienung;navigation;ausführen;stoppen;stop;anhalten;starten;beenden;run;start;load;laden;save;speichern;delete;löschen;loeschen;entfernen;herunterfahren;neustarten;neu starten;list;ordner;verzeichnis;auflisten;help;hilfe;shutdown;reboot
+konsole;console;bedienung;navigation;ausführen;stoppen;stop;anhalten;starten;beenden;run;start;load;laden;save;speichern;delete;löschen;loeschen;entfernen;herunterfahren;neustarten;neu starten;list;ordner;verzeichnis;auflisten;help;hilfe;shutdown;reboot
 
-Console
+Konsole
 
-In der Console wird der jeweils geschriebene Programmcode ausgeführt und wieder beendet. Zudem bietet die Console weitere Hilfsmöglichkeiten.
-Folgende Befehle sind in der Console ausführbar:
+In der Konsole wird der jeweils geschriebene Programmcode ausgeführt und wieder beendet. Zudem bietet die Konsole weitere Hilfsmöglichkeiten.
+Folgende Befehle sind in der Konsole ausführbar:
 
 1.RUN/START
 Mit dem Befehl "run" oder "start" kann das jeweilige Programm geladen und ausgeführt werden.
 ----------------------------
 
 2.STOP
-Mit der Tastenkombination "CTRL + C"/"STRG + C", kann ein laufendes Programm beendet werden. Hierfür muss der Fokus auf der Console liegen(F2).
+Mit der Tastenkombination "CTRL + C"/"STRG + C", kann ein laufendes Programm beendet werden. Hierfür muss der Fokus auf der Console liegen (F2).
 ----------------------------
 
 3.LOAD
@@ -30,7 +30,7 @@ Mit dem Befehl "list" können alle geschriebene und existierende Programme aufge
 ----------------------------
 
 7.HELP
-Mit dem Befehl "help 'SCHLAGWORT'" kann nach bestimmten Schlagwörtern in der Console gesucht werden.
+Mit dem Befehl "help 'SCHLAGWORT'" kann nach bestimmten Schlagwörtern in der Konsole gesucht werden.
 ----------------------------
 
 8.SHUTDOWN
@@ -38,5 +38,5 @@ Mit dem Befehl "shutdown" kann das System heruntergefahren werden.
 ----------------------------
 
 9.REBOOT
-Mit dem Befehl "reboot" kann das System Neu gestartet werden.
+Mit dem Befehl "reboot" kann das System neugestartet werden.
 ----------------------------
