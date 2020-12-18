@@ -2,7 +2,7 @@ liste;list;pop;basic
 
 BACK:
 
-Der back-Befehl späht den Wert eines Endes einer Liste aus. Ist überschreibbar für referentierte Benutzertypen und Klasseninstanzen.
+Der back-Befehl späht den Wert am Ende einer Liste aus. Ist überschreibbar für referenzierte Benutzertypen und Klasseninstanzen.
 
 Beispiel:
     l = list(1, 2, 3, 4)
