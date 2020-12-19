@@ -1,9 +1,9 @@
 os.time;os;time;zeit;uhrzeit;format;timezone;zeitzone;lua
 
 os.time
-Liefert bei Aufruf ohne Argumente die aktuelle Zeit oder die Zeit, welche durch die übergebene Tabelle spezifiziert wird. Diese Tabelle muss die Felder year, month und day besitzen und kann (zusätzlich) die Felder hour, min, sec und isdst haben (s. os.date-Funktion für eine Beschreibung dieser Felder).
+Liefert bei Aufruf ohne Argumente die aktuelle Zeit oder die Zeit, welche durch die übergebene Tabelle spezifiziert wird. Diese Tabelle muss die Felder year, month und day besitzen und kann die Felder hour, min, sec und isdst haben (siehe os.date-Funktion für eine Beschreibung dieser Felder).
 
-Die Bedeutung des zurückgelieferten Werts hängt von Ihrem System ab. Unter POSIX, Windows und einigen anderen System zählt diese Nummer die Anzahl der Sekunden seit einer bestimmten Startzeit (die "Epoche"). Unter anderen System ist die Bedeutung nicht definiert und die von time gelieferte Nummer kann ausschließlich als Argument für date und difftime dienen.
+Die Bedeutung des zurückgelieferten Werts hängt vom System ab. Unter POSIX, Windows und einigen anderen System zählt diese Nummer die Anzahl der Sekunden seit einer bestimmten Startzeit (die "Epoche"). Unter anderen System ist die Bedeutung nicht definiert und die von "time" gelieferte Nummer kann ausschließlich als Argument für "date" und "difftime" dienen.
 
 Number = os.time(table)
 
