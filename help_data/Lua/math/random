@@ -1,9 +1,9 @@
 math.random;zahlen;zahl;zufall;random;math;mathematik;mathe;lua
 
 math.random
-Diese Funktion ist ein Wrapper zum einfachen Pseudozufallszahlen-Generator rand, welcher von ANSI C zur Verfügung gestellt wird. (Es gibt keine Gewährleistung für dessen statistische Eigenschaften.)
+Diese Funktion ist ein Wrapper zum einfachen Pseudozufallszahlen-Generator "rand", welcher von ANSI C zur Verfügung gestellt wird. (Es gibt keine Gewährleistung für dessen statistische Eigenschaften.)
 
-Wird diese Funktion ohne Argumente aufgerufen, liefert sie eine gleichverteilte, reelle Pseudozufallszahl aus dem Intervall [0,1). Wird diese Funktion mit einer Ganzzahl m aufgerufen, liefert math.random eine gleichverteilte, ganzzahlige Pseudozufallszahl aus dem Intervall [1,m]. Wird diese Funktion mit zwei Ganzzahlen m und n aufgerufen, liefert math.random eine gleichverteilte, ganzzahlige Pseudozufallszahl aus dem Intervall [m,n].
+Wird diese Funktion ohne Argumente aufgerufen, liefert sie eine gleichverteilte, reelle Pseudozufallszahl aus dem Intervall [0,1). Wird diese Funktion mit einer Ganzzahl "m" aufgerufen, liefert math.random eine gleichverteilte, ganzzahlige Pseudozufallszahl aus dem Intervall [1,m]. Wird diese Funktion mit zwei Ganzzahlen "m" und "n" aufgerufen, liefert math.random eine gleichverteilte, ganzzahlige Pseudozufallszahl aus dem Intervall [m,n].
 
 Numer = math.random(number,number)
 Number = math.ramdom()
