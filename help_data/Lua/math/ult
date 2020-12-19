@@ -1,7 +1,7 @@
 math.ult;ult;boolean;bool;vergleichen;vergleich;math;mathematik;mathe;lua
 
 math.ult
-Gibt einen boolean mit dem Wert true zurück wenn Integer m unterhalb von n liegt und beide als unsigned Integer verglichen werden.
+Gibt einen boolean mit dem Wert "true" zurück wenn Integer "m" unterhalb von "n" liegt und beide als unsigned Integer verglichen werden.
 
 Boolean = math.ult (Number m, Number n)
 
