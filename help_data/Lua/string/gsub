@@ -1,7 +1,7 @@
 string.gsub;gsub;ersetzen;suchen;string;lua
 
 string.gsub
-Liefert eine Kopie von s, bei welcher alle (bzw. die ersten n, falls gegeben) Auftreten von pattern durch eine Ersetzungs-Zeichenkette, welche durch repl spezifiziert wurde und eine Zeichenkette, Tabelle oder Funktion sein kann, ersetzt wurden. gsub liefert als zweiten Wert auch die Gesamtzahl aufgetretener Treffer.
+Liefert eine Kopie von "s", bei der jedes (bzw. die ersten "n", falls gegeben) Auftreten von Mustern durch eine Ersetzungs-Zeichenkette, welche durch "repl" spezifiziert wurde und eine Zeichenkette, Tabelle oder Funktion sein kann, ersetzt wurden. gsub liefert als zweiten Wert auch die Gesamtzahl aufgetretener Treffer.
 
 Wenn repl eine Zeichenkette ist, wird dessen Wert zur Ersetzung verwendet. Das Zeichen % dient der Maskierung: Jede Sequenz der Form %n in repl mit n zwischen 1 und 9 steht für den Wert der n-ten gesicherten Teil-Zeichenkette (s. u.). Die Sequenz %0 steht für die komplette Übereinstimmung. Die Sequenz %% steht für ein einzelnes %.
 
@@ -9,9 +9,9 @@ Wenn repl eine Tabelle ist, wird die Tabelle mit dem ersten Treffer als Schlüss
 
 Wenn repl eine Funktion ist, wird diese für jede auftretende Übereinstimmung mit allen gesicherten Teil-Zeichenkette als Argumente in entsprechender Reihenfolge aufgerufen; falls das Muster keine Treffer angibt, wird die komplette Übereinstimmung als einziges Argument übergeben.
 
-Wenn der von einer Tabelle Abfrage oder Funktion zurückgelieferte Wert eine Zeichenkette oder Zahl ist, wird dies als Ersetzungs-Zeichenkette verwendet; andernfalls – wenn es false oder nil ist – findet keine Ersetzung statt (d. h. die Original-Übereinstimmung wird in der Zeichenkette belassen).
+Wenn der von einer Tabelle, Abfrage oder Funktion zurückgelieferte Wert eine Zeichenkette oder Zahl ist, wird dies als Ersetzungs-Zeichenkette verwendet; andernfalls – wenn es false oder nil ist – findet keine Ersetzung statt (d. h. die Original-Übereinstimmung wird in der Zeichenkette gelassen).
 
-Hier sind ein paar Beispiele:
+Beispiele:
 
 x = string.gsub("hello world","(%w+)","%1 %1")
 --> x="hello hello world world"
