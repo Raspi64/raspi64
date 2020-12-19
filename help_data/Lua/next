@@ -1,9 +1,9 @@
 next;nächstes;naechstes;table;tabelle;lua
 
 Next
-Ermöglicht einem Programm, alle Felder einer Tabelle zu durchlaufen. Das erste Argument ist eine Tabelle und das zweite ein Index dieser Tabelle. next liefert den nächsten Index dieser Tabelle und dessen verknüpften Wert. Bei einem Aufruf mit nil als zweitem Argument liefert next einen initialen Index und dessen verknüpften Wert. Erfolgt ein Aufruf mit dem letzten Index oder mit nil in einer leeren Tabelle, liefert next nil. Wird das zweite Argument nicht angegeben, wird dieses als “nil” interpretiert. Im Speziellen können Sie next(t) verwenden, um zu überprüfen, ob eine Tabelle leer ist.
-Die Richtung, in welcher die Indizes sortiert werden, ist nicht spezifiziert – auch für numerische Indizes. (Um eine Tabelle in numerischer Sortierung zu traversieren, verwenden Sie das numerische for oder die ipairs-Funktion.)
- Das verhalten von next ist undefiniert, wenn bei der Durchquerung ein Wert einem nicht existierenden wert in der Tabelle zugewiesen wird.Sie können jedoch bestehende Felder modifizieren. Im Speziellen können Sie bestehende Felder leeren.
+Ermöglicht einem Programm, alle Felder einer Tabelle zu durchlaufen. Das erste Argument ist eine Tabelle und das zweite ein Index dieser Tabelle. Next liefert den nächsten Index dieser Tabelle und dessen verknüpften Wert. Bei einem Aufruf mit nil als zweites Argument liefert next einen initialen Index und dessen verknüpften Wert. Erfolgt ein Aufruf mit dem letzten Index oder mit nil in einer leeren Tabelle, liefert next nil. Wird das zweite Argument nicht angegeben, wird dieses als “nil” interpretiert. Im Speziellen kann next(t) verwendet werden, um zu überprüfen, ob eine Tabelle leer ist.
+Die Richtung, in welcher die Indizes sortiert werden, ist nicht spezifiziert – auch nicht für numerische Indizes. (Um eine Tabelle in numerischer Sortierung zu traversieren, kann das numerische for oder die ipairs-Funktion verwendet werden.)
+Das Verhalten von next ist undefiniert, wenn bei der Durchquerung ein Wert einem nicht existierenden Wert in der Tabelle zugewiesen wird. Bestehende Felder können modifiziert werden. Im Speziellen können bestehende Felder geleert werden.
 
 Key, Value = next(table,index)
 Beispiel:
