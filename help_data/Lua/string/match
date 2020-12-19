@@ -1,7 +1,7 @@
 string.match;match;suchen;finden;gleich;exakt;string;lua
 
 string.match
-Sucht nach der ersten Übereinstimmung von pattern in der Zeichenkette s. Falls eine solche gefunden wird, liefert match die Treffer des Musters; andernfalls liefert es nil. Falls pattern keine Treffer spezifiziert, wird die komplette Übereinstimmung zurückgeliefert. Ein drittes, optionales numerisches Argument init gibt an, wo mit der Suche begonnen werden soll; dessen Standardwert ist 1 und kann negativ sein.
+Sucht nach der ersten Übereinstimmung des Musters in der Zeichenkette "s". Falls ein solches gefunden wird, liefert match die Treffer des Musters; andernfalls liefert es nil. Falls das Muster keine Treffer spezifiziert, wird die komplette Übereinstimmung zurückgeliefert. Ein drittes, optionales numerisches Argument init gibt an, wo mit der Suche begonnen werden soll; dessen Standardwert ist 1 und kann negativ sein.
 
 String = string.match(String,String-pattern,Number)
 
