@@ -1,7 +1,7 @@
 math.ceil;math;mathematik;mathe;runden;ceil;lua
 
 math.ceil
-Liefert die kleinste Ganze Zahl größer oder gleich x.
+Liefert die kleinste ganze Zahl größer oder gleich x.
 
 number =  math.ceil(number)
 
