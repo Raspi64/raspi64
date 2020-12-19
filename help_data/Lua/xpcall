@@ -2,7 +2,7 @@ xpcall;pcall;geschützter modus;secure mode;secure;geschützt;geschuetzt;geschue
 
 
 Xpcall
-Diese Funktion ist ähnlich wie die pcall-Funktion, nur das man einen neuen massage handler (msgh) setzen kann.
+Diese Funktion ist ähnlich wie die pcall-Funktion, aber es kann ein neuer message handler (msgh) gesetzt werden.
 
 xpcall(funktion,msgh,arg1,...) 
 
