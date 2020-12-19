@@ -1,8 +1,9 @@
 string.format;zeichenkette;zeichen;kette;convert;convertieren;formatieren;format;string;lua
 
 string.format
-Liefert eine formatierte Version seiner variablen Anzahl an Argumenten nach der als erstes Argument angegebenen Vorgabe (welche eine Zeichenkette sein muss). Die Formatierungs-Zeichenkette folgt denselben Regeln wie der printf-Familie der standardmäßigen C-Funktionen. Der einzige Unterschied ist, dass die Optionen *, l, L, n, p und h nicht unterstützt werden und es eine zusätzliche Option q gibt. Die q-Option formatiert eine Zeichenkette in einer passenden Form, um sicher durch den Lua-Interpreter gelesen zu werden: Die Zeichenketten wird zwischen doppelten Anführungszeichen geschrieben und alle doppelten Anführungszeichen, Zeilenumbrüche, eingebetteten Nullen und Backslashes in der Zeichenkette werden beim Schreiben korrekt maskiert. Der Aufruf …
+Liefert eine formatierte Version seiner variablen Anzahl an Argumenten nach der als erstes Argument angegebenen Vorgabe (welche eine Zeichenkette sein muss). Die Formatierungs-Zeichenkette folgt denselben Regeln wie der printf-Familie der standardmäßigen C-Funktionen. Der einzige Unterschied ist, dass die Optionen *, l, L, n, p und h nicht unterstützt werden und es eine zusätzliche Option q gibt. Die q-Option formatiert eine Zeichenkette in einer passenden Form, um sicher durch den Lua-Interpreter gelesen zu werden: Die Zeichenketten wird zwischen doppelten Anführungszeichen geschrieben und alle doppelten Anführungszeichen, Zeilenumbrüche, eingebetteten Nullen und Backslashes in der Zeichenkette werden beim Schreiben korrekt maskiert.
 
+Der Aufruf …
 string.format('%q','a string with "quotes" and \n new line')
 … wird beispielsweise folgende Zeichenkette erzeugen:
 
