@@ -1,7 +1,7 @@
 pairs;table;tabelle;key;schlüssel;lua
 
 Pairs
-Diese Funktion besitzt eine Metamethode _pairs die mit t als Argument nur die ersten drei Resultate von diesem Aufruf ... Anders liefert diese Methode drei Werte: die next-funktion, die Tabelle t und “nil”, sodass die Konstruktion über alle Schlüsselwerte der Tabelle t verfügt.
+Diese Funktion besitzt eine Metamethode _pairs die mit t als Argument nur die ersten drei Resultate von diesem Aufruf liefert. Anders liefert diese Methode drei Werte: die next-Funktion, die Tabelle t und “nil”, sodass die Konstruktion über alle Schlüsselwerte der Tabelle t verfügt.
 
 pairs(t)
 
