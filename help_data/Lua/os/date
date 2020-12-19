@@ -1,15 +1,15 @@
 os.date;os;date;Datum;zeichenkette;uhrzeit;time;format;lua
 
 os.date
-Liefert eine Zeichenkette oder Tabelle, welche das Datum und die Uhrzeit entsprechend der angegebenen Zeichenkette format beinhalten.
+Liefert eine Zeichenkette oder Tabelle, welche das Datum und die Uhrzeit entsprechend des angegebenen Zeichenkettenformates enthält.
 
-Wenn das Argument time angegeben ist, wird diese Zeit formatiert (s. os.time-Funktion für eine Beschreibung dieses Wertes). Andernfalls formatiert date die aktuelle Zeit.
+Wenn das Argument "time" angegeben ist, wird diese Zeit formatiert (siehe os.time-Funktion für eine Beschreibung dieses Wertes). Andernfalls formatiert "date" die aktuelle Zeit.
 
-Wenn format mit '!' beginnt, wird das Datum in koordinierter Weltzeit formatiert. Wenn format nach diesem optionalen Zeichen die Zeichenkette "*t" ist, liefert date eine Tabelle mit folgenden Feldern: year (vierstellig), month (1-12), day (1-31), hour (0-23), min (0-59), sec (0-61), wday (Wochentag; Sonntag ist 1), yday (Tag des Jahres) und isdst (Sommerzeit, ein bool'scher Wert).
+Wenn "format" mit '!' beginnt, wird das Datum in koordinierter Weltzeit formatiert. Wenn "format" nach diesem optionalen Zeichen die Zeichenkette "*t" ist, liefert "date" eine Tabelle mit folgenden Feldern: year (vierstellig), month (1-12), day (1-31), hour (0-23), min (0-59), sec (0-61), wday (Wochentag; Sonntag ist 1), yday (Tag des Jahres) und isdst (Sommerzeit, ein bool'scher Wert).
 
-Falls format nicht "*t" lautet, liefert date das Datum als Zeichenkette mit einer Formatierung nach den gleichen Regeln wie die der C-Funktion strftime.
+Falls "format" nicht "*t" lautet, liefert "date" das Datum als Zeichenkette mit einer Formatierung nach den gleichen Regeln wie die der C-Funktion "strftime".
 
-Wenn die Funktion ohne Parameter aufgerufen wird, gibt sie ein Datum und Uhrzeit Format was dem Host System entspricht zurück.
+Wenn die Funktion ohne Parameter aufgerufen wird, gibt sie Datum und Uhrzeit-Format entsprechend des Host-Systems zurück.
 
 String/Table = os.date(format,time)
 
