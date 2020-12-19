@@ -1,7 +1,9 @@
 table.unpack;unpack;ausgabe;return;werte;table;tabelle;lua
 
 table.unpack
-Gibt die Elemente von der liste zurück. Die Funktion ist äquivalent zu 
+Gibt die Elemente von der Liste zurück. 
+Die Funktion ist äquivalent zu:
+
 return list[i], list[i+1], ···, list[j]
 Der Standard ist: i = 1 und j = #list
 
