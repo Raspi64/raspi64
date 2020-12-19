@@ -1,7 +1,7 @@
 pcall;xpcall;geschützter modus;secure mode;secure;geschützt;geschuetzt;geschuetzter modus;lua;argumente;function;argument;parameter;funktion
 
 Pcall
-Ruft die Funktion f und die dazu angegeben parameter im Geschützten modus auf. Fehler in diese Methode werden nicht weitergereicht und pcall gibt stattdessen einen Statuscode zurück. Wenn der Statuscode, ein Boolean, “true” ist, ist die methode ohne fehler durchgelaufen. In Diesem Fall gibt sie auch noch die Rückgabeparameter der Methode aus. Im Falle eines Errors wird der Boolean mit false zusammen mit einem Error Objekt zurückgegeben.
+Ruft die Funktion f und die dazu angegeben Parameter im geschützten Modus auf. Fehler in dieser Methode werden nicht weitergereicht und pcall gibt stattdessen einen Statuscode zurück. Wenn der Statuscode, ein Boolean und “true” ist, ist die Methode ohne Fehler durchgelaufen. In diesem Fall gibt sie auch noch die Rückgabeparameter der Methode aus. Im Falle eines Errors wird ist der Boolean "false" und wird zusammen mit einem Error Objekt zurückgegeben.
 
 Bollean, String = pcall(function,arg1,...)
 
