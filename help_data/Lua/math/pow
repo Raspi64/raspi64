@@ -1,7 +1,7 @@
 math.pow;pow;potenz;math;mathematik;mathe;lua
 
 math.pow
-Liefert xy. (Sie können diesen Wert auch durch den Ausdruck x^y berechnen.)
+Liefert xy. (Dieser Wert kann ebenso durch den Ausdruck x^y berechnet werden.)
 
 Number = math.pow(number,number)
 
