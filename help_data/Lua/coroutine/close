@@ -1,7 +1,7 @@
 coroutine.close;coroutine;true;false;close;beenden;state;thread;multithreading;process;prozess;lua
 
 coroutine.close
-Schließt die Koroutine co, es werden auch alle wartenden to-be-closed Variablen geschlossen und die Koroutine in einen dead state gepackt. Die Koroutine muss beendet oder unterbrochen sein. Es wird im Falle eines Fehlers ein false und das Fehler Objekt zurückgegeben, andernfalls wird ein true zurückgegeben.
+Schließt die Coroutine co, es werden alle wartenden to-be-closed Variablen geschlossen und die Coroutine in einen dead state gesetzt. Die Coroutine muss beendet oder unterbrochen sein. Es wird im Falle eines Fehlers ein "false" und das Fehler-Objekt zurückgegeben, andernfalls wird ein "true" zurückgegeben.
 
 coroutine.close (co)
 
