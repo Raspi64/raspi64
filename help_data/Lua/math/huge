@@ -6,7 +6,7 @@ Beispiel:
 a = math.huge
 
 math.log 
-Gibt den Logarithmus von x in der gegebenen Basis zurück. Die Standard Basis ist e, sodas die Funktion den natürlichen Logarithmus von x zurück gibt.
+Gibt den Logarithmus von x in der gegebenen Basis zurück. Die Standard-Basis ist e, sodass die Funktion den natürlichen Logarithmus von x zurück gibt.
 
 Number = math.log (x [, base])
 
