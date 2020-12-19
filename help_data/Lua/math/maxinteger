@@ -1,7 +1,7 @@
 math.maxinteger;maximal;integer;int;wert;math;mathematik;mathe;lua
 
 math.maxinteger
-Ein Integer mit dem maximalen Wert für einen Integer.
+Ein Integer mit dem maximalen Integer-Wert.
 
 Number = math.maxinteger
 
