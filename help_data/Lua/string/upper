@@ -1,7 +1,7 @@
 string.upper;upper;größer;groß;groesser;string;lua
 
 string.upper
-Erhält eine Zeichenkette und liefert eine Kopie dieser Zeichenkette, wobei alle Kleinbuchstaben zu Großbuchstaben geändert werden. Alle anderen Zeichen bleiben ungeändert. Die Definition eines Kleinbuchstabens hängt von der aktuellen Sprache ab.
+Erhält eine Zeichenkette und liefert eine Kopie dieser Zeichenkette, wobei alle Kleinbuchstaben zu Großbuchstaben geändert werden. Alle anderen Zeichen bleiben unverändert. Die Definition eines Kleinbuchstabens hängt von der aktuellen Sprache ab.
 
 String =  string.upper(String)
 
