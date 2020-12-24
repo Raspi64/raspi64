@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <algorithm>
 #include "BasicPlugin.hpp"
 #include "LuaPlugin.hpp"
 #include "Plugin.hpp"
@@ -96,6 +97,19 @@ Schnittstelle::Schnittstelle(
         clear_function(clear_function_value) {
     init_interpreter();
     help_root_entry = initHelpSystem("../help_data/");
+
+    sort(&help_root_entry.sub_entries);
+}
+
+bool alphabetic(const Entry& a, const Entry& b){
+    return a.name.compare(b.name) < 0;
+}
+
+void Schnittstelle::sort(std::vector<Entry> * entries) {
+    std::sort(entries->begin(),entries->end(), alphabetic);
+    for (auto & entry : *entries) {
+        sort(&entry.sub_entries);
+    }
 }
 
 void Schnittstelle::save(const std::string &name, const std::string &text) {

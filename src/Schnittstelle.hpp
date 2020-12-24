@@ -58,6 +58,8 @@ private:
     void init_interpreter();
 
     Entry help_root_entry;
+
+    void sort(std::vector<Entry> * entries);
 };
 
 
