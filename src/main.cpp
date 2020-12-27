@@ -48,7 +48,7 @@ bool my_on_submit(std::string command) {
     }
     if (command.find("list") == 0) {
         gui->console->print("Files you can load:");
-        for (auto &child: std::filesystem::directory_iterator("../saves/")) {
+        for (auto &child: std::filesystem::directory_iterator("saves/")) {
             if (!child.is_directory()) {
                 std::string child_path = child.path();
                 std::string name(child_path.substr(child_path.rfind('/') + 1));
@@ -158,7 +158,7 @@ int main() {
     gui->on_keydown(my_keydown);
 
     std::string script;
-    if (!loadfile("../saves/drawer.lua", &script)) {
+    if (!loadfile("saves/drawer.lua", &script)) {
         std::cerr << "Error loading demo code!" << std::endl;
         return -1;
     }

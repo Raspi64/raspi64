@@ -96,7 +96,7 @@ Schnittstelle::Schnittstelle(
         draw_function(draw_function_value),
         clear_function(clear_function_value) {
     init_interpreter();
-    help_root_entry = initHelpSystem("../help_data/");
+    help_root_entry = initHelpSystem("help_data/");
 
     sort_subtrees(&help_root_entry.sub_entries);
 }
@@ -119,7 +119,7 @@ void Schnittstelle::save(const std::string &name, const std::string &text) {
             extension = ".lua";
             break;
     }
-    outfile.open("../saves/" + name + extension);
+    outfile.open("saves/" + name + extension);
     outfile << text;
     outfile.close();
 }
@@ -135,7 +135,7 @@ std::string Schnittstelle::load(const std::string &name) {
             extension = ".lua";
             break;
     }
-    infile.open("../saves/" + name + extension);
+    infile.open("saves/" + name + extension);
     return std::string(std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>());
 }
 
