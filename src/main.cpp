@@ -1,5 +1,4 @@
 #include <Gui.hpp>
-#include <fstream>
 #include <iostream>
 #include "Schnittstelle.hpp"
 
@@ -38,9 +37,9 @@ int main() {
     gui->console->on_submit(Schnittstelle::handle_command);
     gui->on_keydown(my_keydown);
 
-    Schnittstelle::load("drawer");
-
-    Schnittstelle::start_script(gui->editor->get_text());
+    const std::string &script = Schnittstelle::load("drawer");
+    gui->editor->set_text(script);
+    Schnittstelle::start_script(script);
 
     bool running = true;
     while (running) {
