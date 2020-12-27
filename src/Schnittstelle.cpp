@@ -98,17 +98,13 @@ Schnittstelle::Schnittstelle(
     init_interpreter();
     help_root_entry = initHelpSystem("../help_data/");
 
-    sort(&help_root_entry.sub_entries);
+    sort_subtrees(&help_root_entry.sub_entries);
 }
 
-bool alphabetic(const Entry& a, const Entry& b){
-    return a.name.compare(b.name) < 0;
-}
-
-void Schnittstelle::sort(std::vector<Entry> * entries) {
-    std::sort(entries->begin(),entries->end(), alphabetic);
-    for (auto & entry : *entries) {
-        sort(&entry.sub_entries);
+void Schnittstelle::sort_subtrees(std::vector<Entry> *entries) {
+    std::sort(entries->begin(), entries->end(), [&](const Entry &a, const Entry &b) { return a.name.compare(b.name) < 0; });
+    for (auto &entry : *entries) {
+        sort_subtrees(&entry.sub_entries);
     }
 }
 
@@ -175,6 +171,28 @@ std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword
 
     const std::vector<Entry *> &found = searchEntries(get_language_help_root(), searchword);
     entries.insert(entries.end(), found.begin(), found.end());
+
+    // Eintraege alphabetisch sortieren
+    std::sort(entries.begin(), entries.end(), [&](const Entry *a, const Entry *b) {
+        return a->name.compare(b->name) < 0;
+    });
+
+    // Eintraege, die mit dem Suchwort beginnen nach vorne stellen (alle Anderen bleiben unveraendert)
+//    std::cout << searchword << std::endl;
+    std::sort(entries.begin(), entries.end(), [&](const Entry *a, const Entry *b) {
+        auto a_iter = a->name.begin();
+        auto b_iter = b->name.begin();
+        auto s_iter = searchword.begin();
+
+        // count how many letters match the start of a word until one word ends
+        int a_count, b_count;
+        for (a_count = 0; tolower(*a_iter) == *s_iter && a_iter != a->name.end() && s_iter != searchword.end(); a_iter++, s_iter++, a_count++);
+        for (b_count = 0; tolower(*b_iter) == *s_iter && b_iter != a->name.end() && s_iter != searchword.end(); b_iter++, s_iter++, b_count++);
+//        std::cout << "a:" << a->name << ": " << a_count << "\tb:" << b->name << ": " << b_count << std::endl;
+
+
+        return a_count > b_count;
+    });
 
     return entries;
 }

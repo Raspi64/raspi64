@@ -59,7 +59,7 @@ private:
 
     Entry help_root_entry;
 
-    void sort(std::vector<Entry> * entries);
+    void sort_subtrees(std::vector<Entry> * entries);
 };
 
 

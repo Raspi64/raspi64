@@ -3,6 +3,7 @@
 #include <filesystem>
 #include <fstream>
 #include <algorithm>
+
 // ______________________
 // | Funktionen für die Suche |
 //----------------------------------------------------------------------------------------------------------------------
@@ -16,12 +17,10 @@ void subSearch(Entry *posEntry, std::vector<Entry *> *results, const std::string
             subSearch(&entry, results, searchword);
         }
     } else {
-
         for (auto &keyword : posEntry->searchWords) {
-            if (keyword == searchword) {
+            if (keyword.find(searchword) != std::string::npos) {
                 results->push_back(posEntry);
             }
-
         }
     }
 }
@@ -32,7 +31,7 @@ std::vector<Entry *> searchEntries(Entry *entry, std::string searchword) {
     std::vector<Entry *> searchResults;
 
     // toLowerCase, da alle Schlagwörter in den Datein klein Geschrieben sind
-    std::transform(searchword.begin(), searchword.end(), searchword.begin(), [](unsigned char c) { return std::tolower(c); });
+    std::transform(searchword.begin(), searchword.end(), searchword.begin(), [&](unsigned char c) { return std::tolower(c); });
 
     //aufrufen der Rekursiven Suche durch die Baumstruktur aus Entrys.
     //der Entry wird als Startpunkt mit übergeben.

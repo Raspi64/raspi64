@@ -72,6 +72,12 @@ bool my_on_submit(std::string command) {
             gui->console->print("[error] Dateiname darf keine Slashes enthalten");
             return true;
         }
+        if (name.find('.') != std::string::npos) {
+            gui->console->print("[error] Dateiname darf keine Punkte enthalten");
+            gui->console->print("(Die Dateiendung fuegt das Programm selbst hinzu)");
+//            gui->console->print("Wenn du ein %s Programm laden moechtest, wechsele erst den Modus.", sc.get_language() == LUA ? "Basic" : "Lua");
+            return true;
+        }
         if (command[0] == 's') {
             sc->save(name, gui->editor->get_text());
             return true;
