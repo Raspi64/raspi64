@@ -4,13 +4,17 @@
 
 #include <my_basic.h>
 #include <iostream>
+#include <cstdarg>
 #include "BasicPlugin.hpp"
 
 
-BasicPlugin::BasicPlugin(draw_funct_t draw_function_value, clear_funct_t clear_function_value, print_funct_t print_function_value) : Plugin(draw_function_value, clear_function_value, print_function_value) {
+BasicPlugin::BasicPlugin() : Plugin() {
     mb_init();
     mb_open(&bas);
     mb_set_printer(bas, BasicPlugin::basic_print);
+
+//    mb_register_func(bas, "DRAW", basic_draw); // TODO
+//    mb_register_func(bas, "CLEAR", basic_clear); // TODO
 
     mb_register_func(bas, "BASICMAXIMUM", basic_maximum);
     mb_register_func(bas, "OPENTERMINAL", basic_openTerminal);
@@ -44,15 +48,11 @@ int BasicPlugin::basic_print(const char *format, ...) {
     va_list args;
     va_start(args, format);
     char *string = va_arg(args, char*);
-    if (Plugin::print_function != nullptr) {
-        char *output;
-        asprintf(&output, format, string);
-        std::string output_string(output);
-        free(output);
-        Plugin::print_function(output_string);
-    } else {
-        printf(format, string);
-    }
+    char *output;
+    asprintf(&output, format, string);
+    std::string output_string(output);
+    free(output);
+    Plugin::print(output_string);
     va_end(args);
     return 0;
 }

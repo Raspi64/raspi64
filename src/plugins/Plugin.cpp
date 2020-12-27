@@ -3,13 +3,20 @@
 //
 
 #include "Plugin.hpp"
+#include "Schnittstelle.hpp"
 
-Plugin::Plugin(draw_funct_t draw_function_value, clear_funct_t clear_function_value, print_funct_t print_function_value) {
-    Plugin::draw_function = draw_function_value;
-    Plugin::clear_function = clear_function_value;
-    Plugin::print_function = print_function_value;
+void Plugin::print(const std::string &message) {
+    Schnittstelle::gui_print(message);
 }
 
-draw_funct_t Plugin::draw_function;
-clear_funct_t Plugin::clear_function;
-print_funct_t Plugin::print_function;
+void Plugin::draw(int x, int y, int red, int green, int blue, int alpha, int size) {
+    Schnittstelle::gui_draw(x, y, red, green, blue, alpha, size);
+}
+
+void Plugin::clear() {
+    Schnittstelle::gui_clear();
+}
+
+void Plugin::on_error(int line, const std::string &message) {
+    Schnittstelle::on_error(line, message);
+}

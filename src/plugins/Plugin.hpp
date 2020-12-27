@@ -7,16 +7,11 @@
 
 
 #include <string>
-#include <types.hpp>
 
 class Plugin {
 public:
 
-    Plugin(
-            draw_funct_t draw_function_value,
-            clear_funct_t clear_function_value,
-            print_funct_t print_function_value
-    );
+    Plugin() = default;;
 
     virtual ~Plugin() = default;
 
@@ -24,9 +19,13 @@ public:
 
     virtual bool exec_script() = 0;
 
-    static print_funct_t print_function;
-    static draw_funct_t draw_function;
-    static clear_funct_t clear_function;
+    static void print(const std::string &message);
+
+    static void draw(int x, int y, int red, int green, int blue, int alpha, int size);
+
+    static void clear();
+
+    static void on_error(int line, const std::string &message);
 };
 
 
