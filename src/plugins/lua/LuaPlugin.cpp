@@ -57,6 +57,14 @@ bool LuaPlugin::exec_script() {
     return exec_stat == LUA_OK;
 }
 
+std::string get_extension() {
+	return ".lua";
+}
+
+std::string get_help_folder_name() {
+	return "Lua";
+}
+
 void LuaPlugin::load_libraries() {
     const luaL_Reg loadedlibs[] = {
             {LUA_GNAME,       luaopen_base},

@@ -13,7 +13,6 @@
 
 
 Gui *Schnittstelle::gui;
-LANG Schnittstelle::current_language;
 Plugin *Schnittstelle::interpreter;
 pthread_t Schnittstelle::exec_thread;
 Entry Schnittstelle::help_root_entry;
@@ -98,14 +97,13 @@ bool Schnittstelle::handle_command(std::string command) {
 }
 
 void Schnittstelle::set_language(LANG lang) {
-    current_language = lang;
     kill_current_task();
-    interpreter = get_interpreter();
+    interpreter = get_interpreter(lang);
     gui->set_language_mode(lang);
 }
 
-Plugin *Schnittstelle::get_interpreter() {
-    switch (current_language) {
+Plugin *Schnittstelle::get_interpreter(LANG language) {
+    switch (language) {
         case BASIC:
             return new BasicPlugin();
         case LUA:
@@ -127,9 +125,8 @@ void Schnittstelle::kill_current_task() {
 
 void Schnittstelle::init(Gui *ui, LANG lang) {
     Schnittstelle::gui = ui;
-    Schnittstelle::current_language = lang;
 
-    interpreter = get_interpreter();
+    interpreter = get_interpreter(lang);
     help_root_entry = initHelpSystem("help_data/");
 
     sort_subtrees(&help_root_entry.sub_entries);
@@ -144,38 +141,20 @@ void Schnittstelle::sort_subtrees(std::vector<Entry> *entries) {
 
 void Schnittstelle::save(const std::string &name, const std::string &text) {
     std::ofstream outfile;
-    std::string extension;
-    switch (current_language) {
-        case BASIC:
-            extension = ".bas";
-            break;
-        case LUA:
-            extension = ".lua";
-            break;
-    }
-    outfile.open("saves/" + name + extension);
+    outfile.open("saves/" + name + interpreter->get_extension());
     outfile << text;
     outfile.close();
 }
 
 std::string Schnittstelle::load(const std::string &name) {
     std::ifstream infile;
-    std::string extension;
-    switch (current_language) {
-        case BASIC:
-            extension = ".bas";
-            break;
-        case LUA:
-            extension = ".lua";
-            break;
-    }
-    infile.open("saves/" + name + extension);
+    infile.open("saves/" + name + interpreter->get_extension());
     return std::string(std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>());
 }
 
 Entry *Schnittstelle::get_common_help_root() {
     for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
-        if (sub_entry->name == "Common") {
+        if (sub_entry->name == interpreter->get_help_folder_name()) {
             return sub_entry.base();
         }
     }
@@ -184,18 +163,9 @@ Entry *Schnittstelle::get_common_help_root() {
 
 Entry *Schnittstelle::get_language_help_root() {
     for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
-        switch (current_language) {
-            case BASIC:
-                if (sub_entry->name == "BASIC") {
-                    return sub_entry.base();
-                }
-                break;
-            case LUA:
-                if (sub_entry->name == "Lua") {
-                    return sub_entry.base();
-                }
-                break;
-        }
+	    if (sub_entry->name == interpreter->get_help_folder_name()) {
+		    return sub_entry.base();
+	    }
     }
     return nullptr;
 }

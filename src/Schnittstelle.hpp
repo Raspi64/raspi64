@@ -55,13 +55,12 @@ public:
     static Schnittstelle::Status status;
 private:
     static Gui *gui;
-    static LANG current_language;
     static Plugin *interpreter;
     static pthread_t exec_thread;
 
     static void *exec_script(void *params_void);
 
-    static Plugin* get_interpreter();
+    static Plugin* get_interpreter(LANG language);
 
     static Entry help_root_entry;
 

@@ -11,13 +11,17 @@
 class Plugin {
 public:
 
-    Plugin() = default;;
+    Plugin() = default;
 
     virtual ~Plugin() = default;
 
     virtual bool load_script(const std::string &) = 0;
 
     virtual bool exec_script() = 0;
+
+	virtual std::string get_extension() = 0;
+
+	virtual std::string get_help_folder_name() = 0;
 
     static void print(const std::string &message);
 
