@@ -1,7 +1,7 @@
 string.gsub;gsub;ersetzen;suchen;string;lua
 
 string.gsub
-Liefert eine Kopie von "s", bei der jedes (bzw. die ersten "n", falls gegeben) Auftreten von Mustern durch eine Ersetzungs-Zeichenkette, welche durch "repl" spezifiziert wurde und eine Zeichenkette, Tabelle oder Funktion sein kann, ersetzt wurden. gsub liefert als zweiten Wert auch die Gesamtzahl aufgetretener Treffer.
+Ersetzt alle Elemente im gegebenen "s". Wenn eine Zahl "n" mitgegeben wird, so werden nur die ersten n-Elemente ersetzt. Nach dem ersetzen, wird das verwänderte "s" zurück gegeben. Der Übergabeparameter "repl", oder auch replace Parameter, kann dabei  eine Zeichenkette, Tabelle oder Funktion sein. "gsub" liefert als zweiten Wert auch die Gesamtzahl aufgetretener Treffer.
 
 Wenn repl eine Zeichenkette ist, wird dessen Wert zur Ersetzung verwendet. Das Zeichen % dient der Maskierung: Jede Sequenz der Form %n in repl mit n zwischen 1 und 9 steht für den Wert der n-ten gesicherten Teil-Zeichenkette (s. u.). Die Sequenz %0 steht für die komplette Übereinstimmung. Die Sequenz %% steht für ein einzelnes %.
 
