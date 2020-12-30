@@ -154,7 +154,7 @@ std::string Schnittstelle::load(const std::string &name) {
 
 Entry *Schnittstelle::get_common_help_root() {
     for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
-        if (sub_entry->name == interpreter->get_help_folder_name()) {
+        if (sub_entry->name == "Common") {
             return sub_entry.base();
         }
     }
@@ -163,9 +163,9 @@ Entry *Schnittstelle::get_common_help_root() {
 
 Entry *Schnittstelle::get_language_help_root() {
     for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
-	    if (sub_entry->name == interpreter->get_help_folder_name()) {
-		    return sub_entry.base();
-	    }
+        if (sub_entry->name == interpreter->get_help_folder_name()) {
+            return sub_entry.base();
+        }
     }
     return nullptr;
 }

@@ -19,9 +19,9 @@ public:
 
     virtual bool exec_script() = 0;
 
-	virtual std::string get_extension() = 0;
+    virtual std::string get_extension() = 0;
 
-	virtual std::string get_help_folder_name() = 0;
+    virtual std::string get_help_folder_name() = 0;
 
     static void print(const std::string &message);
 

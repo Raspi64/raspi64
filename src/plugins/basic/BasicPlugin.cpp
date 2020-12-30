@@ -41,15 +41,16 @@ bool BasicPlugin::exec_script() {
     if (exec_stat != MB_FUNC_OK) {
         update_error_message();
     }
+    mb_reset(&bas,false);
     return exec_stat == MB_FUNC_OK;
 }
 
-std::string get_extension() {
-	return ".bas";
+std::string BasicPlugin::get_extension() {
+    return ".bas";
 }
 
-std::string get_help_folder_name() {
-	return "BASIC";
+std::string BasicPlugin::get_help_folder_name() {
+    return "BASIC";
 }
 
 int BasicPlugin::basic_print(const char *format, ...) {

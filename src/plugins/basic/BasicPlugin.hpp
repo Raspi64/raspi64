@@ -20,9 +20,9 @@ public:
 
     bool exec_script() override;
 
-	std::string get_extension() override;
+    std::string get_extension() override;
 
-	std::string get_help_folder_name() override;
+    std::string get_help_folder_name() override;
 
 private:
     mb_interpreter_t *bas = nullptr;
