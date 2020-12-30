@@ -11,17 +11,17 @@
 
 class LuaPlugin : public Plugin {
 public:
-    LuaPlugin(
-            draw_funct_t draw_function_value,
-            clear_funct_t clear_function_value,
-            print_funct_t print_function_value
-    );
+    LuaPlugin();
 
     ~LuaPlugin() override;
 
     bool load_script(const std::string &lua_script) override;
 
     bool exec_script() override;
+
+    std::string get_extension() override;
+
+    std::string get_help_folder_name() override;
 
 private:
     lua_State *L;

@@ -5,23 +5,26 @@
 #include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <filesystem>
 #include "BasicPlugin.hpp"
 #include "LuaPlugin.hpp"
-#include "Plugin.hpp"
 #include "Schnittstelle.hpp"
 #include "HelpSystem.hpp"
 
 
-void *Schnittstelle::exec_script(void *params_void) {
-    auto schnittstelle = (Schnittstelle *) params_void;
+Gui *Schnittstelle::gui;
+Plugin *Schnittstelle::interpreter;
+pthread_t Schnittstelle::exec_thread;
+Entry Schnittstelle::help_root_entry;
+Schnittstelle::Status Schnittstelle::status;
 
-    schnittstelle->status = RUNNING;
-    if (schnittstelle->interpreter->exec_script()) {
-        schnittstelle->status = COMPLETED_OK;
+
+void *Schnittstelle::exec_script(void *) {
+    if (Schnittstelle::interpreter->exec_script()) {
+        Schnittstelle::status = COMPLETED_OK;
     } else {
-        schnittstelle->status = RUN_ERROR;
+        Schnittstelle::status = RUN_ERROR;
     }
-    schnittstelle->is_running = false;
 
     return nullptr;
 }
@@ -34,68 +37,96 @@ void Schnittstelle::start_script(const std::string &script) {
         status = LOAD_ERROR;
         return;
     }
-    clear_error();
+    gui->editor->clear_error_markers();
 
     // create and start thread
-    is_running = true;
-    pthread_create(&exec_thread, nullptr, Schnittstelle::exec_script, this);
+    status = RUNNING;
+    pthread_create(&exec_thread, nullptr, Schnittstelle::exec_script, nullptr);
+}
+
+bool Schnittstelle::handle_command(std::string command) {
+    if (command == "start" || command == "run") {
+        Schnittstelle::start_script(gui->editor->get_text());
+        return true;
+    }
+    if (command == "stop") {
+        Schnittstelle::kill_current_task();
+        return true;
+    }
+    if (command.find("list") == 0) {
+        gui->console->print("Files you can load:");
+        for (auto &child: std::filesystem::directory_iterator("saves/")) {
+            if (!child.is_directory()) {
+                std::string child_path = child.path();
+                std::string name(child_path.substr(child_path.rfind('/') + 1));
+                gui->console->print(" - " + name);
+            }
+        }
+        return true;
+    }
+    if (command.find("save") == 0 || command.find("load") == 0) {
+        unsigned long pos = command.find(' ');
+        if (pos == std::string::npos) {
+            gui->console->print("[error] Kein Dateinamen gefunden");
+            return true;
+        }
+        std::string name = command.substr(pos + 1);
+        if (name.find(' ') != std::string::npos) {
+            gui->console->print("[error] Dateiname darf keine Leerzeichen enthalten");
+            return true;
+        }
+        if (name.find('/') != std::string::npos) {
+            gui->console->print("[error] Dateiname darf keine Slashes enthalten");
+            return true;
+        }
+        if (name.find('.') != std::string::npos) {
+            gui->console->print("[error] Dateiname darf keine Punkte enthalten");
+            gui->console->print("(Die Dateiendung fuegt das Programm selbst hinzu)");
+//            gui->console->print("Wenn du ein %s Programm laden moechtest, wechsele erst den Modus.", sc.get_language() == LUA ? "Basic" : "Lua");
+            return true;
+        }
+        if (command[0] == 's') {
+            Schnittstelle::save(name, gui->editor->get_text());
+            return true;
+        } else {
+            gui->editor->set_text(Schnittstelle::load(name));
+            return true;
+        }
+    }
+    return false;
 }
 
 void Schnittstelle::set_language(LANG lang) {
-    current_language = lang;
-    init_interpreter();
+    kill_current_task();
+    interpreter = get_interpreter(lang);
+    gui->set_language_mode(lang);
 }
 
-void Schnittstelle::init_interpreter() {
-    kill_current_task();
-    delete interpreter;
-
-    switch (current_language) {
+Plugin *Schnittstelle::get_interpreter(LANG language) {
+    switch (language) {
         case BASIC:
-            interpreter = new BasicPlugin(
-                    draw_function,
-                    clear_function,
-                    print_function
-            );
-            break;
+            return new BasicPlugin();
         case LUA:
-            interpreter = new LuaPlugin(
-                    draw_function,
-                    clear_function,
-                    print_function
-            );
-            break;
+            return new LuaPlugin();
         default:
             throw std::runtime_error("No interpreter!");
     }
 }
 
-
-Schnittstelle::Status Schnittstelle::get_status() {
-    return status;
-}
-
 void Schnittstelle::kill_current_task() {
-    if (is_running) {
+    if (status == RUNNING) {
         printf("Killing...");
         pthread_cancel(exec_thread);
         pthread_join(exec_thread, nullptr);
-        is_running = false;
+        status = KILLED;
         printf("Killed!\n");
     }
 }
 
-Schnittstelle::Schnittstelle(
-        LANG lang,
-        print_funct_t print_function_value,
-        draw_funct_t draw_function_value,
-        clear_funct_t clear_function_value
-) :
-        current_language(lang),
-        print_function(print_function_value),
-        draw_function(draw_function_value),
-        clear_function(clear_function_value) {
-    init_interpreter();
+void Schnittstelle::init(Gui *ui, LANG lang) {
+    Schnittstelle::gui = ui;
+
+    interpreter = get_interpreter(lang);
     help_root_entry = initHelpSystem("help_data/");
 
     sort_subtrees(&help_root_entry.sub_entries);
@@ -110,32 +141,14 @@ void Schnittstelle::sort_subtrees(std::vector<Entry> *entries) {
 
 void Schnittstelle::save(const std::string &name, const std::string &text) {
     std::ofstream outfile;
-    std::string extension;
-    switch (current_language) {
-        case BASIC:
-            extension = ".bas";
-            break;
-        case LUA:
-            extension = ".lua";
-            break;
-    }
-    outfile.open("saves/" + name + extension);
+    outfile.open("saves/" + name + interpreter->get_extension());
     outfile << text;
     outfile.close();
 }
 
 std::string Schnittstelle::load(const std::string &name) {
     std::ifstream infile;
-    std::string extension;
-    switch (current_language) {
-        case BASIC:
-            extension = ".bas";
-            break;
-        case LUA:
-            extension = ".lua";
-            break;
-    }
-    infile.open("saves/" + name + extension);
+    infile.open("saves/" + name + interpreter->get_extension());
     return std::string(std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>());
 }
 
@@ -150,17 +163,8 @@ Entry *Schnittstelle::get_common_help_root() {
 
 Entry *Schnittstelle::get_language_help_root() {
     for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
-        switch (current_language) {
-            case BASIC:
-                if (sub_entry->name == "BASIC") {
-                    return sub_entry.base();
-                }
-                break;
-            case LUA:
-                if (sub_entry->name == "Lua") {
-                    return sub_entry.base();
-                }
-                break;
+        if (sub_entry->name == interpreter->get_help_folder_name()) {
+            return sub_entry.base();
         }
     }
     return nullptr;
@@ -195,4 +199,25 @@ std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword
     });
 
     return entries;
+}
+
+
+void Schnittstelle::gui_draw(int x, int y, int red, int green, int blue, int alpha, int size) {
+    gui->graphic->add_pixel(x, y, red, green, blue, alpha, size);
+//    std::cout << "GUI Draw!" << std::endl;
+}
+
+void Schnittstelle::gui_clear() {
+    gui->graphic->clear_pixels();
+//    std::cout << "GUI Clear!" << std::endl;
+}
+
+void Schnittstelle::gui_print(const std::string &message) {
+    gui->console->print(message);
+    std::cout << "Print: " << message << std::endl;
+}
+
+void Schnittstelle::on_error(int line, const std::string &message) {
+    gui->console->print("[error] " + message);
+    gui->editor->set_error_marker(line, message);
 }

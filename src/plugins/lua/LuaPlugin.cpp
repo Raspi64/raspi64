@@ -7,7 +7,7 @@
 #include "Plugin.hpp"
 #include "LuaPlugin.hpp"
 
-LuaPlugin::LuaPlugin(draw_funct_t draw_function_value, clear_funct_t clear_function_value, print_funct_t print_function_value) : Plugin(draw_function_value, clear_function_value, print_function_value) {
+LuaPlugin::LuaPlugin() : Plugin() {
     L = luaL_newstate();
 
     load_libraries();
@@ -55,6 +55,14 @@ bool LuaPlugin::exec_script() {
     lua_remove(L, hpos);
 
     return exec_stat == LUA_OK;
+}
+
+std::string LuaPlugin::get_extension() {
+    return ".lua";
+}
+
+std::string LuaPlugin::get_help_folder_name() {
+    return "Lua";
 }
 
 void LuaPlugin::load_libraries() {
@@ -122,7 +130,7 @@ int LuaPlugin::lua_print(lua_State *state) {
         }
     }
 
-    Plugin::print_function(return_string);
+    Plugin::print(return_string);
 
     return 0;
 }
@@ -144,7 +152,7 @@ int LuaPlugin::lua_draw(lua_State *state) {
     int alpha = lua_tointeger(state, 6);
     int size = lua_tointeger(state, 7);
 
-    Plugin::draw_function(x, y, red, green, blue, alpha, size);
+    Plugin::draw(x, y, red, green, blue, alpha, size);
 
     return 0;
 }
@@ -154,7 +162,7 @@ int LuaPlugin::lua_clear(lua_State *state) {
         return luaL_error(state, "expecting no parameters");
     }
 
-    Plugin::clear_function();
+    Plugin::clear();
 
     return 0;
 }
