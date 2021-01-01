@@ -2,7 +2,6 @@
 // Created by simon on 12/1/20.
 //
 
-#include <iostream>
 #include <unistd.h>
 #include <string>
 #include "Plugin.hpp"
@@ -60,7 +59,7 @@ bool LuaPlugin::exec_script() {
 }
 
 void LuaPlugin::on_key_press(const std::string &key) {
-    printf("press: %s\n", key.c_str());
+//    printf("press: %s\n", key.c_str());
     int type = lua_getglobal(L, "reg_key_press_listener"); // function to be called
     if (type == LUA_TNUMBER) {
         lua_Number pointer = lua_tonumber(L, lua_gettop(L));
@@ -74,10 +73,11 @@ void LuaPlugin::on_key_press(const std::string &key) {
     } else {
         lua_pop(L, 1);
     }
+    lua_pop(L, 1);
 }
 
 void LuaPlugin::on_key_release(const std::string &key) {
-    printf("release: %s\n", key.c_str());
+//    printf("release: %s\n", key.c_str());
     int type = lua_getglobal(L, "reg_key_release_listener"); // function to be called
     if (type == LUA_TNUMBER) {
         lua_Number pointer = lua_tonumber(L, lua_gettop(L));
@@ -91,6 +91,7 @@ void LuaPlugin::on_key_release(const std::string &key) {
     } else {
         lua_pop(L, 1);
     }
+    lua_pop(L, 1);
 }
 
 std::string LuaPlugin::get_extension() {
