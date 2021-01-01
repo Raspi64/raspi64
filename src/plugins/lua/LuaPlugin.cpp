@@ -4,6 +4,7 @@
 
 #include <iostream>
 #include <unistd.h>
+#include <string>
 #include "Plugin.hpp"
 #include "LuaPlugin.hpp"
 
@@ -105,6 +106,7 @@ int LuaPlugin::lua_print(lua_State *state) {
     int top = lua_gettop(state);
     for (int i = 1; i <= top; i++) {  /* repeat for each level */
         int t = lua_type(state, i);
+        double number;
 
         switch (t) {
             case LUA_TSTRING:  /* strings */
@@ -116,7 +118,13 @@ int LuaPlugin::lua_print(lua_State *state) {
                 break;
 
             case LUA_TNUMBER:  /* numbers */
-                return_string += lua_tonumber(state, i);
+                number = lua_tonumber(state, i);
+                if ((double) ((int) number) == number) { // if is integer
+                    return_string += std::to_string((int) number);
+                } else {
+                    return_string += std::to_string(number);
+                    return_string.erase(return_string.find_last_not_of('0') + 1, std::string::npos);
+                }
                 break;
 
             default:  /* other values */
