@@ -26,25 +26,34 @@ end
 local key_up = false
 local key_down = false
 
+local running = true
 
 function update()
+	-- move player paddle
 	if key_up and paddle_right_pos >= 20 then
 		paddle_right_pos = paddle_right_pos - 20
 	elseif key_down and paddle_right_pos <= max_y - paddle_height then
 		paddle_right_pos = paddle_right_pos + 20
 	end
 
+	-- apply ball velocity
 	ball_x = ball_x + ball_v_x
 	ball_y = ball_y + ball_v_y
 
+	-- left-right collision
 	if ball_x <= 0 then
-		ball_v_x = 10
-		ball_x = 0
+		--ball_v_x = 10
+		--ball_x = 0
+		print("Left lost!")
+		running = false
 	elseif ball_x + ball_size >= max_x then
-		ball_v_x = - 10
-		ball_x = max_x - ball_size
+		--ball_v_x = - 10
+		--ball_x = max_x - ball_size
+		print("Right lost!")
+		running = false
 	end
 
+	-- top-bottom collision
 	if ball_y <= 0 then
 		ball_v_y = 10
 		ball_y = 0
@@ -52,6 +61,13 @@ function update()
 		ball_v_y = - 10
 		ball_y = max_y - ball_size
 	end
+
+	-- right paddle collision
+	if ball_x + ball_size >= max_x - paddle_width then
+		
+	end
+
+
 end
 
 function render()
@@ -60,8 +76,6 @@ function render()
 	draw_box(max_x - paddle_width, paddle_right_pos, paddle_height, paddle_width, 10)
 	draw_box(ball_x, ball_y, ball_size, ball_size, ball_size)
 end
-
---draw_box(100,200,300,400,10)
 
 function on_key_press(key)
 	if key == "up" then
@@ -84,7 +98,7 @@ end
 register_key_listeners(on_key_press, on_key_release)
 
 
-while true do
+while running do
 	-- main loop
 	update()
 	render()
