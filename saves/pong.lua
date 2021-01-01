@@ -10,6 +10,10 @@ local max_y = 450
 local ball_x = 100
 local ball_y = 100
 
+local ball_v_x = 10
+local ball_v_y = 10
+
+local ball_size = 30
 
 function draw_box(x, y, h, w, step)
 	for a=x, x+w, step do
@@ -29,13 +33,32 @@ function update()
 	elseif key_down and paddle_right_pos <= max_y - paddle_height then
 		paddle_right_pos = paddle_right_pos + 20
 	end
+
+	ball_x = ball_x + ball_v_x
+	ball_y = ball_y + ball_v_y
+
+	if ball_x <= 0 then
+		ball_v_x = 10
+		ball_x = 0
+	elseif ball_x + ball_size >= max_x then
+		ball_v_x = - 10
+		ball_x = max_x - ball_size
+	end
+
+	if ball_y <= 0 then
+		ball_v_y = 10
+		ball_y = 0
+	elseif ball_y + ball_size >= max_y then
+		ball_v_y = - 10
+		ball_y = max_y - ball_size
+	end
 end
 
 function render()
 	clear()
 	draw_box(0,   paddle_left_pos,  paddle_height, paddle_width, 10)
 	draw_box(max_x - paddle_width, paddle_right_pos, paddle_height, paddle_width, 10)
-	draw_box(box_x, box_y, 30, 30, 30)
+	draw_box(ball_x, ball_y, ball_size, ball_size, ball_size)
 end
 
 --draw_box(100,200,300,400,10)
@@ -67,5 +90,6 @@ while true do
 	render()
 	sleep(0.1)
 end
+
 
 
