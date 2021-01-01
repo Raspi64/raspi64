@@ -28,7 +28,7 @@ public:
 
     static void set_language(LANG lang);
 
-    static void start_script(const std::string &script);
+    static bool start_script(const std::string &script);
 
     static void kill_current_task();
 
@@ -37,6 +37,9 @@ public:
     static std::string load(const std::string &name);
 
     static bool handle_command(std::string command);
+
+    static void on_key_press(const SDL_Keysym keysym);
+    static void on_key_release(const SDL_Keysym keysym);
 
     static Entry *get_common_help_root();
 
@@ -66,6 +69,7 @@ private:
 
     static void sort_subtrees(std::vector<Entry> *entries);
 
+    static std::string get_key_name(const SDL_Keysym &keysym);
 };
 
 

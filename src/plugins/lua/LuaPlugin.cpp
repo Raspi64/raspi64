@@ -18,6 +18,7 @@ LuaPlugin::LuaPlugin() : Plugin() {
     lua_register(L, "draw", lua_draw);
     lua_register(L, "clear", lua_clear);
     lua_register(L, "sleep", lua_sleep);
+    lua_register(L, "register_key_listeners", lua_register_key_listeners);
 
     // overwrite unwanted functions
     lua_register(L, "collectgarbage", lua_function_not_allowed);
@@ -56,6 +57,40 @@ bool LuaPlugin::exec_script() {
     lua_remove(L, hpos);
 
     return exec_stat == LUA_OK;
+}
+
+void LuaPlugin::on_key_press(const std::string &key) {
+    printf("press: %s\n", key.c_str());
+    int type = lua_getglobal(L, "reg_key_press_listener"); // function to be called
+    if (type == LUA_TNUMBER) {
+        lua_Number pointer = lua_tonumber(L, lua_gettop(L));
+        int func_type = lua_rawgeti(L, LUA_REGISTRYINDEX, pointer);
+        if (func_type == LUA_TFUNCTION) {
+            lua_pushstring(L, key.c_str()); // 1st argument
+            lua_call(L, 1, 0);     // call 'on_key_press' with 1 arguments and 0 results
+        } else {
+            lua_pop(L, 1);
+        }
+    } else {
+        lua_pop(L, 1);
+    }
+}
+
+void LuaPlugin::on_key_release(const std::string &key) {
+    printf("release: %s\n", key.c_str());
+    int type = lua_getglobal(L, "reg_key_release_listener"); // function to be called
+    if (type == LUA_TNUMBER) {
+        lua_Number pointer = lua_tonumber(L, lua_gettop(L));
+        int func_type = lua_rawgeti(L, LUA_REGISTRYINDEX, pointer);
+        if (func_type == LUA_TFUNCTION) {
+            lua_pushstring(L, key.c_str()); // 1st argument
+            lua_call(L, 1, 0);     // call 'on_key_press' with 1 arguments and 0 results
+        } else {
+            lua_pop(L, 1);
+        }
+    } else {
+        lua_pop(L, 1);
+    }
 }
 
 std::string LuaPlugin::get_extension() {
@@ -189,6 +224,30 @@ int LuaPlugin::lua_sleep(lua_State *state) {
     double utime = time * 1000000;
 
     usleep((unsigned int) utime);
+
+    return 0;
+}
+
+int LuaPlugin::lua_register_key_listeners(lua_State *state) {
+    if (lua_gettop(state) != 2) {
+        return luaL_error(state, "expecting parameters: key_press_listener,key_release_listener");
+    }
+    if (!lua_isfunction(state, 1)) {
+        return luaL_error(state, "expecting a function as parameter");
+    }
+    if (!lua_isfunction(state, 2)) {
+        return luaL_error(state, "expecting a function as parameter");
+    }
+
+    int key_release_listener = luaL_ref(state, LUA_REGISTRYINDEX);
+    int key_press_listener = luaL_ref(state, LUA_REGISTRYINDEX);
+
+    lua_pushinteger(state, key_press_listener);
+    lua_setglobal(state, "reg_key_press_listener");
+    lua_pushinteger(state, key_release_listener);
+    lua_setglobal(state, "reg_key_release_listener");
+
+//    printf("registered: %d %d %d!\n", key_press_listener, key_release_listener, lua_gettop(state));
 
     return 0;
 }

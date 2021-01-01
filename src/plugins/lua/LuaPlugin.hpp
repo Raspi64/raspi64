@@ -19,6 +19,10 @@ public:
 
     bool exec_script() override;
 
+    void on_key_press(const std::string &) override;
+
+    void on_key_release(const std::string &) override;
+
     std::string get_extension() override;
 
     std::string get_help_folder_name() override;
@@ -43,6 +47,8 @@ private:
     static void parse_error_message(std::string &error_message);
 
     static int lua_sleep(lua_State *state);
+
+    static int lua_register_key_listeners(lua_State *state);
 };
 
 

@@ -45,6 +45,14 @@ bool BasicPlugin::exec_script() {
     return exec_stat == MB_FUNC_OK;
 }
 
+void BasicPlugin::on_key_press(const std::string &) {
+
+}
+
+void BasicPlugin::on_key_release(const std::string &) {
+
+}
+
 std::string BasicPlugin::get_extension() {
     return ".bas";
 }

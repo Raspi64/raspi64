@@ -4,10 +4,6 @@
 
 Gui *gui;
 
-void my_keydown(const SDL_Keysym keysym) {
-    std::cout << "key: " << keysym.scancode << std::endl;
-}
-
 void run_through_entries(Entry *parent, unsigned int indentation);
 
 int main() {
@@ -35,7 +31,8 @@ int main() {
 
     gui->on_change_langmode_request(Schnittstelle::set_language);
     gui->console->on_submit(Schnittstelle::handle_command);
-    gui->on_keydown(my_keydown);
+    gui->on_keydown(Schnittstelle::on_key_press);
+    gui->on_keyup(Schnittstelle::on_key_release);
 
     const std::string &script = Schnittstelle::load("drawer");
     gui->editor->set_text(script);

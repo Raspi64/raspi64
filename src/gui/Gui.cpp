@@ -154,9 +154,13 @@ int Gui::tick() {
             return -1;
 
         if (Window::current_window == WIN_TITLE_GRAPHIC) {
-            if (event.type == SDL_KEYDOWN) {
+            if (event.type == SDL_KEYDOWN && event.key.repeat == 0) {
                 if (on_keydown_fn != nullptr)
                     on_keydown_fn(event.key.keysym);
+            }
+            if (event.type == SDL_KEYUP && event.key.repeat == 0) {
+                if (on_keyup_fn != nullptr)
+                    on_keyup_fn(event.key.keysym);
             }
         }
     }
@@ -201,11 +205,11 @@ void Gui::build_windows() {
     help = new HelpWindowHandler(this->helpWindow);
     uiElements.push_back(this->helpWindow);
 
-    GraphicWindow* graphicWindow = new GraphicWindow();
+    GraphicWindow *graphicWindow = new GraphicWindow();
     graphic = new GraphicWindowHandler(graphicWindow);
     uiElements.push_back(graphicWindow);
 
-    ConsoleWindow* consoleWindow = new ConsoleWindow();
+    ConsoleWindow *consoleWindow = new ConsoleWindow();
     console = new ConsoleWindowHandler(consoleWindow);
     uiElements.push_back(consoleWindow);
 
@@ -220,7 +224,7 @@ void Gui::build_windows() {
     ChangeLangModeDialogWindow* changeLangModeDialogWindow = new ChangeLangModeDialogWindow(cb);
     */
 
-    ChangeLangModeDialogWindow* changeLangModeDialogWindow = new ChangeLangModeDialogWindow([=](LANG newLang) {
+    ChangeLangModeDialogWindow *changeLangModeDialogWindow = new ChangeLangModeDialogWindow([=](LANG newLang) {
         printf("callback called");
         if (on_change_langmode_request_fn != nullptr)
             this->on_change_langmode_request_fn(newLang);
@@ -252,6 +256,10 @@ void Gui::check_keys() {
 
 void Gui::on_keydown(keydown_funct_t function) {
     this->on_keydown_fn = function;
+}
+
+void Gui::on_keyup(keydown_funct_t function) {
+    this->on_keyup_fn = function;
 }
 
 void Gui::on_change_langmode_request(change_langmode_request_func_t function) {

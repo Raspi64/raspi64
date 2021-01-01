@@ -19,6 +19,10 @@ public:
 
     virtual bool exec_script() = 0;
 
+    virtual void on_key_press(const std::string &) = 0;
+
+    virtual void on_key_release(const std::string &) = 0;
+
     virtual std::string get_extension() = 0;
 
     virtual std::string get_help_folder_name() = 0;

@@ -20,6 +20,10 @@ public:
 
     bool exec_script() override;
 
+    void on_key_press(const std::string &) override;
+
+    void on_key_release(const std::string &) override;
+
     std::string get_extension() override;
 
     std::string get_help_folder_name() override;
