@@ -1,0 +1,10 @@
+math.mininteger;min;integer;minimum;math;mathematik;mathe;lua
+
+math.mininteger
+Ein Integer mit dem minimalsten Integer-Wert.
+
+Number = math.mininteger
+
+Beispiel:
+a = math.mininteger
+

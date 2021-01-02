@@ -1,0 +1,12 @@
+set;setzen;stelle;liste;list;basic
+
+SET:
+
+Setzt den Wert einer bestimmten Stelle in einer Liste.
+
+    SET(List, Index, New_Value)
+
+Beispiel:
+    
+    I = LIST(12,13,14,15)
+    SET(I,2,20)

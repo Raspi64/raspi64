@@ -1,0 +1,11 @@
+string.rep;rep;zeichen;zeichenkette;kette;anreihen;string;verknüpfen;verknuefpen;lua
+
+string.rep
+Liefert eine Zeichenkette, welche eine Verknüpfung von n Kopien der Zeichenkette s darstellt.
+
+String = string.rep(String,Number)
+
+Beispiel:
+a = “Hallo Welt”
+b = string.rep(a,3)
+

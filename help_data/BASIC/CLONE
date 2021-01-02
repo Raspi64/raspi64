@@ -1,0 +1,13 @@
+list;liste;clone;kopieren;copy;kopie;basic
+
+CLONE:
+
+Kopiert eine Liste.
+
+    CLONE(List)
+    Return LIST
+
+Beispiel:
+    
+    I = LIST(12,13,14,15)
+    B = CLONE(I)

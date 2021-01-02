@@ -1,0 +1,12 @@
+table.pack;pack;table;rückgabe;rueckgabe;tabelle;lua
+
+table.pack
+Gibt eine Tabelle zurück mit, in den Schlüsseln 1,2, etc. gespeicherten, Parametern und dem Feld “n” mit der gesamten Anzahl an Parametern. Die resultierende Tabelle ist keine Reihenfolge wenn ein Parameter nil ist. 
+
+Table =  table.pack (···)
+
+Beispiel:
+t = table.pack(7,3,2)
+print(t[1]) -- print 7
+print(t[2]) -- print 3
+

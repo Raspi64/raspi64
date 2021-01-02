@@ -1,0 +1,13 @@
+math.min;kleinster;min;minimum;wert;math;mathematik;mathe;lua
+
+math.min
+Liefert den kleinsten Wert seiner Argumente.
+
+Number = math.min(number,···)
+
+Beispiel:
+a=2
+b=6
+c= math.min(6,2)
+
+

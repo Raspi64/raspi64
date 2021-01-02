@@ -3,6 +3,6 @@
 
 # Rest
 *.o
-imgui_demo
-imgui_new_demo
 imgui.ini
+/imgui_setup
+/imgui_setup_demo

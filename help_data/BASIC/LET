@@ -1,0 +1,11 @@
+let;datentyp;datatype;basic
+
+LET:
+
+LET führt die Zuweisungsanweisung ein, ist allerdings optional.
+
+Beispiel:
+
+    LET A = 1 
+    PI = 3.14 
+

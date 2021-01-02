@@ -1,0 +1,38 @@
+string.gsub;gsub;ersetzen;suchen;string;lua
+
+string.gsub
+Ersetzt alle Elemente im gegebenen "s". Wenn eine Zahl "n" mitgegeben wird, so werden nur die ersten n-Elemente ersetzt. Nach dem ersetzen, wird das verwänderte "s" zurück gegeben. Der Übergabeparameter "repl", oder auch replace Parameter, kann dabei  eine Zeichenkette, Tabelle oder Funktion sein. "gsub" liefert als zweiten Wert auch die Gesamtzahl aufgetretener Treffer.
+
+Wenn repl eine Zeichenkette ist, wird dessen Wert zur Ersetzung verwendet. Das Zeichen % dient der Maskierung: Jede Sequenz der Form %n in repl mit n zwischen 1 und 9 steht für den Wert der n-ten gesicherten Teil-Zeichenkette (s. u.). Die Sequenz %0 steht für die komplette Übereinstimmung. Die Sequenz %% steht für ein einzelnes %.
+
+Wenn repl eine Tabelle ist, wird die Tabelle mit dem ersten Treffer als Schlüssel für jede Übereinstimmung abgefragt; falls das Muster keine Treffer angibt, wird die komplette Übereinstimmung als Schlüssel verwendet.
+
+Wenn repl eine Funktion ist, wird diese für jede auftretende Übereinstimmung mit allen gesicherten Teil-Zeichenkette als Argumente in entsprechender Reihenfolge aufgerufen; falls das Muster keine Treffer angibt, wird die komplette Übereinstimmung als einziges Argument übergeben.
+
+Wenn der von einer Tabelle, Abfrage oder Funktion zurückgelieferte Wert eine Zeichenkette oder Zahl ist, wird dies als Ersetzungs-Zeichenkette verwendet; andernfalls – wenn es false oder nil ist – findet keine Ersetzung statt (d. h. die Original-Übereinstimmung wird in der Zeichenkette gelassen).
+
+Beispiele:
+
+x = string.gsub("hello world","(%w+)","%1 %1")
+--> x="hello hello world world"
+
+x = string.gsub("hello world","%w+","%0 %0",1)
+--> x="hello hello world"
+
+x = string.gsub("hello world from Lua","(%w+)%s*(%w+)","%2 %1")
+--> x="world hello Lua from"
+
+x = string.gsub("home = $HOME, user = $USER","%$(%w+)",os.getenv)
+--> x="home = /home/roberto, user = roberto"
+
+x = string.gsub("4+5 = $return 4+5$","%$(.-)%$",function (s)
+      return loadstring(s)()
+    end)
+--> x="4+5 = 9"
+
+local t = {name="lua",version="5.1"}
+x = string.gsub("$name-$version.tar.gz","%$(%w+)",t)
+--> x="lua-5.1.tar.gz"
+
+String = string.gsub(s,pattern,repl[,n])
+

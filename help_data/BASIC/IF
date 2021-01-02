@@ -1,0 +1,21 @@
+elseif;else;if;abfragen;basic
+
+IF:
+
+Die if-Anweisung wird verwendet, um eine Bedingung zu prüfen. Ist die Bedingung erfüllt kann mit dem THEN-Befehl, der sogenannte if-Block ausgeführt werden. Wird die Bedingung nicht erfüllt, wird der else-Block ausgeführt, falls dieser vorhanden ist.
+
+    IF Bedingung THEN Anweisung ausführen
+    IF Bedingung THEN Anweisung ausführen ELSE Anweiseung ausführen
+
+Beispiel:
+
+    input n
+    if n = 1 then
+        print "One";
+    elseif n = 2 then
+        print "Two";
+    elseif n = 3 then
+        print "Three";
+    else
+        print "More than that";
+    endif

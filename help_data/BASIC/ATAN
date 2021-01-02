@@ -1,0 +1,12 @@
+atan;arkustangens;arctan;int;integer;math;mathematik;basic
+
+ATAN:
+
+Gibt den ArkusTangens einer Zahl zurück.
+
+	ATAN(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = ATAN(2)
+	PRINT I

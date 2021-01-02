@@ -1,0 +1,9 @@
+import;quelle;function;funktion;basic
+
+IMPORT:
+
+Die IMPORT-Anweisung importiert eine andere Quelle, in dieser Quelle können andere Funktionen beschrieben sein.
+
+Beispiel: 
+
+    import function.bas

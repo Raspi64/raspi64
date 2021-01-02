@@ -1,0 +1,17 @@
+var;datatype;datentyp;basic
+
+VAR:
+
+VAR wird verwendet, um eine Mitgliedsvariable in einer Klasse zu deklarieren.
+
+Beispiel:
+
+    CLASS foo
+        VAR a = 1
+        DEF func(b)
+            RETURN a+b
+        ENDDEF
+    ENDCLASS
+
+    inst = NEW(foo)
+    PRINT inst.func(2)

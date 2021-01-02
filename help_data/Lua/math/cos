@@ -1,0 +1,11 @@
+math.cos;math;mathematik;mathe;cosinus;lua
+
+math.cos
+Liefert den Cosinus von x (in Radiant).
+
+ number = math.cos(number)
+
+Beispiel:
+a = 1
+b = math.cos(a)
+

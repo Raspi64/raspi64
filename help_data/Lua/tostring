@@ -1,0 +1,14 @@
+tostring;string;wandelt;convert;lua
+
+Tostring
+Diese Funktion wandelt einen Wert in einen String um.
+
+tostring(Wert)
+
+Beispiel:
+tag_1=3
+tag_2=1
+gesamt= tag_1 + tag_2
+Gesamt_string = tostring(gesamt)
+print(“Es dauerte so viele Tage:  .. gesamt_string)
+

@@ -1,0 +1,7 @@
+coroutine.running;coroutine;running;laufend;läuft;laeuft;return;lua
+
+coroutine.running
+Liefert die laufende Coroutine oder nil, wenn sie vom Haupt-Thread aufgerufen wird.
+
+Boolean = coroutine.running ()
+

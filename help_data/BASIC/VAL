@@ -1,0 +1,12 @@
+val;string to number;number;string;umwandeln;convert;basic
+
+VAL:
+
+Wandelt einen String in eine Zahl um. 
+
+	VAL(String_1)
+	Return Integer
+
+Beispiel:
+	
+	PRINT VAL("-1.5")

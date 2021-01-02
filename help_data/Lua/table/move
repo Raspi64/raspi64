@@ -1,0 +1,22 @@
+table.move;table;move;hinzufügen;einfügen;hinzufuegen;einfuegen;tabelle;lua
+
+table.move
+Verschiebt die Tabelle a1 in die Tabelle a2. Wobei der Standard für a2 = a1 ist.
+a1    = Die Tabelle aus der Elemente verschoben werden.
+f    = Integer, Startindex in a1
+e    = Integer, Endindex in a1
+t    = Integer, Startindex in a2
+a2    = Zieltabelle
+
+table.move (a1, f, e, t ,a2)
+
+Beispiel:
+table1 = {}
+table2 = {}
+table.insert(table1,2)
+table.insert(table1,3)
+table.insert(table1,4)
+table.move(table1,1,2,1,table2)
+
+
+

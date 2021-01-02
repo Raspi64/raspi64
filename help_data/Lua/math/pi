@@ -1,0 +1,10 @@
+math.pi;pi;3.14;math;mathematik;mathe;lua
+
+math.pi
+Der Wert von Pi.
+
+Number = math.pi()
+
+Beispiel:
+a= math.pi()
+

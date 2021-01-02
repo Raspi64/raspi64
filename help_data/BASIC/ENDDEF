@@ -1,0 +1,15 @@
+enddef;function;funktion;beenden;stoppen;basic
+
+ENDDEF:
+
+ENDEF beendet eine vom Programmierer definierte Funktion.
+
+
+Beispiel:
+
+    CLASS foo
+        VAR a = 1
+        DEF func(b)
+            RETURN a+b
+        ENDDEF
+    ENDCLASS

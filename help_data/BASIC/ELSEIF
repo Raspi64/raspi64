@@ -1,0 +1,21 @@
+elseif;else;if;abfragen;basic
+
+ELSEIF:
+
+ELSEIF wird zum Prüfen einer weiteren Bedingung verwendet. Folgt nach einer if-Anweisung eine if-Anweisung, die nur geprüft werden soll, falls die erste false ist wird ELSEIF verwendet.
+
+    IF Bedingung THEN Anweisung ausführen ELSEIF Bedingung THEN Anweisung ausführen
+    IF Bedingung THEN Anweisung ausführen ELSEIF Bedingung THEN Anweisung ausführen ELSE Anweiseung ausführen
+
+Beispiel:
+
+    input n
+    if n = 1 then
+        print "One";
+    elseif n = 2 then
+        print "Two";
+    elseif n = 3 then
+        print "Three";
+    else
+        print "More than that";
+    endif

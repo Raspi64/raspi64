@@ -1,0 +1,12 @@
+ceil;aufrunden;runden;int;integer;math;mathematik;basic
+
+CEIL:
+
+Aufrundungsfunktion
+
+	CIEL(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = CIEL(4.3)
+	PRINT I

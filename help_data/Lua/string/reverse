@@ -1,0 +1,11 @@
+string.reverse;reverse;umdrehen;umgekehrt;string;lua
+
+string.reverse
+Liefert eine Zeichenkette, welche die Zeichenkette s umgekehrt darstellt.
+
+String = string.reverse(String)
+
+Beispiel:
+a = “Hallo Welt”
+b = string.reverse(a)
+

@@ -1,0 +1,13 @@
+type;dataytpe;datentyp;basic
+
+TYPE:
+
+Ein mit TYPE typisierter Wert repräsentiert den Typen eines Wertes.
+
+    TYPE(Variable)
+    Return Type
+
+Beispiel:
+    
+    I = 5
+    PRINT TYPE(I)

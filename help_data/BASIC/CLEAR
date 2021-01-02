@@ -1,0 +1,13 @@
+list;liste;clear;remove;löschen;loeschen;basic
+
+CLEAR:
+
+Löscht den Inhalt der ganzen Liste.
+
+    REMOVE(List)
+
+Beispiel:
+    
+    I = LIST(12,13,14,15)
+    REMOVE(I)
+

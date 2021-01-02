@@ -1,0 +1,9 @@
+dim;array;deklarieren;basic
+
+DIM:
+
+Ein Array muss durch die DIM-Anweisung deklariert werden, bevor es verwendet werden kann.
+
+Beispiel:
+    DIM NUMS(10)
+    DIM STRS$(2, 5)

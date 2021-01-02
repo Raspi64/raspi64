@@ -1,0 +1,12 @@
+tonumber;convert;number;string;base;basis;math;lua
+
+Tonumber
+Diese Funktion versucht den eingegebenen Wert in eine Zahl zu konvertieren. Wenn dieser Wert bereits eine Zahl oder ein zu einer Zahl konvertierbarer String ist, liefert diese Funktion den entsprechenden Wert als Zahl zurück. Andernfalls wird der Wert “fail” zurückgegeben. Ein optionales Argument gibt die anzunehmende Basis der Zahl an. Die Basis kann eine Ganzzahl von 2 bis inkl. 36 sein. Bei Basen über 10, steht der Buchstabe 'A' (sowohl in Groß- als auch Kleinschreibung) für 10, 'B' für 11 usw. bis 'Z' für 35. Bei der Basis 10 (Standard) können die Zahlen einen Dezimalteil und einen optionalen Exponentialteil haben. Wenn der String keine gültigen Zahl in der angegeben Basis hat wird “fail” zurückgegeben.
+
+ Number =  tonumber(String,basis)
+
+Beispiel:
+a=”25”
+b = 5
+c = b + tonumber(a)
+

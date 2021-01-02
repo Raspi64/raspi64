@@ -1,0 +1,12 @@
+xpcall;pcall;geschützter modus;secure mode;secure;geschützt;geschuetzt;geschuetzter modus;lua;argumente;function;argument;parameter;funktion;message handler;message;nachricht
+
+
+Xpcall
+Diese Funktion ist ähnlich wie die pcall-Funktion, aber es kann ein neuer message handler (msgh) gesetzt werden.
+
+xpcall(funktion,msgh,arg1,...) 
+
+Beispiel:
+xpcall(print(“hello world”))
+
+

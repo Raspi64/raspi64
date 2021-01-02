@@ -1,0 +1,12 @@
+math.fmod;fmod;rest;division;bruchrechnung;math;mathematik;mathe;lua
+
+math.fmod
+Liefert den Rest der Division x durch y, welche den Quotienten auf 0 rundet.
+
+Number = math.fmod(number, number)
+
+Beispiel:
+a = 4
+b = 3 
+c = math.fmod(a,b)
+

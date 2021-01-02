@@ -1,0 +1,14 @@
+endif;if;abfrage;beenden;stoppen;basic
+
+ENDIF:
+
+ENDIF beendet eine if-Anweisung.
+
+Beispiel:
+    if n = 1 then
+        print "one";
+    elsif n = 2 then
+        print "two";
+    else
+        print "more than that";
+    endif

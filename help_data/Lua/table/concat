@@ -1,0 +1,14 @@
+table.concat;concat;table;verbinden;teilen;tabelle;lua
+
+table.concat
+Bei der Übergabe eines Feldes, dessen Elemente nur aus Zeichenketten oder Zahlen bestehen, wird table[i]..sep..table[i+1] ··· sep..table[j] zurückgegeben. Der Standardwert für sep ist die leere Zeichenkette, der Standard für i ist 1 und der Standard für j ist die Länge der Tabelle. Falls i größer als j ist, wird die leere Zeichenkette zurückgeliefert.
+
+String = table.concat(table,sep,i,j)
+
+t = {}
+t[1]=”Hallo”
+t[2]=”Welt”
+a = table.concat(t)
+print(a) -- print HalloWelt
+
+

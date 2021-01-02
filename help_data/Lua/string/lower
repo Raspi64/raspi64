@@ -1,0 +1,11 @@
+string.lower;lower;case;kleiner;zeichen;string;lua
+
+string.lower
+Erhält eine Zeichenkette und liefert eine Kopie dieser Zeichenkette, wobei alle Großbuchstaben zu Kleinbuchstaben geändert werden. Alle anderen Zeichen bleiben unverändert. Die Definition eines Großbuchstabens hängt von der aktuellen Sprache ab.
+
+String = string.lower(String)
+
+Beispiel:
+a = “HALLO WELT”
+b = string.lower(a)
+

@@ -1,0 +1,11 @@
+error;lua;fehler;exception
+
+Error
+Eine Funktion die einen Error wirft. Der Grund des Errors kann mit einer Nachricht, in Form eines Strings, mitgegeben werden. Der Level-Parameter gibt an, an welcher Stelle der Error geworfen wird. Bei Level 1 wird der Error an der Stelle angezeigt, an der die Funktion aufgerufen wurde. Bei Level 2 wird der Error an der Stelle der Methode die ihn geworfen hat angezeigt usw.
+
+error(message,level)
+
+Beispiel:
+error(“Diese Position darf nicht erreicht werden”,1)
+
+

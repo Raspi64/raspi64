@@ -1,0 +1,13 @@
+math.pow;pow;potenz;math;mathematik;mathe;lua
+
+math.pow
+Liefert xy. (Dieser Wert kann ebenso durch den Ausdruck x^y berechnet werden.)
+
+Number = math.pow(number,number)
+
+Beispiel:
+a=2
+b=6
+c= math.pow(6,2)
+
+

@@ -2,11 +2,12 @@
 // Created by simon on 12/1/20.
 //
 
-#include <iostream>
+#include <unistd.h>
+#include <string>
 #include "Plugin.hpp"
 #include "LuaPlugin.hpp"
 
-LuaPlugin::LuaPlugin(draw_funct_t draw_function_value, clear_funct_t clear_function_value, print_funct_t print_function_value) : Plugin(draw_function_value, clear_function_value, print_function_value) {
+LuaPlugin::LuaPlugin() : Plugin() {
     L = luaL_newstate();
 
     load_libraries();
@@ -15,6 +16,8 @@ LuaPlugin::LuaPlugin(draw_funct_t draw_function_value, clear_funct_t clear_funct
     lua_register(L, "print", lua_print);
     lua_register(L, "draw", lua_draw);
     lua_register(L, "clear", lua_clear);
+    lua_register(L, "sleep", lua_sleep);
+    lua_register(L, "register_key_listeners", lua_register_key_listeners);
 
     // overwrite unwanted functions
     lua_register(L, "collectgarbage", lua_function_not_allowed);
@@ -22,12 +25,6 @@ LuaPlugin::LuaPlugin(draw_funct_t draw_function_value, clear_funct_t clear_funct
     lua_register(L, "load", lua_function_not_allowed);
     lua_register(L, "loadfile", lua_function_not_allowed);
     lua_register(L, "require", lua_function_not_allowed);
-//        replace_function_in_table("os", "execute", lua_function_not_allowed); // needed in demo
-    replace_function_in_table("os", "remove", lua_function_not_allowed);
-    replace_function_in_table("os", "rename", lua_function_not_allowed);
-    replace_function_in_table("os", "setlocale", lua_function_not_allowed);
-    replace_function_in_table("os", "tmpname", lua_function_not_allowed);
-    replace_function_in_table("os", "exit", lua_function_not_allowed);
     replace_function_in_table("io", "read", lua_function_not_allowed);
     replace_function_in_table("io", "write", lua_function_not_allowed);
 }
@@ -40,7 +37,8 @@ bool LuaPlugin::load_script(const std::string &lua_script) {
     int load_stat = luaL_loadbuffer(L, lua_script.c_str(), lua_script.length(), lua_script.c_str());
 
     if (load_stat != LUA_OK) {
-        Plugin::last_error_buffer = lua_tostring(L, -1);
+        std::string message = std::string(lua_tostring(L, -1));
+        parse_error_message(message);
     }
     return load_stat == LUA_OK;
 }
@@ -58,6 +56,50 @@ bool LuaPlugin::exec_script() {
     lua_remove(L, hpos);
 
     return exec_stat == LUA_OK;
+}
+
+void LuaPlugin::on_key_press(const std::string &key) {
+//    printf("press: %s\n", key.c_str());
+    int type = lua_getglobal(L, "reg_key_press_listener"); // function to be called
+    if (type == LUA_TNUMBER) {
+        lua_Number pointer = lua_tonumber(L, lua_gettop(L));
+        int func_type = lua_rawgeti(L, LUA_REGISTRYINDEX, pointer);
+        if (func_type == LUA_TFUNCTION) {
+            lua_pushstring(L, key.c_str()); // 1st argument
+            lua_call(L, 1, 0);     // call 'on_key_press' with 1 arguments and 0 results
+        } else {
+            lua_pop(L, 1);
+        }
+    } else {
+        lua_pop(L, 1);
+    }
+    lua_pop(L, 1);
+}
+
+void LuaPlugin::on_key_release(const std::string &key) {
+//    printf("release: %s\n", key.c_str());
+    int type = lua_getglobal(L, "reg_key_release_listener"); // function to be called
+    if (type == LUA_TNUMBER) {
+        lua_Number pointer = lua_tonumber(L, lua_gettop(L));
+        int func_type = lua_rawgeti(L, LUA_REGISTRYINDEX, pointer);
+        if (func_type == LUA_TFUNCTION) {
+            lua_pushstring(L, key.c_str()); // 1st argument
+            lua_call(L, 1, 0);     // call 'on_key_press' with 1 arguments and 0 results
+        } else {
+            lua_pop(L, 1);
+        }
+    } else {
+        lua_pop(L, 1);
+    }
+    lua_pop(L, 1);
+}
+
+std::string LuaPlugin::get_extension() {
+    return ".lua";
+}
+
+std::string LuaPlugin::get_help_folder_name() {
+    return "Lua";
 }
 
 void LuaPlugin::load_libraries() {
@@ -100,6 +142,7 @@ int LuaPlugin::lua_print(lua_State *state) {
     int top = lua_gettop(state);
     for (int i = 1; i <= top; i++) {  /* repeat for each level */
         int t = lua_type(state, i);
+        double number;
 
         switch (t) {
             case LUA_TSTRING:  /* strings */
@@ -111,7 +154,13 @@ int LuaPlugin::lua_print(lua_State *state) {
                 break;
 
             case LUA_TNUMBER:  /* numbers */
-                return_string += lua_tonumber(state, i);
+                number = lua_tonumber(state, i);
+                if ((double) ((int) number) == number) { // if is integer
+                    return_string += std::to_string((int) number);
+                } else {
+                    return_string += std::to_string(number);
+                    return_string.erase(return_string.find_last_not_of('0') + 1, std::string::npos);
+                }
                 break;
 
             default:  /* other values */
@@ -125,7 +174,7 @@ int LuaPlugin::lua_print(lua_State *state) {
         }
     }
 
-    Plugin::print_function(return_string);
+    Plugin::print(return_string);
 
     return 0;
 }
@@ -147,7 +196,7 @@ int LuaPlugin::lua_draw(lua_State *state) {
     int alpha = lua_tointeger(state, 6);
     int size = lua_tointeger(state, 7);
 
-    Plugin::draw_function(x, y, red, green, blue, alpha, size);
+    Plugin::draw(x, y, red, green, blue, alpha, size);
 
     return 0;
 }
@@ -157,7 +206,49 @@ int LuaPlugin::lua_clear(lua_State *state) {
         return luaL_error(state, "expecting no parameters");
     }
 
-    Plugin::clear_function();
+    Plugin::clear();
+
+    return 0;
+}
+
+int LuaPlugin::lua_sleep(lua_State *state) {
+    if (lua_gettop(state) != 1) {
+        return luaL_error(state, "expecting parameters: time in seconds");
+    }
+    if (!lua_isnumber(state, 1)) {
+        return luaL_error(state, "expecting a number of seconds as parameter");
+    }
+    lua_Number time = lua_tonumber(state, 1);
+    if (time < 0) {
+        return luaL_error(state, "can't sleep for a negative amount of time");
+    }
+    double utime = time * 1000000;
+
+    usleep((unsigned int) utime);
+
+    return 0;
+}
+
+int LuaPlugin::lua_register_key_listeners(lua_State *state) {
+    if (lua_gettop(state) != 2) {
+        return luaL_error(state, "expecting parameters: key_press_listener,key_release_listener");
+    }
+    if (!lua_isfunction(state, 1)) {
+        return luaL_error(state, "expecting a function as parameter");
+    }
+    if (!lua_isfunction(state, 2)) {
+        return luaL_error(state, "expecting a function as parameter");
+    }
+
+    int key_release_listener = luaL_ref(state, LUA_REGISTRYINDEX);
+    int key_press_listener = luaL_ref(state, LUA_REGISTRYINDEX);
+
+    lua_pushinteger(state, key_press_listener);
+    lua_setglobal(state, "reg_key_press_listener");
+    lua_pushinteger(state, key_release_listener);
+    lua_setglobal(state, "reg_key_release_listener");
+
+//    printf("registered: %d %d %d!\n", key_press_listener, key_release_listener, lua_gettop(state));
 
     return 0;
 }
@@ -165,10 +256,13 @@ int LuaPlugin::lua_clear(lua_State *state) {
 int LuaPlugin::lua_error_handler(lua_State *L) {
     std::string error_message = std::string(lua_tostring(L, -1));
     lua_remove(L, -1);
+    parse_error_message(error_message);
+    return 0;
+}
+
+void LuaPlugin::parse_error_message(std::string &error_message) {
     unsigned long start = error_message.find(':') + 1;
     unsigned long end = error_message.find(':', start);
     std::string str = error_message.substr(start, end - start);
-    Plugin::last_error_buffer = error_message;
-    Plugin::last_error_line = stoi(str);
-    return 0;
+    on_error(stoi(str), error_message);
 }

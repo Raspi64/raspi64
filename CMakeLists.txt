@@ -2,7 +2,9 @@ cmake_minimum_required(VERSION 3.17)
 project(imgui_setup_demo)
 project(imgui_setup)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../)
+
+set(CMAKE_CXX_STANDARD 17)
 
 include_directories(src)
 include_directories(src/gui)
@@ -21,7 +23,7 @@ include_directories(lib/imgui/misc/cpp)
 
 include_directories(lib/ImGuiColorTextEdit)
 
-include_directories(lib/lua-5.4/include)
+include_directories(lib/lua-5.4)
 
 include_directories(lib/my_basic)
 
@@ -88,6 +90,43 @@ add_executable(
         src/plugins/lua/LuaPlugin.cpp
         src/plugins/basic/BasicPlugin.cpp
 
+        # lua library files
+        lib/lua-5.4/lapi.c
+        lib/lua-5.4/lcode.c
+        lib/lua-5.4/lctype.c
+        lib/lua-5.4/ldebug.c
+        lib/lua-5.4/ldo.c
+        lib/lua-5.4/ldump.c
+        lib/lua-5.4/lfunc.c
+        lib/lua-5.4/lgc.c
+        lib/lua-5.4/llex.c
+        lib/lua-5.4/lmem.c
+        lib/lua-5.4/lobject.c
+        lib/lua-5.4/lopcodes.c
+        lib/lua-5.4/lparser.c
+        lib/lua-5.4/lstate.c
+        lib/lua-5.4/lstring.c
+        lib/lua-5.4/ltable.c
+        lib/lua-5.4/ltm.c
+        lib/lua-5.4/lundump.c
+        lib/lua-5.4/lvm.c
+        lib/lua-5.4/lzio.c
+        lib/lua-5.4/lauxlib.c
+        lib/lua-5.4/lbaselib.c
+        lib/lua-5.4/lcorolib.c
+        lib/lua-5.4/ldblib.c
+        lib/lua-5.4/liolib.c
+        lib/lua-5.4/lmathlib.c
+        lib/lua-5.4/loadlib.c
+        lib/lua-5.4/loslib.c
+        lib/lua-5.4/lstrlib.c
+        lib/lua-5.4/ltablib.c
+        lib/lua-5.4/lutf8lib.c
+        lib/lua-5.4/linit.c
+
+        # help system files
+        src/HelpSystem.cpp
+
         # my_basic library files
         lib/my_basic/my_basic.c
 
@@ -102,7 +141,7 @@ add_executable(
         lib/imgui/backends/imgui_impl_opengl2.cpp
         lib/imgui/backends/imgui_impl_sdl.cpp
         lib/imgui/misc/cpp/imgui_stdlib.cpp
-        )
+)
 
 # Link pthread
 target_link_libraries(imgui_setup "-lpthread")
@@ -122,16 +161,12 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     target_link_libraries(imgui_setup "-L/usr/local/lib -L/opt/local/lib")
     target_link_libraries(imgui_setup_demo "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo")
     target_link_libraries(imgui_setup_demo "-L/usr/local/lib -L/opt/local/lib")
-endif()
+endif ()
 
-# Link Lua 5.4
-add_library(lualib SHARED IMPORTED)
-if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    set_property(TARGET lualib PROPERTY IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/lib/lua-5.4/liblua54.so")
-endif()
-if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    set_property(TARGET lualib PROPERTY IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/lib/lua-5.4/liblua54_darwin.a")
-endif()
-target_link_libraries(imgui_setup "-ldl" lualib)
+# Link Filesystem (gcc 8 an below)
+# not needed on macos
+if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    target_link_libraries(imgui_setup -lstdc++fs)
+endif ()
 
 add_compile_options("-Wall -Wextra -pedantic -Werror")

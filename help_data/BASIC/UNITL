@@ -1,0 +1,13 @@
+until;do while;do_while;while;do;schleife;loop;basic
+
+UNTIL:
+
+Until beendet eine DO-While-Schleife mit einer Bedingung.
+
+Beispiel:
+    a=1
+    do
+        print a;
+        a=a+1
+    
+    until a > 10

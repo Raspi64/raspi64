@@ -1,0 +1,15 @@
+def;function;funktion;ausführen;ausfuehren;basic
+
+DEF:
+
+DEF führt eine vom Programmierer definierte Funktion ein.
+
+
+Beispiel:
+
+    CLASS foo
+        VAR a = 1
+        DEF func(b)
+            RETURN a+b
+        ENDDEF
+    ENDCLASS

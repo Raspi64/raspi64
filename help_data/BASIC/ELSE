@@ -1,0 +1,18 @@
+else;if;abfrage;basic
+
+ELSE:
+
+ELSE wird in einer if-Anweisung verwendet, um definieren zu können was passieren soll, wenn keine der Bedingungen eingtroffen ist.
+
+Beispiel:
+
+    input n
+    if n = 1 then
+        print "One";
+    elseif n = 2 then
+        print "Two";
+    elseif n = 3 then
+        print "Three";
+    else
+        print "More than that";
+    endif

@@ -1,0 +1,11 @@
+math.asin;math;mathematik;mathe;arsin;asin;arcis sinus;lua
+math.asin
+Liefert den Arcus Sinus von x (in Radiant).
+
+Number =  math.asin(number)
+
+Beispiel:
+a = 45
+b = math.asin(a)
+
+

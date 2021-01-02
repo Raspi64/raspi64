@@ -255,8 +255,14 @@ void ConsoleWindow::render() {
         // (e.g. make Items[] an array of structure, store color/type etc.)
         ImVec4 color;
         bool has_color = false;
-        if (strstr(item, "[error]"))          { color = ImVec4(1.0f, 0.4f, 0.4f, 1.0f); has_color = true; }
-        else if (strncmp(item, "# ", 2) == 0) { color = ImVec4(1.0f, 0.8f, 0.6f, 1.0f); has_color = true; }
+        if (strstr(item, "[error]")) {
+            color = ImVec4(1.0f, 0.4f, 0.4f, 1.0f);
+            has_color = true;
+        }
+        else if (strncmp(item, "# ", 2) == 0) {
+            color = ImVec4(1.0f, 0.8f, 0.6f, 1.0f);
+            has_color = true;
+        }
         if (has_color)
             ImGui::PushStyleColor(ImGuiCol_Text, color);
         ImGui::TextUnformatted(item);

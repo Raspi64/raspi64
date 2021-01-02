@@ -1,0 +1,14 @@
+math.floor;floor;runden;math;mathematik;mathe;lua
+
+math.floor
+Liefert die größte ganze Zahl kleiner oder gleich x. Rundet immer ab.
+
+Number = math.floor(number)
+
+Beispiel:
+a = 2.7
+b = math.floor(a)
+
+
+
+

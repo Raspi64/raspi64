@@ -1,0 +1,11 @@
+rawget;index;table;tabelle;ausgabe;output;aus;out;index;position;lua
+
+Rawget
+Gibt den Inhalt einer Tabelle an dem angegebenen Index zurück.
+
+rawget(table,index)
+
+Beispiel:
+t = {}
+a = rawget(t,25)
+

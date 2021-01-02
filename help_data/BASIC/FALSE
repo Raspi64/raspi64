@@ -1,0 +1,10 @@
+false;boolean;true;basic
+
+FALSE:
+
+Repräsentiert den boolean Wert false.
+
+Beispiel
+
+    A = FALSE
+    IF A = FALSE THEN PRINT "A = false"

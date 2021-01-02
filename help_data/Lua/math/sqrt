@@ -1,0 +1,11 @@
+math.sqrt;sqrt;quadratwurzel;wurzel;quadrat;math;mathematik;mathe;lua
+
+math.sqrt
+Liefert die Quadratwurzel von x. (Dieser Wert kann ebenso durch den Ausdruck x^0.5 berechnet werden.)
+
+Number = math.sqrt(number)
+
+Beispiel:
+a = 20
+b = math.sqrt(a)
+ 

@@ -1,0 +1,14 @@
+to_array;to array;array;konvertieren;convert;basic
+
+TO_ARRAY:
+
+Wandelt die Liste in ein Array um.
+
+    TO_ARRAY(List)
+    Return Array
+
+Beispiel:
+    
+    I = LIST(12,13,14,15)
+    B = TO_ARRAY(I)
+    PRINT B(0)

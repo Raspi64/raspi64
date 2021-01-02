@@ -1,0 +1,12 @@
+string.sub;sub;teil;zeichen;zeichenkette;string;lua
+
+string.sub
+Liefert eine Teilzeichenkette von s, welche sich von i bis j erstreckt; i und j können negativ sein. Falls j nicht angegeben wird, wird es als -1 angenommen (was das Gleiche wie die Länge der Zeichenkette ist). Im Speziellen liefert der Aufruf string.sub(s,1,j) ein Präfix von s der Länge j und string.sub(s,-i) liefert ein Suffix von s mit der Länge i.
+
+String = string.sub(String, Number, Number)
+
+Beispiel:
+a = “Hallo Welt”
+b = sting.sub(a,2)
+c = string.sub(a,1,5)
+

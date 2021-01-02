@@ -1,0 +1,11 @@
+lambda;function;funktion;basic
+
+LAMBDA:
+
+lambda ist eine Funktionsdefinition die nicht an einen Identifier gebunden ist.
+
+Beispiel:
+    f = lambda (x, y) (return x * x + y * y)
+    print f(3, 4);
+
+In f wird hier z.B. die Summe aus den beiden Quadraten von 3 und 4 berechnet.

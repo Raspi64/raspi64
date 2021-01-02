@@ -4,28 +4,20 @@
 
 #include <my_basic.h>
 #include <iostream>
+#include <cstdarg>
 #include "BasicPlugin.hpp"
 
 
-BasicPlugin::BasicPlugin(draw_funct_t draw_function_value, clear_funct_t clear_function_value, print_funct_t print_function_value) : Plugin(draw_function_value, clear_function_value, print_function_value) {
+BasicPlugin::BasicPlugin() : Plugin() {
     mb_init();
     mb_open(&bas);
     mb_set_printer(bas, BasicPlugin::basic_print);
 
-    mb_register_func(bas, "BASICDRAW", basic_draw);
-    mb_register_func(bas, "BASICCLEAR", basic_clear);
-
-
-
+    mb_register_func(bas, "DRAW", basic_draw);
+    mb_register_func(bas, "CLEAR", basic_clear);
     mb_register_func(bas, "BASICMAXIMUM", basic_maximum);
     mb_register_func(bas, "OPENTERMINAL", basic_openTerminal);
     mb_register_func(bas, "BASICECHO", basic_echo);
-
-   // lua_register(L, "print", lua_print);
-    //lua_register(L, "draw", lua_draw);
-   // lua_register(L, "clear", lua_clear);
-
-
 }
 
 BasicPlugin::~BasicPlugin() {
@@ -48,22 +40,35 @@ bool BasicPlugin::exec_script() {
     if (exec_stat != MB_FUNC_OK) {
         update_error_message();
     }
+    mb_reset(&bas,false);
     return exec_stat == MB_FUNC_OK;
+}
+
+void BasicPlugin::on_key_press(const std::string &) {
+
+}
+
+void BasicPlugin::on_key_release(const std::string &) {
+
+}
+
+std::string BasicPlugin::get_extension() {
+    return ".bas";
+}
+
+std::string BasicPlugin::get_help_folder_name() {
+    return "BASIC";
 }
 
 int BasicPlugin::basic_print(const char *format, ...) {
     va_list args;
     va_start(args, format);
     char *string = va_arg(args, char*);
-    if (Plugin::print_function != nullptr) {
-        char *output;
-        asprintf(&output, format, string);
-        std::string output_string(output);
-        free(output);
-        Plugin::print_function(output_string);
-    } else {
-        printf(format, string);
-    }
+    char *output;
+    asprintf(&output, format, string);
+    std::string output_string(output);
+    free(output);
+    Plugin::print(output_string);
     va_end(args);
     return 0;
 }
@@ -73,8 +78,7 @@ void BasicPlugin::update_error_message() {
     int pos;
     unsigned short row, col;
     mb_error_e error = mb_get_last_error(bas, &file, &pos, &row, &col);
-    Plugin::last_error_buffer = std::string(mb_get_error_desc(error));
-    Plugin::last_error_line = row;
+    on_error(row, std::string(mb_get_error_desc(error)));
 }
 
 int BasicPlugin::basic_draw(mb_interpreter_t *bas, void **ptr) {
@@ -99,7 +103,7 @@ int BasicPlugin::basic_draw(mb_interpreter_t *bas, void **ptr) {
     mb_check(mb_pop_int(bas, ptr, &size));
     mb_check(mb_attempt_close_bracket(bas, ptr));
 
-    Plugin::draw_function(x, y, red, green, blue, alpha, size);
+    Plugin::draw(x, y, red, green, blue, alpha, size);
 
     return result;
 }

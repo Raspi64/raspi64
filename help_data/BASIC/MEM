@@ -1,0 +1,9 @@
+mem;memory;speicher;belegt;basic
+
+
+MEM:
+
+MEM wird verwendet, um festzustellen, wie viele Bytes im Speicher von MY-BASIC vergeben sind.
+
+Beispiel:
+    Print mem

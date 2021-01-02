@@ -1,0 +1,13 @@
+os.difftime;os;difftime;differenz;difference;unterschied;zeit;time;zeitunterschied;lua
+
+os.difftime
+Liefert die Anzahl in Sekunden von t1 zu t2. Unter POSIX, Windows und einigen anderen Systeme entspricht dieser Wert exakt t2-t1.
+
+Number = os.difftime(t2,t1)
+
+Beispiel:
+a = os.time()
+b = os.time()
+c = os.difftime(b,a)
+
+

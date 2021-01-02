@@ -1,0 +1,11 @@
+math.acos;math;mathematik;mathe;acos;cosinus;radiant;arkus;lua
+math.acos
+Liefert den Arkuskosinus von x (in Radiant).
+
+Number = math.acos(number)
+
+Beispiel:
+b = 45
+a = math.acos(b) 
+
+

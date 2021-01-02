@@ -1,0 +1,21 @@
+then;if;else;abfrage;basic
+
+THEN:
+
+THEN wird bei der if-Anweisung verwendet, um zu kennzeichnen, was geschehen soll wenn die Bedingung erfüllt ist.
+
+    IF Bedingung THEN Anweisung ausführen
+    IF Bedingung THEN Anweisung ausführen ELSE Anweiseung ausführen
+
+Beispiel:
+
+    input n
+    if n = 1 then
+        print "One";
+    elseif n = 2 then
+        print "Two";
+    elseif n = 3 then
+        print "Three";
+    else
+        print "More than that";
+    endif

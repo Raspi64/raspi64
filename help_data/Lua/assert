@@ -1,0 +1,15 @@
+assert;prüfen;pruefen;testen;test;lua
+
+Assert
+
+Assert wirft einen Error wenn der Wert des Argumentes “v” falsch ist (nil oder false). Wenn dies nicht der Fall ist werden alle Argumente zurückgegeben. Im Falle eines Errors kann eine Nachricht die angezeigt werden soll mitgegeben werden, muss aber nicht. Die Standard-Nachricht ist “assertion failed”.
+
+
+assert(Boolean, Nachricht)
+
+Beispiel:
+a = 1
+b = 2
+assert(a == b,”Dies ist ein Error”)
+
+

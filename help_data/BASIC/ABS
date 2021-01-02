@@ -1,0 +1,12 @@
+absolut;abs;int;integer;math;mathematik;basic;positiv
+
+ABS:
+
+Gibt den Absolutwert einer Zahl zurück.
+
+	ABS(Integer_1)
+	Return Integer
+
+Beispiel:
+	I = ABS(50.1)
+	PRINT I

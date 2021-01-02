@@ -1,0 +1,10 @@
+print;ausgeben;lua
+
+Print
+Nimmt eine beliebige Anzahl an Argumenten entgegen und gibt diese unter Anwendung der tostring-Methode auf der Konsole aus.
+
+print(...)
+
+Beispiel:
+print(“Hello World”)
+

@@ -1,0 +1,13 @@
+math.modf;modf;teilen;bruchrechnung;rest;math;mathematik;mathe;lua
+
+math.modf
+Liefert zwei Zahlen: Den ganzzahligen und den gebrochenen Anteil von x.
+
+Number = math.modf(number)
+
+Beispiel:
+a = 2.345
+b,c = math.modf(a)
+pint(b) -- print 2
+print(c)  -- print 0.345
+

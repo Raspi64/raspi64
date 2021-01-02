@@ -1,0 +1,11 @@
+math.tointeger;convert;umwandeln;int;integer;math;mathematik;mathe;lua
+
+math.tointeger
+Wenn der Wert x zu einem Integer konvertiert werden kann, wird dieser Integer zurückgegeben, ansonsten wird "fail" zurückgegeben.
+
+Number = math.tointeger(String/char/...)
+
+Beispiel:
+a= “23”
+b= math.tointeger(a)
+

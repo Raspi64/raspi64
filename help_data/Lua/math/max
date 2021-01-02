@@ -1,0 +1,12 @@
+math.max;max;mustermann;größter;groesster;wert;maximaler;math;mathematik;mathe;maximum;lua
+
+math.max
+Liefert den größten Wert seiner Argumente.
+
+Number = math.max(number,···)
+
+Beispiel:
+a=2
+b=6
+c= math.max(6,2)
+

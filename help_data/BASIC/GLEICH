@@ -1,0 +1,13 @@
+gleich;equals;=;math;mathematik;basic
+
+GLEICH:
+
+Der gleich-Operator wird einmal zur Zuweisung verwendet und einmal zur Prüfung auf Gleichheit, zum Beispiel in einer IF-Anweisung.
+
+    Variable = Integer_1 
+    Variable = Variable
+
+Beispiel:
+    
+    I = 5                 REM Zuweisung
+    IF I = 5 THEN PRINT I        REM Vergleich

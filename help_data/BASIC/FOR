@@ -1,0 +1,10 @@
+for;loop;schleife;basic
+
+FOR:
+
+FOR führt das Schleifenkonstrukt ein. 
+
+Beispiel:
+    for i = 1 to 10 step 1
+        print i;
+    next i

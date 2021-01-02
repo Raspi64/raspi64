@@ -1,0 +1,11 @@
+coroutine.yield;coroutine;unterbrechen;pausieren;stoppen;return;resume;lua
+
+coroutine.yield
+Unterbricht die Ausführung der aufrufenden Coroutine. Alle Argumente, die "yield" übergeben werden, werden als separates Ergebnis an "resume" durchgereicht.
+
+coroutine.yield (···)
+
+Beispiel: 
+Siehe coroutine.resume
+
+

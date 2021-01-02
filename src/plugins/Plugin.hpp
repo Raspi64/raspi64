@@ -7,16 +7,11 @@
 
 
 #include <string>
-#include <types.hpp>
 
 class Plugin {
 public:
 
-    Plugin(
-            draw_funct_t draw_function_value,
-            clear_funct_t clear_function_value,
-            print_funct_t print_function_value
-    );
+    Plugin() = default;
 
     virtual ~Plugin() = default;
 
@@ -24,11 +19,21 @@ public:
 
     virtual bool exec_script() = 0;
 
-    static std::string last_error_buffer;
-    static int last_error_line;
-    static print_funct_t print_function;
-    static draw_funct_t draw_function;
-    static clear_funct_t clear_function;
+    virtual void on_key_press(const std::string &) = 0;
+
+    virtual void on_key_release(const std::string &) = 0;
+
+    virtual std::string get_extension() = 0;
+
+    virtual std::string get_help_folder_name() = 0;
+
+    static void print(const std::string &message);
+
+    static void draw(int x, int y, int red, int green, int blue, int alpha, int size);
+
+    static void clear();
+
+    static void on_error(int line, const std::string &message);
 };
 
 

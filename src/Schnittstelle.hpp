@@ -7,14 +7,14 @@
 
 
 #include <string>
-#include <plugins/Plugin.hpp>
-#include "types.hpp"
+#include <Gui.hpp>
+#include <Plugin.hpp>
 
 class Schnittstelle {
 
 public:
 
-    Schnittstelle(LANG lang, void (*print_function_value)(std::string), void (*draw_function_value)(int, int, int, int, int, int, int), void (*clear_function_value)(void));
+    static void init(Gui *, LANG);
 
     enum Status {
         NOT_STARTED, // No program has been executed so far
@@ -22,35 +22,54 @@ public:
         LOAD_ERROR, // The user-program could not be loaded
         RUNNING, // The user-program is currently running
         RUN_ERROR, // There was an error when running the user-program
+        KILLED, // The program was stopped in mid-execution
         COMPLETED_OK, // Program has exited successfully
     };
 
-    void set_language(LANG lang);
+    static void set_language(LANG lang);
 
-    void start_script(const std::string &script);
+    static bool start_script(const std::string &script);
 
-    void kill_current_task();
+    static void kill_current_task();
 
-    Status get_status();
+    static void save(const std::string &name, const std::string &text);
 
-    std::string get_status_text();
+    static std::string load(const std::string &name);
 
+    static bool handle_command(std::string command);
+
+    static void on_key_press(const SDL_Keysym keysym);
+    static void on_key_release(const SDL_Keysym keysym);
+
+    static Entry *get_common_help_root();
+
+    static Entry *get_language_help_root();
+
+    static std::vector<Entry *> search_entries(const std::string &searchword);
+
+    static void gui_draw(int x, int y, int red, int green, int blue, int alpha, int size);
+
+    static void gui_clear();
+
+    static void gui_print(const std::string& message);
+
+    static void on_error(int line, const std::string &message);
+
+    static Schnittstelle::Status status;
 private:
-    LANG current_language;
-    Plugin *interpreter;
-    print_funct_t print_function;
-    draw_funct_t draw_function;
-    clear_funct_t clear_function;
-    std::string status_message = std::string();
-    Schnittstelle::Status status = Schnittstelle::NOT_STARTED;
-    pthread_t exec_thread{};
-    bool is_running = false;
+    static Gui *gui;
+    static Plugin *interpreter;
+    static pthread_t exec_thread;
 
     static void *exec_script(void *params_void);
 
-    void replace_status(Status new_status, const std::string &message);
+    static Plugin* get_interpreter(LANG language);
 
-    void init_interpreter();
+    static Entry help_root_entry;
+
+    static void sort_subtrees(std::vector<Entry> *entries);
+
+    static std::string get_key_name(const SDL_Keysym &keysym);
 };
 
 

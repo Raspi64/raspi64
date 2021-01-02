@@ -1,0 +1,12 @@
+math.atan;math;mathematik;mathe;atan;arcus tangens;arcus;tangens;lua
+
+math.atan
+Liefert den Arkustangens von y/x (in Radiant), aber benutzt die Vorzeichen beider Parameter, um den korrekten Quadranten des Ergebnisses zu ermitteln. (Der Fall, dass x gleich 0 ist, wird ebenfalls korrekt behandelt.)
+
+Der Standard Wert für x is t1, also der Aufruf von math.atan(y) gibt den Arkustangens von y zurück.
+
+Number = math.atan(Number, Number)
+Beispiel:
+a = 45
+b = math.atan(a)
+

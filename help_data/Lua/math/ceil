@@ -1,0 +1,12 @@
+math.ceil;math;mathematik;mathe;runden;ceil;lua
+
+math.ceil
+Liefert die kleinste ganze Zahl größer oder gleich x.
+
+number =  math.ceil(number)
+
+Beispiel:
+a = 2.1
+B = math.ceil(a)
+print(a)  -- print 3
+

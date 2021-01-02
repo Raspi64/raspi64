@@ -1,0 +1,17 @@
+math.abs;math;abs;absolut;mathe;mathematik;lua
+
+math.abs
+Liefert den absoluten Betrag.
+
+Parameter:
+number = math.abs(number)
+
+math.abs(-3) == 3
+math.abs(4) == 4
+
+Beispiel:
+x = -5
+y = math.abs(x)
+
+
+
