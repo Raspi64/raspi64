@@ -13,21 +13,22 @@ local paddle_right_pos = paddle_left_pos
 local paddle_move_delta = 15
 
 local velocity = 10
-local min_v_y = 15
-local max_v_y = 40
+local min_v_y = 10
+local max_v_y = 30
 
 local ball_size = 20
 
-local ball_x = max_x/2-ball_size/2
-local ball_y = max_y/2-ball_size/2
+local ball_x = max_x / 2 - ball_size / 2
+local ball_y = max_y / 2 - ball_size / 2
 
 local ball_v_x = 10
 local ball_v_y = -15
 
+local difficulty = false
 
 function draw_box(x, y, h, w)
-	for a=x, x + w, 2 do
-		for b=y, y + h, 2 do
+	for a = x, x + w, 2 do
+		for b = y, y + h, 2 do
 			draw(a, b, 0, 0, 0, 255, 2)
 		end
 	end
@@ -70,17 +71,17 @@ function update()
 	end
 
 	-- apply ball velocity
-	ball_x = ball_x + ball_v_x
-	ball_y = ball_y + ball_v_y
+	ball_x = math.floor(ball_x + ball_v_x)
+	ball_y = math.floor(ball_y + ball_v_y)
 
 	-- 'AI' paddle move
 	local paddle_left_middle_y = paddle_left_pos + paddle_height / 2
 	local ball_middle_y = ball_y + ball_size / 2
 
-	ai_up = paddle_left_middle_y > ball_middle_y + ball_size / 2
-	ai_down = paddle_left_middle_y < ball_middle_y - ball_size / 2
+	ai_up = paddle_left_middle_y > ball_middle_y + ball_size / difficulty
+	ai_down = paddle_left_middle_y < ball_middle_y - ball_size / difficulty
 
-	-- move ai paddle
+	-- move AI paddle
 	if ai_up and paddle_left_pos >= min_y + paddle_move_delta then
 		paddle_left_pos = paddle_left_pos - paddle_move_delta
 	elseif ai_down and paddle_left_pos <= max_y - paddle_height then
@@ -112,10 +113,10 @@ function update()
 	-- right paddle collision
 	if ball_x + ball_size >= max_x - paddle_width then -- right edge
 		if ball_y < paddle_right_pos + paddle_height and -- bottom corner of paddle
-			ball_y + ball_size > paddle_right_pos then -- top corner of paddle
+				ball_y + ball_size > paddle_right_pos then -- top corner of paddle
 			-- paddle hits ball
 			ball_v_y = calculate_vertical_velocity(paddle_right_pos)
-			print("Vel:", ball_v_y)
+			-- print("Vel:", ball_v_y)
 			ball_v_x = -velocity
 			ball_x = max_x - paddle_width - ball_size
 		end
@@ -124,28 +125,39 @@ function update()
 	-- left paddle collision
 	if ball_x <= min_x + paddle_width then -- left edge
 		if ball_y < paddle_left_pos + paddle_height and -- bottom corner of paddle
-			ball_y + ball_size > paddle_left_pos then -- top corner of paddle
+				ball_y + ball_size > paddle_left_pos then -- top corner of paddle
 			-- paddle hits ball
 			ball_v_y = calculate_vertical_velocity(paddle_left_pos)
-			print("Vel:", ball_v_y)
+			-- print("Vel:", ball_v_y)
 			ball_v_x = velocity
 			ball_x = min_x + paddle_width
 		end
 	end
+
+	velocity = velocity + 0.005
+	-- print(velocity)
 end
 
 function render()
 	clear()
 	-- draw paddles
-	draw_box(min_x,                paddle_left_pos,  paddle_height, paddle_width)
+	draw_box(min_x, paddle_left_pos, paddle_height, paddle_width)
 	draw_box(max_x - paddle_width, paddle_right_pos, paddle_height, paddle_width)
 	-- draw ball
 	draw_box(ball_x, ball_y, ball_size, ball_size)
 	-- draw borders
-	draw(min_x, min_y, 255, 0, 0, 255, 2)
-	draw(min_x, max_y, 255, 0, 0, 255, 2)
-	draw(max_x, min_y, 255, 0, 0, 255, 2)
-	draw(max_x, max_y, 255, 0, 0, 255, 2)
+	for x=min_x,max_x do
+		draw(x, min_y, 255, 0, 0, 255, 1)
+		draw(x, max_y, 255, 0, 0, 255, 1)
+	end
+	for y=min_y,max_y do
+		draw(min_x, y, 255, 0, 0, 255, 1)
+		draw(max_x, y, 255, 0, 0, 255, 1)
+	end
+	draw(min_x, min_y, 255, 0, 0, 255, 10)
+	draw(min_x, max_y, 255, 0, 0, 255, 10)
+	draw(max_x, min_y, 255, 0, 0, 255, 10)
+	draw(max_x, max_y, 255, 0, 0, 255, 10)
 end
 
 function on_key_press(key)
@@ -166,6 +178,21 @@ function on_key_release(key)
 	end
 end
 
+
+while difficulty == false do
+	print("Schwierigkeitsstufe? [1,2,3]")
+
+	local input = io.read("l")
+	if input == "1" then
+		difficulty = 1
+	elseif input == "2" then
+		difficulty = 2
+	elseif input == "3" then
+		difficulty = 100
+	end
+end
+
+
 register_key_listeners(on_key_press, on_key_release)
 
 
@@ -173,9 +200,5 @@ while running do
 	-- main loop
 	update()
 	render()
-	sleep(0.1)
+	sleep(0.07)
 end
-
-
-
-

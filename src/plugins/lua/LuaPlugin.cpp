@@ -4,6 +4,7 @@
 
 #include <unistd.h>
 #include <string>
+#include <stdexcept>
 #include "Plugin.hpp"
 #include "LuaPlugin.hpp"
 
@@ -25,8 +26,8 @@ LuaPlugin::LuaPlugin() : Plugin() {
     lua_register(L, "load", lua_function_not_allowed);
     lua_register(L, "loadfile", lua_function_not_allowed);
     lua_register(L, "require", lua_function_not_allowed);
-    replace_function_in_table("io", "read", lua_function_not_allowed);
-    replace_function_in_table("io", "write", lua_function_not_allowed);
+    replace_function_in_table("io", "read", lua_io_read);
+    replace_function_in_table("io", "write", lua_io_write);
 }
 
 LuaPlugin::~LuaPlugin() {
@@ -134,6 +135,20 @@ void LuaPlugin::replace_function_in_table(const char *table, const char *field, 
 
 int LuaPlugin::lua_function_not_allowed(lua_State *state) {
     return luaL_error(state, "this function is not allowed");
+}
+
+int LuaPlugin::lua_io_read(lua_State *state) {
+    waiting_for_input = true;
+    while (!input_ready);
+    waiting_for_input = false;
+    lua_pushstring(state, input.c_str());
+    input_ready = false;
+    return 1;
+}
+
+int LuaPlugin::lua_io_write(lua_State *state) {
+    lua_print(state);
+    return 0;
 }
 
 int LuaPlugin::lua_print(lua_State *state) {
@@ -264,5 +279,9 @@ void LuaPlugin::parse_error_message(std::string &error_message) {
     unsigned long start = error_message.find(':') + 1;
     unsigned long end = error_message.find(':', start);
     std::string str = error_message.substr(start, end - start);
-    on_error(stoi(str), error_message);
+    printf("Error: '%s' '%s'\n", str.c_str(), error_message.c_str());
+    try {
+        int line = stoi(str);
+        on_error(line, error_message);
+    } catch (std::invalid_argument &argument) {}
 }

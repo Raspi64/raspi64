@@ -34,6 +34,10 @@ public:
     static void clear();
 
     static void on_error(int line, const std::string &message);
+
+    static bool waiting_for_input;
+    static std::string input;
+    static bool input_ready;
 };
 
 

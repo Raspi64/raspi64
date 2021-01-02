@@ -34,7 +34,7 @@ int main() {
     gui->on_keydown(Schnittstelle::on_key_press);
     gui->on_keyup(Schnittstelle::on_key_release);
 
-    const std::string &script = Schnittstelle::load("drawer");
+    const std::string &script = Schnittstelle::load("example_draw");
     gui->editor->set_text(script);
     Schnittstelle::start_script(script);
 

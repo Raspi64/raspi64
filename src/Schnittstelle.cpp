@@ -46,6 +46,18 @@ bool Schnittstelle::start_script(const std::string &script) {
 }
 
 bool Schnittstelle::handle_command(std::string command) {
+    if (status == RUNNING) {
+        if (command == "stop") {
+            Schnittstelle::kill_current_task();
+            gui->console->print("OK");
+            return true;
+        }
+        if (Plugin::waiting_for_input) {
+            Plugin::input = command;
+            Plugin::input_ready = true;
+            return true;
+        }
+    }
     if (command == "start" || command == "run") {
         if (Schnittstelle::start_script(gui->editor->get_text())) {
             gui->console->print("OK");
