@@ -9,13 +9,17 @@ MainMenuBar::MainMenuBar(LANG *currentLanguage) : current_language(currentLangua
 
 void MainMenuBar::render() {
     if (ImGui::BeginMainMenuBar()) {
-        ImGui::Text("HELP - Hilfe anzeigen ");
-        ImGui::Text("CRTL + C - Programm beenden ");
-        ImGui::Text("RUN - Programm starten ");
+        ImGui::Text("STOP - Programm beenden (Konsole) ");
+        ImGui::Text("START - Programm starten (Konsole) ");
+
+        ImGui::Text("                      ");
 
         ImGui::Text("Aktuelle Sprache:");
         ImGui::Text((*current_language) == LUA ? "Lua" : "Basic");
 
+        ImGui::Text("                      ");
+
+        ImGui::Text("[ F10 ] - Sprache wechseln   ");
         ImGui::Text("                 [ F12 ] Herunterfahren");
 
         ImGui::EndMainMenuBar();
