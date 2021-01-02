@@ -1,28 +1,28 @@
-local min_x = 0
-local min_y = 0
-local max_x = 480
-local max_y = 450
+local min_x = 50
+local min_y = 50
+local max_x = 400
+local max_y = 400
 
-local paddle_height = 100
-local paddle_width = 15
+local paddle_height = 80
+local paddle_width = 10
 
 local paddle_left_pos = (max_y - min_y) / 2 - paddle_height / 2
 local paddle_right_pos = paddle_left_pos
 
 
-local paddle_move_delta = 20
+local paddle_move_delta = 15
 
 local velocity = 10
 local min_v_y = 15
 local max_v_y = 40
 
-local ball_size = 30
+local ball_size = 20
 
 local ball_x = max_x/2-ball_size/2
 local ball_y = max_y/2-ball_size/2
 
 local ball_v_x = 10
-local ball_v_y = -20
+local ball_v_y = -15
 
 
 function draw_box(x, y, h, w)
@@ -41,8 +41,24 @@ local ai_down = false
 
 local running = true
 
-function calculate_vertical_velocity(paddle_middle, ball_middle)
-	return math.max(math.floor((ball_middle - paddle_middle) / (paddle_height / 2) * max_v_y), min_v_y)
+function calculate_vertical_velocity(paddle_pos)
+	local paddle_middle_y = paddle_pos + paddle_height / 2
+	local ball_middle_y = ball_y + ball_size / 2
+
+	-- print("Ball:", ball_middle_y)
+	-- print("Paddle:", paddle_middle_y)
+
+	local delta_y = ball_middle_y - paddle_middle_y + 0.0
+	-- print("delta_y:", delta_y)
+	local identity_delta_y = delta_y / (paddle_height / 2)
+	-- print("identity_delta_y:", identity_delta_y)
+	local new_delta_y = identity_delta_y * max_v_y
+	-- print("x:", x)
+	if new_delta_y == math.abs(new_delta_y) then
+		return math.min(math.max(new_delta_y, min_v_y), max_v_y)
+	else
+		return math.max(math.min(new_delta_y, -min_v_y), -max_v_y)
+	end
 end
 
 function update()
@@ -58,7 +74,6 @@ function update()
 	ball_y = ball_y + ball_v_y
 
 	-- 'AI' paddle move
-	local paddle_right_middle_y = paddle_right_pos + paddle_height / 2
 	local paddle_left_middle_y = paddle_left_pos + paddle_height / 2
 	local ball_middle_y = ball_y + ball_size / 2
 
@@ -73,12 +88,12 @@ function update()
 	end
 
 	-- left-right collision
-	if ball_x <= min_x then
+	if ball_x <= min_x - ball_size then
 		-- ball_v_x = velocity
 		-- ball_x = 0
 		print("Left lost!")
 		running = false
-	elseif ball_x + ball_size >= max_x then
+	elseif ball_x + ball_size >= max_x + ball_size then
 		-- ball_v_x = -velocity
 		-- ball_x = max_x - ball_size
 		print("Right lost!")
@@ -99,7 +114,8 @@ function update()
 		if ball_y < paddle_right_pos + paddle_height and -- bottom corner of paddle
 			ball_y + ball_size > paddle_right_pos then -- top corner of paddle
 			-- paddle hits ball
-			ball_v_y = calculate_vertical_velocity(paddle_right_middle_y, ball_middle_y)
+			ball_v_y = calculate_vertical_velocity(paddle_right_pos)
+			print("Vel:", ball_v_y)
 			ball_v_x = -velocity
 			ball_x = max_x - paddle_width - ball_size
 		end
@@ -107,10 +123,11 @@ function update()
 
 	-- left paddle collision
 	if ball_x <= min_x + paddle_width then -- left edge
-		if ball_y < min_x + paddle_left_pos + paddle_height and -- bottom corner of paddle
-			ball_y + ball_size > min_x + paddle_left_pos then -- top corner of paddle
+		if ball_y < paddle_left_pos + paddle_height and -- bottom corner of paddle
+			ball_y + ball_size > paddle_left_pos then -- top corner of paddle
 			-- paddle hits ball
-			ball_v_y = calculate_vertical_velocity(paddle_left_middle_y, ball_middle_y)
+			ball_v_y = calculate_vertical_velocity(paddle_left_pos)
+			print("Vel:", ball_v_y)
 			ball_v_x = velocity
 			ball_x = min_x + paddle_width
 		end
@@ -124,6 +141,11 @@ function render()
 	draw_box(max_x - paddle_width, paddle_right_pos, paddle_height, paddle_width)
 	-- draw ball
 	draw_box(ball_x, ball_y, ball_size, ball_size)
+	-- draw borders
+	draw(min_x, min_y, 255, 0, 0, 255, 2)
+	draw(min_x, max_y, 255, 0, 0, 255, 2)
+	draw(max_x, min_y, 255, 0, 0, 255, 2)
+	draw(max_x, max_y, 255, 0, 0, 255, 2)
 end
 
 function on_key_press(key)
@@ -153,7 +175,6 @@ while running do
 	render()
 	sleep(0.1)
 end
-
 
 
 
