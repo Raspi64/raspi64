@@ -211,7 +211,6 @@ std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword
     });
 
     // Eintraege, die mit dem Suchwort beginnen nach vorne stellen (alle Anderen bleiben unveraendert)
-//    std::cout << searchword << std::endl;
     std::sort(entries.begin(), entries.end(), [&](const Entry *a, const Entry *b) {
         auto a_iter = a->name.begin();
         auto b_iter = b->name.begin();
@@ -221,7 +220,6 @@ std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword
         int a_count, b_count;
         for (a_count = 0; tolower(*a_iter) == *s_iter && a_iter != a->name.end() && s_iter != searchword.end(); a_iter++, s_iter++, a_count++);
         for (b_count = 0; tolower(*b_iter) == *s_iter && b_iter != a->name.end() && s_iter != searchword.end(); b_iter++, s_iter++, b_count++);
-//        std::cout << "a:" << a->name << ": " << a_count << "\tb:" << b->name << ": " << b_count << std::endl;
 
 
         return a_count > b_count;
@@ -233,17 +231,14 @@ std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword
 
 void Schnittstelle::gui_draw(int x, int y, int red, int green, int blue, int alpha, int size) {
     gui->graphic->add_pixel(x, y, red, green, blue, alpha, size);
-//    std::cout << "GUI Draw!" << std::endl;
 }
 
 void Schnittstelle::gui_clear() {
     gui->graphic->clear_pixels();
-//    std::cout << "GUI Clear!" << std::endl;
 }
 
 void Schnittstelle::gui_print(const std::string &message) {
     gui->console->print(message);
-    std::cout << "Print: " << message << std::endl;
 }
 
 void Schnittstelle::on_error(int line, const std::string &message) {
