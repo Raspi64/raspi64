@@ -48,8 +48,6 @@ private:
 
     static int lua_sleep(lua_State *state);
 
-    static int lua_register_key_listeners(lua_State *state);
-
     static int lua_io_read(lua_State *state);
 
     static int lua_io_write(lua_State *state);

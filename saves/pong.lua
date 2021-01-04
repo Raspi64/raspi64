@@ -90,14 +90,10 @@ function update()
 
 	-- left-right collision
 	if ball_x <= min_x - ball_size then
-		-- ball_v_x = velocity
-		-- ball_x = 0
-		print("Left lost!")
+		print("GAME OVER!")
 		running = false
 	elseif ball_x + ball_size >= max_x + ball_size then
-		-- ball_v_x = -velocity
-		-- ball_x = max_x - ball_size
-		print("Right lost!")
+		print("YOU WIN!")
 		running = false
 	end
 
@@ -184,16 +180,13 @@ while difficulty == false do
 
 	local input = io.read("l")
 	if input == "1" then
-		difficulty = 1
+		difficulty = 0.5
 	elseif input == "2" then
-		difficulty = 2
+		difficulty = 1
 	elseif input == "3" then
 		difficulty = 100
 	end
 end
-
-
-register_key_listeners(on_key_press, on_key_release)
 
 
 while running do
@@ -202,3 +195,5 @@ while running do
 	render()
 	sleep(0.07)
 end
+
+
