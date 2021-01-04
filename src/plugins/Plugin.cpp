@@ -21,6 +21,6 @@ void Plugin::on_error(int line, const std::string &message) {
     Schnittstelle::on_error(line, message);
 }
 
-bool Plugin::waiting_for_input;
-std::string Plugin::input;
-bool Plugin::input_ready;
+std::string Plugin::get_input_line(){
+    return Schnittstelle::get_input_line();
+}

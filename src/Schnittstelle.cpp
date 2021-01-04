@@ -6,6 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <filesystem>
+#include <execution>
 #include "BasicPlugin.hpp"
 #include "LuaPlugin.hpp"
 #include "Schnittstelle.hpp"
@@ -45,6 +46,21 @@ bool Schnittstelle::start_script(const std::string &script) {
     return true;
 }
 
+std::string Schnittstelle::get_input_line() {
+    waiting_for_input = true;
+    while (!input_ready) {
+        usleep(1000);
+    }
+    waiting_for_input = false;
+    std::string copy = input;
+    input_ready = false;
+    return copy;
+}
+
+bool Schnittstelle::waiting_for_input;
+std::string Schnittstelle::input;
+bool Schnittstelle::input_ready;
+
 bool Schnittstelle::handle_command(std::string command) {
     if (status == RUNNING) {
         if (command == "stop") {
@@ -52,9 +68,9 @@ bool Schnittstelle::handle_command(std::string command) {
             gui->console->print("OK");
             return true;
         }
-        if (Plugin::waiting_for_input) {
-            Plugin::input = command;
-            Plugin::input_ready = true;
+        if (waiting_for_input) {
+            input = command;
+            input_ready = true;
             return true;
         }
     }
@@ -115,12 +131,12 @@ bool Schnittstelle::handle_command(std::string command) {
 }
 
 
-void Schnittstelle::on_key_press(const SDL_Keysym keysym) {
+void Schnittstelle::on_key_press(SDL_Keysym keysym) {
     const std::string &key_name = get_key_name(keysym);
     interpreter->on_key_press(key_name);
 }
 
-void Schnittstelle::on_key_release(const SDL_Keysym keysym) {
+void Schnittstelle::on_key_release(SDL_Keysym keysym) {
     const std::string &key_name = get_key_name(keysym);
     interpreter->on_key_release(key_name);
 }

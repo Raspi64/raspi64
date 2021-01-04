@@ -121,13 +121,10 @@ int LuaPlugin::lua_function_not_allowed(lua_State *state) {
 }
 
 int LuaPlugin::lua_io_read(lua_State *state) {
-    waiting_for_input = true;
-    while (!input_ready) {
-        usleep(1000);
+    if (lua_gettop(state) != 0) {
+        return luaL_error(state, "This function has been simplified to always return a full line of input. No arguments possible.");
     }
-    waiting_for_input = false;
-    lua_pushstring(state, input.c_str());
-    input_ready = false;
+    lua_pushstring(state, get_input_line().c_str());
     return 1;
 }
 

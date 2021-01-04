@@ -38,8 +38,8 @@ public:
 
     static bool handle_command(std::string command);
 
-    static void on_key_press(const SDL_Keysym keysym);
-    static void on_key_release(const SDL_Keysym keysym);
+    static void on_key_press(SDL_Keysym keysym);
+    static void on_key_release(SDL_Keysym keysym);
 
     static Entry *get_common_help_root();
 
@@ -55,11 +55,17 @@ public:
 
     static void on_error(int line, const std::string &message);
 
+    static std::string get_input_line();
+
     static Schnittstelle::Status status;
 private:
     static Gui *gui;
     static Plugin *interpreter;
     static pthread_t exec_thread;
+
+    static bool waiting_for_input;
+    static std::string input;
+    static bool input_ready;
 
     static void *exec_script(void *params_void);
 
