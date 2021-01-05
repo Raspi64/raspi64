@@ -4,5 +4,6 @@ Sleep
 Die "sleep" Funktion lässt das Programm für die angebende Zeit in Sekunden pausieren.
 
 Beispiel:
+sleep(x)
 sleep(5)
 sleep(0.5)

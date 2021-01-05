@@ -12,5 +12,6 @@ Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
 Der Standartwert für ein Pixel ist 1.
 
 Beispiel:
+draw(x, y, red, green, blue, alpha, size)
 draw(10, 10, 255, 255, 255, 255, 1)
 draw(15, 15, 0, 0, 255, 200, 4)
