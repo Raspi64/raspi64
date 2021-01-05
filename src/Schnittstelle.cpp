@@ -62,6 +62,8 @@ std::string Schnittstelle::input;
 bool Schnittstelle::input_ready;
 
 bool Schnittstelle::handle_command(std::string command) {
+    std::transform(command.begin(), command.end(), command.begin(), [&](unsigned char c) { return std::tolower(c); });
+
     if (status == RUNNING) {
         if (command == "stop") {
             Schnittstelle::kill_current_task();
