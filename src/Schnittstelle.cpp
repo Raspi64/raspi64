@@ -235,6 +235,7 @@ std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword
         // count how many letters match the start of a word until one word ends
         int a_count, b_count;
         for (a_count = 0; tolower(*a_iter) == *s_iter && a_iter != a->name.end() && s_iter != searchword.end(); a_iter++, s_iter++, a_count++);
+        s_iter = searchword.begin();
         for (b_count = 0; tolower(*b_iter) == *s_iter && b_iter != a->name.end() && s_iter != searchword.end(); b_iter++, s_iter++, b_count++);
 
 
