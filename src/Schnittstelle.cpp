@@ -88,7 +88,7 @@ bool Schnittstelle::handle_command(std::string command) {
         return true;
     }
     if (command.find("list") == 0) {
-        gui->console->print("Files you can load:");
+        gui->console->print("Gespeicherte Dateien:");
         for (auto &child: std::filesystem::directory_iterator("saves/")) {
             if (!child.is_directory()) {
                 std::string child_path = child.path();
@@ -98,7 +98,7 @@ bool Schnittstelle::handle_command(std::string command) {
         }
         return true;
     }
-    if (command.find("save") == 0 || command.find("load") == 0) {
+    if (command.find("save") == 0 || command.find("load") == 0 || command.find("delete") == 0) {
         unsigned long pos = command.find(' ');
         if (pos == std::string::npos) {
             gui->console->print("[error] Kein Dateinamen gefunden");
@@ -123,8 +123,12 @@ bool Schnittstelle::handle_command(std::string command) {
             Schnittstelle::save(name, gui->editor->get_text());
             gui->console->print("OK");
             return true;
-        } else {
+        } else if (command[0] == 'l') {
             gui->editor->set_text(Schnittstelle::load(name));
+            gui->console->print("OK");
+            return true;
+        } else if (command[0] == 'd') {
+            Schnittstelle::delete_file(name);
             gui->console->print("OK");
             return true;
         }
@@ -195,6 +199,11 @@ std::string Schnittstelle::load(const std::string &name) {
     std::ifstream infile;
     infile.open("saves/" + name + interpreter->get_extension());
     return std::string(std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>());
+}
+
+void Schnittstelle::delete_file(const std::string& name) {
+    const std::basic_string<char, std::char_traits<char>, std::allocator<char>> &filename = "saves/" + name + interpreter->get_extension();
+    std::remove(filename.c_str());
 }
 
 Entry *Schnittstelle::get_common_help_root() {
