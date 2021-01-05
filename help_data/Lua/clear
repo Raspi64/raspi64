@@ -1,0 +1,7 @@
+clear;draw;graphic;graphical output;grafische ausgabe;lua
+
+Clear
+Die "clear" Funktion leert die Grafikausgabe.
+
+Beispiel:
+clear()
