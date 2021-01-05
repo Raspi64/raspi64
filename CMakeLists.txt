@@ -21,7 +21,7 @@ include_directories(lib/imgui)
 include_directories(lib/imgui/backends)
 include_directories(lib/imgui/misc/cpp)
 
-include_directories(lib/ImGuiColorTextEdit)
+include_directories(lib/imgui_color_text_editor)
 
 include_directories(lib/lua-5.4)
 
@@ -49,8 +49,8 @@ add_executable(
 
         src/gui/extension/TextEditorLanguageExtension.cpp
 
-        # ImGuiColorTextEdit library files
-        lib/ImGuiColorTextEdit/TextEditor.cpp
+        # imgui_color_text_editor library files
+        lib/imgui_color_text_editor/TextEditor.cpp
 
         # DearImGUI library files
         lib/imgui/imgui.cpp
@@ -130,8 +130,8 @@ add_executable(
         # my_basic library files
         lib/my_basic/my_basic.c
 
-        # ImGuiColorTextEdit library files
-        lib/ImGuiColorTextEdit/TextEditor.cpp
+        # imgui_color_text_editor library files
+        lib/imgui_color_text_editor/TextEditor.cpp
 
         # DearImGUI library files
         lib/imgui/imgui.cpp
