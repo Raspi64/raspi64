@@ -36,7 +36,7 @@
 
 #define WIN_TITLE_HELP      "Hilfe [ " FOCUS_KEY_HELP_DISPLAY " ]"
 #define WIN_TITLE_EDITOR    "Editor [ " FOCUS_KEY_EDITOR_DISPLAY " ]"
-#define WIN_TITLE_GRAPHIC   "Graphical Output [ " FOCUS_KEY_GRAPHIC_DISPLAY " ]"
+#define WIN_TITLE_GRAPHIC   "Grafische Ausgabe [ " FOCUS_KEY_GRAPHIC_DISPLAY " ]"
 #define WIN_TITLE_CONSOLE   "Konsole [ " FOCUS_KEY_CONSOLE_DISPLAY " ]"
 
 #define WIN_TITLE_SHUTDOWN          "System herunterfahren"
