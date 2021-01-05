@@ -1,7 +1,7 @@
 CMAKE_BUILD_DIR="./cmake-build/"
 
 if test -f /proc/cpuinfo; then
-  NUM_CPUS="$(grep siblings /proc/cpuinfo | head -n1 | cut -d':' -f2 | cut -d' ' -f2)"
+  NUM_CPUS="$(grep -c processor /proc/cpuinfo)"
 else
   NUM_CPUS="$(sysctl -n hw.ncpu)"
 fi
