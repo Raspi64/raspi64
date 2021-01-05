@@ -160,11 +160,9 @@ Plugin *Schnittstelle::get_interpreter(LANG language) {
 
 void Schnittstelle::kill_current_task() {
     if (status == RUNNING) {
-        printf("Killing...");
         pthread_cancel(exec_thread);
         pthread_join(exec_thread, nullptr);
         status = KILLED;
-        printf("Killed!\n");
     }
 }
 
