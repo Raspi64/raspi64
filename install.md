@@ -30,6 +30,7 @@ Es kann auch auf älteren Versionen funktionieren allerdings übernehmen wir kei
 
 ### 3. Pakete
 cmake 
+
 libsdl2-dev
 
 Die Pakete können über folgenden Befehl installiert werden.
