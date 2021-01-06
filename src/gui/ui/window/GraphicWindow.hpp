@@ -17,6 +17,10 @@ public:
     void render();
 
     void add_pixel(int x, int y, int red, int green, int blue, int alpha = 255, int size = 1);
+    void add_rect(TGraphicRect rect);
+    void add_circle(TGraphicCircle circle);
+    void add_line(TGraphicLine line);
+    void add_text(TGraphicText text);
     void clear_pixels();
 
 private:

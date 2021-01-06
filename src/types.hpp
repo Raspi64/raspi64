@@ -6,14 +6,55 @@
 #include <vector>
 
 
-struct TGraphicPixel {
-    int size;
-    int x;
-    int y;
+struct TColor {
     int red;
     int green;
     int blue;
     int alpha;
+};
+
+struct TGraphicEntity {
+    TColor color;
+};
+
+struct TGraphicPixel {
+    int x;
+    int y;
+    int size;
+    TColor color;
+};
+
+struct TGraphicCircle: TGraphicEntity {
+    int x;
+    int y;
+    float radius;
+    bool filled;
+    float thickness;
+};
+
+struct TGraphicRect: TGraphicEntity {
+    int start_x;
+    int start_y;
+    int end_x;
+    int end_y;
+    bool filled;
+    float thickness;
+};
+
+struct TGraphicLine: TGraphicEntity {
+    int start_x;
+    int start_y;
+    int end_x;
+    int end_y;
+    float thickness;
+};
+
+struct TGraphicText: TGraphicEntity {
+    int x;
+    int y;
+    float size;
+    char* text;
+    TColor color;
 };
 
 enum LANG {
