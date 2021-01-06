@@ -76,7 +76,7 @@ bool Schnittstelle::handle_command(std::string command) {
             return true;
         }
     }
-    if (command == "start" || command == "run") {
+    if (command == "start") {
         if (Schnittstelle::start_script(gui->editor->get_text())) {
             gui->console->print("OK");
         }
