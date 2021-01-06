@@ -57,6 +57,21 @@ struct TGraphicText: TGraphicEntity {
     TColor color;
 };
 
+
+
+enum TGraphicEntityType {
+    TYPE_RECT,
+    TYPE_CIRCLE,
+    TYPE_LINE,
+    TYPE_TEXT,
+};
+
+struct TGraphicDrawEntity {
+    TGraphicEntity* entity;
+    TGraphicEntityType type;
+};
+
+
 enum LANG {
     BASIC,
     LUA,
