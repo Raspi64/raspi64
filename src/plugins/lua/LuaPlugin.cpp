@@ -11,7 +11,7 @@
 LuaPlugin::LuaPlugin() : Plugin() {
     L = luaL_newstate();
 
-    load_libraries();
+    luaL_openlibs(L);
 
     // register custom functions
     lua_register(L, "print", lua_print);
@@ -25,6 +25,10 @@ LuaPlugin::LuaPlugin() : Plugin() {
     lua_register(L, "load", lua_function_not_allowed);
     lua_register(L, "loadfile", lua_function_not_allowed);
     lua_register(L, "require", lua_function_not_allowed);
+
+    // create io table
+    lua_newtable(L);
+    lua_setglobal(L,"io");
     replace_function_in_table("io", "read", lua_io_read);
     replace_function_in_table("io", "write", lua_io_write);
 }
@@ -84,29 +88,6 @@ std::string LuaPlugin::get_extension() {
 
 std::string LuaPlugin::get_help_folder_name() {
     return "Lua";
-}
-
-void LuaPlugin::load_libraries() {
-    const luaL_Reg loadedlibs[] = {
-            {LUA_GNAME,       luaopen_base},
-//            {LUA_LOADLIBNAME, luaopen_package},
-            {LUA_COLIBNAME,   luaopen_coroutine},
-            {LUA_TABLIBNAME,  luaopen_table},
-            {LUA_IOLIBNAME,   luaopen_io},
-            {LUA_OSLIBNAME,   luaopen_os},
-            {LUA_STRLIBNAME,  luaopen_string},
-            {LUA_MATHLIBNAME, luaopen_math},
-//            {LUA_UTF8LIBNAME, luaopen_utf8},
-//            {LUA_DBLIBNAME, luaopen_debug},
-            {nullptr,         nullptr}
-    };
-
-    const luaL_Reg *lib;
-    /* "require" functions from 'loadedlibs' and set results to global table */
-    for (lib = loadedlibs; lib->func; lib++) {
-        luaL_requiref(L, lib->name, lib->func, 1);
-        lua_pop(L, 1);  /* remove lib */
-    }
 }
 
 void LuaPlugin::replace_function_in_table(const char *table, const char *field, lua_CFunction function) {
