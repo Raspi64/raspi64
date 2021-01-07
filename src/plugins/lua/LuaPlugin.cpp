@@ -124,7 +124,7 @@ int LuaPlugin::lua_io_read(lua_State *state) {
     if (lua_gettop(state) != 0) {
         return luaL_error(state, "This function has been simplified to always return a full line of input. No arguments possible.");
     }
-    lua_pushstring(state, get_input_line().c_str());
+    lua_pushstring(state, Plugin::get_input_line().c_str());
     return 1;
 }
 
