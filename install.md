@@ -48,7 +48,7 @@ Es wird davon ausgegangen das die Vorraussetzungen erfüllt werden.
 Das Projekt wird mit allen benötigten Komponennten und älteren Versionen heruntergeladen und im aktuellen Ordner gespeichert gespeichert.
 
 ```
-$ git clone https://github.com/Raspi64/imgui_setup.git
+$ git clone https://github.com/Raspi64/raspi64.git
 ```
 
 ### 2. Build.sh
@@ -56,7 +56,7 @@ $ git clone https://github.com/Raspi64/imgui_setup.git
 Das Programm wird nun kompiliert und ausführbar gemacht. Dies kann etwas dauern. Bitte drücke keine Tasten um Fehler zu verhindern. Die Warnings sind Teil des Vorganges und normal, du musst dir keine Sorgen machen deswegen.
 
 ```
-$ ./imgui_setup/build.sh
+$ ./raspi64/build.sh
 ```
 
 ### 3. Starten des Programmes
@@ -64,5 +64,5 @@ Das Programm kann nun mit diesem Befehl gestartet werden. Alles zur Verwendung d
 
 
 ```
-$ ./imgui_setup/imgui_setup
+$ ./raspi64/imgui_setup
 ```
