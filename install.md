@@ -12,8 +12,8 @@ Nur verwenden wenn du weißt was du tust. Nur für fortgeschrittene Nutzer empfo
 ```
 $ sudo apt-get update
 $ sudo apt-get install cmake libsdl2-dev
-$ git clone https://github.com/Raspi64/imgui_setup.git
-$ ./imgui_setup/build.sh
+$ git clone https://github.com/Raspi64/raspi64.git
+$ ./raspi64/build.sh
 ```
 
 
