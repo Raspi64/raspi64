@@ -23,11 +23,15 @@ ConsoleWindow::ConsoleWindow(): Window() {
 
     // "CLASSIFY" is here to provide the test case where "C"+[tab] completes to "CL" and display multiple matches.
     commands.push_back("HELP");
-    commands.push_back("HISTORY");
-    commands.push_back("CLEAR");
-    commands.push_back("CLASSIFY");
-    commands.push_back("RUN");
+    commands.push_back("START");
     commands.push_back("STOP");
+    commands.push_back("LIST");
+    commands.push_back("SAVE");
+    commands.push_back("LOAD");
+    commands.push_back("DELETE");
+    commands.push_back("CLEAR");
+    commands.push_back("HISTORY");
+
     autoScroll = true;
     scrollToBottom = false;
     add_log("Welcome to Rapi64!");
