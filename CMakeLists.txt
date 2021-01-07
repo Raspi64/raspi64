@@ -114,14 +114,14 @@ add_executable(
         lib/lua-5.4/lauxlib.c
         lib/lua-5.4/lbaselib.c
         lib/lua-5.4/lcorolib.c
-        lib/lua-5.4/ldblib.c
-        lib/lua-5.4/liolib.c
+#        lib/lua-5.4/ldblib.c
+#        lib/lua-5.4/liolib.c
         lib/lua-5.4/lmathlib.c
         lib/lua-5.4/loadlib.c
         lib/lua-5.4/loslib.c
         lib/lua-5.4/lstrlib.c
         lib/lua-5.4/ltablib.c
-        lib/lua-5.4/lutf8lib.c
+#        lib/lua-5.4/lutf8lib.c
         lib/lua-5.4/linit.c
 
         # help system files
@@ -135,7 +135,7 @@ add_executable(
 
         # DearImGUI library files
         lib/imgui/imgui.cpp
-        lib/imgui/imgui_demo.cpp
+#        lib/imgui/imgui_demo.cpp
         lib/imgui/imgui_draw.cpp
         lib/imgui/imgui_widgets.cpp
         lib/imgui/backends/imgui_impl_opengl2.cpp

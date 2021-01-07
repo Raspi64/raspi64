@@ -160,7 +160,7 @@ Plugin *Schnittstelle::get_interpreter(LANG language) {
         case LUA:
             return new LuaPlugin();
         default:
-            throw std::runtime_error("No interpreter!");
+            throw std::runtime_error("Kein interpreter geladen!");
     }
 }
 

@@ -34,7 +34,8 @@ ConsoleWindow::ConsoleWindow(): Window() {
 
     autoScroll = true;
     scrollToBottom = false;
-    add_log("Welcome to Rapi64!");
+    add_log("Wilkommen zu Rapi64!");
+    add_log("Für Hilfe, gib 'help' in diese Konsole ein!");
 }
 
 ConsoleWindow::~ConsoleWindow(){
@@ -124,7 +125,7 @@ void ConsoleWindow::edit_callback(ImGuiInputTextCallbackData* data)
                 }
 
                 // List matches
-                add_log("Possible matches:\n");
+                add_log("Mögliche Befehle:\n");
                 for (int i = 0; i < candidates.Size; i++)
                     add_log("- %s\n", candidates[i]);
             }
@@ -183,7 +184,7 @@ void ConsoleWindow::exec_command(const char* command_line)
     }
     else if (Stricmp(command_line, "HELP") == 0)
     {
-        add_log("Commands:");
+        add_log("Befehle:");
         for (int i = 0; i < commands.Size; i++)
             add_log("- %s", commands[i]);
     }
@@ -197,7 +198,7 @@ void ConsoleWindow::exec_command(const char* command_line)
     {
         bool accepted = on_submit_fn != nullptr && on_submit_fn(command_line);
         if (!accepted) {
-            add_log("[error] Unknown command: '%s'\n", command_line);
+            add_log("[error] Unbekannter Befehl: '%s'\n", command_line);
         }
     }
 
