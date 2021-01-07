@@ -1,4 +1,24 @@
-# imgui_setup
+# new Readme
+
+# Raspi 64 - An oldschool IDE for the Raspberry Pi
+
+## Disclaimer
+
+## Included Projects / already Existing Stuff
+
+## installation
+
+## How to use
+
+## Contributing
+
+## Explaining some stuff
+
+## License
+
+
+
+# OLD READMEimgui_setup
 
 ## Overview
 
