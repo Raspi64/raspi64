@@ -1,4 +1,4 @@
-CMAKE_BUILD_DIR="./cmake-build-debug/"
+CMAKE_BUILD_DIR="./cmake-build/"
 
 if test -d "$CMAKE_BUILD_DIR"; then
   # CMake project

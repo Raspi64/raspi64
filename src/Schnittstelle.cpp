@@ -62,6 +62,8 @@ std::string Schnittstelle::input;
 bool Schnittstelle::input_ready;
 
 bool Schnittstelle::handle_command(std::string command) {
+    std::transform(command.begin(), command.end(), command.begin(), [&](unsigned char c) { return std::tolower(c); });
+
     if (status == RUNNING) {
         if (command == "stop") {
             Schnittstelle::kill_current_task();
@@ -74,7 +76,7 @@ bool Schnittstelle::handle_command(std::string command) {
             return true;
         }
     }
-    if (command == "start" || command == "run") {
+    if (command == "start") {
         if (Schnittstelle::start_script(gui->editor->get_text())) {
             gui->console->print("OK");
         }
@@ -86,7 +88,7 @@ bool Schnittstelle::handle_command(std::string command) {
         return true;
     }
     if (command.find("list") == 0) {
-        gui->console->print("Files you can load:");
+        gui->console->print("Gespeicherte Dateien:");
         for (auto &child: std::filesystem::directory_iterator("saves/")) {
             if (!child.is_directory()) {
                 std::string child_path = child.path();
@@ -96,7 +98,7 @@ bool Schnittstelle::handle_command(std::string command) {
         }
         return true;
     }
-    if (command.find("save") == 0 || command.find("load") == 0) {
+    if (command.find("save") == 0 || command.find("load") == 0 || command.find("delete") == 0) {
         unsigned long pos = command.find(' ');
         if (pos == std::string::npos) {
             gui->console->print("[error] Kein Dateinamen gefunden");
@@ -121,8 +123,12 @@ bool Schnittstelle::handle_command(std::string command) {
             Schnittstelle::save(name, gui->editor->get_text());
             gui->console->print("OK");
             return true;
-        } else {
+        } else if (command[0] == 'l') {
             gui->editor->set_text(Schnittstelle::load(name));
+            gui->console->print("OK");
+            return true;
+        } else if (command[0] == 'd') {
+            Schnittstelle::delete_file(name);
             gui->console->print("OK");
             return true;
         }
@@ -160,11 +166,9 @@ Plugin *Schnittstelle::get_interpreter(LANG language) {
 
 void Schnittstelle::kill_current_task() {
     if (status == RUNNING) {
-        printf("Killing...");
         pthread_cancel(exec_thread);
         pthread_join(exec_thread, nullptr);
         status = KILLED;
-        printf("Killed!\n");
     }
 }
 
@@ -195,6 +199,11 @@ std::string Schnittstelle::load(const std::string &name) {
     std::ifstream infile;
     infile.open("saves/" + name + interpreter->get_extension());
     return std::string(std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>());
+}
+
+void Schnittstelle::delete_file(const std::string& name) {
+    const std::basic_string<char, std::char_traits<char>, std::allocator<char>> &filename = "saves/" + name + interpreter->get_extension();
+    std::remove(filename.c_str());
 }
 
 Entry *Schnittstelle::get_common_help_root() {
@@ -235,6 +244,7 @@ std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword
         // count how many letters match the start of a word until one word ends
         int a_count, b_count;
         for (a_count = 0; tolower(*a_iter) == *s_iter && a_iter != a->name.end() && s_iter != searchword.end(); a_iter++, s_iter++, a_count++);
+        s_iter = searchword.begin();
         for (b_count = 0; tolower(*b_iter) == *s_iter && b_iter != a->name.end() && s_iter != searchword.end(); b_iter++, s_iter++, b_count++);
 
 

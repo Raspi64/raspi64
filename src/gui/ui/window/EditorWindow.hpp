@@ -6,7 +6,7 @@
 #define IMGUI_SETUP_EDITORWINDOW_HPP
 
 #include "base/Window.hpp"
-#include <TextEditor.h>
+#include "../../../../lib/imgui_color_text_editor/TextEditor.h"
 #include <types.hpp>
 
 

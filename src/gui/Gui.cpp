@@ -171,7 +171,7 @@ int Gui::tick() {
     ImGui::NewFrame();
 
     // 1. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
-    ImGui::ShowDemoWindow(&show_demo_window);
+    //ImGui::ShowDemoWindow(&show_demo_window);
 
 
     // check key triggers
