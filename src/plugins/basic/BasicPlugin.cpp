@@ -79,7 +79,7 @@ int BasicPlugin::basic_inputer(const char*, char* input, int maxChar) {
     strncpy(input, tmp.c_str(), maxChar);
 
 
-    return 0;
+    return maxChar;
 }
 
 void BasicPlugin::update_error_message() {
