@@ -3,7 +3,6 @@
 //
 
 #include <my_basic.h>
-#include <iostream>
 #include <cstdarg>
 #include <cstring>
 #include "BasicPlugin.hpp"
@@ -14,9 +13,6 @@ BasicPlugin::BasicPlugin() : Plugin() {
     mb_open(&bas);
     mb_set_printer(bas, BasicPlugin::basic_print);
     mb_set_inputer(bas, BasicPlugin::basic_inputer);
-
-
-
     mb_register_func(bas, "DRAW", basic_draw);
     mb_register_func(bas, "CLEAR", basic_clear);
 }
@@ -41,16 +37,16 @@ bool BasicPlugin::exec_script() {
     if (exec_stat != MB_FUNC_OK) {
         update_error_message();
     }
-    mb_reset(&bas,false);
+    mb_reset(&bas, false);
     return exec_stat == MB_FUNC_OK;
 }
 
 void BasicPlugin::on_key_press(const std::string &) {
-
+    // TODO: Implement
 }
 
 void BasicPlugin::on_key_release(const std::string &) {
-
+    // TODO: Implement
 }
 
 std::string BasicPlugin::get_extension() {
@@ -74,12 +70,11 @@ int BasicPlugin::basic_print(const char *format, ...) {
     return 0;
 }
 
-int BasicPlugin::basic_inputer(const char*, char* input, int maxChar) {
+int BasicPlugin::basic_inputer(const char *prompt, char *input, int max_length) {
     std::string tmp = Plugin::get_input_line();
-    strncpy(input, tmp.c_str(), maxChar);
+    strncpy(input, tmp.c_str(), max_length);
 
-
-    return 0;
+    return tmp.length() > max_length ? max_length : (int) tmp.length();
 }
 
 void BasicPlugin::update_error_message() {
@@ -91,11 +86,8 @@ void BasicPlugin::update_error_message() {
 }
 
 int BasicPlugin::basic_draw(mb_interpreter_t *bas, void **ptr) {
-    int result = MB_FUNC_OK;
-
     int x = 20;
     int y = 20;
-
     int red = 500;
     int green = 500;
     int blue = 500;
@@ -114,14 +106,12 @@ int BasicPlugin::basic_draw(mb_interpreter_t *bas, void **ptr) {
 
     Plugin::draw(x, y, red, green, blue, alpha, size);
 
-    return result;
+    return MB_FUNC_OK;
 }
 
 int BasicPlugin::basic_clear(mb_interpreter_t *bas, void **ptr) {
-    int result = MB_FUNC_OK;
 
-   // Plugin::clear_function();
+    Plugin::clear();
 
-    return result;
+    return MB_FUNC_OK;
 }
-
