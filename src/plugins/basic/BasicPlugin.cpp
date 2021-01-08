@@ -77,8 +77,6 @@ int BasicPlugin::basic_print(const char *format, ...) {
 int BasicPlugin::basic_inputer(const char*, char* input, int maxChar) {
     std::string tmp = Plugin::get_input_line();
     strncpy(input, tmp.c_str(), maxChar);
-
-
     return maxChar;
 }
 
