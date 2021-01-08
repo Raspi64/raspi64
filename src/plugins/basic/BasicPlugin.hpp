@@ -31,19 +31,15 @@ public:
 private:
     mb_interpreter_t *bas = nullptr;
 
-    static int basic_echo(mb_interpreter_t *bas, void **ptr);
-
     static int basic_draw(mb_interpreter_t *bas, void **ptr);
 
     static int basic_clear(mb_interpreter_t *bas, void **ptr);
 
-    static int basic_openTerminal(mb_interpreter_t *bas, void **ptr);
-
-    static int basic_maximum(mb_interpreter_t *bas, void **ptr);
-
     void update_error_message();
 
     static int basic_print(const char *format, ...);
+
+    static int basic_inputer(const char*, char*, int);
 };
 
 
