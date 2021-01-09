@@ -17,7 +17,7 @@ Das Programm wurde für die verwendung mit einem Raspberry Pi entwickelt. Es kan
 
 Hochschule: [Hochschule Emden/Leer](https://www.hs-emden-leer.de/)
 
-Fachbereich: (Informatik)[https://www.hs-emden-leer.de/studierende/fachbereiche/technik/studiengaenge/informatik]
+Fachbereich: [Informatik](https://www.hs-emden-leer.de/studierende/fachbereiche/technik/studiengaenge/informatik)
 
 Betreunder Dozent: [Prof. Dr. Carsten Link](http://www.technik-emden.de/~clink/)
 
