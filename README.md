@@ -13,8 +13,6 @@ There is no english version at the moment and there isn't any planed.
 
 Das Programm wurde für die verwendung mit einem Raspberry Pi entwickelt. Es kann auch auf ähnlichen Geräten, Mac, Windows oder anderen Linux Plattformen funktionieren.
 
-In Bezug auf die Installation wird hier nur die vom Entwicklungsteam verwendete und verifizierte Vorgehensweise gezeigt. Der Abschnitt Quickstart beinhaltet alle nötigen Befehle in der richtigen Reihenfolge. Genaure Erklärungen stehen weiter unten.
-
 ## Informationen über das Projekt
 
 Hochschule: [Hochschule Emden/Leer](https://www.hs-emden-leer.de/)
