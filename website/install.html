@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Raspi64</title>
+    <link href="mvp.css" rel="stylesheet">
+</head>
+<body>
+<main>
+    <header>
+        <h1 id="installationsaleitung-des-programmes">Installationsaleitung des Programmes</h1>
+    </header>
+    <article>
+        <h2 id="disclaimer">Disclaimer</h2>
+        <p>
+            Das Programm wurde für die Verwendung mit einem Raspberry Pi 3 oder 4 entwickelt.
+            Es kann auch auf ähnlichen Geräten, Mac, Windows und anderen Linux Plattformen funktionieren.
+        </p>
+        <p>
+            In Bezug auf die Installation wird hier nur die vom Entwicklungsteam verwendete und verifizierte Vorgehensweise gezeigt.
+            Der Abschnitt Quickstart beinhaltet alle nötigen Befehle in der richtigen Reihenfolge.
+            Genaure Erklärungen befinden sich weiter unten.
+        </p>
+    </article>
+    <article>
+        <h2 id="quickstart">Quickstart</h2>
+        <p>
+            Nur verwenden wenn du weißt was du tust.
+            Nur für fortgeschrittene Nutzer empfohlen.
+            Die Vorraussetzungen stehen weiter unten.
+        </p>
+        <code>
+            $ sudo apt-get update<br>
+            $ sudo apt-get install cmake libsdl2-dev<br>
+            $ git clone https://github.com/Raspi64/raspi64.git<br>
+            $ ./build.sh<br>
+        </code>
+    </article>
+    <article>
+        <h2 id="vorraussetzungen">Vorraussetzungen</h2>
+        <h3 id="1-hardware">1. Hardware</h3>
+        <p>
+            Getestet wurde das Projekt mit einem Raspberry Pi 3B und Raspberry Pi 4.
+            Es kann auch auf älteren und ähnlichen Modellen funktionieren allerdings übernehmen ist das nicht garantiert.
+        </p>
+        <h3 id="2-betriebssystem">2. Betriebssystem</h3>
+        <p>
+            <a href="https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2020-12-04/2020-12-02-raspios-buster-armhf.zip">Raspberry Pi OS with Desktop Release 2 Dezember 2020</a>
+            Es kann auch auf anderen Versionen funktionieren allerdings übernehmen ist das nicht garantiert.
+        </p>
+        <h3 id="3-pakete">3. Pakete</h3>
+        <ul>
+            <li>cmake</li>
+            <li>libsdl2-dev</li>
+        </ul>
+        <p>
+            Die Pakete können über folgende Befehle installiert werden:
+        </p>
+        <code>
+            $ sudo apt-get update<br>
+            $ sudo apt-get install cmake libsdl2-dev
+        </code>
+    </article>
+    <article>
+        <h2 id="eigentliche-installation-des-programmes">Eigentliche Installation des Programmes</h2>
+        <p>
+            Es wird davon ausgegangen das die Vorraussetzungen erfüllt werden.
+        </p>
+        <h3 id="1-klonen-des-projektes">1. Klonen des Projektes</h3>
+        <p>
+            Das Projekt wird mit allen benötigten Komponennten und älteren Versionen heruntergeladen und im aktuellen Ordner gespeichert gespeichert.
+        </p>
+        <code>
+            $ git clone https://github.com/Raspi64/raspi64.git
+        </code>
+        <h3 id="2-build-sh">2. Build.sh</h3>
+        <p>
+            Das Programm wird nun kompiliert und ausführbar gemacht.
+            Dies kann etwas dauern.
+            Bitte drücke keine Tasten um Fehler zu verhindern.
+            Die Warnings sind Teil des Vorganges und normal, du musst dir keine Sorgen machen deswegen.
+        </p>
+        <code>
+            $ ./build.sh
+        </code>
+        <h3 id="3-starten-des-programmes">3. Starten des Programmes</h3>
+        <p>
+            Das Programm kann nun mit diesem Befehl gestartet werden.
+            Alles zur Verwendung des Programmes kannst du dir im Hilfesystem ansehen.
+        </p>
+        <code>
+            $ ./imgui_setup
+        </code>
+    </article>
+</main>
+</body>
+</html>
