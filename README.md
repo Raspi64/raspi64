@@ -1,7 +1,8 @@
 # Raspi 64 - An oldschool IDE for the Raspberry Pi
 
 ```
-TBD hier aus der Dokumentation diese Punkte einfügen:
+TBD 
+hier aus der Dokumentation diese Punkte einfügen:
 Aufgabenstellung 
 Grund für das Projekt bzw den Gedanken dahinter
 ```
