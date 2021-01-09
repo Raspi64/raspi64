@@ -33,7 +33,7 @@ Entstehungszeitraum: Wintersemester 2020/21
 
 [ImGuiColorTextEdit](https://github.com/BalazsJako/ImGuiColorTextEdit)
 
-Die benötigten Dateien sind bereits in dieser Repository vorhanden und müssen nicht zusätzlch installiert werden.
+Die benötigten Dateien aus den Projekten sind bereits in dieser Repository vorhanden und müssen nicht zusätzlich runtergeladen werden.
 
 ## Installation
 
