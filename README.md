@@ -1,5 +1,3 @@
-# new Readme
-
 # Raspi 64 - An oldschool IDE for the Raspberry Pi
 
 ```
