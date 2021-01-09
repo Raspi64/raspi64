@@ -8,7 +8,7 @@
 #include "GraphicWindow.hpp"
 #include "gui/config.hpp"
 
-GraphicWindow::GraphicWindow(): Window() {
+GraphicWindow::GraphicWindow() : Window() {
     graphicPixels.clear();
 }
 
@@ -80,7 +80,8 @@ void GraphicWindow::add_pixel(int x, int y, int red, int green, int blue, int al
     test.blue = blue;
     test.alpha = alpha;
 
-    graphicPixels.push_back(test);
+    if (graphicPixels.size() < 16000)
+        graphicPixels.push_back(test);
 }
 
 void GraphicWindow::clear_pixels() {
