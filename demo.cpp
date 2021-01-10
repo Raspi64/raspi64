@@ -63,7 +63,7 @@ int tick()
 
     if (smiley_cooldown == 0) {
         // hide the smiley after 100 ticks
-        gui->graphic->clear_pixels();
+        gui->graphic->clear();
         printf("editor content %s", gui->editor->get_text().c_str());
         gui->console->print("this is a test message printed to the console");
         gui->editor->clear_error_markers();

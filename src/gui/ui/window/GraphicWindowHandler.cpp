@@ -42,6 +42,6 @@ void GraphicWindowHandler::add_pixel(int x, int y, int red, int green, int blue,
     add_pixel(pixel);
 }
 
-void GraphicWindowHandler::clear_pixels() {
-    window->clear_pixels();
+void GraphicWindowHandler::clear() {
+    window->clear();
 }

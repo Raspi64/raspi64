@@ -21,7 +21,7 @@ public:
     void add_circle(TGraphicCircle circle);
     void add_line(TGraphicLine line);
     void add_text(TGraphicText text);
-    void clear_pixels();
+    void clear();
 
 private:
     std::vector<TGraphicDrawEntity> graphicDrawEntities;

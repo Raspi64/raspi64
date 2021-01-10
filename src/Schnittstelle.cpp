@@ -250,7 +250,7 @@ void Schnittstelle::gui_draw(int x, int y, int red, int green, int blue, int alp
 }
 
 void Schnittstelle::gui_clear() {
-    gui->graphic->clear_pixels();
+    gui->graphic->clear();
 }
 
 void Schnittstelle::gui_print(const std::string &message) {

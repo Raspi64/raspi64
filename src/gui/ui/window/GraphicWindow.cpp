@@ -9,7 +9,7 @@
 #include "gui/config.hpp"
 
 GraphicWindow::GraphicWindow() : Window() {
-    clear_pixels();
+    clear();
 }
 
 void GraphicWindow::render() {
@@ -148,7 +148,7 @@ void GraphicWindow::add_pixel(TGraphicPixel pixel) {
     add_rect(rect);
 }
 
-
+void GraphicWindow::clear() {
 // legacy function
 /*
 void GraphicWindow::add_pixel(int x, int y, int red, int green, int blue, int alpha, int size) {
@@ -165,6 +165,5 @@ void GraphicWindow::add_pixel(int x, int y, int red, int green, int blue, int al
 }
 */
 
-void GraphicWindow::clear_pixels() {
     graphicDrawEntities.clear();
 }
