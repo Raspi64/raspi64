@@ -54,7 +54,6 @@ struct TGraphicText: TGraphicEntity {
     int y;
     float size;
     char* text;
-    TColor color;
 };
 
 
