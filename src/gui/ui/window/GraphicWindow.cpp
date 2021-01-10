@@ -149,21 +149,5 @@ void GraphicWindow::add_pixel(TGraphicPixel pixel) {
 }
 
 void GraphicWindow::clear() {
-// legacy function
-/*
-void GraphicWindow::add_pixel(int x, int y, int red, int green, int blue, int alpha, int size) {
-    TGraphicPixel test;
-    test.size = size;
-    test.x = x;
-    test.y = y;
-    test.color.red = red;
-    test.color.green = green;
-    test.color.blue = blue;
-    test.color.alpha = alpha;
-
-    graphicPixels.push_back(test);
-}
-*/
-
     graphicDrawEntities.clear();
 }
