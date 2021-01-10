@@ -20,7 +20,7 @@ int main() {
     gui->help->on_search(Schnittstelle::search_entries);
 
     // Load example Program
-    const std::string &script = Schnittstelle::load("example_draw");
+    const std::string &script = Schnittstelle::load("example_start");
     gui->editor->set_text(script);
 
     // Run example Program

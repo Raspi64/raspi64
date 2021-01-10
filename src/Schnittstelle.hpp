@@ -76,6 +76,8 @@ private:
     static void sort_subtrees(std::vector<Entry> *entries);
 
     static std::string get_key_name(const SDL_Keysym &keysym);
+
+    static void delete_file(const std::string& basicString);
 };
 
 

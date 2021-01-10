@@ -23,14 +23,19 @@ ConsoleWindow::ConsoleWindow(): Window() {
 
     // "CLASSIFY" is here to provide the test case where "C"+[tab] completes to "CL" and display multiple matches.
     commands.push_back("HELP");
-    commands.push_back("HISTORY");
-    commands.push_back("CLEAR");
-    commands.push_back("CLASSIFY");
-    commands.push_back("RUN");
+    commands.push_back("START");
     commands.push_back("STOP");
+    commands.push_back("LIST");
+    commands.push_back("SAVE");
+    commands.push_back("LOAD");
+    commands.push_back("DELETE");
+    commands.push_back("CLEAR");
+    commands.push_back("HISTORY");
+
     autoScroll = true;
     scrollToBottom = false;
-    add_log("Welcome to Rapi64!");
+    add_log("Wilkommen zu Rapi64!");
+    add_log("Für Hilfe, gib 'help' in diese Konsole ein!");
 }
 
 ConsoleWindow::~ConsoleWindow(){
@@ -120,7 +125,7 @@ void ConsoleWindow::edit_callback(ImGuiInputTextCallbackData* data)
                 }
 
                 // List matches
-                add_log("Possible matches:\n");
+                add_log("Mögliche Befehle:\n");
                 for (int i = 0; i < candidates.Size; i++)
                     add_log("- %s\n", candidates[i]);
             }
@@ -179,7 +184,7 @@ void ConsoleWindow::exec_command(const char* command_line)
     }
     else if (Stricmp(command_line, "HELP") == 0)
     {
-        add_log("Commands:");
+        add_log("Befehle:");
         for (int i = 0; i < commands.Size; i++)
             add_log("- %s", commands[i]);
     }
@@ -193,7 +198,7 @@ void ConsoleWindow::exec_command(const char* command_line)
     {
         bool accepted = on_submit_fn != nullptr && on_submit_fn(command_line);
         if (!accepted) {
-            add_log("[error] Unknown command: '%s'\n", command_line);
+            add_log("[error] Unbekannter Befehl: '%s'\n", command_line);
         }
     }
 

@@ -2,7 +2,6 @@
 // Created by Alex on 05.12.20.
 //
 
-#include <stdlib.h>
 #include "imgui.h"
 
 #include "ChangeLangModeDialogWindow.hpp"

@@ -1,6 +1,5 @@
-cmake_minimum_required(VERSION 3.17)
-project(imgui_setup_demo)
-project(imgui_setup)
+cmake_minimum_required(VERSION 3.13)
+project(raspi64)
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/../)
 
@@ -21,49 +20,14 @@ include_directories(lib/imgui)
 include_directories(lib/imgui/backends)
 include_directories(lib/imgui/misc/cpp)
 
-include_directories(lib/ImGuiColorTextEdit)
+include_directories(lib/imgui_color_text_editor)
 
 include_directories(lib/lua-5.4)
 
 include_directories(lib/my_basic)
 
 add_executable(
-        imgui_setup_demo
-        demo.cpp
-        # gui files
-        src/gui/Gui.cpp
-        src/gui/ui/UiElement.cpp
-        src/gui/ui/MainMenuBar.cpp
-        src/gui/ui/window/dialog/ShutdownDialogWindow.cpp
-        src/gui/ui/window/dialog/ChangeLangModeDialogWindow.cpp
-        src/gui/ui/window/HelpWindow.cpp
-        src/gui/ui/window/HelpWindowHandler.cpp
-        src/gui/ui/window/GraphicWindow.cpp
-        src/gui/ui/window/GraphicWindowHandler.cpp
-        src/gui/ui/window/EditorWindow.cpp
-        src/gui/ui/window/EditorWindowHandler.cpp
-        src/gui/ui/window/ConsoleWindow.cpp
-        src/gui/ui/window/ConsoleWindowHandler.cpp
-        src/gui/ui/window/base/Window.cpp
-        src/gui/ui/window/base/WindowHandler.cpp
-
-        src/gui/extension/TextEditorLanguageExtension.cpp
-
-        # ImGuiColorTextEdit library files
-        lib/ImGuiColorTextEdit/TextEditor.cpp
-
-        # DearImGUI library files
-        lib/imgui/imgui.cpp
-        lib/imgui/imgui_demo.cpp
-        lib/imgui/imgui_draw.cpp
-        lib/imgui/imgui_widgets.cpp
-        lib/imgui/backends/imgui_impl_opengl2.cpp
-        lib/imgui/backends/imgui_impl_sdl.cpp
-        lib/imgui/misc/cpp/imgui_stdlib.cpp
-)
-
-add_executable(
-        imgui_setup
+        raspi64
         src/main.cpp
         # gui files
         src/gui/Gui.cpp
@@ -114,14 +78,14 @@ add_executable(
         lib/lua-5.4/lauxlib.c
         lib/lua-5.4/lbaselib.c
         lib/lua-5.4/lcorolib.c
-        lib/lua-5.4/ldblib.c
-        lib/lua-5.4/liolib.c
+#        lib/lua-5.4/ldblib.c
+#        lib/lua-5.4/liolib.c
         lib/lua-5.4/lmathlib.c
         lib/lua-5.4/loadlib.c
         lib/lua-5.4/loslib.c
         lib/lua-5.4/lstrlib.c
         lib/lua-5.4/ltablib.c
-        lib/lua-5.4/lutf8lib.c
+#        lib/lua-5.4/lutf8lib.c
         lib/lua-5.4/linit.c
 
         # help system files
@@ -130,12 +94,12 @@ add_executable(
         # my_basic library files
         lib/my_basic/my_basic.c
 
-        # ImGuiColorTextEdit library files
-        lib/ImGuiColorTextEdit/TextEditor.cpp
+        # imgui_color_text_editor library files
+        lib/imgui_color_text_editor/TextEditor.cpp
 
         # DearImGUI library files
         lib/imgui/imgui.cpp
-        lib/imgui/imgui_demo.cpp
+#        lib/imgui/imgui_demo.cpp
         lib/imgui/imgui_draw.cpp
         lib/imgui/imgui_widgets.cpp
         lib/imgui/backends/imgui_impl_opengl2.cpp
@@ -144,29 +108,25 @@ add_executable(
 )
 
 # Link pthread
-target_link_libraries(imgui_setup "-lpthread")
+target_link_libraries(raspi64 "-lpthread")
 
 # Link SDL2
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 find_package(SDL2 REQUIRED)
-target_link_libraries(imgui_setup SDL2::Main)
-target_link_libraries(imgui_setup_demo SDL2::Main)
+target_link_libraries(raspi64 SDL2::Main)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
-    target_link_libraries(imgui_setup "-lGL")
-    target_link_libraries(imgui_setup_demo "-lGL")
+    target_link_libraries(raspi64 "-lGL")
 endif ()
 if (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    target_link_libraries(imgui_setup "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo")
-    target_link_libraries(imgui_setup "-L/usr/local/lib -L/opt/local/lib")
-    target_link_libraries(imgui_setup_demo "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo")
-    target_link_libraries(imgui_setup_demo "-L/usr/local/lib -L/opt/local/lib")
+    target_link_libraries(raspi64 "-framework OpenGL -framework Cocoa -framework IOKit -framework CoreVideo")
+    target_link_libraries(raspi64 "-L/usr/local/lib -L/opt/local/lib")
 endif ()
 
 # Link Filesystem (gcc 8 an below)
 # not needed on macos
 if (NOT ${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
-    target_link_libraries(imgui_setup -lstdc++fs)
+    target_link_libraries(raspi64 -lstdc++fs)
 endif ()
 
 add_compile_options("-Wall -Wextra -pedantic -Werror")

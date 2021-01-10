@@ -4,9 +4,9 @@
 #include <fstream>
 #include <algorithm>
 
-// ______________________
+// ____________________________
 // | Funktionen für die Suche |
-//----------------------------------------------------------------------------------------------------------------------
+//-----------------------------
 // Suchen nach Schlagwörtern in den searchwords der einzelnen Einträge.
 // die Funktion ruft sich so lange wieder selbst auf, bis Sie in den Ordnern eine unter Ordner mehr findet.
 // bei der Suche wird zwischen dem Typ Ordner und Datei Unterschieden.
@@ -43,7 +43,7 @@ std::vector<Entry *> searchEntries(Entry *entry, std::string searchword) {
 
 // _______________________________________________________
 // | Funktionen für das Inintialisieren des Hilfesystems |
-// ----------------------------------------------------------------------------------------------------------------------
+// -------------------------------------------------------
 // Einlesen der Dateien, geteilt in die erste Zeile in der die Schlagwörter stehen und den Rest der Datei in dem der Text steht.
 void readFile(const std::string &filePath, Entry *entry) {
     // line für das kurze zwischen Speichern der eingelesenen Zeile.

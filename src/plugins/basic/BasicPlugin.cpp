@@ -3,8 +3,8 @@
 //
 
 #include <my_basic.h>
-#include <iostream>
 #include <cstdarg>
+#include <cstring>
 #include "BasicPlugin.hpp"
 
 
@@ -12,12 +12,9 @@ BasicPlugin::BasicPlugin() : Plugin() {
     mb_init();
     mb_open(&bas);
     mb_set_printer(bas, BasicPlugin::basic_print);
-
+    mb_set_inputer(bas, BasicPlugin::basic_inputer);
     mb_register_func(bas, "DRAW", basic_draw);
     mb_register_func(bas, "CLEAR", basic_clear);
-    mb_register_func(bas, "BASICMAXIMUM", basic_maximum);
-    mb_register_func(bas, "OPENTERMINAL", basic_openTerminal);
-    mb_register_func(bas, "BASICECHO", basic_echo);
 }
 
 BasicPlugin::~BasicPlugin() {
@@ -40,16 +37,16 @@ bool BasicPlugin::exec_script() {
     if (exec_stat != MB_FUNC_OK) {
         update_error_message();
     }
-    mb_reset(&bas,false);
+    mb_reset(&bas, false);
     return exec_stat == MB_FUNC_OK;
 }
 
 void BasicPlugin::on_key_press(const std::string &) {
-
+    // TODO: Implement
 }
 
 void BasicPlugin::on_key_release(const std::string &) {
-
+    // TODO: Implement
 }
 
 std::string BasicPlugin::get_extension() {
@@ -73,6 +70,13 @@ int BasicPlugin::basic_print(const char *format, ...) {
     return 0;
 }
 
+int BasicPlugin::basic_inputer(const char *prompt, char *input, int max_length) {
+    std::string tmp = Plugin::get_input_line();
+    strncpy(input, tmp.c_str(), max_length);
+
+    return tmp.length() > max_length ? max_length : (int) tmp.length();
+}
+
 void BasicPlugin::update_error_message() {
     const char *file;
     int pos;
@@ -82,11 +86,8 @@ void BasicPlugin::update_error_message() {
 }
 
 int BasicPlugin::basic_draw(mb_interpreter_t *bas, void **ptr) {
-    int result = MB_FUNC_OK;
-
     int x = 20;
     int y = 20;
-
     int red = 500;
     int green = 500;
     int blue = 500;
@@ -105,53 +106,12 @@ int BasicPlugin::basic_draw(mb_interpreter_t *bas, void **ptr) {
 
     Plugin::draw(x, y, red, green, blue, alpha, size);
 
-    return result;
-}
-
-int BasicPlugin::basic_clear(mb_interpreter_t *bas, void **ptr) {
-    int result = MB_FUNC_OK;
-
-   // Plugin::clear_function();
-
-    return result;
-}
-
-
-int BasicPlugin::basic_maximum(mb_interpreter_t *bas, void **ptr) {
-    int result = MB_FUNC_OK;
-    int m = 0;
-    int n = 0;
-
-    mb_check(mb_attempt_open_bracket(bas, ptr));
-    mb_check(mb_pop_int(bas, ptr, &m));
-    mb_check(mb_pop_int(bas, ptr, &n));
-    mb_check(mb_attempt_close_bracket(bas, ptr));
-
-    int r = n;
-    if (m > n)
-        r = m;
-
-    mb_check(mb_push_int(bas, ptr, r));
-
-    printf("param_1 %i\n", m);
-    printf("param_2 %i\n", n);
-
-    return result;
-}
-
-int BasicPlugin::basic_openTerminal(mb_interpreter_t *_bas, void **_ptr) {
-    system("xfce4-terminal");
     return MB_FUNC_OK;
 }
 
-int BasicPlugin::basic_echo(mb_interpreter_t *bas, void **ptr) {
-    char *string;
+int BasicPlugin::basic_clear(mb_interpreter_t *bas, void **ptr) {
 
-    mb_check(mb_attempt_open_bracket(bas, ptr));
-    mb_check(mb_pop_string(bas, ptr, &string));
-    mb_check(mb_attempt_close_bracket(bas, ptr));
-
-    std::cout << string << std::endl;
+    Plugin::clear();
 
     return MB_FUNC_OK;
 }

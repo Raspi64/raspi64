@@ -1,8 +1,11 @@
 # CMake
 /cmake-build-debug/
+/cmake-build/
 
 # Rest
 *.o
 imgui.ini
 /imgui_setup
 /imgui_setup_demo
+/raspi64
+/release*.zip

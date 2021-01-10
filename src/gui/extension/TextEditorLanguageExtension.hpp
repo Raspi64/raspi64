@@ -5,7 +5,7 @@
 #ifndef IMGUI_SETUP_EXTENSIONS_TEXTEDITORLANGUAGEEXTENSION_HPP
 #define IMGUI_SETUP_EXTENSIONS_TEXTEDITORLANGUAGEEXTENSION_HPP
 
-#include <TextEditor.h>
+#include "../../../lib/imgui_color_text_editor/TextEditor.h"
 
 struct LanguageDefinitionExtension
 {

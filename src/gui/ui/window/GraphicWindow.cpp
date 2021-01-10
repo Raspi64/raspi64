@@ -121,19 +121,23 @@ void GraphicWindow::draw_graphic_entities(ImVec2 origin, ImDrawList *draw_list) 
 }
 
 void GraphicWindow::add_rect(TGraphicRect rect) {
-    graphicDrawEntities.push_back({new TGraphicRect(rect), TYPE_RECT});
+    if (graphicDrawEntities.size() < 16000)
+        graphicDrawEntities.push_back({new TGraphicRect(rect), TYPE_RECT});
 }
 
 void GraphicWindow::add_circle(TGraphicCircle circle) {
-    graphicDrawEntities.push_back({new TGraphicCircle(circle), TYPE_CIRCLE});
+    if (graphicDrawEntities.size() < 16000)
+        graphicDrawEntities.push_back({new TGraphicCircle(circle), TYPE_CIRCLE});
 }
 
 void GraphicWindow::add_line(TGraphicLine line) {
-    graphicDrawEntities.push_back({new TGraphicLine(line), TYPE_LINE});
+    if (graphicDrawEntities.size() < 16000)
+        graphicDrawEntities.push_back({new TGraphicLine(line), TYPE_LINE});
 }
 
 void GraphicWindow::add_text(TGraphicText text) {
-    graphicDrawEntities.push_back({new TGraphicText(text), TYPE_TEXT});
+    if (graphicDrawEntities.size() < 16000)
+        graphicDrawEntities.push_back({new TGraphicText(text), TYPE_TEXT});
 }
 
 void GraphicWindow::add_pixel(TGraphicPixel pixel) {
