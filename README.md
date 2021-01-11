@@ -37,7 +37,16 @@ Die benötigten Dateien aus den Projekten sind bereits in dieser Repository vorh
 
 ## Installation
 
-[Instalaltionsanleitung](https://github.com/Raspi64/raspi64/blob/main/install.md)
+Du hast zum installieren zwei verschiedene Möglichkeiten. Bei der einen compilierst du das Programm selber, bei der anderen ist es bereits für das beschriebene Raspberry Pi System compiliert.
+
+
+### Selber compilieren
+
+[Hier](https://github.com/Raspi64/raspi64/blob/main/install.md)
+
+### Empfohlene
+
+
 
 ```
 TBD
