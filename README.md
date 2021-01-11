@@ -80,7 +80,7 @@ Nur für erfahrene Nutzer empfohlen die wissen was sie machen. [Hier](https://gi
 
 Du hast zum installieren zwei verschiedene Möglichkeiten. Bei der einen compilierst du das Programm selber, bei der anderen ist es bereits für das beschriebene Raspberry Pi System compiliert.
 
-#### 1. Download der neusten Release Version.
+### 1. Download der neusten Release Version.
 
 Lade dir [hier](https://github.com/Raspi64/raspi64/releases) die neuste Version runter. Die Datei heißt release-x.x.zip. Das x steht im Namen für die Versionsnummer. Wir empfehlen immer die neuste Version.
 
