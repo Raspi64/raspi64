@@ -9,7 +9,7 @@ Grund für das Projekt bzw den Gedanken dahinter
 
 ## Disclaimer
 
-There is no english version at the moment and there isn't any planed.
+There is no english version at the moment and there isn't any planed. 
 
 Das Programm wurde für die verwendung mit einem Raspberry Pi entwickelt. Es kann auch auf ähnlichen Geräten, Mac, Windows oder anderen Linux Plattformen funktionieren.
 
@@ -35,28 +35,18 @@ Entstehungszeitraum: Wintersemester 2020/21
 
 Die benötigten Dateien aus den Projekten sind bereits in dieser Repository vorhanden und müssen nicht zusätzlich runtergeladen werden.
 
-## Installation
 
-Du hast zum installieren zwei verschiedene Möglichkeiten. Bei der einen compilierst du das Programm selber, bei der anderen ist es bereits für das beschriebene Raspberry Pi System compiliert.
+## Vorraussetzungen
 
-
-### Selber compilieren
-
-[Hier](https://github.com/Raspi64/raspi64/blob/main/Install.md) findest du eine Detailierte Anleitung wie du es selber compilieren.
-
-#### Empfohlene Art der Installation
-
-##### Vorraussetzungen
-
-##### 1. Hardware
+### 1. Hardware
 Getestet wurde das Projekt mit einem Raspberry Pi 3B und Raspberry Pi 4. 
 Es kann auch auf älteren beziehungsweise auf ähnlichen Modellen funktionieren allerdings übernehmen wir keine Garantie.
 
-##### 2. Betriebssystem
+### 2. Betriebssystem
 Raspberry Pi OS with Desktop Release 2 Dezember 2020
 Es kann auch auf älteren Versionen funktionieren allerdings übernehmen wir keine Garantie.
 
-##### 3. Pakete
+### 3. Pakete: Zum Ausführen
 
 libsdl2
 
@@ -66,13 +56,35 @@ Die Pakete können über folgenden Befehl installiert werden.
 $ sudo apt-get update && sudo apt-get install libsdl2
 ```
 
-#### Eigentliche Installation
+### 4. Pakete: Zum compilieren
 
-##### 1. Download der neusten Release Version.
+
+cmake 
+
+libsdl2-dev
+
+Die Pakete können über folgenden Befehl installiert werden.
+
+```
+$ sudo apt-get update && sudo apt-get install cmake libsdl2-dev
+```
+
+
+
+
+## Selber compilieren
+
+Nur für erfahrene Nutzer empfohlen die wissen was sie machen. [Hier](https://github.com/Raspi64/raspi64/blob/main/Install.md) findest du eine Detailierte Anleitung wie du es selber compilieren.
+
+## Installation
+
+Du hast zum installieren zwei verschiedene Möglichkeiten. Bei der einen compilierst du das Programm selber, bei der anderen ist es bereits für das beschriebene Raspberry Pi System compiliert.
+
+#### 1. Download der neusten Release Version.
 
 Lade dir [hier](https://github.com/Raspi64/raspi64/releases) die neuste Version runter. Die Datei heißt release-x.x.zip. Das x steht im Namen für die Versionsnummer. Wir empfehlen immer die neuste Version.
 
-##### 2. Entpacken der Release Version
+### 2. Entpacken der Release Version
 
 Gehe mit dem Terminal in den Ordner in dem die .zip Datei liegt und führe den folgenden Befehl zum entpacken aus. Der Befehl erstellt in dem Ordner nun ein Verzeichnis das raspi64 heißt und das Programm beinhaltet. 
 
@@ -80,7 +92,7 @@ Gehe mit dem Terminal in den Ordner in dem die .zip Datei liegt und führe den f
 $ unzip release-0.1.zip -d raspi64/ && cd raspi64
 ```
 
-##### 3. Ausführen des Programmes
+### 3. Ausführen des Programmes
 
 Wenn du alle Schritte genau befolgt hast müsste dein Terminal nun in dem entpackten Ordner sein. Zum starten führe den folgenden Befehl aus.
 
