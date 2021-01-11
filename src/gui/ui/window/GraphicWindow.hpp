@@ -16,12 +16,16 @@ public:
     GraphicWindow();
     void render();
 
-    void add_pixel(int x, int y, int red, int green, int blue, int alpha = 255, int size = 1);
-    void clear_pixels();
+    void add_pixel(TGraphicPixel pixel);
+    void add_rect(TGraphicRect rect);
+    void add_circle(TGraphicCircle circle);
+    void add_line(TGraphicLine line);
+    void add_text(TGraphicText text);
+    void clear();
 
 private:
-    std::vector<TGraphicPixel> graphicPixels;
-    void draw_graphic_pixels(ImVec2 origin, ImDrawList *draw_list);
+    std::vector<TGraphicDrawEntity> graphicDrawEntities;
+    void draw_graphic_entities(ImVec2 origin, ImDrawList *draw_list);
 };
 
 
