@@ -44,19 +44,19 @@ Du hast zum installieren zwei verschiedene Möglichkeiten. Bei der einen compili
 
 [Hier](https://github.com/Raspi64/raspi64/blob/main/Install.md) findest du eine Detailierte Anleitung wie du es selber compilieren.
 
-### Empfohlene Art der Installation
+#### Empfohlene Art der Installation
 
-## Vorraussetzungen
+##### Vorraussetzungen
 
-### 1. Hardware
+##### 1. Hardware
 Getestet wurde das Projekt mit einem Raspberry Pi 3B und Raspberry Pi 4. 
 Es kann auch auf älteren beziehungsweise auf ähnlichen Modellen funktionieren allerdings übernehmen wir keine Garantie.
 
-### 2. Betriebssystem
+##### 2. Betriebssystem
 Raspberry Pi OS with Desktop Release 2 Dezember 2020
 Es kann auch auf älteren Versionen funktionieren allerdings übernehmen wir keine Garantie.
 
-### 3. Pakete
+##### 3. Pakete
 
 libsdl2
 
@@ -66,11 +66,13 @@ Die Pakete können über folgenden Befehl installiert werden.
 $ sudo apt-get update && sudo apt-get install libsdl2
 ```
 
-#### 1. Download der neusten Release Version.
+#### Eigentliche Installation
+
+##### 1. Download der neusten Release Version.
 
 Lade dir [hier](https://github.com/Raspi64/raspi64/releases) die neuste Version runter. Die Datei heißt release-x.x.zip. Das x steht im Namen für die Versionsnummer. Wir empfehlen immer die neuste Version.
 
-#### 2. Entpacken der Release Version
+##### 2. Entpacken der Release Version
 
 Gehe mit dem Terminal in den Ordner in dem die .zip Datei liegt und führe den folgenden Befehl zum entpacken aus. Der Befehl erstellt in dem Ordner nun ein Verzeichnis das raspi64 heißt und das Programm beinhaltet. 
 
@@ -78,7 +80,7 @@ Gehe mit dem Terminal in den Ordner in dem die .zip Datei liegt und führe den f
 $ unzip release-0.1.zip -d raspi64/ && cd raspi64
 ```
 
-#### 3. Ausführen des Programmes
+##### 3. Ausführen des Programmes
 
 Wenn du alle Schritte genau befolgt hast müsste dein Terminal nun in dem entpackten Ordner sein. Zum starten führe den folgenden Befehl aus.
 
