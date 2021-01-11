@@ -40,10 +40,12 @@ Die benötigten Dateien aus den Projekten sind bereits in dieser Repository vorh
 
 ### 1. Hardware
 Getestet wurde das Projekt mit einem Raspberry Pi 3B und Raspberry Pi 4. 
+
 Es kann auch auf älteren beziehungsweise auf ähnlichen Modellen funktionieren allerdings übernehmen wir keine Garantie.
 
 ### 2. Betriebssystem
-Raspberry Pi OS with Desktop Release 2 Dezember 2020
+[Raspberry Pi OS with Desktop Release 2 Dezember 2020](https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2020-12-04/2020-12-02-raspios-buster-armhf.zip)
+
 Es kann auch auf älteren Versionen funktionieren allerdings übernehmen wir keine Garantie.
 
 ### 3. Pakete: Zum Ausführen
