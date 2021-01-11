@@ -109,10 +109,8 @@ Das Projekt war nur eine Aufgabe während des Wintersemesters 2020/21 und ist un
 
 
 ## Bekannte Probleme / Known problems
-```
-TBD
-Liste mit bekannten Problemen einholen und einpflegen
-```
+
+Die dem Projektteam bekannten Fehler stehen in der [Bugs.md](https://github.com/Raspi64/raspi64/blob/main/Bugs.md), die Datei wird nach bestem Wissen und Gewissen gepflegt. Es besteht auch keine Garantie auf Vollständigkeit.
 
 ## License
 
