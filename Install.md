@@ -13,7 +13,8 @@ Nur verwenden wenn du weißt was du tust. Nur für fortgeschrittene Nutzer empfo
 $ sudo apt-get update
 $ sudo apt-get install cmake libsdl2-dev
 $ git clone https://github.com/Raspi64/raspi64.git
-$ ./raspi64/build.sh
+$ cd rapsi64
+$ ./build.sh
 ```
 
 
@@ -53,10 +54,11 @@ $ git clone https://github.com/Raspi64/raspi64.git
 
 ### 2. Build.sh
 
-Das Programm wird nun kompiliert und ausführbar gemacht. Dies kann etwas dauern. Bitte drücke keine Tasten um Fehler zu verhindern. Die Warnings sind Teil des Vorganges und normal, du musst dir keine Sorgen machen deswegen.
+Das Programm wird nun kompiliert und ausführbar gemacht. Dies kann etwas dauern. Bitte drücke keine Tasten um Fehler zu verhindern. Die Warnings sind Teil des Vorganges und normal, du musst dir keine Sorgen machen deswegen. 
 
 ```
-$ ./raspi64/build.sh
+$ cd rapsi64
+$ ./build.sh
 ```
 
 ### 3. Starten des Programmes
@@ -64,5 +66,5 @@ Das Programm kann nun mit diesem Befehl gestartet werden. Alles zur Verwendung d
 
 
 ```
-$ ./raspi64/imgui_setup
+$ ./imgui_setup
 ```
