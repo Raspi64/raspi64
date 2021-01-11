@@ -191,7 +191,7 @@ int LuaPlugin::lua_draw_rect(lua_State *state) {
     TGraphicRect rect{};
 
     if (lua_gettop(state) != 7) {
-        return luaL_error(state, "Erwarte Parameter: start_x,start_y,end_x,end_y,thickness,filled,color (Table color hat Felder: red,green,blue,alpha)");
+        return luaL_error(state, "Erwarte Parameter: start_x, start_y, end_x, end_y, thickness, filled, color (Table color hat Felder: red,green,blue,alpha)");
     }
 
     luaL_checktype(state, 1, LUA_TNUMBER);
@@ -223,7 +223,7 @@ int LuaPlugin::lua_draw_line(lua_State *state) {
     TGraphicLine line{};
 
     if (lua_gettop(state) != 6) {
-        return luaL_error(state, "Erwarte Parameter: start_x,start_y,end_x,end_y,thickness,color (Table color hat Felder: red,green,blue,alpha)");
+        return luaL_error(state, "Erwarte Parameter: start_x, start_y, end_x, end_y, thickness, color (Table color hat Felder: red,green,blue,alpha)");
     }
 
     luaL_checktype(state, 1, LUA_TNUMBER);
@@ -252,7 +252,7 @@ int LuaPlugin::lua_draw_text(lua_State *state) {
     TGraphicText text{};
 
     if (lua_gettop(state) != 5) {
-        return luaL_error(state, "Erwarte Parameter: x,y,size,text,color (Table color hat Felder: red,green,blue,alpha)");
+        return luaL_error(state, "Erwarte Parameter: x, y, size, text, color (Table color hat Felder: red,green,blue,alpha)");
     }
 
     luaL_checktype(state, 1, LUA_TNUMBER);
@@ -276,8 +276,9 @@ int LuaPlugin::lua_draw_text(lua_State *state) {
 
 int LuaPlugin::lua_draw_pixel(lua_State *state) {
     TGraphicPixel pixel{};
+
     if (lua_gettop(state) != 4) {
-        return luaL_error(state, "Erwarte Parameter: x,y,size,color (Table color hat Felder: red,green,blue,alpha)");
+        return luaL_error(state, "Erwarte Parameter: x, y, size, color (Table color hat Felder: red,green,blue,alpha)");
     }
 
     luaL_checktype(state, 1, LUA_TNUMBER);
@@ -300,7 +301,7 @@ int LuaPlugin::lua_draw_circle(lua_State *state) {
     TGraphicCircle circle{};
 
     if (lua_gettop(state) != 4) {
-        return luaL_error(state, "Erwarte Parameter: x,y,radius,color (Table color hat Felder: red,green,blue,alpha)");
+        return luaL_error(state, "Erwarte Parameter: x, y, radius, thickness, filled, color (Table color hat Felder: red,green,blue,alpha)");
     }
 
     luaL_checktype(state, 1, LUA_TNUMBER);
@@ -312,8 +313,14 @@ int LuaPlugin::lua_draw_circle(lua_State *state) {
     luaL_checktype(state, 3, LUA_TNUMBER);
     circle.radius = lua_tonumber(state, 3);
 
-    luaL_checktype(state, 4, LUA_TTABLE);
-    circle.color = get_color(state, 4);
+    luaL_checktype(state, 4, LUA_TNUMBER);
+    circle.thickness = lua_tonumber(state, 4);
+
+    luaL_checktype(state, 5, LUA_TBOOLEAN);
+    circle.filled = lua_toboolean(state, 5);
+
+    luaL_checktype(state, 6, LUA_TTABLE);
+    circle.color = get_color(state, 6);
 
     Plugin::draw_circle(circle);
     return 0;
