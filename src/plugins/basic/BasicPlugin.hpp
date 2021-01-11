@@ -31,7 +31,15 @@ public:
 private:
     mb_interpreter_t *bas = nullptr;
 
-    static int basic_draw(mb_interpreter_t *bas, void **ptr);
+    static int basic_draw_rect(mb_interpreter_t *bas, void **ptr);
+
+    static int basic_draw_line(mb_interpreter_t *bas, void **ptr);
+
+    static int basic_draw_text(mb_interpreter_t *bas, void **ptr);
+
+    static int basic_draw_pixel(mb_interpreter_t *bas, void **ptr);
+
+    static int basic_draw_circle(mb_interpreter_t *bas, void **ptr);
 
     static int basic_clear(mb_interpreter_t *bas, void **ptr);
 
@@ -40,6 +48,7 @@ private:
     static int basic_print(const char *format, ...);
 
     static int basic_inputer(const char*, char*, int);
+
 };
 
 
