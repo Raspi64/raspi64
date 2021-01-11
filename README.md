@@ -9,9 +9,9 @@ Grund für das Projekt bzw den Gedanken dahinter
 
 ## Disclaimer
 
-There is no english version at the moment and there isn't any planed.
+There is no english version at the moment and there isn't any planed. 
 
-Das Programm wurde für die verwendung mit einem Raspberry Pi entwickelt. Es kann auch auf ähnlichen Geräten, Mac, Windows oder anderen Linux Plattformen funktionieren.
+Das Programm wurde für die Verwendung mit einem Raspberry Pi entwickelt. Es kann auch auf ähnlichen Geräten wie Mac, Windows oder anderen Linux Plattformen funktionieren.
 
 ## Informationen über das Projekt
 
@@ -35,46 +35,84 @@ Entstehungszeitraum: Wintersemester 2020/21
 
 Die benötigten Dateien aus den Projekten sind bereits in dieser Repository vorhanden und müssen nicht zusätzlich runtergeladen werden.
 
+
+## Vorraussetzungen
+
+### 1. Hardware
+Getestet wurde das Projekt mit einem Raspberry Pi 3B und Raspberry Pi 4. 
+
+Es kann auch auf älteren beziehungsweise auf ähnlichen Modellen funktionieren allerdings übernehmen wir hierfür keine Garantie.
+
+### 2. Betriebssystem
+[Raspberry Pi OS with Desktop Release 2 Dezember 2020](https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2020-12-04/2020-12-02-raspios-buster-armhf.zip)
+
+Es kann auch auf älteren Versionen funktionieren allerdings übernehmen wir keine Garantie.
+
+### 3. Pakete: Zum Ausführen
+
+libsdl2
+
+Die Pakete können über folgenden Befehl installiert werden.
+
+```
+$ sudo apt-get update && sudo apt-get install libsdl2
+```
+
+### 4. Pakete: Zum compilieren
+
+
+cmake 
+
+libsdl2-dev
+
+Die Pakete können über folgenden Befehl installiert werden.
+
+```
+$ sudo apt-get update && sudo apt-get install cmake libsdl2-dev
+```
+
+
+
+
+## Selber compilieren
+
+Das selber Compilieren wird ausschließlich erfahrenen Nutzern empfohlen. [Hier](https://github.com/Raspi64/raspi64/blob/main/Install.md) findest du eine detailierte Anleitung wie du das Projekt selber compilieren kannst.
+
 ## Installation
 
-[Instalaltionsanleitung](https://github.com/Raspi64/raspi64/blob/main/install.md)
+Du hast zum Installieren zwei verschiedene Möglichkeiten. Bei der einen compilierst du das Programm selber, bei der anderen ist es bereits für das beschriebene Raspberry Pi System compiliert.
+
+### 1. Download der neusten Release Version.
+
+Lade dir [hier](https://github.com/Raspi64/raspi64/releases) die neuste Version herunter. Die Datei heißt release-x.x.zip. Das x im Namen steht für die Versionsnummer. Wir empfehlen die neuste Version.
+
+### 2. Entpacken der Release Version
+
+Gehe mit dem Terminal in den Ordner in dem die .zip Datei liegt und führe den folgenden Befehl zum entpacken aus. Der Befehl erstellt in dem Ordner nun ein Verzeichnis das raspi64 heißt und das Programm beinhaltet. 
 
 ```
-TBD
-import aus install.md (muss noch angepasst werden)
-simon dinge fragen
-
+$ unzip release-0.1.zip -d raspi64/ && cd raspi64
 ```
 
-## Bedienungsanleitung
+### 3. Ausführen des Programmes
+
+Wenn du alle Schritte genau befolgt hast müsste dein Terminal nun in dem entpackten Ordner sein. Zum starten führe den folgenden Befehl aus.
 
 ```
-TBD
-Kurze Anleitung wie man das Programm verwendet
-Eventuell Bilder mit kurzen Texten
-
+$ ./raspi64
 ```
 
 ## Zum Projekt was beitragen / Contributing
 
-This project was just a project during a the winter semester 2020/21 and is our final version. If you find any bugs left in the code that are not mentioned down below or some better ways to solve some functions, create a pull request. We dont guarantee that we will look at them.
+This project was just a project during a the winter semester 2020/21 and is our final version. If you find any bugs left in the code that are not mentioned down below or some better ways to solve some functions, create a pull request. We don't guarantee that we will look at them.
 
 Das Projekt war nur eine Aufgabe während des Wintersemesters 2020/21 und ist unsere letzte Version. Solltest du noch fehler finden die nicht bekannt sind oder bessere Lösungsansätze, kannst du gerne sie veröffentlichen. Wir garantieren nicht das wir uns diese Ansehen.
 
 
-## Explaining some stuff
-```
-TBD
-Noch keine Ahnung was dazu kommen soll.
-Eventuell nicht notwendig
-
-```
 
 ## Bekannte Probleme / Known problems
-```
-TBD
-Liste mit bekannten Problemen einholen und einpflegen
-```
+
+Die dem Projektteam bekannten Fehler stehen in der [Bugs.md](https://github.com/Raspi64/raspi64/blob/main/Bugs.md), die Datei wird nach bestem Wissen und Gewissen gepflegt. Es besteht keine Garantie auf Vollständigkeit.
 
 ## License
 
