@@ -15,7 +15,12 @@ LuaPlugin::LuaPlugin() : Plugin() {
 
     // register custom functions
     lua_register(L, "print", lua_print);
-    lua_register(L, "draw", lua_draw);
+    lua_register(L, "draw", lua_draw_pixel);
+    lua_register(L, "draw_pixel", lua_draw_pixel);
+    lua_register(L, "draw_circle", lua_draw_circle);
+    lua_register(L, "draw_line", lua_draw_line);
+    lua_register(L, "draw_rect", lua_draw_rect);
+    lua_register(L, "draw_text", lua_draw_text);
     lua_register(L, "clear", lua_clear);
     lua_register(L, "sleep", lua_sleep);
 
@@ -28,7 +33,7 @@ LuaPlugin::LuaPlugin() : Plugin() {
 
     // create io table
     lua_newtable(L);
-    lua_setglobal(L,"io");
+    lua_setglobal(L, "io");
     replace_function_in_table("io", "read", lua_io_read);
     replace_function_in_table("io", "write", lua_io_write);
 }
@@ -157,25 +162,160 @@ int LuaPlugin::lua_print(lua_State *state) {
     return 0;
 }
 
-int LuaPlugin::lua_draw(lua_State *state) {
-    if (lua_gettop(state) != 7) {
-        return luaL_error(state, "expecting parameters: x,y,r,g,b,a,size");
-    }
-    for (int i = 1; i <= 7; ++i) {
-        if (!lua_isnumber(state, i)) {
-            return luaL_error(state, "expecting only numbers as parameters");
+TColor LuaPlugin::get_color(lua_State *state, int color_table_pos) {
+    TColor color{};
+    int old_top = lua_gettop(state);
+
+    int *colors[4] = {&color.red, &color.green, &color.blue, &color.alpha};
+    char *color_names[4] = {"red", "green", "blue", "alpha"};
+
+    for (int i = 0; i < 4; i++) {
+        // get field from lua
+        lua_getfield(state, color_table_pos, color_names[i]);
+        luaL_checktype(state, lua_gettop(state), LUA_TNUMBER);
+        *colors[i] = (int) lua_tonumber(state, lua_gettop(state));
+
+        // sanity check
+        if (*colors[i] > 255) {
+            *colors[i] = 255;
+        } else if (*colors[i] < 0) {
+            *colors[i] = 0;
         }
     }
-    int x = lua_tointeger(state, 1);
-    int y = lua_tointeger(state, 2);
-    int red = lua_tointeger(state, 3);
-    int green = lua_tointeger(state, 4);
-    int blue = lua_tointeger(state, 5);
-    int alpha = lua_tointeger(state, 6);
-    int size = lua_tointeger(state, 7);
 
-    Plugin::draw(x, y, red, green, blue, alpha, size);
+    lua_settop(state, old_top);
+    return color;
+}
 
+int LuaPlugin::lua_draw_rect(lua_State *state) {
+    TGraphicRect rect{};
+
+    if (lua_gettop(state) != 7) {
+        return luaL_error(state, "Erwarte Parameter: start_x,start_y,end_x,end_y,thickness,filled,color (Table color hat Felder: red,green,blue,alpha)");
+    }
+
+    luaL_checktype(state, 1, LUA_TNUMBER);
+    rect.start_x = (int) lua_tonumber(state, 1);
+
+    luaL_checktype(state, 2, LUA_TNUMBER);
+    rect.start_y = (int) lua_tonumber(state, 2);
+
+    luaL_checktype(state, 3, LUA_TNUMBER);
+    rect.end_x = (int) lua_tonumber(state, 3);
+
+    luaL_checktype(state, 4, LUA_TNUMBER);
+    rect.end_y = (int) lua_tonumber(state, 4);
+
+    luaL_checktype(state, 5, LUA_TNUMBER);
+    rect.thickness = lua_tonumber(state, 5);
+
+    luaL_checktype(state, 6, LUA_TBOOLEAN);
+    rect.filled = lua_toboolean(state, 6);
+
+    luaL_checktype(state, 7, LUA_TTABLE);
+    rect.color = get_color(state, 7);
+
+    Plugin::draw_rect(rect);
+    return 0;
+}
+
+int LuaPlugin::lua_draw_line(lua_State *state) {
+    TGraphicLine line{};
+
+    if (lua_gettop(state) != 6) {
+        return luaL_error(state, "Erwarte Parameter: start_x,start_y,end_x,end_y,thickness,color (Table color hat Felder: red,green,blue,alpha)");
+    }
+
+    luaL_checktype(state, 1, LUA_TNUMBER);
+    line.start_x = (int) lua_tonumber(state, 1);
+
+    luaL_checktype(state, 2, LUA_TNUMBER);
+    line.start_y = (int) lua_tonumber(state, 2);
+
+    luaL_checktype(state, 3, LUA_TNUMBER);
+    line.end_x = (int) lua_tonumber(state, 3);
+
+    luaL_checktype(state, 4, LUA_TNUMBER);
+    line.end_y = (int) lua_tonumber(state, 4);
+
+    luaL_checktype(state, 5, LUA_TNUMBER);
+    line.thickness = lua_tonumber(state, 5);
+
+    luaL_checktype(state, 6, LUA_TTABLE);
+    line.color = get_color(state, 6);
+
+    Plugin::draw_line(line);
+    return 0;
+}
+
+int LuaPlugin::lua_draw_text(lua_State *state) {
+    TGraphicText text{};
+
+    if (lua_gettop(state) != 5) {
+        return luaL_error(state, "Erwarte Parameter: x,y,size,text,color (Table color hat Felder: red,green,blue,alpha)");
+    }
+
+    luaL_checktype(state, 1, LUA_TNUMBER);
+    text.x = (int) lua_tonumber(state, 1);
+
+    luaL_checktype(state, 2, LUA_TNUMBER);
+    text.y = (int) lua_tonumber(state, 2);
+
+    luaL_checktype(state, 3, LUA_TNUMBER);
+    text.size = (float) lua_tonumber(state, 3);
+
+    luaL_checktype(state, 4, LUA_TSTRING);
+    asprintf(&text.text, "%s", lua_tostring(state, 4));
+
+    luaL_checktype(state, 5, LUA_TTABLE);
+    text.color = get_color(state, 5);
+
+    Plugin::draw_text(text);
+    return 0;
+}
+
+int LuaPlugin::lua_draw_pixel(lua_State *state) {
+    TGraphicPixel pixel{};
+    if (lua_gettop(state) != 4) {
+        return luaL_error(state, "Erwarte Parameter: x,y,size,color (Table color hat Felder: red,green,blue,alpha)");
+    }
+
+    luaL_checktype(state, 1, LUA_TNUMBER);
+    pixel.x = (int) lua_tonumber(state, 1);
+
+    luaL_checktype(state, 2, LUA_TNUMBER);
+    pixel.y = (int) lua_tonumber(state, 2);
+
+    luaL_checktype(state, 3, LUA_TNUMBER);
+    pixel.size = (int) lua_tonumber(state, 3);
+
+    luaL_checktype(state, 4, LUA_TTABLE);
+    pixel.color = get_color(state, 4);
+
+    Plugin::draw_pixel(pixel);
+    return 0;
+}
+
+int LuaPlugin::lua_draw_circle(lua_State *state) {
+    TGraphicCircle circle{};
+
+    if (lua_gettop(state) != 4) {
+        return luaL_error(state, "Erwarte Parameter: x,y,radius,color (Table color hat Felder: red,green,blue,alpha)");
+    }
+
+    luaL_checktype(state, 1, LUA_TNUMBER);
+    circle.x = (int) lua_tonumber(state, 1);
+
+    luaL_checktype(state, 2, LUA_TNUMBER);
+    circle.y = (int) lua_tonumber(state, 2);
+
+    luaL_checktype(state, 3, LUA_TNUMBER);
+    circle.radius = lua_tonumber(state, 3);
+
+    luaL_checktype(state, 4, LUA_TTABLE);
+    circle.color = get_color(state, 4);
+
+    Plugin::draw_circle(circle);
     return 0;
 }
 

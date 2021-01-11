@@ -47,7 +47,15 @@ public:
 
     static std::vector<Entry *> search_entries(const std::string &searchword);
 
-    static void gui_draw(int x, int y, int red, int green, int blue, int alpha, int size);
+    static void gui_draw_rect(TGraphicRect rect);
+
+    static void gui_draw_circle(TGraphicCircle circle);
+
+    static void gui_draw_line(TGraphicLine line);
+
+    static void gui_draw_text(TGraphicText text);
+
+    static void gui_draw_pixel(TGraphicPixel pixel);
 
     static void gui_clear();
 

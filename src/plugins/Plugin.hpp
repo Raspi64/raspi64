@@ -7,6 +7,7 @@
 
 
 #include <string>
+#include <HelpSystem.hpp>
 
 class Plugin {
 public:
@@ -29,7 +30,15 @@ public:
 
     static void print(const std::string &message);
 
-    static void draw(int x, int y, int red, int green, int blue, int alpha, int size);
+    static void draw_rect(TGraphicRect rect);
+
+    static void draw_line(TGraphicLine line);
+
+    static void draw_text(TGraphicText text);
+
+    static void draw_pixel(TGraphicPixel pixel);
+
+    static void draw_circle(TGraphicCircle circle);
 
     static void clear();
 

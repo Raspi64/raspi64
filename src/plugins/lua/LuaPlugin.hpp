@@ -30,15 +30,21 @@ public:
 private:
     lua_State *L;
 
-    void load_libraries();
-
     void replace_function_in_table(const char *table, const char *field, lua_CFunction function);
 
     static int lua_function_not_allowed(lua_State *state);
 
     static int lua_print(lua_State *state);
 
-    static int lua_draw(lua_State *state);
+    static int lua_draw_pixel(lua_State *state);
+
+    static int lua_draw_rect(lua_State *state);
+
+    static int lua_draw_line(lua_State *state);
+
+    static int lua_draw_text(lua_State *state);
+
+    static int lua_draw_circle(lua_State *state);
 
     static int lua_clear(lua_State *state);
 
@@ -51,6 +57,10 @@ private:
     static int lua_io_read(lua_State *state);
 
     static int lua_io_write(lua_State *state);
+
+    static TColor get_color(lua_State *state);
+
+    static TColor get_color(lua_State *state, int color_table_pos);
 };
 
 

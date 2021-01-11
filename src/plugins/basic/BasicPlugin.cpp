@@ -86,25 +86,19 @@ void BasicPlugin::update_error_message() {
 }
 
 int BasicPlugin::basic_draw(mb_interpreter_t *bas, void **ptr) {
-    int x = 20;
-    int y = 20;
-    int red = 500;
-    int green = 500;
-    int blue = 500;
-    int alpha = 500;
-    int size = 500;
+    TGraphicPixel pixel{};
 
     mb_check(mb_attempt_open_bracket(bas, ptr));
-    mb_check(mb_pop_int(bas, ptr, &x));
-    mb_check(mb_pop_int(bas, ptr, &y));
-    mb_check(mb_pop_int(bas, ptr, &red));
-    mb_check(mb_pop_int(bas, ptr, &green));
-    mb_check(mb_pop_int(bas, ptr, &blue));
-    mb_check(mb_pop_int(bas, ptr, &alpha));
-    mb_check(mb_pop_int(bas, ptr, &size));
+    mb_check(mb_pop_int(bas, ptr, &pixel.x));
+    mb_check(mb_pop_int(bas, ptr, &pixel.y));
+    mb_check(mb_pop_int(bas, ptr, &pixel.color.red));
+    mb_check(mb_pop_int(bas, ptr, &pixel.color.green));
+    mb_check(mb_pop_int(bas, ptr, &pixel.color.blue));
+    mb_check(mb_pop_int(bas, ptr, &pixel.color.alpha));
+    mb_check(mb_pop_int(bas, ptr, &pixel.size));
     mb_check(mb_attempt_close_bracket(bas, ptr));
 
-    Plugin::draw(x, y, red, green, blue, alpha, size);
+    Plugin::draw_pixel(pixel);
 
     return MB_FUNC_OK;
 }

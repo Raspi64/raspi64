@@ -9,7 +9,6 @@ local paddle_width = 10
 local paddle_left_pos = (max_y - min_y) / 2 - paddle_height / 2
 local paddle_right_pos = paddle_left_pos
 
-
 local paddle_move_delta = 15
 
 local velocity = 10
@@ -25,14 +24,6 @@ local ball_v_x = 10
 local ball_v_y = -15
 
 local difficulty = false
-
-function draw_box(x, y, h, w)
-	for a = x, x + w, 2 do
-		for b = y, y + h, 2 do
-			draw(a, b, 0, 0, 0, 255, 2)
-		end
-	end
-end
 
 local key_up = false
 local key_down = false
@@ -90,10 +81,10 @@ function update()
 
 	-- left-right collision
 	if ball_x <= min_x - ball_size then
-		print("GAME OVER!")
+		print("YOU WIN!")
 		running = false
 	elseif ball_x + ball_size >= max_x + ball_size then
-		print("YOU WIN!")
+		print("GAME OVER!")
 		running = false
 	end
 
@@ -107,9 +98,11 @@ function update()
 	end
 
 	-- right paddle collision
-	if ball_x + ball_size >= max_x - paddle_width then -- right edge
+	if ball_x + ball_size >= max_x - paddle_width then
+		-- right edge
 		if ball_y < paddle_right_pos + paddle_height and -- bottom corner of paddle
-				ball_y + ball_size > paddle_right_pos then -- top corner of paddle
+				ball_y + ball_size > paddle_right_pos then
+			-- top corner of paddle
 			-- paddle hits ball
 			ball_v_y = calculate_vertical_velocity(paddle_right_pos)
 			-- print("Vel:", ball_v_y)
@@ -119,9 +112,11 @@ function update()
 	end
 
 	-- left paddle collision
-	if ball_x <= min_x + paddle_width then -- left edge
+	if ball_x <= min_x + paddle_width then
+		-- left edge
 		if ball_y < paddle_left_pos + paddle_height and -- bottom corner of paddle
-				ball_y + ball_size > paddle_left_pos then -- top corner of paddle
+				ball_y + ball_size > paddle_left_pos then
+			-- top corner of paddle
 			-- paddle hits ball
 			ball_v_y = calculate_vertical_velocity(paddle_left_pos)
 			-- print("Vel:", ball_v_y)
@@ -134,6 +129,16 @@ function update()
 	-- print(velocity)
 end
 
+local color = {}
+color.red = 200
+color.green = 200
+color.blue = 200
+color.alpha = 255
+
+function draw_box(x, y, h, w)
+	draw_rect(x, y, x + w, y + h, 1, true, color)
+end
+
 function render()
 	clear()
 	-- draw paddles
@@ -142,18 +147,15 @@ function render()
 	-- draw ball
 	draw_box(ball_x, ball_y, ball_size, ball_size)
 	-- draw borders
-	for x=min_x,max_x do
-		draw(x, min_y, 255, 0, 0, 255, 1)
-		draw(x, max_y, 255, 0, 0, 255, 1)
-	end
-	for y=min_y,max_y do
-		draw(min_x, y, 255, 0, 0, 255, 1)
-		draw(max_x, y, 255, 0, 0, 255, 1)
-	end
-	draw(min_x, min_y, 255, 0, 0, 255, 10)
-	draw(min_x, max_y, 255, 0, 0, 255, 10)
-	draw(max_x, min_y, 255, 0, 0, 255, 10)
-	draw(max_x, max_y, 255, 0, 0, 255, 10)
+	draw_line(min_x, min_y, min_x, max_y, 2, color)
+	draw_line(min_x, max_y, max_x, max_y, 2, color)
+	draw_line(max_x, max_y, max_x, min_y, 2, color)
+	draw_line(max_x, min_y, min_x, min_y, 2, color)
+	-- draw border dots
+	draw(min_x, min_y, 10, color)
+	draw(min_x, max_y, 10, color)
+	draw(max_x, min_y, 10, color)
+	draw(max_x, max_y, 10, color)
 end
 
 function on_key_press(key)
@@ -174,11 +176,10 @@ function on_key_release(key)
 	end
 end
 
-
 while difficulty == false do
 	print("Schwierigkeitsstufe? [1,2,3]")
 
-	local input = io.read("l")
+	local input = io.read()
 	if input == "1" then
 		difficulty = 0.5
 	elseif input == "2" then
@@ -188,12 +189,9 @@ while difficulty == false do
 	end
 end
 
-
 while running do
 	-- main loop
 	update()
 	render()
 	sleep(0.07)
 end
-
-

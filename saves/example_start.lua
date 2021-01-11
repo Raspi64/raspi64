@@ -15,17 +15,6 @@ while true do
 			local c_g = 255 - (255 * angle / 360)
 			local c_b = 255 - ((x+d_x+y + d_y) / 1000 * 255)
 
-			if c_r < 0 then
-				c_r = 0
-			end
-
-			if c_g < 0 then
-				c_g = 0
-			end
-
-			if c_b < 0 then
-				c_b = 0
-			end
 			-- print(x + d_x, y + d_y, c_r, c_g, c_b)
 			draw(math.floor(x + d_x), math.floor(y + d_y), math.floor(c_r), math.floor(c_g), math.floor(c_b), 255, 5);
 			sleep(t)

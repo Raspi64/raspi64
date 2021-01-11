@@ -9,8 +9,24 @@ void Plugin::print(const std::string &message) {
     Schnittstelle::gui_print(message);
 }
 
-void Plugin::draw(int x, int y, int red, int green, int blue, int alpha, int size) {
-    Schnittstelle::gui_draw(x, y, red, green, blue, alpha, size);
+void Plugin::draw_rect(TGraphicRect rect) {
+    Schnittstelle::gui_draw_rect(rect);
+}
+
+void Plugin::draw_circle(TGraphicCircle circle) {
+    Schnittstelle::gui_draw_circle(circle);
+}
+
+void Plugin::draw_line(TGraphicLine line) {
+    Schnittstelle::gui_draw_line(line);
+}
+
+void Plugin::draw_text(TGraphicText text) {
+    Schnittstelle::gui_draw_text(text);
+}
+
+void Plugin::draw_pixel(TGraphicPixel pixel) {
+    Schnittstelle::gui_draw_pixel(pixel);
 }
 
 void Plugin::clear() {

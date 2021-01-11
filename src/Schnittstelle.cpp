@@ -201,7 +201,7 @@ std::string Schnittstelle::load(const std::string &name) {
     return std::string(std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>());
 }
 
-void Schnittstelle::delete_file(const std::string& name) {
+void Schnittstelle::delete_file(const std::string &name) {
     const std::basic_string<char, std::char_traits<char>, std::allocator<char>> &filename = "saves/" + name + interpreter->get_extension();
     std::remove(filename.c_str());
 }
@@ -255,8 +255,24 @@ std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword
 }
 
 
-void Schnittstelle::gui_draw(int x, int y, int red, int green, int blue, int alpha, int size) {
-    gui->graphic->add_pixel(x, y, red, green, blue, alpha, size);
+void Schnittstelle::gui_draw_rect(TGraphicRect rect) {
+    gui->graphic->add_rect(rect);
+}
+
+void Schnittstelle::gui_draw_circle(TGraphicCircle circle) {
+    gui->graphic->add_circle(circle);
+}
+
+void Schnittstelle::gui_draw_line(TGraphicLine line) {
+    gui->graphic->add_line(line);
+}
+
+void Schnittstelle::gui_draw_text(TGraphicText text) {
+    gui->graphic->add_text(text);
+}
+
+void Schnittstelle::gui_draw_pixel(TGraphicPixel pixel) {
+    gui->graphic->add_pixel(pixel);
 }
 
 void Schnittstelle::gui_clear() {
