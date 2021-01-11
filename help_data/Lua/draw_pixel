@@ -1,0 +1,23 @@
+draw;zeichnen;pixel;graphic;graphical output;grafische ausgabe;lua
+
+Draw Pixel
+Die "draw_pixel" Funktion ist für das darstellen der Pixel, in der grafischen Ausgabe da.
+Der draw_pizel Funktion müssen vier Parameter mitgegeben werden:
+- x und y beschreiben die Position des Pixels.
+- size beschreibt die groesse des Pixels, in Pixeln. Die größe geht immer von dem Mittelpunkt aus.
+- color beschreibt die Farbe, diese wird in Rot, Gruen, Blau, und Alpha (Intensität) angeben.
+
+Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
+Der Standartwert für ein Pixel ist 1.
+
+Beispiel:
+local color = {}
+color.red = 255
+color.green = 100
+color.blue = 0
+color.alpha = 255
+
+draw(x, y, size, color)
+draw_pixel(x, y, size, color)
+draw(10, 10, 1, color)
+draw_pixel(15, 15, 4, color)
