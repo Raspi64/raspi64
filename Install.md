@@ -17,30 +17,7 @@ $ cd rapsi64
 $ ./build.sh
 ```
 
-
-
-## Vorraussetzungen
-
-### 1. Hardware
-Getestet wurde das Projekt mit einem Raspberry Pi 3B und Raspberry Pi 4. 
-Es kann auch auf älteren beziehungsweise auf ähnlichen Modellen funktionieren allerdings übernehmen wir keine Garantie.
-
-### 2. Betriebssystem
-Raspberry Pi OS with Desktop Release 2 Dezember 2020
-Es kann auch auf älteren Versionen funktionieren allerdings übernehmen wir keine Garantie.
-
-### 3. Pakete
-cmake 
-
-libsdl2-dev
-
-Die Pakete können über folgenden Befehl installiert werden.
-
-```
-$ sudo apt-get update && sudo apt-get install cmake libsdl2-dev
-```
-
-## Eigentliche installation des Programmes
+## Installation des Programmes
 
 Es wird davon ausgegangen das die Vorraussetzungen erfüllt werden.
 
