@@ -1,0 +1,4 @@
+/lib/* linguist-vendored
+/help_data/ linguist-documentation
+/docs/ linguist-documentation
+*.md linguist-documentation
