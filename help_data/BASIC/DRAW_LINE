@@ -28,10 +28,15 @@ Der draw_line Funktion müssen sechs Parameter mitgegeben werden:
 
 Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
 
-	draw_line(start_x, start_y, end_x, end_y, thickness, color)
+	draw_line(start_x, start_y, end_x, end_y, thickness, red, green, blue, alpha)
 
 Beispiel:
 
+<<<<<<< HEAD
 	draw_line(10, 10, 1, red, green, blue, alpha)
 	draw_line(15, 15, 4, red, green, blue, alpha)
 >>>>>>> d3f55208f9d4505ec24380e44a6f25a16c8e52b0
+=======
+	draw_line(10, 10, 1, 255, 0, 0, 10)
+	draw_line(15, 15, 4, 0, 255, 0, 10)
+>>>>>>> eec22f33b097477e8786e7234507d6b18cc26a1a
