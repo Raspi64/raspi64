@@ -19,7 +19,7 @@ BasicPlugin::BasicPlugin() : Plugin() {
     mb_register_func(bas, "DRAW_LINE", basic_draw_line);
     mb_register_func(bas, "DRAW_TEXT", basic_draw_text);
     mb_register_func(bas, "DRAW_CIRCLE", basic_draw_circle);
-    mb_register_func(bas, "CLEAR", basic_clear);
+    mb_register_func(bas, "DRAW_CLEAR", basic_clear);
 }
 
 BasicPlugin::~BasicPlugin() {
@@ -209,6 +209,9 @@ int BasicPlugin::basic_draw_circle(mb_interpreter_t *bas, void **ptr) {
 }
 
 int BasicPlugin::basic_clear(mb_interpreter_t *bas, void **ptr) {
+
+    mb_attempt_func_begin(bas,ptr);
+    mb_attempt_func_end(bas,ptr);
 
     Plugin::clear();
 
