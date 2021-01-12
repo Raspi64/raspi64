@@ -1,0 +1,8 @@
+clear;draw;graphic;graphical output;grafische ausgabe;basic
+
+draw_clear:
+
+Die "clear" Funktion leert die Grafikausgabe.
+
+Beispiel:
+	draw_clear
