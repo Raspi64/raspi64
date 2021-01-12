@@ -1,21 +1,20 @@
 draw;zeichnen;pixel;graphic;graphical output;grafische ausgabe;basic
 
-Draw:
-
-Die "draw" Funktion ist für das darstellen der Pixel, in der Grafischen Ausgabe da.
-Der draw Funktion müssen sieben Parameter mitgegeben werden:
-- x und y beschreiben die Position des Pixels.
-- red, green und blue beschreiben die Farbe, diese wird in Rot, Gruen und Blau angeben.
-- alpha beschreibt den Alpha Wert, also wie Intensiev die Farbe dargestellt werden soll.
-- size beschreibt die groesse des Pixels, in Pixeln. Die größe geht immer von dem Mittelpunkt aus.
+Draw oder auch Draw Pixel (Pixel zeichnen)
+Die "DRAW" Funktion ist für das darstellen der Pixel in der grafischen Ausgabe da.
+Die "DRAW" Funktion ist ein Alias fuer die "DRAW_PIXEL".
+Der DRAW_PIXEL Funktion müssen sieben Parameter mitgegeben werden:
+- x und y sind number, welche beschreiben die Position des Pixels
+- size ist number, die beschreibt die Größe in Pixeln. Die Größe geht immer von dem Mittelpunkt aus
+- red, gibt den Rot Anteil an
+- green, gibt den Grün Anteil an
+- blue, gibt den Blau Anteil an
+- alpha, gibt die Intensität an
 
 Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
-Der Standartwert für ein Pixel ist 1.
-
-	draw(x, y, red, green, blue, alpha, size)
 
 Beispiel:
-
-	draw(10, 10, 255, 255, 255, 255, 1)
-	draw(15, 15, 0, 0, 255, 200, 4)
-
+DRAW(x, y, size, red, green, blue, alpha)
+DRAW_PIXEL(x, y, size, red, green, blue, alpha)
+DRAW(10, 10, 1, 255, 0, 0, 255)
+DRAW_PIXEL(15, 15, 4, 0, 255, 0, 200)
