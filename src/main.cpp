@@ -4,7 +4,7 @@
 
 int main() {
     // Initialize Gui
-    Gui* gui = new Gui();
+    Gui *gui = new Gui();
     gui->initialize();
 
     // Initialize Schnittstelle

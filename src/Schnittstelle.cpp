@@ -18,6 +18,7 @@ Plugin *Schnittstelle::interpreter;
 pthread_t Schnittstelle::exec_thread;
 Entry Schnittstelle::help_root_entry;
 Schnittstelle::Status Schnittstelle::status;
+std::string Schnittstelle::base_path;
 
 
 void *Schnittstelle::exec_script(void *) {
@@ -176,7 +177,14 @@ void Schnittstelle::init(Gui *ui, LANG lang) {
     Schnittstelle::gui = ui;
 
     interpreter = get_interpreter(lang);
-    help_root_entry = initHelpSystem("help_data/");
+
+    // read program path
+    char *buf = (char *) malloc(1024);
+    readlink("/proc/self/exe", buf, 1024);
+    base_path = std::string(buf);
+    base_path.erase(base_path.find_last_of('/'), std::string::npos);
+
+    help_root_entry = initHelpSystem(base_path + "/help_data/");
 
     sort_subtrees(&help_root_entry.sub_entries);
 }
@@ -197,12 +205,12 @@ void Schnittstelle::save(const std::string &name, const std::string &text) {
 
 std::string Schnittstelle::load(const std::string &name) {
     std::ifstream infile;
-    infile.open("saves/" + name + interpreter->get_extension());
+    infile.open(base_path + "/saves/" + name + interpreter->get_extension());
     return std::string(std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>());
 }
 
 void Schnittstelle::delete_file(const std::string &name) {
-    const std::basic_string<char, std::char_traits<char>, std::allocator<char>> &filename = "saves/" + name + interpreter->get_extension();
+    const std::basic_string<char, std::char_traits<char>, std::allocator<char>> &filename = base_path + "/saves/" + name + interpreter->get_extension();
     std::remove(filename.c_str());
 }
 
