@@ -1,16 +1,15 @@
-// TODO: Change Tags
-draw;zeichnen;pixel;graphic;graphical output;grafische ausgabe;lua
+rect;viereck;draw;zeichnen;pixel;graphic;graphical output;grafische ausgabe;lua
 
-// TODO: Change Text
-Draw Pixel
-Die "draw_pixel" Funktion ist für das darstellen der Pixel, in der grafischen Ausgabe da.
-Der draw_pizel Funktion müssen vier Parameter mitgegeben werden:
-- x und y beschreiben die Position des Pixels.
-- size beschreibt die groesse des Pixels, in Pixeln. Die größe geht immer von dem Mittelpunkt aus.
-- color beschreibt die Farbe, diese wird in Rot, Gruen, Blau, und Alpha (Intensität) angeben.
+Draw Rect (Viereck zeichnen)
+Die "draw_rect" Funktion ist für das Zeichnen eines Vierecks, in der grafischen Ausgabe.
+Der draw_rect Funktion müssen sieben Parameter mitgegeben werden:
+- start_x und start_y sind number, welche beschreiben den Punkt oben links des Vierecks
+- end_x und end_y sind number, welche beschreiben den Punkt unten rechts des Vierecks
+- thickness ist eine number, die beschreibt die Dicke der gezeichneten Linien in Pixeln
+- filled ist ein boolean, der beschreibt ob das Viereck ausgefuellt ist
+- color ist eine table, welche beschreibt die Farbe, diese wird in Rot, Gruen, Blau, und Alpha (Intensität) angeben
 
 Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
-Der Standartwert für ein Pixel ist 1.
 
 Beispiel:
 local color = {}

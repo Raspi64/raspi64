@@ -1,16 +1,14 @@
-// TODO: Change Tags
-draw;zeichnen;pixel;graphic;graphical output;grafische ausgabe;lua
+draw;circle;kreis;zeichnen;graphic;graphical output;grafische ausgabe;lua
 
-// TODO: Change Text
-Draw Pixel
-Die "draw_pixel" Funktion ist für das darstellen der Pixel, in der grafischen Ausgabe da.
-Der draw_pizel Funktion müssen vier Parameter mitgegeben werden:
-- x und y beschreiben die Position des Pixels.
-- size beschreibt die groesse des Pixels, in Pixeln. Die größe geht immer von dem Mittelpunkt aus.
-- color beschreibt die Farbe, diese wird in Rot, Gruen, Blau, und Alpha (Intensität) angeben.
+Draw Circle (Kreis zeichnen)
+Die "draw_circle" Funktion ist für das Zeichnen eines Kreises in der grafischen Ausgabe.
+Der draw_circle Funktion müssen sechs Parameter mitgegeben werden:
+- x und y sind number, welche beschreiben die Mitte des Kreises in Pixeln
+- radius ist eine number, die beschreibt den Radius in Pixeln
+- filled ist ein boolean, der beschreibt ob der Kreis ausgefuellt ist
+- color ist eine table, welche beschreibt die Farbe, diese wird in Rot, Gruen, Blau, und Alpha (Intensität) angeben
 
 Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
-Der Standartwert für ein Pixel ist 1.
 
 Beispiel:
 local color = {}
