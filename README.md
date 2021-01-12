@@ -1,11 +1,17 @@
 # Raspi 64 - An oldschool IDE for the Raspberry Pi
 
+Das Projekt Raspi 64 enstand im Rahmen der Projektgruppe des [Studiengangs Informatik](https://www.hs-emden-leer.de/studierende/fachbereiche/technik/studiengaenge/informatik) der [Hochschule Emden/Leer](https://www.hs-emden-leer.de/). Das Projekt wurde von [Prof. Dr. Carsten Link](http://www.technik-emden.de/~clink/) unter dem Titel "Entwicklung einer Programmierumgebung für Anfänger auf dem Raspberry Pi" ausgeschrieben. Das Projekt wurde mit diesen Stichworten beschrieben:
+
 ```
-TBD 
-hier aus der Dokumentation diese Punkte einfügen:
-Aufgabenstellung 
-Grund für das Projekt bzw den Gedanken dahinter
+- Anschließen, einschalten, loslegen
+- sehr einfache Programmiersprache
+- Programmierung des Computers, nicht irgendwelcher Bibliotheken oder Betriebssystem-API
 ```
+
+Als Programmiersprachen die der Nutzer am Ende in der Entwicklungsumgebung verwenden kann stand direkt zu Beginn das verwenden von [Basic](https://en.wikipedia.org/wiki/BASIC) fest, [Lua](https://en.wikipedia.org/wiki/Lua) war am Anfang nicht mehr als ein Gedanke der in einer Liste von möglichen Teams für das Projekt stand. Das Team hat sich dann dafür entschieden die Sprache ebenfalls zu unterstützen.
+
+Als Aufgabe wurde dann Festgelegt das, das Team eine Eigene Entwicklungsumgebung für den Rasberry Pi entwickelt, nach dem Vorbild des [Commodore 64](https://en.wikipedia.org/wiki/Commodore_64). Der Nutzer sollte mit der Entwciklungsumgebung auch für die Sprachen entsprechende Dokumentaion mit ausgeliefert bekommen. Die Entwicklungsumgebung sollte allerdings mehr als nur ein Textfeld beinhalten in dem Code geschrieben werden kann. Als Inspiration für den groben Aufbau der [GUI](https://en.wikipedia.org/wiki/Graphical_user_interface) wurde dann das existierende Project [Quite Basic](http://www.quitebasic.com/) genommen. 
+
 
 ## Disclaimer
 
