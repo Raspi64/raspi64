@@ -15,5 +15,5 @@ Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
 
 Beispiel:
 
-	draw_rect(10, 10, 20, 20, 1, true, color)
-	draw_rect(15, 15, 20, 50, 4, false, color)
+	draw_rect(10, 10, 20, 20, 1, true, red, green, blue, alpha)
+	draw_rect(15, 15, 20, 50, 4, false, color, red, green, blue, alpha)

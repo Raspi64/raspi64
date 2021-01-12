@@ -14,5 +14,5 @@ Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
 
 Beispiel:
 
-	draw_line(10, 10, 1, color)
-	draw_line(15, 15, 4, color)
+	draw_line(10, 10, 1, red, green, blue, alpha)
+	draw_line(15, 15, 4, red, green, blue, alpha)

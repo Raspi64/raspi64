@@ -14,5 +14,5 @@ Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
 
 Beispiel:
 
-	draw_text(10, 10, 1, "Hello", color)
-	draw_text(15, 15, 4, 'World', color)
+	draw_text(10, 10, 1, "Hello", red, green, blue, alpha)
+	draw_text(15, 15, 4, 'World', red, green, blue, alpha)
