@@ -9,10 +9,15 @@
 
 
 BasicPlugin::BasicPlugin() : Plugin() {
+    // create new state
     mb_init();
     mb_open(&bas);
+
+    // replace stdout and stdin
     mb_set_printer(bas, BasicPlugin::basic_print);
-    mb_set_inputer(bas, BasicPlugin::basic_inputer);
+    mb_set_inputer(bas, BasicPlugin::basic_input);
+
+    // register custom functions
     mb_register_func(bas, "DRAW", basic_draw_pixel);
     mb_register_func(bas, "DRAW_PIXEL", basic_draw_pixel);
     mb_register_func(bas, "DRAW_RECT", basic_draw_rect);
@@ -75,7 +80,7 @@ int BasicPlugin::basic_print(const char *format, ...) {
     return 0;
 }
 
-int BasicPlugin::basic_inputer(const char *prompt, char *input, int max_length) {
+int BasicPlugin::basic_input(const char *prompt, char *input, int max_length) {
     std::string tmp = Plugin::get_input_line();
     strncpy(input, tmp.c_str(), max_length);
 
@@ -143,6 +148,7 @@ int BasicPlugin::basic_draw_line(mb_interpreter_t *bas, void **ptr) {
 
 int BasicPlugin::basic_draw_text(mb_interpreter_t *bas, void **ptr) {
     TGraphicText text{};
+    char *string;
 
     int size_int = 0;
 
@@ -150,7 +156,7 @@ int BasicPlugin::basic_draw_text(mb_interpreter_t *bas, void **ptr) {
     mb_check(mb_pop_int(bas, ptr, &text.x));
     mb_check(mb_pop_int(bas, ptr, &text.y));
     mb_check(mb_pop_int(bas, ptr, &size_int));
-    mb_check(mb_pop_string(bas, ptr, &text.text));
+    mb_check(mb_pop_string(bas, ptr, &string));
     mb_check(mb_pop_int(bas, ptr, &text.color.red));
     mb_check(mb_pop_int(bas, ptr, &text.color.green));
     mb_check(mb_pop_int(bas, ptr, &text.color.blue));
@@ -158,6 +164,7 @@ int BasicPlugin::basic_draw_text(mb_interpreter_t *bas, void **ptr) {
     mb_check(mb_attempt_close_bracket(bas, ptr));
 
     text.size = (float) size_int;
+    text.text = std::string(string);
 
     Plugin::draw_text(text);
 
@@ -201,7 +208,7 @@ int BasicPlugin::basic_draw_circle(mb_interpreter_t *bas, void **ptr) {
 
     circle.radius = (float) radius_int;
     circle.thickness = (float) thickness_int;
-    circle.filled = thickness_int != 0;
+    circle.filled = filled_int != 0;
 
     Plugin::draw_circle(circle);
 
@@ -210,8 +217,8 @@ int BasicPlugin::basic_draw_circle(mb_interpreter_t *bas, void **ptr) {
 
 int BasicPlugin::basic_clear(mb_interpreter_t *bas, void **ptr) {
 
-    mb_attempt_func_begin(bas,ptr);
-    mb_attempt_func_end(bas,ptr);
+    mb_attempt_func_begin(bas, ptr);
+    mb_attempt_func_end(bas, ptr);
 
     Plugin::clear();
 

@@ -47,7 +47,7 @@ private:
 
     static int basic_print(const char *format, ...);
 
-    static int basic_inputer(const char*, char*, int);
+    static int basic_input(const char*, char*, int);
 
 };
 
