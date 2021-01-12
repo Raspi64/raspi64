@@ -2,7 +2,7 @@ rect;viereck;draw;zeichnen;pixel;graphic;graphical output;grafische ausgabe;lua
 
 Draw Rect (Viereck zeichnen)
 Die "draw_rect" Funktion ist für das Zeichnen eines Vierecks in der grafischen Ausgabe da.
-Der "draw_rect" Funktion müssen sechs Parameter mitgegeben werden:
+Der "draw_rect" Funktion müssen sieben Parameter mitgegeben werden:
 - start_x und start_y sind number, welche beschreiben den Punkt oben links des Vierecks
 - end_x und end_y sind number, welche beschreiben den Punkt unten rechts des Vierecks
 - thickness ist eine number, die beschreibt die Dicke der gezeichneten Linien in Pixeln

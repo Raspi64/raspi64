@@ -2,7 +2,7 @@ line;linie;strich;draw;zeichnen;graphic;graphical output;grafische ausgabe;lua
 
 Draw Line (Linie zeichnen)
 Die "draw_line" Funktion ist für das Zeichnen einer Linie in der grafischen Ausgabe da.
-Der draw_line Funktion müssen fünf Parameter mitgegeben werden:
+Der draw_line Funktion müssen sechs Parameter mitgegeben werden:
 - start_x und start_y sind number, welche beschreiben den Start der Linie
 - end_x und end_y sind number, welche beschreiben das Ende der Linie
 - thickness ist eine number, die beschreibt die Dicke der Linie in Pixeln
