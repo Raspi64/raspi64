@@ -10,9 +10,9 @@ Der draw_text Funktion müssen vier Parameter mitgegeben werden:
 
 Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
 
-	draw_text(x, y, size, text, color)
+	draw_text(x, y, size, text, red, green, blue, alpha)
 
 Beispiel:
 
-	draw_text(10, 10, 1, "Hello", red, green, blue, alpha)
-	draw_text(15, 15, 4, 'World', red, green, blue, alpha)
+	draw_text(10, 10, 1, "Hello", 255, 0, 0, 10)
+	draw_text(15, 15, 4, 'World', 0, 255, 0, 10)

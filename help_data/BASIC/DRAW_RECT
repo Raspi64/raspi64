@@ -11,9 +11,9 @@ Der draw_rect Funktion müssen sieben Parameter mitgegeben werden:
 
 Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
 
-	draw_rect(start_x, start_y, end_x, end_y, thickness, filled, color)
+	draw_rect(start_x, start_y, end_x, end_y, thickness, filled, red, green, blue, alpha)
 
 Beispiel:
 
-	draw_rect(10, 10, 20, 20, 1, true, red, green, blue, alpha)
-	draw_rect(15, 15, 20, 50, 4, false, color, red, green, blue, alpha)
+	draw_rect(10, 10, 20, 20, 1, true, 255, 0, 0, 10)
+	draw_rect(15, 15, 20, 50, 4, false, 0, 255, 0, 10)

@@ -12,7 +12,7 @@ Der draw Funktion müssen sieben Parameter mitgegeben werden:
 Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
 Der Standartwert für ein Pixel ist 1.
 
-	draw(x, y, red, size, green, blue, alpha)
+	draw(x, y, size, red, green, blue, alpha)
 
 Beispiel:
 
