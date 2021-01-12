@@ -1,7 +1,6 @@
 draw;circle;kreis;zeichnen;graphic;graphical output;grafische ausgabe;basic
 
 Draw Circle (Kreis zeichnen)
-<<<<<<< HEAD
 Die "DRAW_CIRCLE" Funktion ist für das Zeichnen eines Kreises in der grafischen Ausgabe da.
 Der "DRAW_CIRCLE" Funktion müssen acht Parameter mitgegeben werden:
 - x und y sind number, welche beschreiben die Mitte des Kreises in Pixeln
@@ -18,25 +17,3 @@ Beispiel:
 DRAW_CIRCLE(x, y, radius, thickness, filled, red, green, blue, alpha)
 DRAW_CIRCLE(10, 10, 30, 1, false, 255, 255, 0, 180)
 DRAW_CIRCLE(15, 15, 10, 5, true, 0, 0, 255, 200)
-=======
-Die "draw_circle" Funktion ist für das Zeichnen eines Kreises in der grafischen Ausgabe.
-Der draw_circle Funktion müssen sechs Parameter mitgegeben werden:
-- x und y sind number, welche beschreiben die Mitte des Kreises in Pixeln
-- radius ist eine number, die beschreibt den Radius in Pixeln
-- filled ist ein boolean, der beschreibt ob der Kreis ausgefuellt ist
-- color ist eine table, welche beschreibt die Farbe, diese wird in Rot, Gruen, Blau, und Alpha (Intensität) angeben
-
-Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
-
-	draw_circle(x, y, radius, thickness, filled, red, green, blue, alpha)
-
-Beispiel:
-
-<<<<<<< HEAD
-draw_circle(10, 10, 30, 1, false, red, green, blue, alpha)
-draw_circle(15, 15, 10, 5, true, red, green, blue, alpha)
->>>>>>> d3f55208f9d4505ec24380e44a6f25a16c8e52b0
-=======
-draw_circle(10, 10, 30, 1, false, 255, 0, 0, 10)
-draw_circle(15, 15, 10, 5, true, 0, 255, 0, 10)
->>>>>>> eec22f33b097477e8786e7234507d6b18cc26a1a
