@@ -1,5 +1,6 @@
 text;draw;zeichnen;pixel;graphic;graphical output;grafische ausgabe;basic
 
+<<<<<<< HEAD
 Draw Text (Text zeichnen)
 Die "DRAW_TEXT" Funktion ist für das darstellen von Text in der grafischen Ausgabe da.
 Der "DRAW_TEXT" Funktion müssen acht Parameter mitgegeben werden:
@@ -17,3 +18,21 @@ Beispiel:
 DRAW_TEXT(x, y, size, text, red, green, blue, alpha)
 DRAW_TEXT(10, 10, 1, "Hello", 255, 255, 255, 255)
 DRAW_TEXT(15, 15, 4, 'World', 200, 0, 0, 200)
+=======
+Draw Text:
+Die "draw_text" Funktion ist für das darstellen der Pixel, in der grafischen Ausgabe da.
+Der draw_text Funktion müssen vier Parameter mitgegeben werden:
+- x und y sind number, welche beschreiben den oberen linken Punkt des Textes
+- size ist number, die beschreibt die Größe des Textes
+- text ist string, der den zu zeichnenen Text enthaelt
+- color ist table, welche beschreibt die Farbe, diese wird in Rot, Gruen, Blau, und Alpha (Intensität) angeben.
+
+Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
+
+	draw_text(x, y, size, text, color)
+
+Beispiel:
+
+	draw_text(10, 10, 1, "Hello", red, green, blue, alpha)
+	draw_text(15, 15, 4, 'World', red, green, blue, alpha)
+>>>>>>> d3f55208f9d4505ec24380e44a6f25a16c8e52b0

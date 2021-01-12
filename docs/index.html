@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="de" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Raspi64</title>
+    <link href="mvp.css" rel="stylesheet">
+</head>
+<body>
+<main>
+	 <header>
+        <h1 id="Read-Me">Raspi 64 - An oldschool IDE for the Raspberry Pi</h1>
+    </header>
+
+    <article>
+    <h1 id="raspi-64-an-oldschool-ide-for-the-raspberry-pi">Raspi 64 - An oldschool IDE for the Raspberry Pi</h1>
+    <p>Das Projekt Raspi 64 enstand im Rahmen der Projektgruppe des <a
+            href="https://www.hs-emden-leer.de/studierende/fachbereiche/technik/studiengaenge/informatik">Studiengangs
+        Informatik</a> der <a href="https://www.hs-emden-leer.de/">Hochschule Emden/Leer</a>. Das Projekt wurde von <a
+            href="http://www.technik-emden.de/~clink/">Prof. Dr. Carsten Link</a> unter dem Titel &quot;Entwicklung
+        einer Programmierumgebung für Anfänger auf dem Raspberry Pi&quot; ausgeschrieben. Das Projekt wurde mit diesen
+        Stichworten beschrieben:</p>
+    <pre><code>-<span class="ruby"> Anschließen, einschalten, loslegen
+</span>-<span class="ruby"> sehr einfache Programmiersprache
+</span>-<span
+            class="ruby"> Programmierung des Computers, nicht irgendwelcher Bibliotheken oder Betriebssystem-API</span>
+</code></pre>
+    <p>Als Programmiersprachen die der Nutzer am Ende in der Entwicklungsumgebung verwenden kann stand direkt zu Beginn
+        das verwenden von <a href="https://en.wikipedia.org/wiki/BASIC">Basic</a> fest, <a
+                href="https://en.wikipedia.org/wiki/Lua">Lua</a> war am Anfang nicht mehr als ein Gedanke der in einer
+        Liste von möglichen Teams für das Projekt stand. Das Team hat sich dann dafür entschieden die Sprache ebenfalls
+        zu unterstützen.</p>
+    <p>Als Aufgabe wurde dann Festgelegt das, das Team eine Eigene Entwicklungsumgebung für den Rasberry Pi entwickelt,
+        nach dem Vorbild des <a href="https://en.wikipedia.org/wiki/Commodore_64">Commodore 64</a>. Der Nutzer sollte
+        mit der Entwciklungsumgebung auch für die Sprachen entsprechende Dokumentaion mit ausgeliefert bekommen. Die
+        Entwicklungsumgebung sollte allerdings mehr als nur ein Textfeld beinhalten in dem Code geschrieben werden kann.
+        Als Inspiration für den groben Aufbau der <a
+                href="https://en.wikipedia.org/wiki/Graphical_user_interface">GUI</a> wurde dann das existierende
+        Project <a href="http://www.quitebasic.com/">Quite Basic</a> genommen. </p>
+
+    </article>
+
+    <article>
+    <h2 id="disclaimer">Disclaimer</h2>
+    <p>There is no english version at the moment and there isn&#39;t any planed. </p>
+    <p>Das Programm wurde für die Verwendung mit einem Raspberry Pi entwickelt. Es kann auch auf ähnlichen Geräten wie
+        Mac, Windows oder anderen Linux Plattformen funktionieren.</p>
+    <h2 id="informationen-ber-das-projekt">Informationen über das Projekt</h2>
+    <p>Hochschule: <a href="https://www.hs-emden-leer.de/">Hochschule Emden/Leer</a></p>
+    <p>Fachbereich: <a href="https://www.hs-emden-leer.de/studierende/fachbereiche/technik/studiengaenge/informatik">Informatik</a>
+    </p>
+    <p>Betreunder Dozent: <a href="http://www.technik-emden.de/~clink/">Prof. Dr. Carsten Link</a></p>
+    <p>Entstehungszeitraum: Wintersemester 2020/21</p>
+
+    </article>
+    <article>
+    <h2 id="verwendete-projekte">Verwendete Projekte</h2>
+    <p><a href="https://www.lua.org/home.html">Lua</a></p>
+    <p><a href="https://github.com/paladin-t/my_basic">myBasic</a></p>
+    <p><a href="https://github.com/ocornut/imgui">Dear ImGui</a></p>
+    <p><a href="https://github.com/BalazsJako/ImGuiColorTextEdit">ImGuiColorTextEdit</a></p>
+    <p>Die benötigten Dateien aus den Projekten sind bereits in dieser Repository vorhanden und müssen nicht zusätzlich
+        runtergeladen werden.</p>
+    <h2 id="vorraussetzungen">Vorraussetzungen</h2>
+    <h3 id="1-hardware">1. Hardware</h3>
+    <p>Getestet wurde das Projekt mit einem Raspberry Pi 3B und Raspberry Pi 4. </p>
+    <p>Es kann auch auf älteren beziehungsweise auf ähnlichen Modellen funktionieren allerdings übernehmen wir hierfür
+        keine Garantie.</p>
+    <h3 id="2-betriebssystem">2. Betriebssystem</h3>
+    <p>
+        <a href="https://downloads.raspberrypi.org/raspios_armhf/images/raspios_armhf-2020-12-04/2020-12-02-raspios-buster-armhf.zip">Raspberry
+            Pi OS with Desktop Release 2 Dezember 2020</a></p>
+    <p>Es kann auch auf älteren Versionen funktionieren allerdings übernehmen wir keine Garantie.</p>
+    <h3 id="3-pakete-zum-ausf-hren">3. Pakete: Zum Ausführen</h3>
+    <p>libsdl2</p>
+    <p>Die Pakete können über folgenden Befehl installiert werden.</p>
+    <pre><code>$ sudo apt-<span class="hljs-built_in">get</span> <span class="hljs-keyword">update</span> &amp;&amp; sudo apt-<span
+            class="hljs-built_in">get</span> install libsdl2
+</code></pre>
+    <h3 id="4-pakete-zum-compilieren">4. Pakete: Zum compilieren</h3>
+    <p>cmake </p>
+    <p>libsdl2-dev</p>
+    <p>Die Pakete können über folgenden Befehl installiert werden.</p>
+    <pre><code>$ sudo apt-<span class="hljs-built_in">get</span> <span class="hljs-keyword">update</span> &amp;&amp; sudo apt-<span
+            class="hljs-built_in">get</span> install cmake libsdl2-<span class="hljs-built_in">dev</span>
+</code></pre>
+
+    </article>
+    <article>
+    <h2 id="selber-compilieren">Selber compilieren</h2>
+    <p>Das selber Compilieren wird ausschließlich erfahrenen Nutzern empfohlen. <a
+            href="https://raspi64.github.io/raspi64/install.html">Hier</a> findest du eine detailierte
+        Anleitung wie du das Projekt selber compilieren kannst.</p>
+    <h2 id="installation">Installation</h2>
+    <p>Du hast zum Installieren zwei verschiedene Möglichkeiten. Bei der einen compilierst du das Programm selber, bei
+        der anderen ist es bereits für das beschriebene Raspberry Pi System compiliert.</p>
+    <h3 id="1-download-der-neusten-release-version-">1. Download der neusten Release Version.</h3>
+    <p>Lade dir <a href="https://github.com/Raspi64/raspi64/releases">hier</a> die neuste Version herunter. Die Datei
+        heißt release-x.x.zip. Das x im Namen steht für die Versionsnummer. Wir empfehlen die neuste Version.</p>
+    <h3 id="2-entpacken-der-release-version">2. Entpacken der Release Version</h3>
+    <p>Gehe mit dem Terminal in den Ordner in dem die .zip Datei liegt und führe den folgenden Befehl zum entpacken aus.
+        Der Befehl erstellt in dem Ordner nun ein Verzeichnis das raspi64 heißt und das Programm beinhaltet. </p>
+    <pre><code>$ unzip release-0.1.zip <span class="hljs-_">-d</span> raspi64/ &amp;&amp; <span
+            class="hljs-built_in">cd</span> raspi64
+</code></pre>
+    <h3 id="3-ausf-hren-des-programmes">3. Ausführen des Programmes</h3>
+    <p>Wenn du alle Schritte genau befolgt hast müsste dein Terminal nun in dem entpackten Ordner sein. Zum starten
+        führe den folgenden Befehl aus.</p>
+    <pre><code><span class="hljs-variable">$ </span>./raspi64
+</code></pre>
+
+    </article>
+    <article>
+    <h2 id="zum-projekt-was-beitragen-contributing">Zum Projekt was beitragen / Contributing</h2>
+    <p>This project was just a project during a the winter semester 2020/21 and is our final version. If you find any
+        bugs left in the code that are not mentioned down below or some better ways to solve some functions, create a
+        pull request. We don&#39;t guarantee that we will look at them.</p>
+    <p>Das Projekt war nur eine Aufgabe während des Wintersemesters 2020/21 und ist unsere letzte Version. Solltest du
+        noch fehler finden die nicht bekannt sind oder bessere Lösungsansätze, kannst du gerne sie veröffentlichen. Wir
+        garantieren nicht das wir uns diese Ansehen.</p>
+    <h2 id="bekannte-probleme-known-problems">Bekannte Probleme / Known problems</h2>
+    <p>Die dem Projektteam bekannten Fehler stehen in der <a
+            href="https://github.com/Raspi64/raspi64/blob/main/Bugs.md">Bugs.md</a>, die Datei wird nach bestem Wissen
+        und Gewissen gepflegt. Es besteht keine Garantie auf Vollständigkeit.</p>
+    <h2 id="license">License</h2>
+    <p><a href="https://choosealicense.com/licenses/mit/">MIT</a></p>
+
+    </article>
+</main>
+</body>
+</html>

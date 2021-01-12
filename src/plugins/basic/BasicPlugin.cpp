@@ -19,7 +19,7 @@ BasicPlugin::BasicPlugin() : Plugin() {
     mb_register_func(bas, "DRAW_LINE", basic_draw_line);
     mb_register_func(bas, "DRAW_TEXT", basic_draw_text);
     mb_register_func(bas, "DRAW_CIRCLE", basic_draw_circle);
-    mb_register_func(bas, "CLEAR", basic_clear);
+    mb_register_func(bas, "DRAW_CLEAR", basic_clear);
 }
 
 BasicPlugin::~BasicPlugin() {
@@ -109,7 +109,7 @@ int BasicPlugin::basic_draw_rect(mb_interpreter_t *bas, void **ptr) {
     mb_check(mb_pop_int(bas, ptr, &rect.color.alpha));
     mb_check(mb_attempt_close_bracket(bas, ptr));
 
-    rect.filled = filled_int == 0;
+    rect.filled = filled_int != 0;
     rect.thickness = (float) thickness_int;
 
     Plugin::draw_rect(rect);
@@ -201,7 +201,7 @@ int BasicPlugin::basic_draw_circle(mb_interpreter_t *bas, void **ptr) {
 
     circle.radius = (float) radius_int;
     circle.thickness = (float) thickness_int;
-    circle.filled = thickness_int == 0;
+    circle.filled = thickness_int != 0;
 
     Plugin::draw_circle(circle);
 
@@ -209,6 +209,9 @@ int BasicPlugin::basic_draw_circle(mb_interpreter_t *bas, void **ptr) {
 }
 
 int BasicPlugin::basic_clear(mb_interpreter_t *bas, void **ptr) {
+
+    mb_attempt_func_begin(bas,ptr);
+    mb_attempt_func_end(bas,ptr);
 
     Plugin::clear();
 
