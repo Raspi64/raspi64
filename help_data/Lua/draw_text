@@ -1,8 +1,8 @@
 text;draw;zeichnen;pixel;graphic;graphical output;grafische ausgabe;lua
 
 Draw Text (Text zeichnen)
-Die "draw_text" Funktion ist für das darstellen der Pixel, in der grafischen Ausgabe da.
-Der draw_text Funktion müssen vier Parameter mitgegeben werden:
+Die "draw_text" Funktion ist für das darstellen von Text in der grafischen Ausgabe da.
+Der draw_text Funktion müssen fünf Parameter mitgegeben werden:
 - x und y sind number, welche beschreiben den oberen linken Punkt des Textes
 - size ist number, die beschreibt die Größe des Textes
 - text ist string, der den zu zeichnenen Text enthaelt

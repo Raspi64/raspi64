@@ -1,0 +1,20 @@
+draw;zeichnen;pixel;graphic;graphical output;grafische ausgabe;lua
+
+Draw Pixel (Pixel zeichnen)
+Die "DRAW_PIXEL" Funktion ist für das darstellen der Pixel, in der grafischen Ausgabe da.
+Die "DRAW" Funktion ist ein Alias fuer die "DRAW_PIXEL" Funktion.
+Der "DRAW_PIXEL" Funktion müssen sieben Parameter mitgegeben werden:
+- x und y sind number, welche beschreiben die Position des Pixels
+- size ist number, die beschreibt die Größe in Pixeln. Die Größe geht immer von dem Mittelpunkt aus
+- red, gibt den Rot Anteil an
+- green, gibt den Grün Anteil an
+- blue, gibt den Blau Anteil an
+- alpha, gibt die Intensität an
+
+Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
+
+Beispiel:
+DRAW(x, y, size, red, green, blue, alpha)
+DRAW_PIXEL(x, y, size, red, green, blue, alpha)
+DRAW(10, 10, 1, 255, 0, 0, 255)
+DRAW_PIXEL(15, 15, 4, 0, 255, 0, 200)

@@ -1,0 +1,19 @@
+line;linie;strich;draw;zeichnen;graphic;graphical output;grafische ausgabe;basic
+
+Draw Line (Linie zeichnen)
+Die "DRAW_LINE" Funktion ist für das Zeichnen einer Linie in der grafischen Ausgabe.
+Der "DRAW_LINE" Funktion müssen acht Parameter mitgegeben werden:
+- start_x und start_y sind number, welche beschreiben den Start der Linie
+- end_x und end_y sind number, welche beschreiben das Ende der Linie
+- thickness ist eine number, die beschreibt die Dicke der Linie in Pixeln
+- red, gibt den Rot Anteil an
+- green, gibt den Grün Anteil an
+- blue, gibt den Blau Anteil an
+- alpha, gibt die Intensität an
+
+Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
+
+Beispiel:
+DRAW_LINE(start_x, start_y, end_x, end_y, thickness, red, green, blue, alpha)
+DRAW_LINE(10, 10, 1, 0, 0, 255, 200)
+DRAW_LINE(15, 15, 4, 255, 0, 0, 255)

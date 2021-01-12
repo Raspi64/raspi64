@@ -1,8 +1,8 @@
 draw;circle;kreis;zeichnen;graphic;graphical output;grafische ausgabe;lua
 
 Draw Circle (Kreis zeichnen)
-Die "draw_circle" Funktion ist für das Zeichnen eines Kreises in der grafischen Ausgabe.
-Der draw_circle Funktion müssen sechs Parameter mitgegeben werden:
+Die "draw_circle" Funktion ist für das Zeichnen eines Kreises in der grafischen Ausgabe da.
+Der draw_circle Funktion müssen fünf Parameter mitgegeben werden:
 - x und y sind number, welche beschreiben die Mitte des Kreises in Pixeln
 - radius ist eine number, die beschreibt den Radius in Pixeln
 - filled ist ein boolean, der beschreibt ob der Kreis ausgefuellt ist
