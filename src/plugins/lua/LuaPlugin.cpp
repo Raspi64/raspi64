@@ -265,7 +265,7 @@ int LuaPlugin::lua_draw_text(lua_State *state) {
     text.size = (float) lua_tonumber(state, 3);
 
     luaL_checktype(state, 4, LUA_TSTRING);
-    asprintf(&text.text, "%s", lua_tostring(state, 4));
+    text.text = std::string(lua_tostring(state, 4));
 
     luaL_checktype(state, 5, LUA_TTABLE);
     text.color = get_color(state, 5);

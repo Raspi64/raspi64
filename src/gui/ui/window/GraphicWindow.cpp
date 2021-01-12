@@ -114,7 +114,7 @@ void GraphicWindow::draw_graphic_entities(ImVec2 origin, ImDrawList *draw_list) 
                                    entity->size,
                                    ImVec2(origin.x + entity->x, origin.y + entity->y),
                                    color,
-                                   entity->text);
+                                   entity->text.c_str());
             }
         }
     }

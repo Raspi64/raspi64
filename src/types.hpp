@@ -53,7 +53,7 @@ struct TGraphicText: TGraphicEntity {
     int x;
     int y;
     float size;
-    char* text;
+    std::string text;
 };
 
 
