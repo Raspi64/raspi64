@@ -20,6 +20,7 @@ void subSearch(Entry *posEntry, std::vector<Entry *> *results, const std::string
         for (auto &keyword : posEntry->searchWords) {
             if (keyword.find(searchword) != std::string::npos) {
                 results->push_back(posEntry);
+                break;
             }
         }
     }
