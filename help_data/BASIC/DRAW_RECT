@@ -1,0 +1,19 @@
+rect;viereck;draw;zeichnen;pixel;graphic;graphical output;grafische ausgabe;basic
+
+Draw Rect:
+Die "draw_rect" Funktion ist für das Zeichnen eines Vierecks, in der grafischen Ausgabe.
+Der draw_rect Funktion müssen sieben Parameter mitgegeben werden:
+- start_x und start_y sind number, welche beschreiben den Punkt oben links des Vierecks
+- end_x und end_y sind number, welche beschreiben den Punkt unten rechts des Vierecks
+- thickness ist eine number, die beschreibt die Dicke der gezeichneten Linien in Pixeln
+- filled ist ein boolean, der beschreibt ob das Viereck ausgefuellt ist
+- color ist eine table, welche beschreibt die Farbe, diese wird in Rot, Gruen, Blau, und Alpha (Intensität) angeben
+
+Die Farbwerte, wie auch die Intensität, gehen von dem Wert 0 bis 255.
+
+	draw_rect(start_x, start_y, end_x, end_y, thickness, filled, color)
+
+Beispiel:
+
+	draw_rect(10, 10, 20, 20, 1, true, color)
+	draw_rect(15, 15, 20, 50, 4, false, color)
