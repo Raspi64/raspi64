@@ -8,7 +8,7 @@
 
 ## Gui
 
-
+ - Man kann maximal 16.000 Elemente auf der Grafikausgabe zeichnen
 
 ## Lua Plugin
 
