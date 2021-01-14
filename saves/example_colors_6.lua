@@ -17,7 +17,7 @@ for i = 1, 50 do
 		d_y = r * math.sin(angle * math.pi / 180)
 
 		color.red = 250 * math.sin(0.8 * angle + 47.8) - 50
-		color.green = -0.02 * math.pow(angle - 180, 2) + 200
+		color.green = -0.02 * (angle - 180)^2 + 200
 		color.blue = 294 * math.sin(1.1 * angle - 246) - 95
 
 		draw(x + d_x, y + d_y, 5, color)

@@ -16,9 +16,9 @@ for i = 1, 50 do
 		d_x = r * math.cos(angle * math.pi / 180)
 		d_y = r * math.sin(angle * math.pi / 180)
 
-		color.red = a * math.pow(angle - 60, 2) + 255
-		color.green = a * math.pow(angle - 180, 2) + 255
-		color.blue = a * math.pow(angle - 300, 2) + 255
+		color.red = a * (angle - 60)^2 + 255
+		color.green = a * (angle - 180)^2 + 255
+		color.blue = a * (angle - 300)^2 + 255
 
 		draw(x + d_x, y + d_y, 5, color)
 		sleep(t)

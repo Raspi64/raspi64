@@ -13,14 +13,12 @@ color.alpha = 255
 
 for i = 1, 50 do
 	for angle = 0, 360, 1 do
-		-- 
+
 		d_x = r * math.cos(angle * math.pi / 180)
 		d_y = r * math.sin(angle * math.pi / 180)
 
 		color.red = 150 * math.sin(1.1 * angle + 36.5) + 49
-
-		color.green = -0.02 * (angle - 180) * (angle - 180) + 200
-
+		color.green = -0.02 * (angle - 180)^2 + 200
 		color.blue = 150 * math.sin(0.9 * angle - 177) + 49
 
 		draw(x + d_x, y + d_y, 5, color)
