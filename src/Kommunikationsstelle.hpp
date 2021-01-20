@@ -2,15 +2,15 @@
 // Created by simon on 12/1/20.
 //
 
-#ifndef IMGUI_SETUP_SCHNITTSTELLE_HPP
-#define IMGUI_SETUP_SCHNITTSTELLE_HPP
+#ifndef IMGUI_SETUP_KOMMUNIKATIONSSTELLE_HPP
+#define IMGUI_SETUP_KOMMUNIKATIONSSTELLE_HPP
 
 
 #include <string>
 #include <Gui.hpp>
 #include <Plugin.hpp>
 
-class Schnittstelle {
+class Kommunikationsstelle {
 
 public:
 
@@ -66,7 +66,7 @@ public:
 
     static std::string get_input_line();
 
-    static Schnittstelle::Status status;
+    static Kommunikationsstelle::Status status;
 
 private:
     static std::string base_path;
@@ -92,4 +92,4 @@ private:
 };
 
 
-#endif //IMGUI_SETUP_SCHNITTSTELLE_HPP
+#endif //IMGUI_SETUP_KOMMUNIKATIONSSTELLE_HPP

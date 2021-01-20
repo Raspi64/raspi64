@@ -9,29 +9,29 @@
 #include <unistd.h>
 #include "BasicPlugin.hpp"
 #include "LuaPlugin.hpp"
-#include "Schnittstelle.hpp"
+#include "Kommunikationsstelle.hpp"
 #include "HelpSystem.hpp"
 
 
-Gui *Schnittstelle::gui;
-Plugin *Schnittstelle::interpreter;
-pthread_t Schnittstelle::exec_thread;
-Entry Schnittstelle::help_root_entry;
-Schnittstelle::Status Schnittstelle::status;
-std::string Schnittstelle::base_path;
+Gui *Kommunikationsstelle::gui;
+Plugin *Kommunikationsstelle::interpreter;
+pthread_t Kommunikationsstelle::exec_thread;
+Entry Kommunikationsstelle::help_root_entry;
+Kommunikationsstelle::Status Kommunikationsstelle::status;
+std::string Kommunikationsstelle::base_path;
 
 
-void *Schnittstelle::exec_script(void *) {
-    if (Schnittstelle::interpreter->exec_script()) {
-        Schnittstelle::status = COMPLETED_OK;
+void *Kommunikationsstelle::exec_script(void *) {
+    if (Kommunikationsstelle::interpreter->exec_script()) {
+        Kommunikationsstelle::status = COMPLETED_OK;
     } else {
-        Schnittstelle::status = RUN_ERROR;
+        Kommunikationsstelle::status = RUN_ERROR;
     }
 
     return nullptr;
 }
 
-bool Schnittstelle::start_script(const std::string &script) {
+bool Kommunikationsstelle::start_script(const std::string &script) {
     kill_current_task();
 
     status = LOADING;
@@ -43,11 +43,11 @@ bool Schnittstelle::start_script(const std::string &script) {
 
     // create and start thread
     status = RUNNING;
-    pthread_create(&exec_thread, nullptr, Schnittstelle::exec_script, nullptr);
+    pthread_create(&exec_thread, nullptr, Kommunikationsstelle::exec_script, nullptr);
     return true;
 }
 
-std::string Schnittstelle::get_input_line() {
+std::string Kommunikationsstelle::get_input_line() {
     waiting_for_input = true;
     while (!input_ready) {
         usleep(1000);
@@ -58,16 +58,16 @@ std::string Schnittstelle::get_input_line() {
     return copy;
 }
 
-bool Schnittstelle::waiting_for_input;
-std::string Schnittstelle::input;
-bool Schnittstelle::input_ready;
+bool Kommunikationsstelle::waiting_for_input;
+std::string Kommunikationsstelle::input;
+bool Kommunikationsstelle::input_ready;
 
-bool Schnittstelle::handle_command(std::string command) {
+bool Kommunikationsstelle::handle_command(std::string command) {
     std::transform(command.begin(), command.end(), command.begin(), [&](unsigned char c) { return std::tolower(c); });
 
     if (status == RUNNING) {
         if (command == "stop") {
-            Schnittstelle::kill_current_task();
+            Kommunikationsstelle::kill_current_task();
             gui->console->print("OK");
             return true;
         }
@@ -78,13 +78,13 @@ bool Schnittstelle::handle_command(std::string command) {
         }
     }
     if (command == "start") {
-        if (Schnittstelle::start_script(gui->editor->get_text())) {
+        if (Kommunikationsstelle::start_script(gui->editor->get_text())) {
             gui->console->print("OK");
         }
         return true;
     }
     if (command == "stop") {
-        Schnittstelle::kill_current_task();
+        Kommunikationsstelle::kill_current_task();
         gui->console->print("OK");
         return true;
     }
@@ -121,15 +121,15 @@ bool Schnittstelle::handle_command(std::string command) {
             return true;
         }
         if (command[0] == 's') {
-            Schnittstelle::save(name, gui->editor->get_text());
+            Kommunikationsstelle::save(name, gui->editor->get_text());
             gui->console->print("OK");
             return true;
         } else if (command[0] == 'l') {
-            gui->editor->set_text(Schnittstelle::load(name));
+            gui->editor->set_text(Kommunikationsstelle::load(name));
             gui->console->print("OK");
             return true;
         } else if (command[0] == 'd') {
-            Schnittstelle::delete_file(name);
+            Kommunikationsstelle::delete_file(name);
             gui->console->print("OK");
             return true;
         }
@@ -138,23 +138,23 @@ bool Schnittstelle::handle_command(std::string command) {
 }
 
 
-void Schnittstelle::on_key_press(SDL_Keysym keysym) {
+void Kommunikationsstelle::on_key_press(SDL_Keysym keysym) {
     const std::string &key_name = get_key_name(keysym);
     interpreter->on_key_press(key_name);
 }
 
-void Schnittstelle::on_key_release(SDL_Keysym keysym) {
+void Kommunikationsstelle::on_key_release(SDL_Keysym keysym) {
     const std::string &key_name = get_key_name(keysym);
     interpreter->on_key_release(key_name);
 }
 
-void Schnittstelle::set_language(LANG lang) {
+void Kommunikationsstelle::set_language(LANG lang) {
     kill_current_task();
     interpreter = get_interpreter(lang);
     gui->set_language_mode(lang);
 }
 
-Plugin *Schnittstelle::get_interpreter(LANG language) {
+Plugin *Kommunikationsstelle::get_interpreter(LANG language) {
     switch (language) {
         case BASIC:
             return new BasicPlugin();
@@ -165,7 +165,7 @@ Plugin *Schnittstelle::get_interpreter(LANG language) {
     }
 }
 
-void Schnittstelle::kill_current_task() {
+void Kommunikationsstelle::kill_current_task() {
     if (status == RUNNING) {
         pthread_cancel(exec_thread);
         pthread_join(exec_thread, nullptr);
@@ -173,8 +173,8 @@ void Schnittstelle::kill_current_task() {
     }
 }
 
-void Schnittstelle::init(Gui *ui, LANG lang) {
-    Schnittstelle::gui = ui;
+void Kommunikationsstelle::init(Gui *ui, LANG lang) {
+    Kommunikationsstelle::gui = ui;
 
     interpreter = get_interpreter(lang);
 
@@ -189,32 +189,32 @@ void Schnittstelle::init(Gui *ui, LANG lang) {
     sort_subtrees(&help_root_entry.sub_entries);
 }
 
-void Schnittstelle::sort_subtrees(std::vector<Entry> *entries) {
+void Kommunikationsstelle::sort_subtrees(std::vector<Entry> *entries) {
     std::sort(entries->begin(), entries->end(), [&](const Entry &a, const Entry &b) { return a.name.compare(b.name) < 0; });
     for (auto &entry : *entries) {
         sort_subtrees(&entry.sub_entries);
     }
 }
 
-void Schnittstelle::save(const std::string &name, const std::string &text) {
+void Kommunikationsstelle::save(const std::string &name, const std::string &text) {
     std::ofstream outfile;
     outfile.open("saves/" + name + interpreter->get_extension());
     outfile << text;
     outfile.close();
 }
 
-std::string Schnittstelle::load(const std::string &name) {
+std::string Kommunikationsstelle::load(const std::string &name) {
     std::ifstream infile;
     infile.open(base_path + "/saves/" + name + interpreter->get_extension());
     return std::string(std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>());
 }
 
-void Schnittstelle::delete_file(const std::string &name) {
+void Kommunikationsstelle::delete_file(const std::string &name) {
     const std::basic_string<char, std::char_traits<char>, std::allocator<char>> &filename = base_path + "/saves/" + name + interpreter->get_extension();
     std::remove(filename.c_str());
 }
 
-Entry *Schnittstelle::get_common_help_root() {
+Entry *Kommunikationsstelle::get_common_help_root() {
     for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
         if (sub_entry->name == "Common") {
             return sub_entry.base();
@@ -223,7 +223,7 @@ Entry *Schnittstelle::get_common_help_root() {
     return nullptr;
 }
 
-Entry *Schnittstelle::get_language_help_root() {
+Entry *Kommunikationsstelle::get_language_help_root() {
     for (auto sub_entry = help_root_entry.sub_entries.begin(); sub_entry != help_root_entry.sub_entries.end(); ++sub_entry) {
         if (sub_entry->name == interpreter->get_help_folder_name()) {
             return sub_entry.base();
@@ -232,7 +232,7 @@ Entry *Schnittstelle::get_language_help_root() {
     return nullptr;
 }
 
-std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword) {
+std::vector<Entry *> Kommunikationsstelle::search_entries(const std::string &searchword) {
     std::vector<Entry *> entries = searchEntries(get_common_help_root(), searchword);
 
     const std::vector<Entry *> &found = searchEntries(get_language_help_root(), searchword);
@@ -263,41 +263,41 @@ std::vector<Entry *> Schnittstelle::search_entries(const std::string &searchword
 }
 
 
-void Schnittstelle::gui_draw_rect(TGraphicRect rect) {
+void Kommunikationsstelle::gui_draw_rect(TGraphicRect rect) {
     gui->graphic->add_rect(rect);
 }
 
-void Schnittstelle::gui_draw_circle(TGraphicCircle circle) {
+void Kommunikationsstelle::gui_draw_circle(TGraphicCircle circle) {
     gui->graphic->add_circle(circle);
 }
 
-void Schnittstelle::gui_draw_line(TGraphicLine line) {
+void Kommunikationsstelle::gui_draw_line(TGraphicLine line) {
     gui->graphic->add_line(line);
 }
 
-void Schnittstelle::gui_draw_text(TGraphicText text) {
+void Kommunikationsstelle::gui_draw_text(TGraphicText text) {
     gui->graphic->add_text(text);
 }
 
-void Schnittstelle::gui_draw_pixel(TGraphicPixel pixel) {
+void Kommunikationsstelle::gui_draw_pixel(TGraphicPixel pixel) {
     gui->graphic->add_pixel(pixel);
 }
 
-void Schnittstelle::gui_clear() {
+void Kommunikationsstelle::gui_clear() {
     gui->graphic->clear();
 }
 
-void Schnittstelle::gui_print(const std::string &message) {
+void Kommunikationsstelle::gui_print(const std::string &message) {
     gui->console->print(message);
 }
 
-void Schnittstelle::on_error(int line, const std::string &message) {
+void Kommunikationsstelle::on_error(int line, const std::string &message) {
     gui->console->print("[error] " + message);
     gui->editor->set_error_marker(line, message);
 }
 
 
-std::string Schnittstelle::get_key_name(const SDL_Keysym &keysym) {
+std::string Kommunikationsstelle::get_key_name(const SDL_Keysym &keysym) {
     switch (keysym.scancode) {
         default:
             return "unknown";

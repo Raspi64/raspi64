@@ -49,7 +49,7 @@ add_executable(
         src/gui/extension/TextEditorLanguageExtension.cpp
 
         # schnittstelle files
-        src/Schnittstelle.cpp
+        src/Kommunikationsstelle.cpp
         src/plugins/Plugin.cpp
         src/plugins/lua/LuaPlugin.cpp
         src/plugins/basic/BasicPlugin.cpp
