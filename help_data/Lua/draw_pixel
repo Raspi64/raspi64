@@ -1,7 +1,7 @@
 draw;zeichnen;pixel;graphic;graphical output;grafische ausgabe;lua
 
 Draw Pixel (Pixel zeichnen)
-Die "draw_pixel" Funktion ist für das darstellen der Pixel, in der grafischen Ausgabe da.
+Die "draw_pixel" Funktion ist für das Darstellen der Pixel, in der grafischen Ausgabe da.
 Die "draw" Funktion ist ein Alias fuer die "draw_pixel".
 Der draw_pixel Funktion müssen vier Parameter mitgegeben werden:
 - x und y sind number, welche beschreiben die Position des Pixels
