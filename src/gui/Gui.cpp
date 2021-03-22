@@ -45,6 +45,8 @@ int Gui::initialize() {
     int sdl = init_sdl();
     if (sdl != 0) return sdl;
 
+    SDL_GL_SetSwapInterval(0);
+
     init_imgui();
 
     clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
