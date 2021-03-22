@@ -43,5 +43,5 @@ Das Programm kann nun mit diesem Befehl gestartet werden. Alles zur Verwendung d
 
 
 ```
-$ ./imgui_setup
+$ ./raspi64
 ```
