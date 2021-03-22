@@ -33,16 +33,17 @@ int main() {
     struct timespec now, later;
 
     while (running) {
-        printf("Rendering frame % 5d ", frame);
         clock_gettime(CLOCK_REALTIME, &now);
 
         running = gui->tick() == 0;
-        frame++;
-        frame_sec++;
 
         clock_gettime(CLOCK_REALTIME, &later);
         __syscall_slong_t diff_ns = later.tv_nsec - now.tv_nsec;
-        printf(" took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+
+        printf("Rendering frame % 5d took % 3ld.%03ld.%03ld ps\n", frame, diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+
+        frame++;
+        frame_sec++;
 
         if (now.tv_sec != later.tv_sec) {
             printf("%d FPS\n", frame_sec);
