@@ -28,6 +28,7 @@ include_directories(lib/my_basic)
 
 add_executable(
         raspi64
+        src/debug.h
         src/main.cpp
         # gui files
         src/gui/Gui.cpp

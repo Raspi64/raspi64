@@ -40,7 +40,7 @@ int main() {
         clock_gettime(CLOCK_REALTIME, &later);
         __syscall_slong_t diff_ns = later.tv_nsec - now.tv_nsec;
 
-        printf("Rendering frame % 5d took % 3ld.%03ld.%03ld ps\n", frame, diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+//        printf("Rendering frame % 5d took % 3ld.%03ld.%03ld ps\n", frame, diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
 
         frame++;
         frame_sec++;
