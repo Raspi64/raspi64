@@ -138,6 +138,11 @@ void Gui::destroy() {
 }
 
 int Gui::tick() {
+    struct timespec now, later;
+    __syscall_slong_t diff_ns;
+    clock_gettime(CLOCK_REALTIME, &now);
+
+
     // Poll and handle events (inputs, window resize, etc.)
     // You can read the io.WantCaptureMouse, io.WantCaptureKeyboard flags to tell if dear imgui wants to use your inputs.
     // - When io.WantCaptureMouse is true, do not dispatch mouse input data to your main application.
@@ -164,24 +169,54 @@ int Gui::tick() {
         }
     }
 
+    clock_gettime(CLOCK_REALTIME, &later);
+    diff_ns = later.tv_nsec - now.tv_nsec;
+    printf("Events took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+
+
+    clock_gettime(CLOCK_REALTIME, &now);
     // Start the Dear ImGui frame
     ImGui_ImplOpenGL2_NewFrame();
     ImGui_ImplSDL2_NewFrame(window);
     ImGui::NewFrame();
+    clock_gettime(CLOCK_REALTIME, &later);
+    diff_ns = later.tv_nsec - now.tv_nsec;
+    printf("NewFrame took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+
 
     // 1. Show a simple window that we create ourselves. We use a Begin/End pair to created a named window.
     //ImGui::ShowDemoWindow(&show_demo_window);
 
 
+    clock_gettime(CLOCK_REALTIME, &now);
     // check key triggers
     check_keys();
+
+    clock_gettime(CLOCK_REALTIME, &later);
+    diff_ns = later.tv_nsec - now.tv_nsec;
+    printf("check_keys took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+
+
+    clock_gettime(CLOCK_REALTIME, &now);
 
     // Create the needed windows
     render_windows();
 
+    clock_gettime(CLOCK_REALTIME, &later);
+    diff_ns = later.tv_nsec - now.tv_nsec;
+    printf("render_windows took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+
+    clock_gettime(CLOCK_REALTIME, &now);
 
     // Rendering
     ImGui::Render();
+    clock_gettime(CLOCK_REALTIME, &later);
+    diff_ns = later.tv_nsec - now.tv_nsec;
+    printf("ImGui::Render took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+
+
+    clock_gettime(CLOCK_REALTIME, &now);
+
     ImGuiIO &io = ImGui::GetIO();
     glViewport(0, 0, (int) io.DisplaySize.x, (int) io.DisplaySize.y);
     glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
@@ -189,6 +224,10 @@ int Gui::tick() {
     //glUseProgram(0); // You may want this if using this code in an OpenGL 3+ context where shaders may be bound
     ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
     SDL_GL_SwapWindow(window);
+
+    clock_gettime(CLOCK_REALTIME, &later);
+    diff_ns = later.tv_nsec - now.tv_nsec;
+    printf("Raw Render took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
 
     return 0;
 }
@@ -239,7 +278,7 @@ void Gui::render_windows() {
         uiElements[i]->render();
         clock_gettime(CLOCK_REALTIME, &later);
         __syscall_slong_t diff_ns = later.tv_nsec - now.tv_nsec;
-        printf("Component %d took % 3ld.%03ld.%03ld ps\n", i, diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+        printf("Component %zu took % 3ld.%03ld.%03ld ps\n", i, diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
     }
 }
 
