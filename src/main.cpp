@@ -28,8 +28,26 @@ int main() {
 
     // Tick the Gui until User wants to exit
     bool running = true;
+    unsigned int frame = 0;
+    unsigned int frame_sec = 0;
+    struct timespec now, later;
+
     while (running) {
+        printf("Rendering frame % 5d ", frame);
+        clock_gettime(CLOCK_REALTIME, &now);
+
         running = gui->tick() == 0;
+        frame++;
+        frame_sec++;
+
+        clock_gettime(CLOCK_REALTIME, &later);
+        __syscall_slong_t diff_ns = later.tv_nsec - now.tv_nsec;
+        printf(" took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+
+        if (now.tv_sec != later.tv_sec) {
+            printf("%d FPS\n", frame_sec);
+            frame_sec = 0;
+        }
     }
 
     // De-Initialize Gui

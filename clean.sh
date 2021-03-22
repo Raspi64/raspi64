@@ -7,3 +7,5 @@ else
   # Makefile project
   find . -name "*.o" -type f -delete
 fi
+
+rm raspi64
