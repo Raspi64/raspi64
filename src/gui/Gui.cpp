@@ -222,12 +222,22 @@ int Gui::tick() {
     glClearColor(clear_color.x, clear_color.y, clear_color.z, clear_color.w);
     glClear(GL_COLOR_BUFFER_BIT);
     //glUseProgram(0); // You may want this if using this code in an OpenGL 3+ context where shaders may be bound
-    ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
-    SDL_GL_SwapWindow(window);
-
     clock_gettime(CLOCK_REALTIME, &later);
     diff_ns = later.tv_nsec - now.tv_nsec;
-    printf("Raw Render took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+    printf("ImGuiIO took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+
+    clock_gettime(CLOCK_REALTIME, &now);
+    ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
+    clock_gettime(CLOCK_REALTIME, &later);
+    diff_ns = later.tv_nsec - now.tv_nsec;
+    printf("ImGui_ImplOpenGL2_RenderDrawData took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
+
+
+    clock_gettime(CLOCK_REALTIME, &now);
+    SDL_GL_SwapWindow(window);
+    clock_gettime(CLOCK_REALTIME, &later);
+    diff_ns = later.tv_nsec - now.tv_nsec;
+    printf("SDL_GL_SwapWindow took % 3ld.%03ld.%03ld ps\n", diff_ns / 1000000, (diff_ns / 1000) % 1000, diff_ns % 1000);
 
     return 0;
 }
